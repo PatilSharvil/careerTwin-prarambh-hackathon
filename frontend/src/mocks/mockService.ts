@@ -152,6 +152,20 @@ class MockService {
       source: (resumeFile ? 'resume+self' : 'self') as 'resume+self' | 'self',
     }));
 
+    const resumeSkills =
+      resumeFile || data.resume_text || mappedSkills.length === 0
+        ? this.currentProfile.profile.skills
+        : [];
+
+    const combinedSkillsMap = new Map<string, (typeof this.currentProfile.profile.skills)[0]>();
+    for (const s of resumeSkills) {
+      combinedSkillsMap.set(s.skill_id, s);
+    }
+    for (const m of mappedSkills) {
+      combinedSkillsMap.set(m.skill_id, m);
+    }
+    const finalSkills = Array.from(combinedSkillsMap.values());
+
     this.currentProfile = {
       profile: {
         education: data.education,
@@ -160,8 +174,8 @@ class MockService {
         weekly_hours: 10,
         deadline_weeks: 12,
         target_role_id: null,
-        skills: mappedSkills.length > 0 ? mappedSkills : this.currentProfile.profile.skills,
-        unmapped_skills: [],
+        skills: finalSkills,
+        unmapped_skills: mockProfile.profile.unmapped_skills || ['Kubernetes basics', 'Redis caching'],
       },
       meta: defaultMeta,
     };
@@ -189,6 +203,21 @@ class MockService {
       this.currentProfile.profile.target_role_id = data.role_id;
       this.currentProfile.profile.deadline_weeks = data.deadline_weeks;
       this.currentProfile.profile.weekly_hours = data.weekly_hours;
+
+      if (data.skill_overrides) {
+        for (const [skillId, level] of Object.entries(data.skill_overrides)) {
+          const profileSkill = this.currentProfile.profile.skills.find((s) => s.skill_id === skillId);
+          if (profileSkill) {
+            profileSkill.level = level;
+            profileSkill.source = 'override';
+          }
+          const gap = this.currentState.analysis.gaps.find((g) => g.skill_id === skillId);
+          if (gap) {
+            gap.level = level;
+            gap.gap = Math.max(0, Number((gap.target - level).toFixed(1)));
+          }
+        }
+      }
     }
     return JSON.parse(JSON.stringify(this.currentState));
   }
