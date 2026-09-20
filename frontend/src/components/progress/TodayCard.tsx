@@ -47,21 +47,21 @@ export const TodayCard: React.FC<TodayCardProps> = ({
 
   if (!today) {
     return (
-      <Card className="p-6 border-slate-200 bg-gradient-to-br from-slate-50 to-white shadow-xs">
+      <Card className="p-6 border-2 border-black bg-white rounded-2xl shadow-neo">
         <div className="flex items-start gap-4">
-          <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
-            <CheckCircle2 className="w-6 h-6" />
+          <div className="w-12 h-12 rounded-xl bg-[#79e7a8] border-2 border-black flex items-center justify-center text-black flex-shrink-0 shadow-neo-xs">
+            <CheckCircle2 className="w-6 h-6 stroke-[3]" />
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+              <span className="text-xs font-black uppercase tracking-wider text-black bg-[#79e7a8] px-2.5 py-0.5 rounded-lg border border-black shadow-neo-xs">
                 Today's Status
               </span>
             </div>
-            <h3 className="text-lg font-bold text-slate-900 mb-1">
+            <h3 className="text-lg font-black text-black mb-1">
               All Caught Up!
             </h3>
-            <p className="text-sm text-slate-600 mb-3">
+            <p className="text-sm font-medium text-slate-700 mb-3">
               {message || 'You have no urgent tasks scheduled for today. Great work! Pick any available skill from your roadmap below to keep advancing.'}
             </p>
           </div>
@@ -73,16 +73,16 @@ export const TodayCard: React.FC<TodayCardProps> = ({
   const { activity, minutes, why, reasons, skill_name } = today;
 
   return (
-    <Card className="p-6 border-primary-200 bg-gradient-to-br from-white via-primary-50/20 to-white shadow-sm hover:shadow-md transition-shadow">
+    <Card className="p-6 border-2 border-black bg-white shadow-neo rounded-2xl">
       {/* Top Header */}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center text-xs font-bold uppercase tracking-wider text-primary-700 bg-primary-50 px-2.5 py-1 rounded-full border border-primary-200">
-            <Sparkles className="w-3 h-3 mr-1 text-primary-600" />
+          <span className="inline-flex items-center text-xs font-black uppercase tracking-wider text-black bg-[#ffe566] px-3 py-1 rounded-xl border-2 border-black shadow-neo-xs">
+            <Sparkles className="w-3.5 h-3.5 mr-1 text-black stroke-[2.5]" />
             Today's Recommended Focus
           </span>
-          <span className="inline-flex items-center text-xs font-semibold text-slate-600 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
-            <Clock className="w-3 h-3 mr-1 text-slate-500" />
+          <span className="inline-flex items-center text-xs font-black text-black bg-white px-2.5 py-1 rounded-xl border-2 border-black shadow-neo-xs">
+            <Clock className="w-3.5 h-3.5 mr-1 text-black" />
             {minutes} mins
           </span>
         </div>
@@ -94,29 +94,29 @@ export const TodayCard: React.FC<TodayCardProps> = ({
               {activity.type}
             </span>
           </Badge>
-          <span className="text-xs text-slate-500 font-medium px-1">
-            via <strong className="text-slate-700">{activity.provider}</strong>
+          <span className="text-xs text-black font-bold px-1">
+            via <strong className="text-black bg-[#faf6ee] px-1.5 py-0.5 rounded border border-black">{activity.provider}</strong>
           </span>
         </div>
       </div>
 
       {/* Activity Title & Target Skill */}
       <div className="mb-4">
-        <div className="text-xs font-medium text-slate-500 mb-0.5">
-          Focus Skill: <span className="font-semibold text-slate-800">{skill_name}</span>
+        <div className="text-xs font-black text-black mb-0.5">
+          Focus Skill: <span className="bg-[#70d6ff] px-2 py-0.5 rounded-lg border border-black shadow-neo-xs">{skill_name}</span>
         </div>
-        <h3 className="text-xl font-bold text-slate-900 leading-snug">
+        <h3 className="text-xl font-black text-black leading-snug mt-2">
           {activity.title}
         </h3>
 
         {/* Level Gain Pill */}
-        <div className="flex items-center gap-3 mt-2 text-xs text-slate-600">
-          <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-md font-medium">
-            <TrendingUp className="w-3 h-3 text-emerald-600" />
+        <div className="flex items-center gap-3 mt-2 text-xs text-black font-bold">
+          <span className="inline-flex items-center gap-1 bg-[#79e7a8] text-black border-2 border-black px-2.5 py-0.5 rounded-lg shadow-neo-xs">
+            <TrendingUp className="w-3.5 h-3.5 text-black stroke-[3]" />
             Level {activity.level_from.toFixed(1)} → {activity.level_to.toFixed(1)} (+{activity.level_gain.toFixed(1)})
           </span>
-          <span className="inline-flex items-center gap-1 text-slate-500">
-            <Target className="w-3 h-3 text-slate-400" />
+          <span className="inline-flex items-center gap-1 text-black bg-white px-2 py-0.5 rounded border border-black shadow-neo-xs">
+            <Target className="w-3.5 h-3.5 text-black" />
             Target: {why.target.toFixed(1)}
           </span>
         </div>
@@ -124,8 +124,8 @@ export const TodayCard: React.FC<TodayCardProps> = ({
 
       {/* Why Explanation Box */}
       {why?.narrative && (
-        <div className="mb-4 p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 leading-relaxed">
-          <div className="flex items-center gap-1.5 font-semibold text-slate-800 mb-1">
+        <div className="mb-4 p-4 rounded-2xl bg-[#faf6ee] border-2 border-black text-xs text-black leading-relaxed font-medium shadow-neo-xs">
+          <div className="flex items-center justify-between font-black text-black mb-1.5">
             <span>Why this activity?</span>
             <Badge
               variant={
@@ -140,20 +140,20 @@ export const TodayCard: React.FC<TodayCardProps> = ({
               {why.priority_label} Priority ({why.priority})
             </Badge>
           </div>
-          <p>{why.narrative}</p>
+          <p className="bg-white p-2.5 rounded-xl border border-black">&ldquo;{why.narrative}&rdquo;</p>
         </div>
       )}
 
       {/* Bulleted Reasons */}
       {reasons && reasons.length > 0 && (
         <div className="mb-5 space-y-1.5">
-          <div className="text-xs font-semibold text-slate-700 uppercase tracking-wider">
+          <div className="text-xs font-black text-black uppercase tracking-wider">
             Key Objectives
           </div>
-          <ul className="space-y-1">
+          <ul className="space-y-1.5">
             {reasons.map((reason, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs text-slate-600">
-                <CheckCircle2 className="w-3.5 h-3.5 text-primary-600 flex-shrink-0 mt-0.5" />
+              <li key={idx} className="flex items-start gap-2 text-xs font-semibold text-black bg-[#faf6ee] p-2 rounded-xl border border-black">
+                <CheckCircle2 className="w-4 h-4 text-black stroke-[3] flex-shrink-0 mt-0.5" />
                 <span>{reason}</span>
               </li>
             ))}
@@ -162,8 +162,8 @@ export const TodayCard: React.FC<TodayCardProps> = ({
       )}
 
       {/* Actions */}
-      <div className="pt-2 flex items-center justify-between border-t border-slate-100">
-        <span className="text-xs text-slate-500 font-medium">
+      <div className="pt-3 flex items-center justify-between border-t-2 border-black">
+        <span className="text-xs text-black font-black">
           Ready to make progress?
         </span>
         <Button
@@ -171,10 +171,9 @@ export const TodayCard: React.FC<TodayCardProps> = ({
           size="md"
           onClick={handleStart}
           disabled={isLoading || !activity.url}
-          className="shadow-sm hover:shadow-md"
         >
           <span>Start Activity</span>
-          <ExternalLink className="w-4 h-4 ml-1.5" />
+          <ExternalLink className="w-4 h-4 ml-1.5 stroke-[2.5]" />
         </Button>
       </div>
     </Card>

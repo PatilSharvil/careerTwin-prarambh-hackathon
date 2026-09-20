@@ -47,13 +47,13 @@ export const FocusNextUpCard: React.FC<FocusNextUpCardProps> = ({
   const getStatusIcon = (status: RoadmapItem['status']) => {
     switch (status) {
       case 'done':
-        return <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />;
+        return <CheckCircle2 className="w-3.5 h-3.5 text-black stroke-[3]" />;
       case 'in_progress':
-        return <PlayCircle className="w-3.5 h-3.5 text-violet-600" />;
+        return <PlayCircle className="w-3.5 h-3.5 text-black stroke-[2.5]" />;
       case 'available':
-        return <Unlock className="w-3.5 h-3.5 text-blue-600" />;
+        return <Unlock className="w-3.5 h-3.5 text-black stroke-[2.5]" />;
       case 'locked':
-        return <Lock className="w-3.5 h-3.5 text-slate-400" />;
+        return <Lock className="w-3.5 h-3.5 text-slate-500" />;
     }
   };
 
@@ -61,25 +61,25 @@ export const FocusNextUpCard: React.FC<FocusNextUpCardProps> = ({
     switch (status) {
       case 'done':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+          <span className="inline-flex items-center gap-1 text-[11px] font-black text-black bg-[#79e7a8] px-2.5 py-0.5 rounded-lg border border-black shadow-neo-xs">
             {getStatusIcon(status)} Completed
           </span>
         );
       case 'in_progress':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-violet-700 bg-violet-50 px-2 py-0.5 rounded-full border border-violet-200">
+          <span className="inline-flex items-center gap-1 text-[11px] font-black text-black bg-[#ffe566] px-2.5 py-0.5 rounded-lg border border-black shadow-neo-xs">
             {getStatusIcon(status)} In Progress
           </span>
         );
       case 'available':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full border border-blue-200">
-            {getStatusIcon(status)} Ready to Start
+          <span className="inline-flex items-center gap-1 text-[11px] font-black text-black bg-[#70d6ff] px-2.5 py-0.5 rounded-lg border border-black shadow-neo-xs">
+            {getStatusIcon(status)} Ready
           </span>
         );
       case 'locked':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">
+          <span className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-600 bg-slate-200 px-2 py-0.5 rounded-lg border border-black">
             {getStatusIcon(status)} Locked
           </span>
         );
@@ -87,36 +87,36 @@ export const FocusNextUpCard: React.FC<FocusNextUpCardProps> = ({
   };
 
   return (
-    <Card className="p-5 border-slate-200 bg-white shadow-xs">
-      <div className="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+    <Card className="p-5 border-2 border-black bg-white shadow-neo rounded-2xl">
+      <div className="flex items-center justify-between mb-4 pb-2 border-b-2 border-black">
         <div className="flex items-center gap-2">
-          <Compass className="w-4 h-4 text-primary-600" />
-          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
-            Trajectory & Pipeline
+          <Compass className="w-4 h-4 text-black stroke-[2.5]" />
+          <h3 className="text-sm font-black text-black uppercase tracking-wider">
+            Trajectory &amp; Pipeline
           </h3>
         </div>
-        <span className="text-xs text-slate-500 font-medium">
+        <span className="text-xs text-black font-bold bg-[#faf6ee] px-2 py-0.5 rounded border border-black">
           Roadmap Sequence
         </span>
       </div>
 
       {/* Current Focus Section */}
       <div className="mb-4">
-        <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-1.5 flex items-center gap-1">
+        <div className="text-[11px] font-black uppercase tracking-wider text-black mb-1.5 flex items-center gap-1">
           <span>Current Target Milestone</span>
         </div>
 
         {currentFocus ? (
           <div
             onClick={() => onSelectItem?.(currentFocus)}
-            className="p-3.5 rounded-xl border border-primary-100 bg-primary-50/30 hover:border-primary-300 transition-colors cursor-pointer group"
+            className="p-4 rounded-2xl border-2 border-black bg-[#faf6ee] shadow-neo-xs hover:shadow-neo transition-all cursor-pointer group"
           >
             <div className="flex items-start justify-between gap-2 mb-1.5">
               <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-primary-100 text-primary-700 text-xs font-bold flex items-center justify-center">
+                <span className="w-6 h-6 rounded-lg bg-black text-[#ffe566] text-xs font-black flex items-center justify-center border border-black shadow-neo-xs">
                   #{currentFocus.position}
                 </span>
-                <span className="text-sm font-bold text-slate-900 group-hover:text-primary-700 transition-colors">
+                <span className="text-sm font-black text-black">
                   {currentFocus.skill_name}
                 </span>
                 {currentFocus.is_capstone && (
@@ -126,25 +126,25 @@ export const FocusNextUpCard: React.FC<FocusNextUpCardProps> = ({
               {getStatusBadge(currentFocus.status)}
             </div>
 
-            <div className="flex items-center gap-3 text-xs text-slate-600 mb-2">
+            <div className="flex items-center gap-3 text-xs text-black font-bold mb-2">
               <span className="inline-flex items-center gap-1">
-                <Layers className="w-3.5 h-3.5 text-slate-400" />
+                <Layers className="w-3.5 h-3.5 text-black" />
                 {currentFocus.phase}
               </span>
               <span className="inline-flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5 text-slate-400" />
+                <Clock className="w-3.5 h-3.5 text-black" />
                 {currentFocus.hours} hours (Weeks {currentFocus.week_start}–{currentFocus.week_end})
               </span>
             </div>
 
             {currentFocus.why?.narrative && (
-              <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed bg-white/70 p-2 rounded-lg border border-slate-100">
+              <p className="text-xs text-black leading-relaxed bg-white p-2.5 rounded-xl border border-black font-medium">
                 {currentFocus.why.narrative}
               </p>
             )}
           </div>
         ) : (
-          <div className="p-3 rounded-lg bg-slate-50 text-xs text-slate-500 italic">
+          <div className="p-3 rounded-xl bg-[#faf6ee] border-2 border-dashed border-black text-xs text-black font-bold">
             All roadmap milestones completed!
           </div>
         )}
@@ -152,9 +152,9 @@ export const FocusNextUpCard: React.FC<FocusNextUpCardProps> = ({
 
       {/* Next Up Section */}
       <div>
-        <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1">
+        <div className="text-[11px] font-black uppercase tracking-wider text-black mb-2 flex items-center gap-1">
           <span>Next in Queue</span>
-          <ArrowRight className="w-3 h-3 text-slate-400" />
+          <ArrowRight className="w-3.5 h-3.5 text-black stroke-[3]" />
         </div>
 
         {nextUp.length > 0 ? (
@@ -163,17 +163,17 @@ export const FocusNextUpCard: React.FC<FocusNextUpCardProps> = ({
               <div
                 key={item.item_id}
                 onClick={() => onSelectItem?.(item)}
-                className="flex items-center justify-between p-2.5 rounded-lg border border-slate-100 bg-slate-50/60 hover:bg-slate-100/70 hover:border-slate-200 transition-colors cursor-pointer"
+                className="flex items-center justify-between p-3 rounded-xl border-2 border-black bg-white hover:bg-[#faf6ee] shadow-neo-xs hover:shadow-neo transition-all cursor-pointer"
               >
                 <div className="flex items-center gap-2.5 min-w-0">
-                  <span className="text-xs font-semibold text-slate-400 w-5">
+                  <span className="text-xs font-black text-black w-6">
                     #{item.position}
                   </span>
                   <div className="min-w-0">
-                    <span className="text-xs font-medium text-slate-800 truncate block">
+                    <span className="text-xs font-black text-black truncate block">
                       {item.skill_name}
                     </span>
-                    <span className="text-[10px] text-slate-500">
+                    <span className="text-[10px] text-slate-700 font-bold">
                       {item.phase} · {item.hours} hrs
                     </span>
                   </div>
@@ -183,7 +183,7 @@ export const FocusNextUpCard: React.FC<FocusNextUpCardProps> = ({
             ))}
           </div>
         ) : (
-          <div className="text-xs text-slate-400 italic">
+          <div className="text-xs text-slate-500 font-medium italic">
             No further items pending in queue.
           </div>
         )}

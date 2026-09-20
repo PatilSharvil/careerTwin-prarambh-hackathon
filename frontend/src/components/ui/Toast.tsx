@@ -45,26 +45,26 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   const getIcon = (type: ToastType) => {
     switch (type) {
       case 'success':
-        return <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0" />;
+        return <CheckCircle2 className="w-5 h-5 text-black flex-shrink-0" />;
       case 'error':
-        return <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0" />;
+        return <AlertCircle className="w-5 h-5 text-black flex-shrink-0" />;
       case 'warning':
-        return <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0" />;
+        return <AlertTriangle className="w-5 h-5 text-black flex-shrink-0" />;
       case 'info':
-        return <Info className="w-5 h-5 text-primary-600 flex-shrink-0" />;
+        return <Info className="w-5 h-5 text-black flex-shrink-0" />;
     }
   };
 
   const getTypeStyles = (type: ToastType) => {
     switch (type) {
       case 'success':
-        return 'border-emerald-200 bg-emerald-50/90 text-emerald-900';
+        return 'border-2 border-black bg-[#79e7a8] text-black shadow-neo-lg';
       case 'error':
-        return 'border-red-200 bg-red-50/90 text-red-900';
+        return 'border-2 border-black bg-[#ff6b6b] text-black shadow-neo-lg';
       case 'warning':
-        return 'border-amber-200 bg-amber-50/90 text-amber-900';
+        return 'border-2 border-black bg-[#ffd166] text-black shadow-neo-lg';
       case 'info':
-        return 'border-primary-200 bg-primary-50/90 text-primary-900';
+        return 'border-2 border-black bg-[#70d6ff] text-black shadow-neo-lg';
     }
   };
 
@@ -72,25 +72,27 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     <ToastContext.Provider value={{ showToast, dismissToast, toasts }}>
       {children}
       {/* Toast container */}
-      <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none">
+      <div className="fixed bottom-5 right-5 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none">
         {toasts.map((toast) => (
           <div
             key={toast.id}
-            className={`pointer-events-auto flex items-start gap-3 p-4 rounded-xl border shadow-lg backdrop-blur-sm transition-all duration-300 transform translate-y-0 ${getTypeStyles(
+            className={`pointer-events-auto flex items-start gap-3 p-4 rounded-2xl transition-all duration-300 transform translate-y-0 ${getTypeStyles(
               toast.type
             )}`}
           >
-            {getIcon(toast.type)}
+            <div className="p-1.5 rounded-lg bg-white/80 border-2 border-black shadow-neo-xs">
+              {getIcon(toast.type)}
+            </div>
             <div className="flex-1 min-w-0">
-              {toast.title && <h4 className="text-sm font-semibold">{toast.title}</h4>}
-              <p className="text-xs mt-0.5 text-slate-700">{toast.message}</p>
+              {toast.title && <h4 className="text-sm font-extrabold text-black">{toast.title}</h4>}
+              <p className="text-xs mt-0.5 text-black font-semibold leading-snug">{toast.message}</p>
             </div>
             <button
               onClick={() => dismissToast(toast.id)}
-              className="text-slate-400 hover:text-slate-600 p-0.5 rounded transition-colors"
+              className="p-1 rounded-lg bg-white border-2 border-black hover:bg-slate-100 transition-colors shadow-neo-xs"
               aria-label="Close"
             >
-              <X className="w-4 h-4" />
+              <X className="w-3.5 h-3.5 text-black" />
             </button>
           </div>
         ))}

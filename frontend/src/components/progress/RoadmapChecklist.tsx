@@ -57,41 +57,41 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
   const getStatusIcon = (status: RoadmapItem['status']) => {
     switch (status) {
       case 'done':
-        return <CheckCircle2 className="w-4 h-4 text-emerald-600" />;
+        return <CheckCircle2 className="w-4 h-4 text-black" />;
       case 'in_progress':
-        return <PlayCircle className="w-4 h-4 text-violet-600" />;
+        return <PlayCircle className="w-4 h-4 text-black" />;
       case 'available':
-        return <Unlock className="w-4 h-4 text-blue-600" />;
+        return <Unlock className="w-4 h-4 text-black" />;
       case 'locked':
-        return <Lock className="w-4 h-4 text-slate-400" />;
+        return <Lock className="w-4 h-4 text-neutral-500" />;
     }
   };
 
   const getActivityTypeIcon = (type: string) => {
     switch (type) {
       case 'course':
-        return <BookOpen className="w-3.5 h-3.5 text-blue-500" />;
+        return <BookOpen className="w-4 h-4 text-black" />;
       case 'project':
-        return <Code2 className="w-3.5 h-3.5 text-purple-500" />;
+        return <Code2 className="w-4 h-4 text-black" />;
       case 'doc':
-        return <FileText className="w-3.5 h-3.5 text-amber-500" />;
+        return <FileText className="w-4 h-4 text-black" />;
       case 'certification':
-        return <Award className="w-3.5 h-3.5 text-emerald-500" />;
+        return <Award className="w-4 h-4 text-black" />;
       default:
-        return <FileText className="w-3.5 h-3.5 text-slate-400" />;
+        return <FileText className="w-4 h-4 text-black" />;
     }
   };
 
   const getPhaseStyles = (phase: Phase) => {
     switch (phase) {
       case 'Foundation':
-        return 'bg-blue-50 text-blue-800 border-blue-200';
+        return 'bg-[#70d6ff] text-black border-2 border-black shadow-neo-xs';
       case 'Core':
-        return 'bg-indigo-50 text-indigo-800 border-indigo-200';
+        return 'bg-[#b892ff] text-black border-2 border-black shadow-neo-xs';
       case 'Applied':
-        return 'bg-violet-50 text-violet-800 border-violet-200';
+        return 'bg-[#ff9770] text-black border-2 border-black shadow-neo-xs';
       case 'Capstone':
-        return 'bg-amber-50 text-amber-800 border-amber-200';
+        return 'bg-[#ffe566] text-black border-2 border-black shadow-neo-xs';
     }
   };
 
@@ -105,16 +105,16 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
 
   return (
     <div className="space-y-8">
-      <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b-2 border-black gap-3">
         <div>
-          <h2 className="text-xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-2xl font-black text-black tracking-tight">
             Roadmap Execution Checklist
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs font-bold text-neutral-600 mt-0.5">
             Mark individual activities or full skills complete to dynamically advance your career twin readiness.
           </p>
         </div>
-        <span className="text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+        <span className="text-xs font-black text-black bg-[#ffe566] border-2 border-black shadow-neo-xs px-3.5 py-1.5 rounded-xl self-start sm:self-center">
           {items.filter((i) => i.status === 'done').length} / {items.length} Completed
         </span>
       </div>
@@ -123,24 +123,24 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
         if (phaseItems.length === 0) return null;
 
         return (
-          <div key={phase} className="space-y-3">
+          <div key={phase} className="space-y-4">
             {/* Phase Header */}
             <div className="flex items-center gap-3">
               <span
-                className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${getPhaseStyles(
+                className={`text-xs font-black uppercase tracking-wider px-3.5 py-1.5 rounded-xl ${getPhaseStyles(
                   phase
                 )}`}
               >
                 {phase} Phase
               </span>
-              <div className="h-px bg-slate-200 flex-1" />
-              <span className="text-xs text-slate-400 font-medium">
+              <div className="h-0.5 bg-black flex-1" />
+              <span className="text-xs text-neutral-600 font-black">
                 {phaseItems.length} milestone{phaseItems.length > 1 ? 's' : ''}
               </span>
             </div>
 
             {/* List of Roadmap Items */}
-            <div className="space-y-3">
+            <div className="space-y-3.5">
               {phaseItems.map((item) => {
                 const isHighlighted =
                   highlightedSkillIds.has(item.skill_id || '') ||
@@ -158,63 +158,63 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                 return (
                   <Card
                     key={item.item_id}
-                    className={`border transition-all duration-700 overflow-hidden ${
+                    className={`border-2 border-black rounded-2xl transition-all duration-300 overflow-hidden ${
                       isHighlighted
-                        ? 'ring-2 ring-primary-500 bg-primary-50/40 shadow-md'
+                        ? 'bg-[#ffe566]/20 ring-3 ring-black shadow-neo-lg'
                         : isDone
-                        ? 'border-emerald-200 bg-emerald-50/20'
+                        ? 'bg-[#79e7a8]/20 shadow-neo-xs'
                         : isLocked
-                        ? 'border-slate-200 bg-slate-50/60 opacity-90'
-                        : 'border-slate-200 bg-white hover:border-slate-300 shadow-2xs'
+                        ? 'bg-neutral-100 opacity-80 shadow-none'
+                        : 'bg-white shadow-neo hover:shadow-neo-lg'
                     }`}
                   >
                     {/* Item Row Header */}
                     <div className="p-4 sm:p-5">
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                         {/* Left: Position, Status, Skill name & metadata */}
                         <div className="flex items-start sm:items-center gap-3 min-w-0">
                           <span
-                            className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 ${
+                            className={`w-8 h-8 rounded-xl border-2 border-black flex items-center justify-center text-xs font-black flex-shrink-0 shadow-neo-xs ${
                               isDone
-                                ? 'bg-emerald-100 text-emerald-800'
+                                ? 'bg-[#79e7a8] text-black'
                                 : isLocked
-                                ? 'bg-slate-200 text-slate-500'
-                                : 'bg-primary-100 text-primary-800'
+                                ? 'bg-neutral-200 text-neutral-600'
+                                : 'bg-[#ffe566] text-black'
                             }`}
                           >
                             #{item.position}
                           </span>
 
                           <div className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                            <div className="flex flex-wrap items-center gap-2 mb-1">
                               <h3
-                                className={`text-base font-bold truncate ${
+                                className={`text-base font-black truncate ${
                                   isDone
-                                    ? 'text-emerald-900 line-through'
-                                    : 'text-slate-900'
+                                    ? 'text-neutral-500 line-through'
+                                    : 'text-black'
                                 }`}
                               >
                                 {item.skill_name}
                               </h3>
 
                               {isHighlighted && (
-                                <span className="inline-flex items-center text-[10px] font-bold text-primary-700 bg-primary-100 px-2 py-0.5 rounded-full animate-pulse">
+                                <span className="inline-flex items-center text-[10px] font-black text-black bg-[#ff70a6] border-2 border-black px-2 py-0.5 rounded-lg shadow-neo-xs animate-pulse">
                                   <Sparkles className="w-2.5 h-2.5 mr-1" />
                                   Just Updated
                                 </span>
                               )}
 
                               {item.is_capstone && (
-                                <Badge variant="primary" size="sm">
+                                <span className="text-[10px] font-black uppercase bg-[#ff9770] text-black border-2 border-black px-2 py-0.5 rounded-lg shadow-neo-xs">
                                   Capstone Project
-                                </Badge>
+                                </span>
                               )}
 
                               <Badge
                                 status={item.status}
                                 size="sm"
                               >
-                                <span className="inline-flex items-center gap-1">
+                                <span className="inline-flex items-center gap-1 font-black">
                                   {getStatusIcon(item.status)}
                                   <span className="capitalize">
                                     {item.status.replace('_', ' ')}
@@ -223,13 +223,13 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                               </Badge>
                             </div>
 
-                            <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500">
+                            <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-600 font-bold">
                               <span className="inline-flex items-center gap-1">
-                                <Clock className="w-3 h-3 text-slate-400" />
+                                <Clock className="w-3.5 h-3.5 text-neutral-500" />
                                 {item.hours} hrs total (Weeks {item.week_start}–{item.week_end})
                               </span>
                               {item.why && (
-                                <span className="inline-flex items-center gap-1 text-slate-600 font-medium">
+                                <span className="inline-flex items-center gap-1 text-black font-black bg-neutral-100 px-2 py-0.5 rounded-md border border-black/30">
                                   Level {item.why.level.toFixed(1)} / {item.why.target.toFixed(1)}
                                 </span>
                               )}
@@ -243,9 +243,9 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                             <>
                               {/* "I already know this" Button or Form */}
                               {isShowingKnown ? (
-                                <div className="flex items-center gap-1.5 p-1 rounded-lg bg-slate-100 border border-slate-300">
-                                  <label className="text-[11px] font-semibold text-slate-600 pl-1">
-                                    Level:
+                                <div className="flex items-center gap-1.5 p-1.5 rounded-xl bg-[#faf6ee] border-2 border-black shadow-neo-xs">
+                                  <label className="text-[11px] font-black text-black pl-1">
+                                    Lvl:
                                   </label>
                                   <input
                                     type="number"
@@ -262,12 +262,12 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                                         }));
                                       }
                                     }}
-                                    className="w-14 px-1.5 py-0.5 text-xs font-bold text-slate-800 bg-white border border-slate-200 rounded text-center focus:ring-1 focus:ring-primary-500 outline-none"
+                                    className="w-14 px-1.5 py-0.5 text-xs font-black text-black bg-white border-2 border-black rounded-lg text-center focus:ring-0 outline-none shadow-neo-xs"
                                   />
                                   <Button
                                     variant="primary"
                                     size="sm"
-                                    className="px-2 py-0.5 text-[11px]"
+                                    className="px-2.5 py-1 text-[11px]"
                                     disabled={Boolean(loadingAction)}
                                     onClick={async () => {
                                       if (!item.skill_id) return;
@@ -280,7 +280,7 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                                   <Button
                                     variant="ghost"
                                     size="sm"
-                                    className="px-1.5 py-0.5 text-[11px] text-slate-500"
+                                    className="px-2 py-1 text-[11px] text-neutral-600 hover:text-black font-bold"
                                     onClick={() =>
                                       setShowKnownInput((prev) => ({ ...prev, [item.item_id]: false }))
                                     }
@@ -298,7 +298,7 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                                   disabled={Boolean(loadingAction) || isLocked}
                                   className="text-xs"
                                 >
-                                  <KnownIcon className="w-3.5 h-3.5 mr-1 text-slate-500" />
+                                  <KnownIcon className="w-3.5 h-3.5 mr-1 text-black" />
                                   I already know this
                                 </Button>
                               )}
@@ -310,7 +310,7 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                                 onClick={() => item.skill_id && onCompleteSkill(item.skill_id)}
                                 disabled={Boolean(loadingAction) || isLocked}
                                 isLoading={isSkillActionLoading}
-                                className="text-xs shadow-xs"
+                                className="text-xs"
                               >
                                 <Check className="w-3.5 h-3.5 mr-1" />
                                 Mark complete
@@ -319,19 +319,17 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                           )}
 
                           {isDone && (
-                            <span className="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-100/70 px-3 py-1 rounded-md">
-                              <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-emerald-600" />
+                            <span className="inline-flex items-center text-xs font-black text-black bg-[#79e7a8] border-2 border-black shadow-neo-xs px-3 py-1 rounded-xl">
+                              <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-black" />
                               Completed
                             </span>
                           )}
 
                           {/* Toggle Activities Button */}
                           {item.activities && item.activities.length > 0 && (
-                            <Button
-                              variant="ghost"
-                              size="sm"
+                            <button
                               onClick={() => toggleExpand(item.item_id)}
-                              className="text-slate-500 hover:text-slate-800 text-xs px-2"
+                              className="inline-flex items-center text-black font-black text-xs px-3 py-1.5 rounded-xl border-2 border-black bg-white hover:bg-[#faf6ee] shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5 transition-all"
                               aria-label="Toggle activities"
                             >
                               <span className="mr-1">{item.activities.length} activities</span>
@@ -340,28 +338,28 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                               ) : (
                                 <ChevronDown className="w-3.5 h-3.5" />
                               )}
-                            </Button>
+                            </button>
                           )}
                         </div>
                       </div>
 
                       {/* Prerequisites info banner if present and not met */}
                       {item.prerequisites && item.prerequisites.length > 0 && !isDone && (
-                        <div className="mt-3 pt-2.5 border-t border-slate-100 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                          <span className="font-semibold text-slate-600">Prerequisites:</span>
+                        <div className="mt-3.5 pt-3 border-t-2 border-black/10 flex flex-wrap items-center gap-2 text-xs">
+                          <span className="font-black text-black">Prerequisites:</span>
                           {item.prerequisites.map((p) => (
                             <span
                               key={p.skill_id}
-                              className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] border ${
+                              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-black border-2 border-black shadow-neo-xs ${
                                 p.met
-                                  ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                  : 'bg-amber-50 text-amber-800 border-amber-200'
+                                  ? 'bg-[#79e7a8] text-black'
+                                  : 'bg-[#ffe566] text-black'
                               }`}
                             >
                               {p.met ? (
-                                <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                                <CheckCircle2 className="w-3.5 h-3.5 text-black" />
                               ) : (
-                                <Lock className="w-3 h-3 text-amber-600" />
+                                <Lock className="w-3.5 h-3.5 text-black" />
                               )}
                               {p.skill_name} (min lvl {p.min_level})
                             </span>
@@ -372,8 +370,8 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
 
                     {/* Expandable Activities Checklist */}
                     {isExpanded && item.activities && item.activities.length > 0 && (
-                      <div className="bg-slate-50/70 border-t border-slate-100 p-4 sm:p-5 space-y-2.5">
-                        <div className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+                      <div className="bg-[#fdfbf7] border-t-2 border-black p-4 sm:p-5 space-y-3">
+                        <div className="text-xs font-black uppercase tracking-wider text-black mb-2">
                           Required Learning Activities
                         </div>
 
@@ -383,39 +381,39 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                           return (
                             <div
                               key={act.activity_id}
-                              className={`flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-lg border transition-colors ${
+                              className={`flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3.5 rounded-xl border-2 border-black transition-all ${
                                 act.completed
-                                  ? 'bg-emerald-50/40 border-emerald-200'
-                                  : 'bg-white border-slate-200/90 hover:border-slate-300'
+                                  ? 'bg-[#79e7a8]/30 shadow-neo-xs'
+                                  : 'bg-white shadow-neo-xs hover:shadow-neo'
                               }`}
                             >
-                              <div className="flex items-start gap-2.5 min-w-0">
-                                <span className="p-1 rounded bg-slate-100 text-slate-600 flex-shrink-0 mt-0.5">
+                              <div className="flex items-start gap-3 min-w-0">
+                                <span className="p-1.5 rounded-lg bg-[#ffe566] border-2 border-black text-black flex-shrink-0 shadow-neo-xs">
                                   {getActivityTypeIcon(act.type)}
                                 </span>
 
                                 <div className="min-w-0">
-                                  <div className="flex items-center gap-2">
+                                  <div className="flex flex-wrap items-center gap-2">
                                     <h4
-                                      className={`text-xs font-semibold ${
+                                      className={`text-xs font-black ${
                                         act.completed
-                                          ? 'text-emerald-900 line-through'
-                                          : 'text-slate-900'
+                                          ? 'text-neutral-500 line-through'
+                                          : 'text-black'
                                       }`}
                                     >
                                       {act.title}
                                     </h4>
-                                    <Badge variant="outline" size="sm" className="capitalize text-[10px]">
+                                    <span className="capitalize text-[10px] font-black bg-neutral-100 border border-black px-2 py-0.5 rounded-md">
                                       {act.type}
-                                    </Badge>
+                                    </span>
                                   </div>
 
-                                  <div className="flex flex-wrap items-center gap-2 mt-0.5 text-[11px] text-slate-500">
+                                  <div className="flex flex-wrap items-center gap-2 mt-1 text-[11px] text-neutral-600 font-bold">
                                     <span>by {act.provider}</span>
                                     <span>•</span>
                                     <span>{act.hours} hrs</span>
                                     <span>•</span>
-                                    <span className="text-emerald-700 font-medium">
+                                    <span className="text-black font-black bg-[#79e7a8] px-1.5 py-0.2 rounded border border-black">
                                       +{act.level_gain.toFixed(1)} level
                                     </span>
                                   </div>
@@ -429,16 +427,16 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                                     href={act.url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-xs font-medium text-primary-600 hover:text-primary-800 inline-flex items-center px-2 py-1 rounded hover:bg-primary-50 transition-colors"
+                                    className="text-xs font-black text-black hover:bg-[#ffe566] inline-flex items-center px-2.5 py-1 rounded-lg border-2 border-black shadow-neo-xs transition-colors"
                                   >
                                     <span>Open</span>
-                                    <ExternalLink className="w-3 h-3 ml-1" />
+                                    <ExternalLink className="w-3.5 h-3.5 ml-1" />
                                   </a>
                                 )}
 
                                 {act.completed ? (
-                                  <span className="inline-flex items-center text-xs font-semibold text-emerald-700 bg-emerald-100/70 px-2.5 py-1 rounded-md">
-                                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-emerald-600" />
+                                  <span className="inline-flex items-center text-xs font-black text-black bg-[#79e7a8] border-2 border-black shadow-neo-xs px-2.5 py-1 rounded-xl">
+                                    <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-black" />
                                     Done
                                   </span>
                                 ) : (
@@ -451,9 +449,9 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                                     }
                                     disabled={Boolean(loadingAction) || isLocked}
                                     isLoading={isActLoading}
-                                    className="text-xs px-2.5 py-1"
+                                    className="text-xs px-3 py-1"
                                   >
-                                    <Check className="w-3 h-3 mr-1" />
+                                    <Check className="w-3.5 h-3.5 mr-1" />
                                     Done
                                   </Button>
                                 )}
