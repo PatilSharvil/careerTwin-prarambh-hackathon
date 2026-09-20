@@ -26,10 +26,23 @@ export const Gauge: React.FC<GaugeProps> = ({
       setCurrentValue(value);
       return;
     }
-    const timeout = setTimeout(() => {
-      setCurrentValue(value);
-    }, 100);
-    return () => clearTimeout(timeout);
+    const duration = 1000;
+    const startTime = performance.now();
+    let frameId: number;
+
+    const animateCount = (now: number) => {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutExpo
+      const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+      setCurrentValue(value * ease);
+      if (progress < 1) {
+        frameId = requestAnimationFrame(animateCount);
+      }
+    };
+
+    frameId = requestAnimationFrame(animateCount);
+    return () => cancelAnimationFrame(frameId);
   }, [value, animate]);
 
   const radius = (size - strokeWidth) / 2;
