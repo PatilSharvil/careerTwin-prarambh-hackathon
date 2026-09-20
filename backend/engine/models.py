@@ -13,6 +13,7 @@ SkillStatus = Literal["locked", "available", "in_progress", "done"]
 PriorityLabel = Literal["Critical", "High", "Medium", "Low"]
 Phase = Literal["Foundation", "Core", "Applied", "Capstone"]
 ActivityType = Literal["course", "project", "doc", "certification"]
+NarrativeSource = Literal["llm", "template"]
 
 
 class SkillRef(BaseModel):
@@ -168,3 +169,221 @@ class Analysis(BaseModel):
     gaps: list[GapItem] = Field(default_factory=list)
     strengths: list[Strength] = Field(default_factory=list)
     radar: list[RadarPoint] = Field(default_factory=list)
+
+
+# =====================================================================
+# Roadmap, Why, Replan, Diff, Today models (SPEC §10.2)
+# =====================================================================
+
+
+class Prereq(BaseModel):
+    """Prerequisite status within a roadmap item."""
+
+    skill_id: str
+    skill_name: str
+    min_level: float
+    met: bool
+
+
+class Activity(BaseModel):
+    """Curated learning resource / activity."""
+
+    activity_id: str = Field(alias="id")
+    type: ActivityType
+    title: str
+    provider: str
+    url: str
+    hours: float
+    level_gain: float
+    skills: list[str] = Field(default_factory=list)
+    level_from: float = 0.0
+    level_to: float = 10.0
+    completed: bool = False
+    capstone_for: str | None = None
+
+    model_config = {"populate_by_name": True}
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_id(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if "activity_id" in data and "id" not in data:
+                data["id"] = data["activity_id"]
+            elif "id" in data and "activity_id" not in data:
+                data["activity_id"] = data["id"]
+        return data
+
+
+class Why(BaseModel):
+    """Structured rationale explaining why a skill is scheduled with its priority."""
+
+    level: float
+    target: float
+    gap: float
+    importance: float
+    priority: int
+    priority_label: PriorityLabel
+    unblocks: list[SkillRef] = Field(default_factory=list)
+    interest_match: bool
+    evidence_snippet: str | None = None
+    narrative: str
+    narrative_source: NarrativeSource = "template"
+
+
+class RoadmapItem(BaseModel):
+    """Sequential learning milestone on the career roadmap."""
+
+    item_id: str
+    position: int
+    skill_id: str | None
+    skill_name: str
+    phase: Phase
+    week_start: int
+    week_end: int
+    hours: float
+    status: SkillStatus
+    stretch: bool
+    is_capstone: bool = False
+    combines: list[SkillRef] = Field(default_factory=list)
+    prerequisites: list[Prereq] = Field(default_factory=list)
+    activities: list[Activity] = Field(default_factory=list)
+    completion_criteria: list[str] = Field(default_factory=list)
+    why: Why | None = None
+
+
+class GraphNode(BaseModel):
+    """Node in the roadmap dependency visualization."""
+
+    id: str
+    label: str
+    status: SkillStatus
+    phase: Phase
+
+
+class GraphEdge(BaseModel):
+    """Directed edge in the roadmap dependency graph: prerequisite -> dependent."""
+
+    source: str
+    target: str
+
+
+class RoadmapGraph(BaseModel):
+    """Complete DAG representation of the roadmap."""
+
+    nodes: list[GraphNode] = Field(default_factory=list)
+    edges: list[GraphEdge] = Field(default_factory=list)
+
+
+class Roadmap(BaseModel):
+    """Personalized sequential career preparation roadmap."""
+
+    version: int = 1
+    total_weeks: int
+    total_hours: float
+    deadline_weeks: int
+    weekly_hours: int
+    phases: list[Phase] = Field(default_factory=list)
+    items: list[RoadmapItem] = Field(default_factory=list)
+    graph: RoadmapGraph
+
+
+class TriggerInfo(BaseModel):
+    """Action that triggered the replan or diff."""
+
+    type: Literal["complete_skill", "complete_activity", "mark_known", "market_update"]
+    skill_id: str | None = None
+    skill_name: str | None = None
+    activity_id: str | None = None
+
+
+class LevelChange(BaseModel):
+    """Change in a skill level resulting from an action."""
+
+    skill_id: str
+    skill_name: str
+    from_: float = Field(alias="from")
+    to: float
+
+    model_config = {"populate_by_name": True}
+
+    @model_validator(mode="before")
+    @classmethod
+    def populate_from(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if "from_level" in data and "from" not in data:
+                data["from"] = data["from_level"]
+        return data
+
+
+class ItemChange(BaseModel):
+    """Added or removed roadmap item."""
+
+    item_id: str
+    skill_name: str
+    reason: str
+
+
+class ReorderedItem(BaseModel):
+    """Item whose schedule position changed."""
+
+    item_id: str
+    skill_name: str
+    from_position: int
+    to_position: int
+
+
+class ReprioritizedItem(BaseModel):
+    """Item whose priority changed noticeably (|delta| >= 5)."""
+
+    skill_id: str
+    skill_name: str
+    from_priority: int
+    to_priority: int
+
+
+class RequirementChange(BaseModel):
+    """Role requirement change resulting from market update."""
+
+    skill_id: str
+    skill_name: str
+    change: Literal["added", "removed", "importance_changed", "target_changed"]
+    from_: float | None = Field(default=None, alias="from")
+    to: float | None = None
+
+    model_config = {"populate_by_name": True}
+
+    @model_validator(mode="before")
+    @classmethod
+    def populate_from(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if "from_value" in data and "from" not in data:
+                data["from"] = data["from_value"]
+        return data
+
+
+class Diff(BaseModel):
+    """Deterministic diff between two roadmap states."""
+
+    trigger: TriggerInfo
+    readiness_before: float
+    readiness_after: float
+    level_changes: list[LevelChange] = Field(default_factory=list)
+    unlocked: list[SkillRef] = Field(default_factory=list)
+    removed: list[ItemChange] = Field(default_factory=list)
+    added: list[ItemChange] = Field(default_factory=list)
+    reordered: list[ReorderedItem] = Field(default_factory=list)
+    reprioritized: list[ReprioritizedItem] = Field(default_factory=list)
+    requirement_changes: list[RequirementChange] = Field(default_factory=list)
+    facts: list[str] = Field(default_factory=list)
+
+
+class TodayPick(BaseModel):
+    """Curated single action recommended for today."""
+
+    item_id: str
+    skill_id: str
+    skill_name: str
+    activity: Activity
+    minutes: int
+    why: Why
+    reasons: list[str] = Field(default_factory=list)
