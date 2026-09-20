@@ -1,0 +1,85 @@
+{
+  "profile": {
+    "education": {
+      "degree": "B.S. Computer Science",
+      "year": 2022
+    },
+    "experience_years": 3.0,
+    "interests": [
+      "Agents",
+      "LLMs",
+      "RAG"
+    ],
+    "weekly_hours": 10.0,
+    "deadline_weeks": 12,
+    "target_role_id": null,
+    "skills": [
+      {
+        "skill_id": "python",
+        "skill_name": "Python Programming",
+        "self": 8.0,
+        "evidence": 4.0,
+        "level": 5.6,
+        "flag": "unverified",
+        "snippet": "are Engineer with 3 years experience in Python, PyTorch, LangChain, and RAG pipelines.",
+        "source": "resume+self"
+      },
+      {
+        "skill_id": "pytorch",
+        "skill_name": "PyTorch Framework",
+        "self": 6.0,
+        "evidence": 4.0,
+        "level": 4.8,
+        "flag": null,
+        "snippet": "neer with 3 years experience in Python, PyTorch, LangChain, and RAG pipelines. Built ag",
+        "source": "resume+self"
+      },
+      {
+        "skill_id": "embeddings",
+        "skill_name": "Text Embeddings & Semantic Search",
+        "self": null,
+        "evidence": 6.0,
+        "level": 6.0,
+        "flag": null,
+        "snippet": "search systems with ChromaDB and vector embeddings.",
+        "source": "resume"
+      },
+      {
+        "skill_id": "vector_db",
+        "skill_name": "Vector Databases",
+        "self": null,
+        "evidence": 4.0,
+        "level": 4.0,
+        "flag": null,
+        "snippet": "kflows and semantic search systems with ChromaDB and vector embeddings.",
+        "source": "resume"
+      },
+      {
+        "skill_id": "rag",
+        "skill_name": "Retrieval-Augmented Generation",
+        "self": null,
+        "evidence": 4.0,
+        "level": 4.0,
+        "flag": null,
+        "snippet": "ence in Python, PyTorch, LangChain, and RAG pipelines. Built agentic workflows and",
+        "source": "resume"
+      },
+      {
+        "skill_id": "git",
+        "skill_name": "Git & Version Control",
+        "self": 7.0,
+        "evidence": null,
+        "level": 4.9,
+        "flag": null,
+        "snippet": null,
+        "source": "self"
+      }
+    ],
+    "unmapped_skills": []
+  },
+  "meta": {
+    "llm_provider": "none",
+    "llm_used": false,
+    "fallback_used": true
+  }
+}

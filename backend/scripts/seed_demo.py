@@ -5,7 +5,13 @@ Enables POST /analyze to work immediately without manual profile creation.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
+
+# Add backend directory to sys.path
+backend_dir = Path(__file__).resolve().parent.parent
+if str(backend_dir) not in sys.path:
+    sys.path.insert(0, str(backend_dir))
 
 from app.config import settings
 from app.schemas import EducationInput, Profile, ProfileSkill

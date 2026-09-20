@@ -1,0 +1,84 @@
+{
+  "roles": [
+    {
+      "role_id": "genai_engineer",
+      "title": "GenAI Engineer",
+      "version": "2026.09",
+      "description": "Designs, builds, and deploys production agentic systems, RAG architectures, and fine-tuned LLM applications.",
+      "skill_count": 17,
+      "top_skills": [
+        "Python Programming",
+        "Retrieval-Augmented Generation",
+        "Autonomous Agent Systems",
+        "LLM Function & Tool Calling",
+        "Large Language Model Fundamentals"
+      ],
+      "is_custom": false,
+      "market_update_available": false
+    },
+    {
+      "role_id": "ml_engineer",
+      "title": "ML Engineer",
+      "version": "2026.09",
+      "description": "Architects end-to-end machine learning training, validation pipelines, and scalable production inference systems.",
+      "skill_count": 17,
+      "top_skills": [
+        "Python Programming",
+        "Machine Learning Fundamentals",
+        "Model Evaluation & Metrics",
+        "Deep Learning Fundamentals",
+        "Feature Engineering & Selection"
+      ],
+      "is_custom": false,
+      "market_update_available": false
+    },
+    {
+      "role_id": "backend_engineer",
+      "title": "Backend Engineer",
+      "version": "2026.09",
+      "description": "Develops highly scalable RESTful services, database architectures, distributed pipelines, and resilient backend systems.",
+      "skill_count": 17,
+      "top_skills": [
+        "Python Programming",
+        "RESTful API Design",
+        "FastAPI Framework",
+        "SQL & Relational Databases",
+        "PostgreSQL Architecture & Optimization"
+      ],
+      "is_custom": false,
+      "market_update_available": false
+    },
+    {
+      "role_id": "data_scientist",
+      "title": "Data Scientist",
+      "version": "2026.09",
+      "description": "Leverages statistical modeling, experimental design, and predictive analytics to extract actionable business insights from data.",
+      "skill_count": 17,
+      "top_skills": [
+        "Python Programming",
+        "Probability & Statistics",
+        "Data Analysis with Pandas",
+        "SQL & Relational Databases",
+        "Numerical Computing with NumPy"
+      ],
+      "is_custom": false,
+      "market_update_available": false
+    },
+    {
+      "role_id": "custom_robotics_vision_engineer",
+      "title": "Robotics Vision Engineer",
+      "version": "custom",
+      "description": "Design computer vision systems for autonomous robotic agents",
+      "skill_count": 17,
+      "top_skills": [
+        "Python Programming",
+        "Machine Learning Fundamentals",
+        "Model Evaluation & Metrics",
+        "Deep Learning Fundamentals",
+        "Feature Engineering & Selection"
+      ],
+      "is_custom": true,
+      "market_update_available": false
+    }
+  ]
+}
