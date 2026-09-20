@@ -1,0 +1,106 @@
+{
+  "persona_id": "p2_cs_student_beginner",
+  "name": "Priya Sharma (CS Student, Beginner)",
+  "role_id": "genai_engineer",
+  "weekly_hours": 15,
+  "deadline_weeks": 16,
+  "experience_years": 0.5,
+  "interests": [
+    "LLMs",
+    "GenAI",
+    "python"
+  ],
+  "skills": [
+    {
+      "skill_id": "python",
+      "self": 4.0,
+      "evidence": 3.0
+    },
+    {
+      "skill_id": "git",
+      "self": 3.0,
+      "evidence": 2.5
+    },
+    {
+      "skill_id": "linux_basics",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "apis_rest",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "fastapi",
+      "self": 2.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "testing",
+      "self": 2.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "llm_fundamentals",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "prompt_engineering",
+      "self": 4.0,
+      "evidence": 3.0
+    },
+    {
+      "skill_id": "embeddings",
+      "self": 2.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "vector_db",
+      "self": 2.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "rag",
+      "self": 2.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "tool_calling",
+      "self": 2.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "agent_systems",
+      "self": 1.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "llm_evaluation",
+      "self": 1.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "docker",
+      "self": 1.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "model_serving",
+      "self": 1.0,
+      "evidence": 1.0
+    },
+    {
+      "skill_id": "llm_deployment",
+      "self": 1.0,
+      "evidence": 1.0
+    }
+  ],
+  "expected_top_gaps": [
+    "python",
+    "apis_rest",
+    "embeddings"
+  ],
+  "labels_reviewed": false
+}

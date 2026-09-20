@@ -1,1 +1,101 @@
-[]
+[
+  {
+    "role_id": "genai_engineer",
+    "title": "GenAI Engineer",
+    "version": "2026.10",
+    "description": "Designs, builds, and deploys production agentic systems, Model Context Protocol tools, RAG architectures, and fine-tuned LLM applications.",
+    "source": "updated from market emergence of tool use and Model Context Protocol",
+    "skills": [
+      {
+        "skill": "python",
+        "importance": 0.95,
+        "target": 8
+      },
+      {
+        "skill": "rag",
+        "importance": 0.9,
+        "target": 7
+      },
+      {
+        "skill": "agent_systems",
+        "importance": 0.88,
+        "target": 7
+      },
+      {
+        "skill": "tool_calling",
+        "importance": 0.85,
+        "target": 7
+      },
+      {
+        "skill": "mcp",
+        "importance": 0.6,
+        "target": 5
+      },
+      {
+        "skill": "vector_db",
+        "importance": 0.82,
+        "target": 7
+      },
+      {
+        "skill": "embeddings",
+        "importance": 0.82,
+        "target": 7
+      },
+      {
+        "skill": "llm_fundamentals",
+        "importance": 0.85,
+        "target": 8
+      },
+      {
+        "skill": "prompt_engineering",
+        "importance": 0.75,
+        "target": 7
+      },
+      {
+        "skill": "llm_evaluation",
+        "importance": 0.8,
+        "target": 7
+      },
+      {
+        "skill": "fastapi",
+        "importance": 0.78,
+        "target": 7
+      },
+      {
+        "skill": "apis_rest",
+        "importance": 0.75,
+        "target": 7
+      },
+      {
+        "skill": "docker",
+        "importance": 0.7,
+        "target": 6
+      },
+      {
+        "skill": "model_serving",
+        "importance": 0.72,
+        "target": 6
+      },
+      {
+        "skill": "llm_deployment",
+        "importance": 0.68,
+        "target": 6
+      },
+      {
+        "skill": "git",
+        "importance": 0.6,
+        "target": 6
+      },
+      {
+        "skill": "linux_basics",
+        "importance": 0.4,
+        "target": 5
+      },
+      {
+        "skill": "testing",
+        "importance": 0.65,
+        "target": 6
+      }
+    ]
+  }
+]

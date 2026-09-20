@@ -1,0 +1,106 @@
+{
+  "persona_id": "p5_experienced_ml_eng_transitioning_genai",
+  "name": "Marcus Vance (Experienced ML Engineer)",
+  "role_id": "genai_engineer",
+  "weekly_hours": 8,
+  "deadline_weeks": 8,
+  "experience_years": 6.0,
+  "interests": [
+    "agents",
+    "rag",
+    "orchestration"
+  ],
+  "skills": [
+    {
+      "skill_id": "python",
+      "self": 9.0,
+      "evidence": 9.0
+    },
+    {
+      "skill_id": "git",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "linux_basics",
+      "self": 7.5,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "testing",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "docker",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "apis_rest",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "fastapi",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "model_serving",
+      "self": 8.0,
+      "evidence": 7.5
+    },
+    {
+      "skill_id": "llm_fundamentals",
+      "self": 7.5,
+      "evidence": 7.5
+    },
+    {
+      "skill_id": "embeddings",
+      "self": 7.5,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "vector_db",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "rag",
+      "self": 7.0,
+      "evidence": 6.5
+    },
+    {
+      "skill_id": "prompt_engineering",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "llm_deployment",
+      "self": 6.0,
+      "evidence": 6.0
+    },
+    {
+      "skill_id": "agent_systems",
+      "self": 3.0,
+      "evidence": 2.5
+    },
+    {
+      "skill_id": "llm_evaluation",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "tool_calling",
+      "self": 3.5,
+      "evidence": 3.0
+    }
+  ],
+  "expected_top_gaps": [
+    "agent_systems",
+    "llm_evaluation",
+    "tool_calling"
+  ],
+  "labels_reviewed": false
+}

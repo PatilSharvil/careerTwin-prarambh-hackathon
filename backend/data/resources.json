@@ -1,1 +1,1518 @@
-[]
+[
+  {
+    "id": "res_capstone_genai",
+    "type": "project",
+    "title": "Capstone: Enterprise Autonomous Multi-Agent Support System with Citations",
+    "provider": "CareerTwin Portfolio",
+    "url": "https://cloud.google.com/vertex-ai/docs",
+    "verified": false,
+    "skills": [
+      "rag",
+      "agent_systems",
+      "tool_calling"
+    ],
+    "level_from": 6,
+    "level_to": 10,
+    "hours": 20,
+    "level_gain": 3,
+    "description": "Architect a production-grade multi-agent support platform integrating hybrid RAG and deterministic tool invocation.",
+    "capstone_for": "genai_engineer"
+  },
+  {
+    "id": "res_capstone_mle",
+    "type": "project",
+    "title": "Capstone: High-Throughput Real-Time ML Inference & Monitoring Platform",
+    "provider": "CareerTwin Portfolio",
+    "url": "https://mlflow.org/docs/latest/index.html",
+    "verified": false,
+    "skills": [
+      "ml_fundamentals",
+      "model_serving",
+      "docker"
+    ],
+    "level_from": 6,
+    "level_to": 10,
+    "hours": 20,
+    "level_gain": 3,
+    "description": "Construct an automated ML training and containerized inference pipeline with drift monitoring and validation gates.",
+    "capstone_for": "ml_engineer"
+  },
+  {
+    "id": "res_capstone_backend",
+    "type": "project",
+    "title": "Capstone: High-Scale Asynchronous Distributed Commerce Core",
+    "provider": "CareerTwin Projects",
+    "url": "https://fastapi.tiangolo.com/tutorial/",
+    "verified": false,
+    "skills": [
+      "fastapi",
+      "databases_postgres",
+      "system_design"
+    ],
+    "level_from": 6,
+    "level_to": 10,
+    "hours": 20,
+    "level_gain": 3,
+    "description": "Deliver a resilient distributed order processing system utilizing transactional outbox patterns and caching.",
+    "capstone_for": "backend_engineer"
+  },
+  {
+    "id": "res_capstone_ds",
+    "type": "project",
+    "title": "Capstone: Churn Prediction & Experimentation Analytics Platform",
+    "provider": "CareerTwin Projects",
+    "url": "https://pandas.pydata.org/docs/user_guide/index.html",
+    "verified": false,
+    "skills": [
+      "statistics",
+      "pandas",
+      "experimentation"
+    ],
+    "level_from": 6,
+    "level_to": 10,
+    "hours": 20,
+    "level_gain": 3,
+    "description": "Comprehensive customer analytics pipeline integrating hypothesis testing with predictive churn classification.",
+    "capstone_for": "data_scientist"
+  },
+  {
+    "id": "res_python_doc",
+    "type": "doc",
+    "title": "Python 3 Official Tutorial & Language Reference",
+    "provider": "Python Software Foundation",
+    "url": "https://docs.python.org/3/tutorial/",
+    "verified": false,
+    "skills": [
+      "python"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Foundational Python syntax, OOP, modules, exception handling, and standard library data types."
+  },
+  {
+    "id": "res_python_proj",
+    "type": "project",
+    "title": "Async Task Manager & CLI Utility",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.python.org/3/library/asyncio.html",
+    "verified": false,
+    "skills": [
+      "python"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Construct an asynchronous task worker with typing, generators, and structured exception handling."
+  },
+  {
+    "id": "res_dsa_course",
+    "type": "course",
+    "title": "Algorithms & Data Structures Specialization",
+    "provider": "Coursera",
+    "url": "https://www.coursera.org/specializations/algorithms",
+    "verified": false,
+    "skills": [
+      "data_structures_algorithms"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 12,
+    "level_gain": 2,
+    "description": "Study lists, heaps, binary search trees, sorting algorithms, and complexity analysis."
+  },
+  {
+    "id": "res_dsa_proj",
+    "type": "project",
+    "title": "Graph Pathfinding & Shortest Route Engine",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.python.org/3/library/heapq.html",
+    "verified": false,
+    "skills": [
+      "data_structures_algorithms"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Implement Dijkstra and A* pathfinding search over weighted directed graph representations."
+  },
+  {
+    "id": "res_git_doc",
+    "type": "doc",
+    "title": "Pro Git Book & Official Reference",
+    "provider": "Git SCM",
+    "url": "https://git-scm.com/doc",
+    "verified": false,
+    "skills": [
+      "git"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Master Git fundamentals: commits, staging, branching, merging, and remote repositories."
+  },
+  {
+    "id": "res_git_proj",
+    "type": "project",
+    "title": "Interactive Rebasing & Conflict Resolution Practice",
+    "provider": "CareerTwin Projects",
+    "url": "https://git-scm.com/docs/git-rebase",
+    "verified": false,
+    "skills": [
+      "git"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Practice multi-branch feature workflows, interactive rebasing, cherry-picking, and bisect."
+  },
+  {
+    "id": "res_linux_doc",
+    "type": "doc",
+    "title": "Linux Journey: Terminal, Processes & Filesystem",
+    "provider": "Linux Journey",
+    "url": "https://linuxjourney.com/",
+    "verified": false,
+    "skills": [
+      "linux_basics",
+      "bash_scripting"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Learn filesystem hierarchy, redirection pipes, user permissions, and basic bash commands."
+  },
+  {
+    "id": "res_linux_proj",
+    "type": "project",
+    "title": "Automated System Health Daemon & Bash Utility",
+    "provider": "CareerTwin Projects",
+    "url": "https://www.gnu.org/software/bash/manual/",
+    "verified": false,
+    "skills": [
+      "linux_basics",
+      "bash_scripting"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Build an automated shell utility monitoring disk and memory with systemd service configuration."
+  },
+  {
+    "id": "res_testing_doc",
+    "type": "doc",
+    "title": "Pytest Documentation: Fixtures & Parameterization",
+    "provider": "Pytest Org",
+    "url": "https://docs.pytest.org/en/stable/",
+    "verified": false,
+    "skills": [
+      "testing",
+      "load_testing"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Comprehensive guide to writing assert statements, test fixtures, and test discovery in pytest."
+  },
+  {
+    "id": "res_testing_proj",
+    "type": "project",
+    "title": "Integration Test Suite with Mocks & Load Simulation",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.locust.io/en/stable/",
+    "verified": false,
+    "skills": [
+      "testing",
+      "load_testing"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Construct an integration test suite with HTTP mocking and Locust concurrent traffic simulation."
+  },
+  {
+    "id": "res_stats_course",
+    "type": "course",
+    "title": "Mathematics for Machine Learning: Statistics & Linear Algebra",
+    "provider": "Coursera",
+    "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+    "verified": false,
+    "skills": [
+      "statistics",
+      "linear_algebra"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 14,
+    "level_gain": 2,
+    "description": "Learn hypothesis testing, distributions, vector projections, matrix operations, and eigenvalues."
+  },
+  {
+    "id": "res_stats_proj",
+    "type": "project",
+    "title": "Statistical Hypothesis Testing & Linear Transformations Sandbox",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.scipy.org/doc/scipy/reference/stats.html",
+    "verified": false,
+    "skills": [
+      "statistics",
+      "linear_algebra"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Implement PCA dimensionality reduction and Monte Carlo confidence interval simulations."
+  },
+  {
+    "id": "res_sql_doc",
+    "type": "doc",
+    "title": "SQL Tutorial & Relational Modeling Basics",
+    "provider": "PostgreSQL Tutorial",
+    "url": "https://www.postgresqltutorial.com/",
+    "verified": false,
+    "skills": [
+      "sql",
+      "data_modeling"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Master SELECT statements, table joins, aggregations, and 3NF normalization rules."
+  },
+  {
+    "id": "res_sql_proj",
+    "type": "project",
+    "title": "Analytical SQL Queries & Star Schema Modeling",
+    "provider": "CareerTwin Projects",
+    "url": "https://www.postgresql.org/docs/current/tutorial-window.html",
+    "verified": false,
+    "skills": [
+      "sql",
+      "data_modeling"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Design an analytical dimensional schema with window functions and running aggregations."
+  },
+  {
+    "id": "res_postgres_doc",
+    "type": "doc",
+    "title": "PostgreSQL Manual: Transactions & Architecture",
+    "provider": "PostgreSQL Global Development Group",
+    "url": "https://www.postgresql.org/docs/current/",
+    "verified": false,
+    "skills": [
+      "databases_postgres"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Postgres data types, constraints, ACID transactions, and connection management."
+  },
+  {
+    "id": "res_postgres_proj",
+    "type": "project",
+    "title": "Database Query Optimization & Indexing Benchmark",
+    "provider": "CareerTwin Projects",
+    "url": "https://www.postgresql.org/docs/current/using-explain.html",
+    "verified": false,
+    "skills": [
+      "databases_postgres"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Diagnose query latency on large datasets using EXPLAIN ANALYZE, B-Tree, and GIN indexes."
+  },
+  {
+    "id": "res_rest_doc",
+    "type": "doc",
+    "title": "RESTful API Architectural Guidelines & Protocol Design",
+    "provider": "Mozilla Developer Network",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+    "verified": false,
+    "skills": [
+      "apis_rest",
+      "grpc_rpc"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "HTTP status codes, headers, methods, resource URI modeling, and binary RPC concepts."
+  },
+  {
+    "id": "res_rest_proj",
+    "type": "project",
+    "title": "Standardized OpenAPI REST & gRPC Service Contract",
+    "provider": "CareerTwin Projects",
+    "url": "https://grpc.io/docs/languages/python/quickstart/",
+    "verified": false,
+    "skills": [
+      "apis_rest",
+      "grpc_rpc"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Design an enterprise OpenAPI specification alongside Protocol Buffer definitions with validation."
+  },
+  {
+    "id": "res_fastapi_doc",
+    "type": "doc",
+    "title": "FastAPI Framework Tutorial & Pydantic Integration",
+    "provider": "Tiangolo",
+    "url": "https://fastapi.tiangolo.com/",
+    "verified": false,
+    "skills": [
+      "fastapi"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Build asynchronous web endpoints with automatic OpenAPI documentation and Pydantic validation."
+  },
+  {
+    "id": "res_fastapi_proj",
+    "type": "project",
+    "title": "Production Async REST Microservice with DB Pooling",
+    "provider": "CareerTwin Projects",
+    "url": "https://fastapi.tiangolo.com/tutorial/dependencies/",
+    "verified": false,
+    "skills": [
+      "fastapi"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Construct an asynchronous CRUD API service with dependency injection and connection pooling."
+  },
+  {
+    "id": "res_sysdesign_course",
+    "type": "course",
+    "title": "Software Architecture: System Design & Microservices",
+    "provider": "Coursera",
+    "url": "https://martinfowler.com/architecture/",
+    "verified": false,
+    "skills": [
+      "system_design",
+      "microservices",
+      "distributed_systems"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 12,
+    "level_gain": 2,
+    "description": "Horizontal scaling, load balancing, caching tiers, CAP theorem, and bounded service contexts."
+  },
+  {
+    "id": "res_sysdesign_proj",
+    "type": "project",
+    "title": "High-Throughput Distributed Microservice Architecture",
+    "provider": "CareerTwin Projects",
+    "url": "https://martinfowler.com/articles/microservices.html",
+    "verified": false,
+    "skills": [
+      "system_design",
+      "microservices",
+      "distributed_systems"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Architect a distributed system handling 10k RPS with database sharding and circuit breakers."
+  },
+  {
+    "id": "res_redis_doc",
+    "type": "doc",
+    "title": "Redis Documentation & In-Memory Data Structures",
+    "provider": "Redis Ltd",
+    "url": "https://redis.io/docs/latest/",
+    "verified": false,
+    "skills": [
+      "caching_redis"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Strings, sets, hashes, TTL expiration, and caching patterns like Cache-Aside."
+  },
+  {
+    "id": "res_redis_proj",
+    "type": "project",
+    "title": "Sliding Window Rate Limiter & Session Store with Redis",
+    "provider": "CareerTwin Projects",
+    "url": "https://redis.io/docs/latest/develop/data-types/strings/",
+    "verified": false,
+    "skills": [
+      "caching_redis"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 7,
+    "level_gain": 2,
+    "description": "Implement sliding window rate limiting and distributed locking utilizing Redis atomic operations."
+  },
+  {
+    "id": "res_mq_doc",
+    "type": "doc",
+    "title": "RabbitMQ Core Concepts & Message Routing",
+    "provider": "VMware Tanzu",
+    "url": "https://www.rabbitmq.com/tutorials",
+    "verified": false,
+    "skills": [
+      "message_queues"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Learn message queues, topic exchanges, worker pools, and acknowledgement mechanics."
+  },
+  {
+    "id": "res_mq_proj",
+    "type": "project",
+    "title": "Asynchronous Event Worker with Dead-Letter Retries",
+    "provider": "CareerTwin Projects",
+    "url": "https://www.rabbitmq.com/tutorials/tutorial-two-python",
+    "verified": false,
+    "skills": [
+      "message_queues"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Construct background workers consuming tasks from durable queues with dead-letter retries."
+  },
+  {
+    "id": "res_auth_doc",
+    "type": "doc",
+    "title": "OAuth 2.0 & JWT Security Specifications",
+    "provider": "OAuth Org",
+    "url": "https://oauth.net/2/",
+    "verified": false,
+    "skills": [
+      "security_auth"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Authorization grant flows, client secrets, JSON Web Tokens, and CORS headers."
+  },
+  {
+    "id": "res_auth_proj",
+    "type": "project",
+    "title": "RBAC & JWT Token Rotation Security Gateway",
+    "provider": "CareerTwin Projects",
+    "url": "https://jwt.io/introduction",
+    "verified": false,
+    "skills": [
+      "security_auth"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Build an authentication service with bcrypt hashing, token refresh rotation, and RBAC guards."
+  },
+  {
+    "id": "res_pandas_doc",
+    "type": "doc",
+    "title": "Pandas User Guide & Data Cleaning Essentials",
+    "provider": "Pandas Development Team",
+    "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+    "verified": false,
+    "skills": [
+      "pandas",
+      "data_cleaning"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Essential indexing, slicing, aggregation, missing value imputation, and type coercion."
+  },
+  {
+    "id": "res_pandas_proj",
+    "type": "project",
+    "title": "E-Commerce Transaction Cleaning & Cohort Pipeline",
+    "provider": "CareerTwin Projects",
+    "url": "https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.groupby.html",
+    "verified": false,
+    "skills": [
+      "pandas",
+      "data_cleaning"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Clean messy scraped transactions and compute monthly customer cohort retention matrices."
+  },
+  {
+    "id": "res_numpy_doc",
+    "type": "doc",
+    "title": "NumPy Quickstart & N-Dimensional Array Math",
+    "provider": "NumPy Developers",
+    "url": "https://numpy.org/doc/stable/user/quickstart.html",
+    "verified": false,
+    "skills": [
+      "numpy"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Multi-dimensional array slicing, broadcasting rules, vector math, and universal functions."
+  },
+  {
+    "id": "res_numpy_proj",
+    "type": "project",
+    "title": "Vectorized Image Processing & Numerical Algorithms",
+    "provider": "CareerTwin Projects",
+    "url": "https://numpy.org/doc/stable/user/basics.broadcasting.html",
+    "verified": false,
+    "skills": [
+      "numpy"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Implement 2D convolution filters and vector operations on numerical matrices without loops."
+  },
+  {
+    "id": "res_dataviz_doc",
+    "type": "doc",
+    "title": "Seaborn & Matplotlib Visualization Guide",
+    "provider": "Seaborn Developers",
+    "url": "https://seaborn.pydata.org/tutorial.html",
+    "verified": false,
+    "skills": [
+      "data_visualization"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Techniques for relational, categorical, and distribution plotting with custom color maps."
+  },
+  {
+    "id": "res_dataviz_proj",
+    "type": "project",
+    "title": "Interactive KPI & Sales Funnel Analytics Dashboard",
+    "provider": "CareerTwin Projects",
+    "url": "https://matplotlib.org/stable/tutorials/index.html",
+    "verified": false,
+    "skills": [
+      "data_visualization"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Construct multi-panel dashboards presenting business metrics with publication styling."
+  },
+  {
+    "id": "res_etl_doc",
+    "type": "doc",
+    "title": "Data Engineering & Distributed Processing Foundations",
+    "provider": "Apache Spark & Coursera",
+    "url": "https://spark.apache.org/docs/latest/sql-programming-guide.html",
+    "verified": false,
+    "skills": [
+      "etl_pipelines",
+      "big_data_spark"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Principles of extract-transform-load workflows, Spark DataFrames, and batch processing."
+  },
+  {
+    "id": "res_etl_proj",
+    "type": "project",
+    "title": "Distributed Web Log Ingestion Pipeline",
+    "provider": "CareerTwin Projects",
+    "url": "https://spark.apache.org/docs/latest/api/python/",
+    "verified": false,
+    "skills": [
+      "etl_pipelines",
+      "big_data_spark"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Build an automated daily data ingestion job parsing raw web traffic logs with data validation."
+  },
+  {
+    "id": "res_dwh_doc",
+    "type": "doc",
+    "title": "Cloud Data Warehousing Architecture Overview",
+    "provider": "Google Cloud BigQuery Docs",
+    "url": "https://cloud.google.com/bigquery/docs",
+    "verified": false,
+    "skills": [
+      "data_warehousing"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Columnar storage formats, partition pruning, and analytical query execution models."
+  },
+  {
+    "id": "res_dwh_proj",
+    "type": "project",
+    "title": "Partitioned Analytical Warehouse Query Tuning",
+    "provider": "CareerTwin Projects",
+    "url": "https://cloud.google.com/bigquery/docs/partitioned-tables",
+    "verified": false,
+    "skills": [
+      "data_warehousing"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 7,
+    "level_gain": 2,
+    "description": "Design partitioned and clustered analytics tables minimizing scan bytes and query latency."
+  },
+  {
+    "id": "res_ml_course",
+    "type": "course",
+    "title": "Machine Learning Specialization: Supervised & Unsupervised",
+    "provider": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai/courses/machine-learning-specialization/",
+    "verified": false,
+    "skills": [
+      "ml_fundamentals"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 12,
+    "level_gain": 2,
+    "description": "Supervised algorithms, gradient descent, linear regression, and decision trees."
+  },
+  {
+    "id": "res_ml_proj",
+    "type": "project",
+    "title": "Ensemble Classification & Cross-Validation Benchmark",
+    "provider": "CareerTwin Projects",
+    "url": "https://scikit-learn.org/stable/modules/ensemble.html",
+    "verified": false,
+    "skills": [
+      "ml_fundamentals"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Train and tune Random Forest and Gradient Boosting classifiers on structured data."
+  },
+  {
+    "id": "res_feateng_doc",
+    "type": "doc",
+    "title": "Scikit-Learn Feature Preprocessing & Selection",
+    "provider": "Scikit-Learn Developers",
+    "url": "https://scikit-learn.org/stable/modules/preprocessing.html",
+    "verified": false,
+    "skills": [
+      "feature_engineering"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Standard scaling, categorical encoding, polynomial features, and target transformations."
+  },
+  {
+    "id": "res_feateng_proj",
+    "type": "project",
+    "title": "Automated Feature Pipeline & Importance Selection",
+    "provider": "CareerTwin Projects",
+    "url": "https://scikit-learn.org/stable/modules/feature_selection.html",
+    "verified": false,
+    "skills": [
+      "feature_engineering"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Construct feature transformation pipelines and select top predictors using variance and mutual info."
+  },
+  {
+    "id": "res_modeleval_doc",
+    "type": "doc",
+    "title": "Model Evaluation Metrics: ROC, PR & Calibration",
+    "provider": "Scikit-Learn Developers",
+    "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+    "verified": false,
+    "skills": [
+      "model_evaluation"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Evaluation metrics, confusion matrices, ROC-AUC curves, and threshold optimization."
+  },
+  {
+    "id": "res_modeleval_proj",
+    "type": "project",
+    "title": "Imbalanced Classification Evaluation & Calibration",
+    "provider": "CareerTwin Projects",
+    "url": "https://scikit-learn.org/stable/modules/calibration.html",
+    "verified": false,
+    "skills": [
+      "model_evaluation"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 7,
+    "level_gain": 2,
+    "description": "Benchmark models on fraud datasets under severe class imbalance using PR-AUC tuning."
+  },
+  {
+    "id": "res_exptrack_doc",
+    "type": "doc",
+    "title": "MLflow Tracking: Metrics, Parameters & Artifacts",
+    "provider": "MLflow Project",
+    "url": "https://mlflow.org/docs/latest/tracking.html",
+    "verified": false,
+    "skills": [
+      "experimentation"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Log hyperparameter sweeps, metric learning curves, and model artifact signatures."
+  },
+  {
+    "id": "res_exptrack_proj",
+    "type": "project",
+    "title": "Hyperparameter Optimization with MLflow Logging",
+    "provider": "CareerTwin Projects",
+    "url": "https://mlflow.org/docs/latest/models.html",
+    "verified": false,
+    "skills": [
+      "experimentation"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Execute automated hyperparameter tuning sweeps saving models and logging validation loss."
+  },
+  {
+    "id": "res_abtest_course",
+    "type": "course",
+    "title": "A/B Testing: Online Experimentation Principles",
+    "provider": "Coursera",
+    "url": "https://en.wikipedia.org/wiki/A/B_testing",
+    "verified": false,
+    "skills": [
+      "ab_testing"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Learn experiment randomization, sample size power calculations, and hypothesis test selection."
+  },
+  {
+    "id": "res_abtest_proj",
+    "type": "project",
+    "title": "A/B Test Conversion Analyzer & Power Calculator",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.ttest_ind.html",
+    "verified": false,
+    "skills": [
+      "ab_testing"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Calculate statistical power, MDE, and run hypothesis checks evaluating conversion uplifts."
+  },
+  {
+    "id": "res_dl_course",
+    "type": "course",
+    "title": "Deep Learning Specialization: Neural Networks & CNNs",
+    "provider": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai/courses/deep-learning-specialization/",
+    "verified": false,
+    "skills": [
+      "deep_learning",
+      "cnn_computer_vision"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 14,
+    "level_gain": 2,
+    "description": "Feedforward neural networks, backprop calculations, convolutions, pooling, and ResNets."
+  },
+  {
+    "id": "res_dl_proj",
+    "type": "project",
+    "title": "Convolutional Image Classifier & Neural Net from Scratch",
+    "provider": "CareerTwin Projects",
+    "url": "https://pytorch.org/vision/stable/models.html",
+    "verified": false,
+    "skills": [
+      "deep_learning",
+      "cnn_computer_vision"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Implement backpropagation from scratch and train a convolutional image classification network."
+  },
+  {
+    "id": "res_pytorch_doc",
+    "type": "doc",
+    "title": "Deep Learning with PyTorch: Tensors & Autograd",
+    "provider": "PyTorch Team",
+    "url": "https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html",
+    "verified": false,
+    "skills": [
+      "pytorch",
+      "distributed_training"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Explore PyTorch tensors, autograd mechanics, loss functions, optimizers, and DDP concepts."
+  },
+  {
+    "id": "res_pytorch_proj",
+    "type": "project",
+    "title": "Custom PyTorch Model Loop & Multi-GPU Training",
+    "provider": "CareerTwin Projects",
+    "url": "https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html",
+    "verified": false,
+    "skills": [
+      "pytorch",
+      "distributed_training"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Construct an end-to-end training loop with Dataset/DataLoader pipelines and DDP multi-GPU scaling."
+  },
+  {
+    "id": "res_ts_doc",
+    "type": "doc",
+    "title": "Statsmodels: Time Series Forecasting Guide",
+    "provider": "Statsmodels Team",
+    "url": "https://www.statsmodels.org/stable/tsa.html",
+    "verified": false,
+    "skills": [
+      "time_series"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Explore trend stationarity, rolling statistics, autocorrelation, and seasonal ARIMA."
+  },
+  {
+    "id": "res_ts_proj",
+    "type": "project",
+    "title": "Demand Forecasting Model with Backtesting Validation",
+    "provider": "CareerTwin Projects",
+    "url": "https://www.statsmodels.org/stable/examples/notebooks/generated/statespace_sarimax_stata.html",
+    "verified": false,
+    "skills": [
+      "time_series"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Forecast retail inventory demand using seasonal ARIMA and rolling cross-validation."
+  },
+  {
+    "id": "res_llm_course",
+    "type": "course",
+    "title": "Generative AI with LLMs: Architecture & Fine-Tuning",
+    "provider": "DeepLearning.AI & AWS",
+    "url": "https://www.deeplearning.ai/courses/generative-ai-with-llms/",
+    "verified": false,
+    "skills": [
+      "llm_fundamentals",
+      "fine_tuning",
+      "multimodal_llm"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Transformer attention, tokenization, autoregressive sampling, LoRA fine-tuning, and vision-language models."
+  },
+  {
+    "id": "res_llm_proj",
+    "type": "project",
+    "title": "Fine-Tuned LLM Model with LoRA & Vision Token Extraction",
+    "provider": "CareerTwin Projects",
+    "url": "https://huggingface.co/docs/transformers/index",
+    "verified": false,
+    "skills": [
+      "llm_fundamentals",
+      "fine_tuning",
+      "multimodal_llm"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Fine-tune an open-source LLM using LoRA on custom instructions and test multimodal token handling."
+  },
+  {
+    "id": "res_prompt_doc",
+    "type": "doc",
+    "title": "Prompt Engineering Guide & Synthetic Data Generation",
+    "provider": "DAIR.AI",
+    "url": "https://www.promptingguide.ai/",
+    "verified": false,
+    "skills": [
+      "prompt_engineering",
+      "synthetic_data"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Few-shot prompting, chain-of-thought, structured JSON extraction, and bootstrapping synthetic text."
+  },
+  {
+    "id": "res_prompt_proj",
+    "type": "project",
+    "title": "Synthetic Data Extraction & Prompt Verification Pipeline",
+    "provider": "CareerTwin Projects",
+    "url": "https://www.promptingguide.ai/techniques/cot",
+    "verified": false,
+    "skills": [
+      "prompt_engineering",
+      "synthetic_data"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 7,
+    "level_gain": 2,
+    "description": "Synthesize domain evaluation queries with few-shot prompts and validate schema conformance."
+  },
+  {
+    "id": "res_embed_doc",
+    "type": "doc",
+    "title": "Sentence Transformers: Dense Semantic Embeddings",
+    "provider": "UKPLab & Hugging Face",
+    "url": "https://sbert.net/",
+    "verified": false,
+    "skills": [
+      "embeddings"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Dense embedding models, vector pooling methods, and cosine similarity distance calculations."
+  },
+  {
+    "id": "res_embed_proj",
+    "type": "project",
+    "title": "Semantic Document Search & Re-Ranking Engine",
+    "provider": "CareerTwin Projects",
+    "url": "https://sbert.net/examples/applications/semantic-search/README.html",
+    "verified": false,
+    "skills": [
+      "embeddings"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Generate dense embeddings for knowledge documents and implement high-speed semantic retrieval."
+  },
+  {
+    "id": "res_vdb_doc",
+    "type": "doc",
+    "title": "ChromaDB Documentation: Collections & Filtering",
+    "provider": "Chroma Core",
+    "url": "https://docs.trychroma.com/",
+    "verified": false,
+    "skills": [
+      "vector_db"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Initialize persistent collections, metadata filters, HNSW indexes, and distance spaces."
+  },
+  {
+    "id": "res_vdb_proj",
+    "type": "project",
+    "title": "Persistent Vector Index with Metadata Filtering",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.trychroma.com/guides",
+    "verified": false,
+    "skills": [
+      "vector_db"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Implement ChromaDB storage with complex metadata queries and measure retrieval hit rates."
+  },
+  {
+    "id": "res_rag_doc",
+    "type": "doc",
+    "title": "Retrieval-Augmented Generation Patterns & Chunking",
+    "provider": "DeepLearning.AI",
+    "url": "https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/",
+    "verified": false,
+    "skills": [
+      "rag"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Text chunking strategies, vector retrieval, grounded context injection, and citation generation."
+  },
+  {
+    "id": "res_rag_proj",
+    "type": "project",
+    "title": "Production RAG App with Verified Citations",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.trychroma.com/",
+    "verified": false,
+    "skills": [
+      "rag"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Build a RAG app over your own documents with source citations and measurable hit rate retrieval."
+  },
+  {
+    "id": "res_tools_doc",
+    "type": "doc",
+    "title": "Function Calling & Structured Tool Protocols",
+    "provider": "Google GenAI SDK",
+    "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/function-calling",
+    "verified": false,
+    "skills": [
+      "tool_calling"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Define function schemas with JSON schema parameter validation and handle call choices."
+  },
+  {
+    "id": "res_tools_proj",
+    "type": "project",
+    "title": "Multi-Tool Execution Dispatcher with Error Handling",
+    "provider": "CareerTwin Projects",
+    "url": "https://cloud.google.com/vertex-ai/docs",
+    "verified": false,
+    "skills": [
+      "tool_calling"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Build a dispatcher executing database and API tool calls requested by an LLM with error recovery."
+  },
+  {
+    "id": "res_agents_doc",
+    "type": "doc",
+    "title": "Google Agent Development Kit (ADK) Core Architecture",
+    "provider": "Google ADK Team",
+    "url": "https://cloud.google.com/vertex-ai/docs",
+    "verified": false,
+    "skills": [
+      "agent_systems"
+    ],
+    "level_from": 2,
+    "level_to": 6,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "SequentialAgent, ParallelAgent, session state persistence, and output schemas in ADK."
+  },
+  {
+    "id": "res_agents_proj",
+    "type": "project",
+    "title": "Multi-Turn Conversational Coach with ADK Runner",
+    "provider": "CareerTwin Projects",
+    "url": "https://cloud.google.com/vertex-ai/docs",
+    "verified": false,
+    "skills": [
+      "agent_systems"
+    ],
+    "level_from": 5,
+    "level_to": 9,
+    "hours": 12,
+    "level_gain": 2,
+    "description": "Build an ADK root coach agent integrating deterministic engine tools with conversation session state."
+  },
+  {
+    "id": "res_llmeval_doc",
+    "type": "doc",
+    "title": "Ragas: Automated LLM & RAG Evaluation Metrics",
+    "provider": "Exploding Gradients",
+    "url": "https://docs.ragas.io/en/stable/",
+    "verified": false,
+    "skills": [
+      "llm_evaluation"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Faithfulness, answer relevancy, context recall, and trajectory scoring methodologies."
+  },
+  {
+    "id": "res_llmeval_proj",
+    "type": "project",
+    "title": "Automated Benchmark Evalset & Trajectory Scoring Suite",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.ragas.io/en/stable/getstarted/index.html",
+    "verified": false,
+    "skills": [
+      "llm_evaluation"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Run automated evaluation suites verifying that numeric facts in generated narratives match ground truth."
+  },
+  {
+    "id": "res_mcp_doc",
+    "type": "doc",
+    "title": "Model Context Protocol Architecture & Spec",
+    "provider": "Anthropic / MCP Org",
+    "url": "https://modelcontextprotocol.io/",
+    "verified": false,
+    "skills": [
+      "mcp"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Learn MCP client-server architecture, JSON-RPC transport, resources, and tool definitions."
+  },
+  {
+    "id": "res_mcp_proj",
+    "type": "project",
+    "title": "Custom MCP Server for Local Database & File Inspection",
+    "provider": "CareerTwin Projects",
+    "url": "https://modelcontextprotocol.io/quickstart",
+    "verified": false,
+    "skills": [
+      "mcp"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Build an MCP server exposing custom database query tools and file read capabilities to agents."
+  },
+  {
+    "id": "res_docker_doc",
+    "type": "doc",
+    "title": "Docker Official Documentation & Image Architecture",
+    "provider": "Docker Inc",
+    "url": "https://docs.docker.com/get-started/",
+    "verified": false,
+    "skills": [
+      "docker"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Image layers, Dockerfiles, volumes, port forwarding, and multi-container composition."
+  },
+  {
+    "id": "res_docker_proj",
+    "type": "project",
+    "title": "Multi-Stage Docker Containerization for Full Stack",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.docker.com/develop/develop-images/multistage-build/",
+    "verified": false,
+    "skills": [
+      "docker"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 7,
+    "level_gain": 2,
+    "description": "Build production Dockerfiles using multi-stage caching and run the complete app stack via docker compose."
+  },
+  {
+    "id": "res_cicd_doc",
+    "type": "doc",
+    "title": "GitHub Actions: Automated Testing & Deployment",
+    "provider": "GitHub Docs",
+    "url": "https://docs.github.com/en/actions",
+    "verified": false,
+    "skills": [
+      "ci_cd"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Workflow triggers, jobs, step runners, matrix testing, and environment secrets."
+  },
+  {
+    "id": "res_cicd_proj",
+    "type": "project",
+    "title": "End-to-End Automated CI/CD Testing & Release Workflow",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.github.com/en/actions/use-cases-and-examples/building-and-testing/building-and-testing-python",
+    "verified": false,
+    "skills": [
+      "ci_cd"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 7,
+    "level_gain": 2,
+    "description": "Configure automated GitHub Action runners executing pytest, code linting, and Docker publishing."
+  },
+  {
+    "id": "res_cloud_doc",
+    "type": "doc",
+    "title": "Cloud Infrastructure & Terraform Provisioning",
+    "provider": "Google Cloud & HashiCorp",
+    "url": "https://cloud.google.com/docs/overview",
+    "verified": false,
+    "skills": [
+      "cloud_basics",
+      "infrastructure_as_code",
+      "serverless_computing"
+    ],
+    "level_from": 0,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Overview of virtual machines, storage buckets, VPC networking, serverless triggers, and Terraform."
+  },
+  {
+    "id": "res_cloud_proj",
+    "type": "project",
+    "title": "Cloud Infrastructure Deployment with Terraform & Serverless",
+    "provider": "CareerTwin Projects",
+    "url": "https://developer.hashicorp.com/terraform/tutorials",
+    "verified": false,
+    "skills": [
+      "cloud_basics",
+      "infrastructure_as_code",
+      "serverless_computing"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Write declarative Terraform configurations provisioning VPC networks and serverless functions."
+  },
+  {
+    "id": "res_k8s_doc",
+    "type": "doc",
+    "title": "Kubernetes Architecture: Pods, Services & Deployments",
+    "provider": "Cloud Native Computing Foundation",
+    "url": "https://kubernetes.io/docs/home/",
+    "verified": false,
+    "skills": [
+      "kubernetes"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Deployments, Pods, ClusterIP services, Ingress routing, and ConfigMap management."
+  },
+  {
+    "id": "res_k8s_proj",
+    "type": "project",
+    "title": "Resilient Microservices Deployment with Autoscaling in K8s",
+    "provider": "CareerTwin Projects",
+    "url": "https://kubernetes.io/docs/tutorials/stateless-application/guestbook/",
+    "verified": false,
+    "skills": [
+      "kubernetes"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Deploy containerized services with Horizontal Pod Autoscaling (HPA) and rolling updates."
+  },
+  {
+    "id": "res_serving_doc",
+    "type": "doc",
+    "title": "Model Serving & Dynamic Batching Architecture",
+    "provider": "FastAPI & Triton",
+    "url": "https://fastapi.tiangolo.com/advanced/",
+    "verified": false,
+    "skills": [
+      "model_serving"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Explore dynamic request batching, model serialization (ONNX), and low-latency inference."
+  },
+  {
+    "id": "res_serving_proj",
+    "type": "project",
+    "title": "Low-Latency REST Model Serving Microservice",
+    "provider": "CareerTwin Projects",
+    "url": "https://onnxruntime.ai/docs/tutorials/",
+    "verified": false,
+    "skills": [
+      "model_serving"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Wrap an ONNX-optimized model behind a FastAPI server with batch prediction endpoints."
+  },
+  {
+    "id": "res_mon_doc",
+    "type": "doc",
+    "title": "Observability with OpenTelemetry & Prometheus",
+    "provider": "Prometheus Authors",
+    "url": "https://prometheus.io/docs/introduction/overview/",
+    "verified": false,
+    "skills": [
+      "monitoring_observability"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Time-series metrics, counters, gauges, Prometheus scraping, and trace spans."
+  },
+  {
+    "id": "res_mon_proj",
+    "type": "project",
+    "title": "Distributed Tracing & Service Metrics Dashboard",
+    "provider": "CareerTwin Projects",
+    "url": "https://opentelemetry.io/docs/languages/python/",
+    "verified": false,
+    "skills": [
+      "monitoring_observability"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "Instrument a Python API with OpenTelemetry exporting traces to Prometheus and Grafana."
+  },
+  {
+    "id": "res_modreg_doc",
+    "type": "doc",
+    "title": "MLflow Model Registry Architecture & Governance",
+    "provider": "MLflow Project",
+    "url": "https://mlflow.org/docs/latest/model-registry.html",
+    "verified": false,
+    "skills": [
+      "model_registry"
+    ],
+    "level_from": 1,
+    "level_to": 5,
+    "hours": 6,
+    "level_gain": 2,
+    "description": "Model staging, version tagging, production promoting, and governance approval gates."
+  },
+  {
+    "id": "res_modreg_proj",
+    "type": "project",
+    "title": "Model Staging to Production Promotion Pipeline",
+    "provider": "CareerTwin Projects",
+    "url": "https://mlflow.org/docs/latest/models.html#model-registry",
+    "verified": false,
+    "skills": [
+      "model_registry"
+    ],
+    "level_from": 4,
+    "level_to": 8,
+    "hours": 7,
+    "level_gain": 2,
+    "description": "Build an automated verification check that promotes candidate models to production based on test scores."
+  },
+  {
+    "id": "res_llmdeploy_doc",
+    "type": "doc",
+    "title": "vLLM High-Throughput Serving & PagedAttention",
+    "provider": "vLLM Project",
+    "url": "https://docs.vllm.ai/en/latest/",
+    "verified": false,
+    "skills": [
+      "llm_deployment"
+    ],
+    "level_from": 2,
+    "level_to": 6,
+    "hours": 8,
+    "level_gain": 2,
+    "description": "PagedAttention memory management, continuous batching, and tensor parallelism."
+  },
+  {
+    "id": "res_llmdeploy_proj",
+    "type": "project",
+    "title": "Quantized LLM Inference Server with OpenAI Compatibility",
+    "provider": "CareerTwin Projects",
+    "url": "https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html",
+    "verified": false,
+    "skills": [
+      "llm_deployment"
+    ],
+    "level_from": 4,
+    "level_to": 9,
+    "hours": 10,
+    "level_gain": 2,
+    "description": "Deploy an AWQ-quantized open model serving concurrent inference requests with streaming tokens."
+  }
+]

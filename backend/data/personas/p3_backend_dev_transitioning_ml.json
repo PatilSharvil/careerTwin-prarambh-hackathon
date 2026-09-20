@@ -1,0 +1,106 @@
+{
+  "persona_id": "p3_backend_dev_transitioning_ml",
+  "name": "David Miller (Backend Dev Transitioning to ML)",
+  "role_id": "ml_engineer",
+  "weekly_hours": 12,
+  "deadline_weeks": 14,
+  "experience_years": 4.0,
+  "interests": [
+    "machine_learning",
+    "deep_learning",
+    "data"
+  ],
+  "skills": [
+    {
+      "skill_id": "python",
+      "self": 8.0,
+      "evidence": 8.5
+    },
+    {
+      "skill_id": "sql",
+      "self": 7.0,
+      "evidence": 7.5
+    },
+    {
+      "skill_id": "git",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "docker",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "ci_cd",
+      "self": 6.5,
+      "evidence": 6.0
+    },
+    {
+      "skill_id": "testing",
+      "self": 6.5,
+      "evidence": 6.5
+    },
+    {
+      "skill_id": "kubernetes",
+      "self": 6.0,
+      "evidence": 5.5
+    },
+    {
+      "skill_id": "pandas",
+      "self": 5.0,
+      "evidence": 5.0
+    },
+    {
+      "skill_id": "feature_engineering",
+      "self": 3.0,
+      "evidence": 2.5
+    },
+    {
+      "skill_id": "model_serving",
+      "self": 4.0,
+      "evidence": 3.5
+    },
+    {
+      "skill_id": "model_registry",
+      "self": 3.0,
+      "evidence": 2.5
+    },
+    {
+      "skill_id": "deep_learning",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "model_evaluation",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "experimentation",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "statistics",
+      "self": 2.0,
+      "evidence": 1.5
+    },
+    {
+      "skill_id": "ml_fundamentals",
+      "self": 2.0,
+      "evidence": 1.5
+    },
+    {
+      "skill_id": "pytorch",
+      "self": 1.0,
+      "evidence": 1.0
+    }
+  ],
+  "expected_top_gaps": [
+    "statistics",
+    "ml_fundamentals",
+    "pytorch"
+  ],
+  "labels_reviewed": false
+}

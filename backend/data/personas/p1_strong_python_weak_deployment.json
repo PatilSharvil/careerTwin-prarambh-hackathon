@@ -1,0 +1,106 @@
+{
+  "persona_id": "p1_strong_python_weak_deployment",
+  "name": "Alex Chen (Strong Python, Weak Deployment)",
+  "role_id": "genai_engineer",
+  "weekly_hours": 10,
+  "deadline_weeks": 12,
+  "experience_years": 3.0,
+  "interests": [
+    "LLMs",
+    "backend",
+    "python"
+  ],
+  "skills": [
+    {
+      "skill_id": "python",
+      "self": 8.0,
+      "evidence": 8.5
+    },
+    {
+      "skill_id": "apis_rest",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "fastapi",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "git",
+      "self": 6.0,
+      "evidence": 6.0
+    },
+    {
+      "skill_id": "linux_basics",
+      "self": 5.0,
+      "evidence": 5.0
+    },
+    {
+      "skill_id": "testing",
+      "self": 6.0,
+      "evidence": 6.0
+    },
+    {
+      "skill_id": "llm_fundamentals",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "prompt_engineering",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "embeddings",
+      "self": 7.0,
+      "evidence": 6.5
+    },
+    {
+      "skill_id": "rag",
+      "self": 6.5,
+      "evidence": 6.0
+    },
+    {
+      "skill_id": "tool_calling",
+      "self": 6.0,
+      "evidence": 6.0
+    },
+    {
+      "skill_id": "agent_systems",
+      "self": 6.0,
+      "evidence": 6.0
+    },
+    {
+      "skill_id": "model_serving",
+      "self": 5.0,
+      "evidence": 5.0
+    },
+    {
+      "skill_id": "llm_deployment",
+      "self": 5.0,
+      "evidence": 4.5
+    },
+    {
+      "skill_id": "docker",
+      "self": 2.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "llm_evaluation",
+      "self": 2.0,
+      "evidence": 1.5
+    },
+    {
+      "skill_id": "vector_db",
+      "self": 3.0,
+      "evidence": 2.5
+    }
+  ],
+  "expected_top_gaps": [
+    "docker",
+    "llm_evaluation",
+    "vector_db"
+  ],
+  "labels_reviewed": false
+}
