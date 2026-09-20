@@ -130,13 +130,13 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                 </div>
 
                 {/* Middle: Level-vs-Target visual bar */}
-                <div className="w-full md:w-56 flex flex-col gap-1">
+                <div className="w-full md:w-56 flex flex-col gap-1.5 flex-shrink-0">
                   <div className="flex justify-between text-[11px] font-black text-black">
-                    <span>
-                      Level: <strong className="text-black bg-white px-1.5 py-0.5 rounded border border-black">{gap.level.toFixed(1)}</strong>
+                    <span className="inline-flex items-center gap-1">
+                      Level: <strong className="text-black bg-white px-1.5 py-0.5 rounded border border-black shadow-neo-xs">{gap.level.toFixed(1)}</strong>
                     </span>
-                    <span>
-                      Target: <strong className="text-black bg-[#79e7a8] px-1.5 py-0.5 rounded border border-black">{gap.target.toFixed(1)}</strong>
+                    <span className="inline-flex items-center gap-1">
+                      Target: <strong className="text-black bg-[#79e7a8] px-1.5 py-0.5 rounded border border-black shadow-neo-xs">{gap.target.toFixed(1)}</strong>
                     </span>
                   </div>
                   {/* Dual Bar (0-10 scale) */}
@@ -146,7 +146,7 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                       className="absolute top-0 left-0 h-full bg-[#79e7a8]"
                       style={{ width: `${targetPct}%` }}
                     />
-                    {/* Current level bar (black or cyan) */}
+                    {/* Current level bar (cyan) */}
                     <div
                       className="absolute top-0 left-0 h-full bg-[#70d6ff] border-r-2 border-black transition-all duration-500"
                       style={{ width: `${levelPct}%` }}
@@ -158,14 +158,14 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                 </div>
 
                 {/* Right: Priority, Status badges & expand toggle */}
-                <div className="flex items-center gap-2 flex-shrink-0 self-end md:self-center">
+                <div className="flex items-center gap-2 flex-shrink-0 self-end md:self-center flex-wrap justify-end">
                   <Badge priority={gap.priority_label} size="md">
                     {gap.priority_label} {gap.priority}
                   </Badge>
                   <Badge status={gap.status} size="md">
                     {gap.status.replace('_', ' ')}
                   </Badge>
-                  <div className="text-black p-1">
+                  <div className="text-black p-1 flex-shrink-0">
                     {isExpanded ? (
                       <ChevronUp className="w-5 h-5 stroke-[3]" />
                     ) : (
