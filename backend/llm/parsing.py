@@ -64,8 +64,6 @@ def parse_and_validate(text: str, model_cls: type[T]) -> T:
     )
     logger.info("LLM response for %s:\n%s", model_cls.__name__, text.strip())
 
-    data = parse_json(text)
-
     # 1. If LLM returned a bare JSON list, wrap into the model's primary list field
     if isinstance(data, list):
         if "skills" in model_cls.model_fields:
@@ -98,7 +96,6 @@ def parse_and_validate(text: str, model_cls: type[T]) -> T:
                 if alt in data and isinstance(data[alt], list):
                     data["skills"] = data[alt]
                     break
-
     try:
         return model_cls.model_validate(data)
     except ValidationError as exc:

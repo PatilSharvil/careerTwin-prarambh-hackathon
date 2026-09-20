@@ -1,0 +1,252 @@
+{
+  "generated_at": "2026-09-20T08:38:29.547569+00:00",
+  "summary": {
+    "total": 14,
+    "passed": 14,
+    "pass_rate": 100.0
+  },
+  "metrics": [
+    {
+      "id": "gap_precision_at_3",
+      "name": "Gap Precision@3",
+      "category": "Skill-Gap Accuracy",
+      "value": 1.0,
+      "target": 0.8,
+      "comparator": ">=",
+      "unit": "ratio",
+      "passed": true
+    },
+    {
+      "id": "gap_recall_at_3",
+      "name": "Gap Recall@3",
+      "category": "Skill-Gap Accuracy",
+      "value": 1.0,
+      "target": 0.8,
+      "comparator": ">=",
+      "unit": "ratio",
+      "passed": true
+    },
+    {
+      "id": "rank_correlation",
+      "name": "Rank Correlation (Kendall tau on top-5)",
+      "category": "Skill-Gap Accuracy",
+      "value": 1.0,
+      "target": 0.6,
+      "comparator": ">=",
+      "unit": "ratio",
+      "passed": true
+    },
+    {
+      "id": "normalization_hit_rate",
+      "name": "Normalization Hit Rate (25 queries)",
+      "category": "Skill-Gap Accuracy",
+      "value": 100.0,
+      "target": 90.0,
+      "comparator": ">=",
+      "unit": "percent",
+      "passed": true
+    },
+    {
+      "id": "personalization_distance",
+      "name": "Personalization Distance (Jaccard)",
+      "category": "Personalization",
+      "value": 0.699,
+      "target": 0.3,
+      "comparator": ">=",
+      "unit": "ratio",
+      "passed": true
+    },
+    {
+      "id": "prerequisite_violations",
+      "name": "Prerequisite Violations",
+      "category": "Roadmap Quality",
+      "value": 0.0,
+      "target": 0.0,
+      "comparator": "==",
+      "unit": "count",
+      "passed": true
+    },
+    {
+      "id": "budget_compliance",
+      "name": "Budget Compliance",
+      "category": "Roadmap Quality",
+      "value": 100.0,
+      "target": 100.0,
+      "comparator": ">=",
+      "unit": "percent",
+      "passed": true
+    },
+    {
+      "id": "strong_skill_leakage",
+      "name": "Strong-Skill Leakage",
+      "category": "Roadmap Quality",
+      "value": 0.0,
+      "target": 0.0,
+      "comparator": "==",
+      "unit": "count",
+      "passed": true
+    },
+    {
+      "id": "adaptability",
+      "name": "Adaptability Suite",
+      "category": "Adaptability",
+      "value": 100.0,
+      "target": 100.0,
+      "comparator": ">=",
+      "unit": "percent",
+      "passed": true
+    },
+    {
+      "id": "market_update_response",
+      "name": "Market-Update Response",
+      "category": "Adaptability",
+      "value": 100.0,
+      "target": 100.0,
+      "comparator": ">=",
+      "unit": "percent",
+      "passed": true
+    },
+    {
+      "id": "resource_skill_match",
+      "name": "Resource Skill Match",
+      "category": "Recommendation Relevance",
+      "value": 100.0,
+      "target": 100.0,
+      "comparator": ">=",
+      "unit": "percent",
+      "passed": true
+    },
+    {
+      "id": "level_band_fit",
+      "name": "Level-Band Fit",
+      "category": "Recommendation Relevance",
+      "value": 100.0,
+      "target": 90.0,
+      "comparator": ">=",
+      "unit": "percent",
+      "passed": true
+    },
+    {
+      "id": "explainability_completeness",
+      "name": "Explainability Completeness",
+      "category": "Explainability",
+      "value": 100.0,
+      "target": 100.0,
+      "comparator": ">=",
+      "unit": "percent",
+      "passed": true
+    },
+    {
+      "id": "numeric_consistency",
+      "name": "Numeric Consistency",
+      "category": "Explainability",
+      "value": 100.0,
+      "target": 100.0,
+      "comparator": ">=",
+      "unit": "percent",
+      "passed": true
+    }
+  ],
+  "personas": [
+    {
+      "persona_id": "p1_strong_python_weak_deployment",
+      "name": "Alex Chen (Strong Python, Weak Deployment)",
+      "role_id": "genai_engineer",
+      "expected_top_gaps": [
+        "vector_db",
+        "docker",
+        "llm_evaluation"
+      ],
+      "predicted_top_gaps": [
+        "vector_db",
+        "docker",
+        "llm_evaluation"
+      ],
+      "precision_at_3": 1.0,
+      "recall_at_3": 1.0
+    },
+    {
+      "persona_id": "p2_cs_student_beginner",
+      "name": "Priya Sharma (CS Student, Beginner)",
+      "role_id": "genai_engineer",
+      "expected_top_gaps": [
+        "llm_fundamentals",
+        "python",
+        "embeddings"
+      ],
+      "predicted_top_gaps": [
+        "llm_fundamentals",
+        "python",
+        "embeddings"
+      ],
+      "precision_at_3": 1.0,
+      "recall_at_3": 1.0
+    },
+    {
+      "persona_id": "p3_backend_dev_transitioning_ml",
+      "name": "David Miller (Backend Dev Transitioning to ML)",
+      "role_id": "ml_engineer",
+      "expected_top_gaps": [
+        "ml_fundamentals",
+        "statistics",
+        "model_evaluation"
+      ],
+      "predicted_top_gaps": [
+        "ml_fundamentals",
+        "statistics",
+        "model_evaluation"
+      ],
+      "precision_at_3": 1.0,
+      "recall_at_3": 1.0
+    },
+    {
+      "persona_id": "p4_data_analyst_transitioning_ds",
+      "name": "Elena Rostova (Data Analyst Transitioning to DS)",
+      "role_id": "data_scientist",
+      "expected_top_gaps": [
+        "ml_fundamentals",
+        "experimentation",
+        "statistics"
+      ],
+      "predicted_top_gaps": [
+        "ml_fundamentals",
+        "experimentation",
+        "statistics"
+      ],
+      "precision_at_3": 1.0,
+      "recall_at_3": 1.0
+    },
+    {
+      "persona_id": "p5_experienced_ml_eng_transitioning_genai",
+      "name": "Marcus Vance (Experienced ML Engineer)",
+      "role_id": "genai_engineer",
+      "expected_top_gaps": [
+        "tool_calling",
+        "agent_systems",
+        "llm_evaluation"
+      ],
+      "predicted_top_gaps": [
+        "tool_calling",
+        "agent_systems",
+        "llm_evaluation"
+      ],
+      "precision_at_3": 1.0,
+      "recall_at_3": 1.0
+    },
+    {
+      "persona_id": "p6_meets_all_targets",
+      "name": "Dr. Sarah Lin (Meets All Targets)",
+      "role_id": "genai_engineer",
+      "expected_top_gaps": [],
+      "predicted_top_gaps": [],
+      "precision_at_3": 1.0,
+      "recall_at_3": 1.0
+    }
+  ],
+  "adk": {
+    "ran_at": null,
+    "tool_trajectory_avg_score": null,
+    "response_match_score": null,
+    "cases": []
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "role": {
+    "role_id": "custom_robotics_vision_engineer",
+    "title": "Robotics Vision Engineer",
+    "version": "custom",
+    "description": "Design computer vision systems for autonomous robotic agents",
+    "skill_count": 17,
+    "top_skills": [
+      "Python Programming",
+      "Machine Learning Fundamentals",
+      "Model Evaluation & Metrics",
+      "Deep Learning Fundamentals",
+      "Feature Engineering & Selection"
+    ],
+    "is_custom": true,
+    "market_update_available": false,
+    "skills": [
+      {
+        "skill_id": "python",
+        "skill_name": "Python Programming",
+        "category": "Foundations",
+        "importance": 0.95,
+        "target": 8.0
+      },
+      {
+        "skill_id": "ml_fundamentals",
+        "skill_name": "Machine Learning Fundamentals",
+        "category": "ML",
+        "importance": 0.92,
+        "target": 8.0
+      },
+      {
+        "skill_id": "model_evaluation",
+        "skill_name": "Model Evaluation & Metrics",
+        "category": "ML",
+        "importance": 0.88,
+        "target": 8.0
+      },
+      {
+        "skill_id": "feature_engineering",
+        "skill_name": "Feature Engineering & Selection",
+        "category": "ML",
+        "importance": 0.85,
+        "target": 7.0
+      },
+      {
+        "skill_id": "deep_learning",
+        "skill_name": "Deep Learning Fundamentals",
+        "category": "ML",
+        "importance": 0.88,
+        "target": 7.0
+      },
+      {
+        "skill_id": "pytorch",
+        "skill_name": "PyTorch Framework",
+        "category": "ML",
+        "importance": 0.85,
+        "target": 8.0
+      },
+      {
+        "skill_id": "model_serving",
+        "skill_name": "Model Serving & Inference",
+        "category": "Deployment",
+        "importance": 0.82,
+        "target": 7.0
+      },
+      {
+        "skill_id": "docker",
+        "skill_name": "Docker & Containerization",
+        "category": "Deployment",
+        "importance": 0.8,
+        "target": 7.0
+      },
+      {
+        "skill_id": "kubernetes",
+        "skill_name": "Kubernetes & Container Orchestration",
+        "category": "Deployment",
+        "importance": 0.72,
+        "target": 6.0
+      },
+      {
+        "skill_id": "model_registry",
+        "skill_name": "Model Registry & Lineage",
+        "category": "Deployment",
+        "importance": 0.75,
+        "target": 6.0
+      },
+      {
+        "skill_id": "statistics",
+        "skill_name": "Probability & Statistics",
+        "category": "Foundations",
+        "importance": 0.8,
+        "target": 7.0
+      },
+      {
+        "skill_id": "pandas",
+        "skill_name": "Data Analysis with Pandas",
+        "category": "Data",
+        "importance": 0.78,
+        "target": 7.0
+      },
+      {
+        "skill_id": "sql",
+        "skill_name": "SQL & Relational Databases",
+        "category": "Backend",
+        "importance": 0.7,
+        "target": 6.0
+      },
+      {
+        "skill_id": "ci_cd",
+        "skill_name": "CI/CD Pipelines",
+        "category": "Deployment",
+        "importance": 0.68,
+        "target": 6.0
+      },
+      {
+        "skill_id": "experimentation",
+        "skill_name": "ML Experimentation & Tracking",
+        "category": "ML",
+        "importance": 0.75,
+        "target": 7.0
+      },
+      {
+        "skill_id": "testing",
+        "skill_name": "Software Testing & QA",
+        "category": "Foundations",
+        "importance": 0.65,
+        "target": 6.0
+      },
+      {
+        "skill_id": "git",
+        "skill_name": "Git & Version Control",
+        "category": "Foundations",
+        "importance": 0.6,
+        "target": 6.0
+      }
+    ]
+  },
+  "meta": {
+    "llm_provider": "none",
+    "llm_used": false,
+    "fallback_used": true
+  }
+}

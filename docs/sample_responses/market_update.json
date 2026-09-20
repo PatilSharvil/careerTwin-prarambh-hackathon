@@ -1,0 +1,2526 @@
+{
+  "state": {
+    "role": {
+      "role_id": "genai_engineer",
+      "title": "GenAI Engineer",
+      "version": "2026.10"
+    },
+    "analysis": {
+      "readiness": 26.0,
+      "readiness_note": "Skill-alignment score, not a hiring prediction.",
+      "category_scores": [
+        {
+          "category": "Backend",
+          "score": 0.0
+        },
+        {
+          "category": "Deployment",
+          "score": 0.0
+        },
+        {
+          "category": "Foundations",
+          "score": 55.4
+        },
+        {
+          "category": "GenAI",
+          "score": 28.5
+        }
+      ],
+      "gaps": [
+        {
+          "skill_id": "llm_fundamentals",
+          "skill_name": "Large Language Model Fundamentals",
+          "category": "GenAI",
+          "level": 0.0,
+          "target": 8.0,
+          "gap": 8.0,
+          "importance": 0.85,
+          "dependency_impact": 2.95,
+          "priority": 100,
+          "priority_label": "Critical",
+          "status": "locked",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "prompt_engineering",
+              "skill_name": "Prompt Engineering & In-Context Learning"
+            },
+            {
+              "skill_id": "embeddings",
+              "skill_name": "Text Embeddings & Semantic Search"
+            },
+            {
+              "skill_id": "tool_calling",
+              "skill_name": "LLM Function & Tool Calling"
+            },
+            {
+              "skill_id": "llm_evaluation",
+              "skill_name": "LLM & RAG Evaluation"
+            },
+            {
+              "skill_id": "llm_deployment",
+              "skill_name": "Production LLM Deployment"
+            }
+          ]
+        },
+        {
+          "skill_id": "apis_rest",
+          "skill_name": "RESTful API Design",
+          "category": "Backend",
+          "level": 0.0,
+          "target": 7.0,
+          "gap": 7.0,
+          "importance": 0.75,
+          "dependency_impact": 2.12,
+          "priority": 55,
+          "priority_label": "High",
+          "status": "available",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "fastapi",
+              "skill_name": "FastAPI Framework"
+            },
+            {
+              "skill_id": "tool_calling",
+              "skill_name": "LLM Function & Tool Calling"
+            },
+            {
+              "skill_id": "mcp",
+              "skill_name": "Model Context Protocol"
+            }
+          ]
+        },
+        {
+          "skill_id": "tool_calling",
+          "skill_name": "LLM Function & Tool Calling",
+          "category": "GenAI",
+          "level": 0.0,
+          "target": 7.0,
+          "gap": 7.0,
+          "importance": 0.85,
+          "dependency_impact": 1.74,
+          "priority": 52,
+          "priority_label": "High",
+          "status": "locked",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "agent_systems",
+              "skill_name": "Autonomous Agent Systems"
+            },
+            {
+              "skill_id": "mcp",
+              "skill_name": "Model Context Protocol"
+            }
+          ]
+        },
+        {
+          "skill_id": "fastapi",
+          "skill_name": "FastAPI Framework",
+          "category": "Backend",
+          "level": 0.0,
+          "target": 7.0,
+          "gap": 7.0,
+          "importance": 0.78,
+          "dependency_impact": 1.36,
+          "priority": 37,
+          "priority_label": "Medium",
+          "status": "locked",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "model_serving",
+              "skill_name": "Model Serving & Inference"
+            }
+          ]
+        },
+        {
+          "skill_id": "agent_systems",
+          "skill_name": "Autonomous Agent Systems",
+          "category": "GenAI",
+          "level": 0.0,
+          "target": 7.0,
+          "gap": 7.0,
+          "importance": 0.88,
+          "dependency_impact": 1.0,
+          "priority": 37,
+          "priority_label": "Medium",
+          "status": "locked",
+          "flag": null,
+          "unblocks": []
+        },
+        {
+          "skill_id": "docker",
+          "skill_name": "Docker & Containerization",
+          "category": "Deployment",
+          "level": 0.0,
+          "target": 6.0,
+          "gap": 6.0,
+          "importance": 0.7,
+          "dependency_impact": 1.7,
+          "priority": 36,
+          "priority_label": "Medium",
+          "status": "locked",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "model_serving",
+              "skill_name": "Model Serving & Inference"
+            },
+            {
+              "skill_id": "llm_deployment",
+              "skill_name": "Production LLM Deployment"
+            }
+          ]
+        },
+        {
+          "skill_id": "model_serving",
+          "skill_name": "Model Serving & Inference",
+          "category": "Deployment",
+          "level": 0.0,
+          "target": 6.0,
+          "gap": 6.0,
+          "importance": 0.72,
+          "dependency_impact": 1.34,
+          "priority": 29,
+          "priority_label": "Medium",
+          "status": "locked",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "llm_deployment",
+              "skill_name": "Production LLM Deployment"
+            }
+          ]
+        },
+        {
+          "skill_id": "llm_evaluation",
+          "skill_name": "LLM & RAG Evaluation",
+          "category": "GenAI",
+          "level": 0.0,
+          "target": 7.0,
+          "gap": 7.0,
+          "importance": 0.8,
+          "dependency_impact": 1.0,
+          "priority": 28,
+          "priority_label": "Medium",
+          "status": "locked",
+          "flag": null,
+          "unblocks": []
+        },
+        {
+          "skill_id": "prompt_engineering",
+          "skill_name": "Prompt Engineering & In-Context Learning",
+          "category": "GenAI",
+          "level": 0.0,
+          "target": 7.0,
+          "gap": 7.0,
+          "importance": 0.75,
+          "dependency_impact": 1.0,
+          "priority": 26,
+          "priority_label": "Medium",
+          "status": "locked",
+          "flag": null,
+          "unblocks": []
+        },
+        {
+          "skill_id": "llm_deployment",
+          "skill_name": "Production LLM Deployment",
+          "category": "Deployment",
+          "level": 0.0,
+          "target": 6.0,
+          "gap": 6.0,
+          "importance": 0.68,
+          "dependency_impact": 1.0,
+          "priority": 20,
+          "priority_label": "Low",
+          "status": "locked",
+          "flag": null,
+          "unblocks": []
+        },
+        {
+          "skill_id": "testing",
+          "skill_name": "Software Testing & QA",
+          "category": "Foundations",
+          "level": 0.0,
+          "target": 6.0,
+          "gap": 6.0,
+          "importance": 0.65,
+          "dependency_impact": 1.0,
+          "priority": 19,
+          "priority_label": "Low",
+          "status": "available",
+          "flag": null,
+          "unblocks": []
+        },
+        {
+          "skill_id": "mcp",
+          "skill_name": "Model Context Protocol",
+          "category": "GenAI",
+          "level": 0.0,
+          "target": 5.0,
+          "gap": 5.0,
+          "importance": 0.6,
+          "dependency_impact": 1.0,
+          "priority": 15,
+          "priority_label": "Low",
+          "status": "locked",
+          "flag": null,
+          "unblocks": []
+        },
+        {
+          "skill_id": "linux_basics",
+          "skill_name": "Linux & CLI Basics",
+          "category": "Foundations",
+          "level": 0.0,
+          "target": 5.0,
+          "gap": 5.0,
+          "importance": 0.4,
+          "dependency_impact": 1.35,
+          "priority": 13,
+          "priority_label": "Low",
+          "status": "available",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "docker",
+              "skill_name": "Docker & Containerization"
+            }
+          ]
+        },
+        {
+          "skill_id": "vector_db",
+          "skill_name": "Vector Databases",
+          "category": "GenAI",
+          "level": 4.0,
+          "target": 7.0,
+          "gap": 3.0,
+          "importance": 0.82,
+          "dependency_impact": 1.0,
+          "priority": 12,
+          "priority_label": "Low",
+          "status": "available",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "rag",
+              "skill_name": "Retrieval-Augmented Generation"
+            }
+          ]
+        },
+        {
+          "skill_id": "embeddings",
+          "skill_name": "Text Embeddings & Semantic Search",
+          "category": "GenAI",
+          "level": 6.0,
+          "target": 7.0,
+          "gap": 1.0,
+          "importance": 0.82,
+          "dependency_impact": 1.41,
+          "priority": 6,
+          "priority_label": "Low",
+          "status": "locked",
+          "flag": null,
+          "unblocks": [
+            {
+              "skill_id": "vector_db",
+              "skill_name": "Vector Databases"
+            },
+            {
+              "skill_id": "rag",
+              "skill_name": "Retrieval-Augmented Generation"
+            }
+          ]
+        },
+        {
+          "skill_id": "git",
+          "skill_name": "Git & Version Control",
+          "category": "Foundations",
+          "level": 4.9,
+          "target": 6.0,
+          "gap": 1.1,
+          "importance": 0.6,
+          "dependency_impact": 1.0,
+          "priority": 3,
+          "priority_label": "Low",
+          "status": "available",
+          "flag": null,
+          "unblocks": []
+        }
+      ],
+      "strengths": [
+        {
+          "skill_id": "python",
+          "skill_name": "Python Programming",
+          "level": 9.0,
+          "target": 8.0
+        },
+        {
+          "skill_id": "rag",
+          "skill_name": "Retrieval-Augmented Generation",
+          "level": 7.0,
+          "target": 7.0
+        }
+      ],
+      "radar": [
+        {
+          "skill_id": "python",
+          "skill_name": "Python Programming",
+          "current": 9.0,
+          "target": 8.0
+        },
+        {
+          "skill_id": "llm_fundamentals",
+          "skill_name": "Large Language Model Fundamentals",
+          "current": 0.0,
+          "target": 8.0
+        },
+        {
+          "skill_id": "rag",
+          "skill_name": "Retrieval-Augmented Generation",
+          "current": 7.0,
+          "target": 7.0
+        },
+        {
+          "skill_id": "agent_systems",
+          "skill_name": "Autonomous Agent Systems",
+          "current": 0.0,
+          "target": 7.0
+        },
+        {
+          "skill_id": "tool_calling",
+          "skill_name": "LLM Function & Tool Calling",
+          "current": 0.0,
+          "target": 7.0
+        },
+        {
+          "skill_id": "vector_db",
+          "skill_name": "Vector Databases",
+          "current": 4.0,
+          "target": 7.0
+        },
+        {
+          "skill_id": "embeddings",
+          "skill_name": "Text Embeddings & Semantic Search",
+          "current": 6.0,
+          "target": 7.0
+        },
+        {
+          "skill_id": "llm_evaluation",
+          "skill_name": "LLM & RAG Evaluation",
+          "current": 0.0,
+          "target": 7.0
+        }
+      ]
+    },
+    "roadmap": {
+      "version": 24,
+      "total_weeks": 67,
+      "total_hours": 579.4,
+      "deadline_weeks": 12,
+      "weekly_hours": 10.0,
+      "phases": [
+        "Foundation",
+        "Core",
+        "Applied",
+        "Capstone"
+      ],
+      "items": [
+        {
+          "item_id": "rm_linear_algebra",
+          "position": 1,
+          "skill_id": "linear_algebra",
+          "skill_name": "Linear Algebra",
+          "phase": "Foundation",
+          "week_start": 1,
+          "week_end": 3,
+          "hours": 23.8,
+          "status": "available",
+          "stretch": false,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [],
+          "activities": [
+            {
+              "activity_id": "res_stats_course",
+              "type": "course",
+              "title": "Mathematics for Machine Learning: Statistics & Linear Algebra",
+              "provider": "Coursera",
+              "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+              "hours": 14.0,
+              "level_gain": 2.0,
+              "skills": [
+                "statistics",
+                "linear_algebra"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_stats_proj",
+              "type": "project",
+              "title": "Statistical Hypothesis Testing & Linear Transformations Sandbox",
+              "provider": "CareerTwin Projects",
+              "url": "https://docs.scipy.org/doc/scipy/reference/stats.html",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "statistics",
+                "linear_algebra"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Perform vector and matrix operations, dot products, and transformations",
+            "Calculate eigenvalues, SVD, and PCA projection mathematics"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 4.0,
+            "gap": 4.0,
+            "importance": 0.5,
+            "priority": 85,
+            "priority_label": "High",
+            "unblocks": [
+              {
+                "skill_id": "deep_learning",
+                "skill_name": "Deep Learning Fundamentals"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Linear Algebra is ranked High priority because your calibrated level is 0.0/10 vs ~4.0/10 required for GenAI Engineer. It directly unblocks Deep Learning Fundamentals.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_statistics",
+          "position": 2,
+          "skill_id": "statistics",
+          "skill_name": "Probability & Statistics",
+          "phase": "Foundation",
+          "week_start": 4,
+          "week_end": 6,
+          "hours": 23.8,
+          "status": "available",
+          "stretch": false,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [],
+          "activities": [
+            {
+              "activity_id": "res_stats_course",
+              "type": "course",
+              "title": "Mathematics for Machine Learning: Statistics & Linear Algebra",
+              "provider": "Coursera",
+              "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+              "hours": 14.0,
+              "level_gain": 2.0,
+              "skills": [
+                "statistics",
+                "linear_algebra"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_stats_proj",
+              "type": "project",
+              "title": "Statistical Hypothesis Testing & Linear Transformations Sandbox",
+              "provider": "CareerTwin Projects",
+              "url": "https://docs.scipy.org/doc/scipy/reference/stats.html",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "statistics",
+                "linear_algebra"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Apply hypothesis testing, p-values, and confidence intervals",
+            "Calculate conditional probability and Bayesian formulations"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 4.0,
+            "gap": 4.0,
+            "importance": 0.5,
+            "priority": 85,
+            "priority_label": "High",
+            "unblocks": [
+              {
+                "skill_id": "ml_fundamentals",
+                "skill_name": "Machine Learning Fundamentals"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Probability & Statistics is ranked High priority because your calibrated level is 0.0/10 vs ~4.0/10 required for GenAI Engineer. It directly unblocks Machine Learning Fundamentals.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_ml_fundamentals",
+          "position": 3,
+          "skill_id": "ml_fundamentals",
+          "skill_name": "Machine Learning Fundamentals",
+          "phase": "Core",
+          "week_start": 7,
+          "week_end": 9,
+          "hours": 29.8,
+          "status": "locked",
+          "stretch": false,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "python",
+              "skill_name": "Python Programming",
+              "min_level": 4.0,
+              "met": true
+            },
+            {
+              "skill_id": "statistics",
+              "skill_name": "Probability & Statistics",
+              "min_level": 4.0,
+              "met": false
+            },
+            {
+              "skill_id": "linear_algebra",
+              "skill_name": "Linear Algebra",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_ml_course",
+              "type": "course",
+              "title": "Machine Learning Specialization: Supervised & Unsupervised",
+              "provider": "DeepLearning.AI",
+              "url": "https://www.deeplearning.ai/courses/machine-learning-specialization/",
+              "hours": 12.0,
+              "level_gain": 2.0,
+              "skills": [
+                "ml_fundamentals"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_ml_proj",
+              "type": "project",
+              "title": "Ensemble Classification & Cross-Validation Benchmark",
+              "provider": "CareerTwin Projects",
+              "url": "https://scikit-learn.org/stable/modules/ensemble.html",
+              "hours": 10.0,
+              "level_gain": 2.0,
+              "skills": [
+                "ml_fundamentals"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Train regression, decision trees, and ensemble classifiers with scikit-learn",
+            "Implement cross-validation, regularization, and hyperparameter tuning"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 5.0,
+            "gap": 5.0,
+            "importance": 0.5,
+            "priority": 85,
+            "priority_label": "High",
+            "unblocks": [
+              {
+                "skill_id": "model_serving",
+                "skill_name": "Model Serving & Inference"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Machine Learning Fundamentals is ranked High priority because your calibrated level is 0.0/10 vs ~5.0/10 required for GenAI Engineer. It directly unblocks Model Serving & Inference.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_deep_learning",
+          "position": 4,
+          "skill_id": "deep_learning",
+          "skill_name": "Deep Learning Fundamentals",
+          "phase": "Core",
+          "week_start": 10,
+          "week_end": 12,
+          "hours": 27.2,
+          "status": "locked",
+          "stretch": false,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "ml_fundamentals",
+              "skill_name": "Machine Learning Fundamentals",
+              "min_level": 5.0,
+              "met": false
+            },
+            {
+              "skill_id": "linear_algebra",
+              "skill_name": "Linear Algebra",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_dl_course",
+              "type": "course",
+              "title": "Deep Learning Specialization: Neural Networks & CNNs",
+              "provider": "DeepLearning.AI",
+              "url": "https://www.deeplearning.ai/courses/deep-learning-specialization/",
+              "hours": 14.0,
+              "level_gain": 2.0,
+              "skills": [
+                "deep_learning",
+                "cnn_computer_vision"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_dl_proj",
+              "type": "project",
+              "title": "Convolutional Image Classifier & Neural Net from Scratch",
+              "provider": "CareerTwin Projects",
+              "url": "https://pytorch.org/vision/stable/models.html",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "deep_learning",
+                "cnn_computer_vision"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Build forward and backward propagation loops for multilayer perceptrons",
+            "Apply loss functions, Adam optimizers, dropout, and batch normalization"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 4.0,
+            "gap": 4.0,
+            "importance": 0.5,
+            "priority": 85,
+            "priority_label": "High",
+            "unblocks": [
+              {
+                "skill_id": "llm_fundamentals",
+                "skill_name": "Large Language Model Fundamentals"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Deep Learning Fundamentals is ranked High priority because your calibrated level is 0.0/10 vs ~4.0/10 required for GenAI Engineer. It directly unblocks Large Language Model Fundamentals.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_llm_fundamentals",
+          "position": 5,
+          "skill_id": "llm_fundamentals",
+          "skill_name": "Large Language Model Fundamentals",
+          "phase": "Applied",
+          "week_start": 13,
+          "week_end": 17,
+          "hours": 47.6,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "deep_learning",
+              "skill_name": "Deep Learning Fundamentals",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_llm_course",
+              "type": "course",
+              "title": "Generative AI with LLMs: Architecture & Fine-Tuning",
+              "provider": "DeepLearning.AI & AWS",
+              "url": "https://www.deeplearning.ai/courses/generative-ai-with-llms/",
+              "hours": 10.0,
+              "level_gain": 2.0,
+              "skills": [
+                "llm_fundamentals",
+                "fine_tuning",
+                "multimodal_llm"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_llm_proj",
+              "type": "project",
+              "title": "Fine-Tuned LLM Model with LoRA & Vision Token Extraction",
+              "provider": "CareerTwin Projects",
+              "url": "https://huggingface.co/docs/transformers/index",
+              "hours": 10.0,
+              "level_gain": 2.0,
+              "skills": [
+                "llm_fundamentals",
+                "fine_tuning",
+                "multimodal_llm"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Explain transformer multi-head self-attention and autoregressive token generation",
+            "Configure temperature, top-p, context windows, and tokenizers correctly"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 8.0,
+            "gap": 8.0,
+            "importance": 0.85,
+            "priority": 100,
+            "priority_label": "Critical",
+            "unblocks": [
+              {
+                "skill_id": "prompt_engineering",
+                "skill_name": "Prompt Engineering & In-Context Learning"
+              },
+              {
+                "skill_id": "embeddings",
+                "skill_name": "Text Embeddings & Semantic Search"
+              },
+              {
+                "skill_id": "tool_calling",
+                "skill_name": "LLM Function & Tool Calling"
+              },
+              {
+                "skill_id": "llm_evaluation",
+                "skill_name": "LLM & RAG Evaluation"
+              },
+              {
+                "skill_id": "llm_deployment",
+                "skill_name": "Production LLM Deployment"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Large Language Model Fundamentals is ranked Critical priority because your calibrated level is 0.0/10 vs ~8.0/10 required for GenAI Engineer. It directly unblocks Prompt Engineering & In-Context Learning, Text Embeddings & Semantic Search, LLM Function & Tool Calling, LLM & RAG Evaluation, Production LLM Deployment.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_model_evaluation",
+          "position": 6,
+          "skill_id": "model_evaluation",
+          "skill_name": "Model Evaluation & Metrics",
+          "phase": "Core",
+          "week_start": 18,
+          "week_end": 19,
+          "hours": 17.0,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "ml_fundamentals",
+              "skill_name": "Machine Learning Fundamentals",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_modeleval_doc",
+              "type": "doc",
+              "title": "Model Evaluation Metrics: ROC, PR & Calibration",
+              "provider": "Scikit-Learn Developers",
+              "url": "https://scikit-learn.org/stable/modules/model_evaluation.html",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "model_evaluation"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_modeleval_proj",
+              "type": "project",
+              "title": "Imbalanced Classification Evaluation & Calibration",
+              "provider": "CareerTwin Projects",
+              "url": "https://scikit-learn.org/stable/modules/calibration.html",
+              "hours": 7.0,
+              "level_gain": 2.0,
+              "skills": [
+                "model_evaluation"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Compute precision, recall, F1, ROC-AUC, and log-loss across imbalanced datasets",
+            "Interpret model bias-variance trade-offs and calibration curves"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 4.0,
+            "gap": 4.0,
+            "importance": 0.5,
+            "priority": 85,
+            "priority_label": "High",
+            "unblocks": [
+              {
+                "skill_id": "llm_evaluation",
+                "skill_name": "LLM & RAG Evaluation"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Model Evaluation & Metrics is ranked High priority because your calibrated level is 0.0/10 vs ~4.0/10 required for GenAI Engineer. It directly unblocks LLM & RAG Evaluation.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_apis_rest",
+          "position": 7,
+          "skill_id": "apis_rest",
+          "skill_name": "RESTful API Design",
+          "phase": "Foundation",
+          "week_start": 20,
+          "week_end": 22,
+          "hours": 29.8,
+          "status": "available",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "python",
+              "skill_name": "Python Programming",
+              "min_level": 4.0,
+              "met": true
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_rest_doc",
+              "type": "doc",
+              "title": "RESTful API Architectural Guidelines & Protocol Design",
+              "provider": "Mozilla Developer Network",
+              "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "apis_rest",
+                "grpc_rpc"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_rest_proj",
+              "type": "project",
+              "title": "Standardized OpenAPI REST & gRPC Service Contract",
+              "provider": "CareerTwin Projects",
+              "url": "https://grpc.io/docs/languages/python/quickstart/",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "apis_rest",
+                "grpc_rpc"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Design resource-oriented REST endpoints conforming to HTTP conventions",
+            "Implement standardized JSON error envelopes and pagination"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 7.0,
+            "gap": 7.0,
+            "importance": 0.75,
+            "priority": 55,
+            "priority_label": "High",
+            "unblocks": [
+              {
+                "skill_id": "fastapi",
+                "skill_name": "FastAPI Framework"
+              },
+              {
+                "skill_id": "tool_calling",
+                "skill_name": "LLM Function & Tool Calling"
+              },
+              {
+                "skill_id": "mcp",
+                "skill_name": "Model Context Protocol"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "RESTful API Design is ranked High priority because your calibrated level is 0.0/10 vs ~7.0/10 required for GenAI Engineer. It directly unblocks FastAPI Framework, LLM Function & Tool Calling, Model Context Protocol.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_tool_calling",
+          "position": 8,
+          "skill_id": "tool_calling",
+          "skill_name": "LLM Function & Tool Calling",
+          "phase": "Applied",
+          "week_start": 23,
+          "week_end": 26,
+          "hours": 35.7,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "apis_rest",
+              "skill_name": "RESTful API Design",
+              "min_level": 4.0,
+              "met": false
+            },
+            {
+              "skill_id": "llm_fundamentals",
+              "skill_name": "Large Language Model Fundamentals",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_tools_doc",
+              "type": "doc",
+              "title": "Function Calling & Structured Tool Protocols",
+              "provider": "Google GenAI SDK",
+              "url": "https://cloud.google.com/vertex-ai/generative-ai/docs/multimodal/function-calling",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "tool_calling"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_tools_proj",
+              "type": "project",
+              "title": "Multi-Tool Execution Dispatcher with Error Handling",
+              "provider": "CareerTwin Projects",
+              "url": "https://cloud.google.com/vertex-ai/docs",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "tool_calling"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Define tool schemas with JSON Schema parameter definitions",
+            "Execute model tool-call choices safely with error recovery and validation"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 7.0,
+            "gap": 7.0,
+            "importance": 0.85,
+            "priority": 52,
+            "priority_label": "High",
+            "unblocks": [
+              {
+                "skill_id": "agent_systems",
+                "skill_name": "Autonomous Agent Systems"
+              },
+              {
+                "skill_id": "mcp",
+                "skill_name": "Model Context Protocol"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "LLM Function & Tool Calling is ranked High priority because your calibrated level is 0.0/10 vs ~7.0/10 required for GenAI Engineer. It directly unblocks Autonomous Agent Systems, Model Context Protocol.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_fastapi",
+          "position": 9,
+          "skill_id": "fastapi",
+          "skill_name": "FastAPI Framework",
+          "phase": "Core",
+          "week_start": 27,
+          "week_end": 30,
+          "hours": 35.7,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "python",
+              "skill_name": "Python Programming",
+              "min_level": 5.0,
+              "met": true
+            },
+            {
+              "skill_id": "apis_rest",
+              "skill_name": "RESTful API Design",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_fastapi_doc",
+              "type": "doc",
+              "title": "FastAPI Framework Tutorial & Pydantic Integration",
+              "provider": "Tiangolo",
+              "url": "https://fastapi.tiangolo.com/",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "fastapi"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_fastapi_proj",
+              "type": "project",
+              "title": "Production Async REST Microservice with DB Pooling",
+              "provider": "CareerTwin Projects",
+              "url": "https://fastapi.tiangolo.com/tutorial/dependencies/",
+              "hours": 10.0,
+              "level_gain": 2.0,
+              "skills": [
+                "fastapi"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Build asynchronous REST APIs with Pydantic v2 schemas and validation",
+            "Create reusable dependency injection providers and middleware"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 7.0,
+            "gap": 7.0,
+            "importance": 0.78,
+            "priority": 37,
+            "priority_label": "Medium",
+            "unblocks": [
+              {
+                "skill_id": "model_serving",
+                "skill_name": "Model Serving & Inference"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "FastAPI Framework is ranked Medium priority because your calibrated level is 0.0/10 vs ~7.0/10 required for GenAI Engineer. It directly unblocks Model Serving & Inference.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_agent_systems",
+          "position": 10,
+          "skill_id": "agent_systems",
+          "skill_name": "Autonomous Agent Systems",
+          "phase": "Applied",
+          "week_start": 31,
+          "week_end": 35,
+          "hours": 47.6,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "tool_calling",
+              "skill_name": "LLM Function & Tool Calling",
+              "min_level": 5.0,
+              "met": false
+            },
+            {
+              "skill_id": "rag",
+              "skill_name": "Retrieval-Augmented Generation",
+              "min_level": 5.0,
+              "met": true
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_agents_doc",
+              "type": "doc",
+              "title": "Google Agent Development Kit (ADK) Core Architecture",
+              "provider": "Google ADK Team",
+              "url": "https://cloud.google.com/vertex-ai/docs",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "agent_systems"
+              ],
+              "level_from": 2.0,
+              "level_to": 6.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_agents_proj",
+              "type": "project",
+              "title": "Multi-Turn Conversational Coach with ADK Runner",
+              "provider": "CareerTwin Projects",
+              "url": "https://cloud.google.com/vertex-ai/docs",
+              "hours": 12.0,
+              "level_gain": 2.0,
+              "skills": [
+                "agent_systems"
+              ],
+              "level_from": 5.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Architect sequential and parallel agents using Google ADK with session state",
+            "Implement human-in-the-loop controls and multi-turn conversational memory"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 7.0,
+            "gap": 7.0,
+            "importance": 0.88,
+            "priority": 37,
+            "priority_label": "Medium",
+            "unblocks": [],
+            "interest_match": true,
+            "evidence_snippet": null,
+            "narrative": "Autonomous Agent Systems is ranked Medium priority because your calibrated level is 0.0/10 vs ~7.0/10 required for GenAI Engineer. It is a key requirement for full role readiness. This aligns directly with your interests in Agents, LLMs, RAG.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_llm_evaluation",
+          "position": 11,
+          "skill_id": "llm_evaluation",
+          "skill_name": "LLM & RAG Evaluation",
+          "phase": "Applied",
+          "week_start": 36,
+          "week_end": 39,
+          "hours": 35.7,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "llm_fundamentals",
+              "skill_name": "Large Language Model Fundamentals",
+              "min_level": 4.0,
+              "met": false
+            },
+            {
+              "skill_id": "model_evaluation",
+              "skill_name": "Model Evaluation & Metrics",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_llmeval_doc",
+              "type": "doc",
+              "title": "Ragas: Automated LLM & RAG Evaluation Metrics",
+              "provider": "Exploding Gradients",
+              "url": "https://docs.ragas.io/en/stable/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "llm_evaluation"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_llmeval_proj",
+              "type": "project",
+              "title": "Automated Benchmark Evalset & Trajectory Scoring Suite",
+              "provider": "CareerTwin Projects",
+              "url": "https://docs.ragas.io/en/stable/getstarted/index.html",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "llm_evaluation"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Evaluate RAG applications across context relevance, faithfulness, and answer relevance",
+            "Run automated ADK evalsets measuring tool trajectory accuracy"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 7.0,
+            "gap": 7.0,
+            "importance": 0.8,
+            "priority": 28,
+            "priority_label": "Medium",
+            "unblocks": [],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "LLM & RAG Evaluation is ranked Medium priority because your calibrated level is 0.0/10 vs ~7.0/10 required for GenAI Engineer. It is a key requirement for full role readiness.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_prompt_engineering",
+          "position": 12,
+          "skill_id": "prompt_engineering",
+          "skill_name": "Prompt Engineering & In-Context Learning",
+          "phase": "Applied",
+          "week_start": 40,
+          "week_end": 42,
+          "hours": 29.8,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "llm_fundamentals",
+              "skill_name": "Large Language Model Fundamentals",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_prompt_doc",
+              "type": "doc",
+              "title": "Prompt Engineering Guide & Synthetic Data Generation",
+              "provider": "DAIR.AI",
+              "url": "https://www.promptingguide.ai/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "prompt_engineering",
+                "synthetic_data"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_prompt_proj",
+              "type": "project",
+              "title": "Synthetic Data Extraction & Prompt Verification Pipeline",
+              "provider": "CareerTwin Projects",
+              "url": "https://www.promptingguide.ai/techniques/cot",
+              "hours": 7.0,
+              "level_gain": 2.0,
+              "skills": [
+                "prompt_engineering",
+                "synthetic_data"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Design chain-of-thought, few-shot, and role-conditioned prompt architectures",
+            "Enforce deterministic JSON schema outputs using structured constraints"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 7.0,
+            "gap": 7.0,
+            "importance": 0.75,
+            "priority": 26,
+            "priority_label": "Medium",
+            "unblocks": [],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Prompt Engineering & In-Context Learning is ranked Medium priority because your calibrated level is 0.0/10 vs ~7.0/10 required for GenAI Engineer. It is a key requirement for full role readiness.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_testing",
+          "position": 13,
+          "skill_id": "testing",
+          "skill_name": "Software Testing & QA",
+          "phase": "Foundation",
+          "week_start": 43,
+          "week_end": 45,
+          "hours": 25.5,
+          "status": "available",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "python",
+              "skill_name": "Python Programming",
+              "min_level": 4.0,
+              "met": true
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_testing_doc",
+              "type": "doc",
+              "title": "Pytest Documentation: Fixtures & Parameterization",
+              "provider": "Pytest Org",
+              "url": "https://docs.pytest.org/en/stable/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "testing",
+                "load_testing"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_testing_proj",
+              "type": "project",
+              "title": "Integration Test Suite with Mocks & Load Simulation",
+              "provider": "CareerTwin Projects",
+              "url": "https://docs.locust.io/en/stable/",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "testing",
+                "load_testing"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Write parameterized unit and integration tests using pytest",
+            "Use fixtures, mocks, and test coverage metrics exceeding 80%"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 6.0,
+            "gap": 6.0,
+            "importance": 0.65,
+            "priority": 19,
+            "priority_label": "Low",
+            "unblocks": [],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Software Testing & QA is ranked Low priority because your calibrated level is 0.0/10 vs ~6.0/10 required for GenAI Engineer. It is a key requirement for full role readiness.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_mcp",
+          "position": 14,
+          "skill_id": "mcp",
+          "skill_name": "Model Context Protocol",
+          "phase": "Applied",
+          "week_start": 46,
+          "week_end": 48,
+          "hours": 25.5,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "tool_calling",
+              "skill_name": "LLM Function & Tool Calling",
+              "min_level": 4.0,
+              "met": false
+            },
+            {
+              "skill_id": "apis_rest",
+              "skill_name": "RESTful API Design",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_mcp_doc",
+              "type": "doc",
+              "title": "Model Context Protocol Architecture & Spec",
+              "provider": "Anthropic / MCP Org",
+              "url": "https://modelcontextprotocol.io/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "mcp"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_mcp_proj",
+              "type": "project",
+              "title": "Custom MCP Server for Local Database & File Inspection",
+              "provider": "CareerTwin Projects",
+              "url": "https://modelcontextprotocol.io/quickstart",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "mcp"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Implement an MCP server exposing custom resources, prompts, and tools",
+            "Connect an LLM agent to external services via standardized MCP clients"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 5.0,
+            "gap": 5.0,
+            "importance": 0.6,
+            "priority": 15,
+            "priority_label": "Low",
+            "unblocks": [],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Model Context Protocol is ranked Low priority because your calibrated level is 0.0/10 vs ~5.0/10 required for GenAI Engineer. It is a key requirement for full role readiness.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_linux_basics",
+          "position": 15,
+          "skill_id": "linux_basics",
+          "skill_name": "Linux & CLI Basics",
+          "phase": "Foundation",
+          "week_start": 49,
+          "week_end": 50,
+          "hours": 17.0,
+          "status": "available",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [],
+          "activities": [
+            {
+              "activity_id": "res_linux_doc",
+              "type": "doc",
+              "title": "Linux Journey: Terminal, Processes & Filesystem",
+              "provider": "Linux Journey",
+              "url": "https://linuxjourney.com/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "linux_basics",
+                "bash_scripting"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_linux_proj",
+              "type": "project",
+              "title": "Automated System Health Daemon & Bash Utility",
+              "provider": "CareerTwin Projects",
+              "url": "https://www.gnu.org/software/bash/manual/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "linux_basics",
+                "bash_scripting"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Navigate Linux filesystem, permissions, process management, and piping",
+            "Configure environment variables and run background daemon processes"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 5.0,
+            "gap": 5.0,
+            "importance": 0.4,
+            "priority": 13,
+            "priority_label": "Low",
+            "unblocks": [
+              {
+                "skill_id": "docker",
+                "skill_name": "Docker & Containerization"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Linux & CLI Basics is ranked Low priority because your calibrated level is 0.0/10 vs ~5.0/10 required for GenAI Engineer. It directly unblocks Docker & Containerization.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_docker",
+          "position": 16,
+          "skill_id": "docker",
+          "skill_name": "Docker & Containerization",
+          "phase": "Applied",
+          "week_start": 51,
+          "week_end": 53,
+          "hours": 25.5,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "linux_basics",
+              "skill_name": "Linux & CLI Basics",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_docker_doc",
+              "type": "doc",
+              "title": "Docker Official Documentation & Image Architecture",
+              "provider": "Docker Inc",
+              "url": "https://docs.docker.com/get-started/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "docker"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_docker_proj",
+              "type": "project",
+              "title": "Multi-Stage Docker Containerization for Full Stack",
+              "provider": "CareerTwin Projects",
+              "url": "https://docs.docker.com/develop/develop-images/multistage-build/",
+              "hours": 7.0,
+              "level_gain": 2.0,
+              "skills": [
+                "docker"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Write multi-stage Dockerfiles with minimal image size and secure non-root users",
+            "Orchestrate local multi-container services with docker compose"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 6.0,
+            "gap": 6.0,
+            "importance": 0.7,
+            "priority": 36,
+            "priority_label": "Medium",
+            "unblocks": [
+              {
+                "skill_id": "model_serving",
+                "skill_name": "Model Serving & Inference"
+              },
+              {
+                "skill_id": "llm_deployment",
+                "skill_name": "Production LLM Deployment"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Docker & Containerization is ranked Medium priority because your calibrated level is 0.0/10 vs ~6.0/10 required for GenAI Engineer. It directly unblocks Model Serving & Inference, Production LLM Deployment.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_model_serving",
+          "position": 17,
+          "skill_id": "model_serving",
+          "skill_name": "Model Serving & Inference",
+          "phase": "Applied",
+          "week_start": 54,
+          "week_end": 57,
+          "hours": 30.6,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "fastapi",
+              "skill_name": "FastAPI Framework",
+              "min_level": 4.0,
+              "met": false
+            },
+            {
+              "skill_id": "docker",
+              "skill_name": "Docker & Containerization",
+              "min_level": 4.0,
+              "met": false
+            },
+            {
+              "skill_id": "ml_fundamentals",
+              "skill_name": "Machine Learning Fundamentals",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_serving_doc",
+              "type": "doc",
+              "title": "Model Serving & Dynamic Batching Architecture",
+              "provider": "FastAPI & Triton",
+              "url": "https://fastapi.tiangolo.com/advanced/",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "model_serving"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_serving_proj",
+              "type": "project",
+              "title": "Low-Latency REST Model Serving Microservice",
+              "provider": "CareerTwin Projects",
+              "url": "https://onnxruntime.ai/docs/tutorials/",
+              "hours": 10.0,
+              "level_gain": 2.0,
+              "skills": [
+                "model_serving"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Package ML models for production inference behind low-latency REST endpoints",
+            "Optimize batching, GPU memory utilization, and throughput concurrency"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 6.0,
+            "gap": 6.0,
+            "importance": 0.72,
+            "priority": 29,
+            "priority_label": "Medium",
+            "unblocks": [
+              {
+                "skill_id": "llm_deployment",
+                "skill_name": "Production LLM Deployment"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Model Serving & Inference is ranked Medium priority because your calibrated level is 0.0/10 vs ~6.0/10 required for GenAI Engineer. It directly unblocks Production LLM Deployment.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_llm_deployment",
+          "position": 18,
+          "skill_id": "llm_deployment",
+          "skill_name": "Production LLM Deployment",
+          "phase": "Applied",
+          "week_start": 58,
+          "week_end": 61,
+          "hours": 35.7,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "model_serving",
+              "skill_name": "Model Serving & Inference",
+              "min_level": 5.0,
+              "met": false
+            },
+            {
+              "skill_id": "docker",
+              "skill_name": "Docker & Containerization",
+              "min_level": 4.0,
+              "met": false
+            },
+            {
+              "skill_id": "llm_fundamentals",
+              "skill_name": "Large Language Model Fundamentals",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_llmdeploy_doc",
+              "type": "doc",
+              "title": "vLLM High-Throughput Serving & PagedAttention",
+              "provider": "vLLM Project",
+              "url": "https://docs.vllm.ai/en/latest/",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "llm_deployment"
+              ],
+              "level_from": 2.0,
+              "level_to": 6.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_llmdeploy_proj",
+              "type": "project",
+              "title": "Quantized LLM Inference Server with OpenAI Compatibility",
+              "provider": "CareerTwin Projects",
+              "url": "https://docs.vllm.ai/en/latest/serving/openai_compatible_server.html",
+              "hours": 10.0,
+              "level_gain": 2.0,
+              "skills": [
+                "llm_deployment"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Deploy quantized open-weights LLMs using vLLM with PagedAttention",
+            "Benchmark and optimize Time-to-First-Token (TTFT) and token throughput"
+          ],
+          "why": {
+            "level": 0.0,
+            "target": 6.0,
+            "gap": 6.0,
+            "importance": 0.68,
+            "priority": 20,
+            "priority_label": "Low",
+            "unblocks": [],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Production LLM Deployment is ranked Low priority because your calibrated level is 0.0/10 vs ~6.0/10 required for GenAI Engineer. It is a key requirement for full role readiness.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_embeddings",
+          "position": 19,
+          "skill_id": "embeddings",
+          "skill_name": "Text Embeddings & Semantic Search",
+          "phase": "Applied",
+          "week_start": 62,
+          "week_end": 62,
+          "hours": 5.1,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "python",
+              "skill_name": "Python Programming",
+              "min_level": 4.0,
+              "met": true
+            },
+            {
+              "skill_id": "llm_fundamentals",
+              "skill_name": "Large Language Model Fundamentals",
+              "min_level": 4.0,
+              "met": false
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_embed_doc",
+              "type": "doc",
+              "title": "Sentence Transformers: Dense Semantic Embeddings",
+              "provider": "UKPLab & Hugging Face",
+              "url": "https://sbert.net/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "embeddings"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_embed_proj",
+              "type": "project",
+              "title": "Semantic Document Search & Re-Ranking Engine",
+              "provider": "CareerTwin Projects",
+              "url": "https://sbert.net/examples/applications/semantic-search/README.html",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "embeddings"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Generate dense vector embeddings using sentence-transformers and API providers",
+            "Calculate cosine similarity, dot products, and semantic search score distributions"
+          ],
+          "why": {
+            "level": 6.0,
+            "target": 7.0,
+            "gap": 1.0,
+            "importance": 0.82,
+            "priority": 6,
+            "priority_label": "Low",
+            "unblocks": [
+              {
+                "skill_id": "vector_db",
+                "skill_name": "Vector Databases"
+              },
+              {
+                "skill_id": "rag",
+                "skill_name": "Retrieval-Augmented Generation"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Text Embeddings & Semantic Search is ranked Low priority because your calibrated level is 6.0/10 vs ~7.0/10 required for GenAI Engineer. It directly unblocks Vector Databases, Retrieval-Augmented Generation.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_vector_db",
+          "position": 20,
+          "skill_id": "vector_db",
+          "skill_name": "Vector Databases",
+          "phase": "Applied",
+          "week_start": 63,
+          "week_end": 64,
+          "hours": 15.3,
+          "status": "available",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [
+            {
+              "skill_id": "embeddings",
+              "skill_name": "Text Embeddings & Semantic Search",
+              "min_level": 4.0,
+              "met": true
+            }
+          ],
+          "activities": [
+            {
+              "activity_id": "res_vdb_doc",
+              "type": "doc",
+              "title": "ChromaDB Documentation: Collections & Filtering",
+              "provider": "Chroma Core",
+              "url": "https://docs.trychroma.com/",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "vector_db"
+              ],
+              "level_from": 1.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_vdb_proj",
+              "type": "project",
+              "title": "Persistent Vector Index with Metadata Filtering",
+              "provider": "CareerTwin Projects",
+              "url": "https://docs.trychroma.com/guides",
+              "hours": 8.0,
+              "level_gain": 2.0,
+              "skills": [
+                "vector_db"
+              ],
+              "level_from": 4.0,
+              "level_to": 9.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Initialize persistent collections, metadata filters, and distance metrics in ChromaDB",
+            "Implement Approximate Nearest Neighbor (ANN) index tuning and hybrid search"
+          ],
+          "why": {
+            "level": 4.0,
+            "target": 7.0,
+            "gap": 3.0,
+            "importance": 0.82,
+            "priority": 12,
+            "priority_label": "Low",
+            "unblocks": [
+              {
+                "skill_id": "rag",
+                "skill_name": "Retrieval-Augmented Generation"
+              }
+            ],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Vector Databases is ranked Low priority because your calibrated level is 4.0/10 vs ~7.0/10 required for GenAI Engineer. It directly unblocks Retrieval-Augmented Generation.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_git",
+          "position": 21,
+          "skill_id": "git",
+          "skill_name": "Git & Version Control",
+          "phase": "Foundation",
+          "week_start": 65,
+          "week_end": 65,
+          "hours": 3.7,
+          "status": "available",
+          "stretch": true,
+          "is_capstone": false,
+          "combines": [],
+          "prerequisites": [],
+          "activities": [
+            {
+              "activity_id": "res_git_doc",
+              "type": "doc",
+              "title": "Pro Git Book & Official Reference",
+              "provider": "Git SCM",
+              "url": "https://git-scm.com/doc",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "git"
+              ],
+              "level_from": 0.0,
+              "level_to": 5.0,
+              "completed": false
+            },
+            {
+              "activity_id": "res_git_proj",
+              "type": "project",
+              "title": "Interactive Rebasing & Conflict Resolution Practice",
+              "provider": "CareerTwin Projects",
+              "url": "https://git-scm.com/docs/git-rebase",
+              "hours": 6.0,
+              "level_gain": 2.0,
+              "skills": [
+                "git"
+              ],
+              "level_from": 4.0,
+              "level_to": 8.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Manage feature branches, rebasing, and merge conflict resolution",
+            "Create semantic commits, pull requests, and tag releases"
+          ],
+          "why": {
+            "level": 4.9,
+            "target": 6.0,
+            "gap": 1.1,
+            "importance": 0.6,
+            "priority": 3,
+            "priority_label": "Low",
+            "unblocks": [],
+            "interest_match": false,
+            "evidence_snippet": null,
+            "narrative": "Git & Version Control is ranked Low priority because your calibrated level is 4.9/10 vs ~6.0/10 required for GenAI Engineer. It is a key requirement for full role readiness.",
+            "narrative_source": "template"
+          }
+        },
+        {
+          "item_id": "rm_capstone",
+          "position": 22,
+          "skill_id": null,
+          "skill_name": "Capstone Project",
+          "phase": "Capstone",
+          "week_start": 66,
+          "week_end": 67,
+          "hours": 12.0,
+          "status": "locked",
+          "stretch": true,
+          "is_capstone": true,
+          "combines": [
+            {
+              "skill_id": "python",
+              "skill_name": "Python Programming"
+            },
+            {
+              "skill_id": "rag",
+              "skill_name": "Retrieval-Augmented Generation"
+            },
+            {
+              "skill_id": "agent_systems",
+              "skill_name": "Autonomous Agent Systems"
+            }
+          ],
+          "prerequisites": [],
+          "activities": [
+            {
+              "activity_id": "res_capstone_genai",
+              "type": "project",
+              "title": "Capstone: Enterprise Autonomous Multi-Agent Support System with Citations",
+              "provider": "CareerTwin Portfolio",
+              "url": "https://cloud.google.com/vertex-ai/docs",
+              "hours": 20.0,
+              "level_gain": 3.0,
+              "skills": [
+                "rag",
+                "agent_systems",
+                "tool_calling"
+              ],
+              "level_from": 6.0,
+              "level_to": 10.0,
+              "completed": false
+            }
+          ],
+          "completion_criteria": [
+            "Deliver production capstone integrating Python Programming, Retrieval-Augmented Generation, Autonomous Agent Systems",
+            "Demonstrate end-to-end functionality, evaluation benchmarks, and deployment artifacts"
+          ],
+          "why": null
+        }
+      ],
+      "graph": {
+        "nodes": [
+          {
+            "id": "rm_linear_algebra",
+            "label": "Linear Algebra",
+            "status": "available",
+            "phase": "Foundation"
+          },
+          {
+            "id": "rm_statistics",
+            "label": "Probability & Statistics",
+            "status": "available",
+            "phase": "Foundation"
+          },
+          {
+            "id": "rm_ml_fundamentals",
+            "label": "Machine Learning Fundamentals",
+            "status": "locked",
+            "phase": "Core"
+          },
+          {
+            "id": "rm_deep_learning",
+            "label": "Deep Learning Fundamentals",
+            "status": "locked",
+            "phase": "Core"
+          },
+          {
+            "id": "rm_llm_fundamentals",
+            "label": "Large Language Model Fundamentals",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_model_evaluation",
+            "label": "Model Evaluation & Metrics",
+            "status": "locked",
+            "phase": "Core"
+          },
+          {
+            "id": "rm_apis_rest",
+            "label": "RESTful API Design",
+            "status": "available",
+            "phase": "Foundation"
+          },
+          {
+            "id": "rm_tool_calling",
+            "label": "LLM Function & Tool Calling",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_fastapi",
+            "label": "FastAPI Framework",
+            "status": "locked",
+            "phase": "Core"
+          },
+          {
+            "id": "rm_agent_systems",
+            "label": "Autonomous Agent Systems",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_llm_evaluation",
+            "label": "LLM & RAG Evaluation",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_prompt_engineering",
+            "label": "Prompt Engineering & In-Context Learning",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_testing",
+            "label": "Software Testing & QA",
+            "status": "available",
+            "phase": "Foundation"
+          },
+          {
+            "id": "rm_mcp",
+            "label": "Model Context Protocol",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_linux_basics",
+            "label": "Linux & CLI Basics",
+            "status": "available",
+            "phase": "Foundation"
+          },
+          {
+            "id": "rm_docker",
+            "label": "Docker & Containerization",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_model_serving",
+            "label": "Model Serving & Inference",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_llm_deployment",
+            "label": "Production LLM Deployment",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_embeddings",
+            "label": "Text Embeddings & Semantic Search",
+            "status": "locked",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_vector_db",
+            "label": "Vector Databases",
+            "status": "available",
+            "phase": "Applied"
+          },
+          {
+            "id": "rm_git",
+            "label": "Git & Version Control",
+            "status": "available",
+            "phase": "Foundation"
+          },
+          {
+            "id": "rm_capstone",
+            "label": "Capstone Project",
+            "status": "locked",
+            "phase": "Capstone"
+          }
+        ],
+        "edges": [
+          {
+            "source": "rm_statistics",
+            "target": "rm_ml_fundamentals"
+          },
+          {
+            "source": "rm_linear_algebra",
+            "target": "rm_ml_fundamentals"
+          },
+          {
+            "source": "rm_ml_fundamentals",
+            "target": "rm_deep_learning"
+          },
+          {
+            "source": "rm_linear_algebra",
+            "target": "rm_deep_learning"
+          },
+          {
+            "source": "rm_deep_learning",
+            "target": "rm_llm_fundamentals"
+          },
+          {
+            "source": "rm_ml_fundamentals",
+            "target": "rm_model_evaluation"
+          },
+          {
+            "source": "rm_apis_rest",
+            "target": "rm_tool_calling"
+          },
+          {
+            "source": "rm_llm_fundamentals",
+            "target": "rm_tool_calling"
+          },
+          {
+            "source": "rm_apis_rest",
+            "target": "rm_fastapi"
+          },
+          {
+            "source": "rm_tool_calling",
+            "target": "rm_agent_systems"
+          },
+          {
+            "source": "rm_llm_fundamentals",
+            "target": "rm_llm_evaluation"
+          },
+          {
+            "source": "rm_model_evaluation",
+            "target": "rm_llm_evaluation"
+          },
+          {
+            "source": "rm_llm_fundamentals",
+            "target": "rm_prompt_engineering"
+          },
+          {
+            "source": "rm_tool_calling",
+            "target": "rm_mcp"
+          },
+          {
+            "source": "rm_apis_rest",
+            "target": "rm_mcp"
+          },
+          {
+            "source": "rm_linux_basics",
+            "target": "rm_docker"
+          },
+          {
+            "source": "rm_fastapi",
+            "target": "rm_model_serving"
+          },
+          {
+            "source": "rm_docker",
+            "target": "rm_model_serving"
+          },
+          {
+            "source": "rm_ml_fundamentals",
+            "target": "rm_model_serving"
+          },
+          {
+            "source": "rm_model_serving",
+            "target": "rm_llm_deployment"
+          },
+          {
+            "source": "rm_docker",
+            "target": "rm_llm_deployment"
+          },
+          {
+            "source": "rm_llm_fundamentals",
+            "target": "rm_llm_deployment"
+          },
+          {
+            "source": "rm_llm_fundamentals",
+            "target": "rm_embeddings"
+          },
+          {
+            "source": "rm_embeddings",
+            "target": "rm_vector_db"
+          },
+          {
+            "source": "rm_agent_systems",
+            "target": "rm_capstone"
+          }
+        ]
+      }
+    },
+    "meta": {
+      "llm_provider": "none",
+      "llm_used": false,
+      "fallback_used": true
+    }
+  },
+  "diff": {
+    "trigger": {
+      "type": "market_update",
+      "skill_id": null,
+      "skill_name": null,
+      "activity_id": null
+    },
+    "readiness_before": 26.9,
+    "readiness_after": 26.0,
+    "level_changes": [],
+    "unlocked": [],
+    "removed": [],
+    "added": [
+      {
+        "item_id": "rm_mcp",
+        "skill_name": "Model Context Protocol",
+        "reason": "New market requirement scheduled"
+      }
+    ],
+    "reordered": [
+      {
+        "item_id": "rm_llm_evaluation",
+        "skill_name": "LLM & RAG Evaluation",
+        "from_position": 12,
+        "to_position": 11
+      },
+      {
+        "item_id": "rm_prompt_engineering",
+        "skill_name": "Prompt Engineering & In-Context Learning",
+        "from_position": 11,
+        "to_position": 12
+      },
+      {
+        "item_id": "rm_linux_basics",
+        "skill_name": "Linux & CLI Basics",
+        "from_position": 14,
+        "to_position": 15
+      },
+      {
+        "item_id": "rm_docker",
+        "skill_name": "Docker & Containerization",
+        "from_position": 15,
+        "to_position": 16
+      },
+      {
+        "item_id": "rm_model_serving",
+        "skill_name": "Model Serving & Inference",
+        "from_position": 16,
+        "to_position": 17
+      },
+      {
+        "item_id": "rm_llm_deployment",
+        "skill_name": "Production LLM Deployment",
+        "from_position": 17,
+        "to_position": 18
+      },
+      {
+        "item_id": "rm_embeddings",
+        "skill_name": "Text Embeddings & Semantic Search",
+        "from_position": 18,
+        "to_position": 19
+      },
+      {
+        "item_id": "rm_vector_db",
+        "skill_name": "Vector Databases",
+        "from_position": 19,
+        "to_position": 20
+      },
+      {
+        "item_id": "rm_git",
+        "skill_name": "Git & Version Control",
+        "from_position": 20,
+        "to_position": 21
+      }
+    ],
+    "reprioritized": [
+      {
+        "skill_id": "apis_rest",
+        "skill_name": "RESTful API Design",
+        "from_priority": 48,
+        "to_priority": 55
+      },
+      {
+        "skill_id": "tool_calling",
+        "skill_name": "LLM Function & Tool Calling",
+        "from_priority": 43,
+        "to_priority": 52
+      },
+      {
+        "skill_id": "linux_basics",
+        "skill_name": "Linux & CLI Basics",
+        "from_priority": 19,
+        "to_priority": 13
+      }
+    ],
+    "requirement_changes": [
+      {
+        "skill_id": "mcp",
+        "skill_name": "mcp",
+        "change": "added",
+        "from": null,
+        "to": 5.0
+      },
+      {
+        "skill_id": "llm_evaluation",
+        "skill_name": "llm_evaluation",
+        "change": "target_changed",
+        "from": 6.0,
+        "to": 7.0
+      },
+      {
+        "skill_id": "linux_basics",
+        "skill_name": "linux_basics",
+        "change": "importance_changed",
+        "from": 0.55,
+        "to": 0.4
+      }
+    ],
+    "facts": [
+      "Role updated from 2026.09 to 2026.10",
+      "Market requirement added: mcp (target 5.0)",
+      "Target increased for llm_evaluation: 6.0 -> 7.0",
+      "Importance adjusted for linux_basics: 0.55 -> 0.40",
+      "Readiness 26.9 -> 26.0"
+    ]
+  },
+  "narrative": "Role updated from 2026.09 to 2026.10 Market requirement added: mcp (target 5.0) Target increased for llm_evaluation: 6.0 -> 7.0 Importance adjusted for linux_basics: 0.55 -> 0.40 Readiness 26.9 -> 26.0",
+  "narrative_source": "template",
+  "meta": {
+    "llm_provider": "none",
+    "llm_used": false,
+    "fallback_used": true
+  }
+}

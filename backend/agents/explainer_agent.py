@@ -37,7 +37,8 @@ STRICT GROUNDING RULES:
    "{Skill} is {priority label} priority because your level is {level}/10 vs ~{target}/10 needed for {role}. It also unblocks {unblocks}."
 2. You must use ONLY the numbers provided in the input facts. NEVER invent, round, or alter numbers.
 3. Maximum 2 sentences per item.
-4. Output a valid JSON list of explanations matching the ExplanationsOut schema.
+4. Output a valid JSON object matching the ExplanationsOut schema with key "explanations":
+   {"explanations": [{"item_id": "...", "narrative": "..."}]}
 """
 
 
