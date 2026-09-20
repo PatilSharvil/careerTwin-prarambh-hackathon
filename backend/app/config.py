@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     LLM_TIMEOUT_SECONDS: int = 30
     CHROMA_PATH: str = "./chroma_data"
     DATABASE_PATH: str = "./careertwin.db"
-    CORS_ORIGINS: str = "http://localhost:5173"
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173"
     DEFAULT_USER_ID: str = "demo"
 
     def provider_chain(self) -> list[Provider]:

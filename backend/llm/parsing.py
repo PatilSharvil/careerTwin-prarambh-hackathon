@@ -53,6 +53,13 @@ def parse_json(text: str) -> Any:
 def parse_and_validate(text: str, model_cls: type[T]) -> T:
     """Parse JSON and validate against the provided Pydantic model class."""
     data = parse_json(text)
+    if isinstance(data, list):
+        fields = getattr(model_cls, "model_fields", {})
+        if "explanations" in fields:
+            data = {"explanations": data}
+        elif len(fields) == 1:
+            field_name = next(iter(fields))
+            data = {field_name: data}
     try:
         return model_cls.model_validate(data)
     except ValidationError as exc:
