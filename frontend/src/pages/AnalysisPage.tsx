@@ -22,6 +22,7 @@ import {
   Trophy,
   RefreshCw,
   Info,
+  AlertCircle,
 } from 'lucide-react';
 
 export const AnalysisPage: React.FC = () => {
@@ -32,6 +33,30 @@ export const AnalysisPage: React.FC = () => {
   const setState = useStore((s) => s.setState);
 
   const [isLoading, setIsLoading] = useState<boolean>(!state);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const fetchAnalysis = () => {
+    setIsLoading(true);
+    setLoadError(null);
+
+    getRoadmap()
+      .then((res) => {
+        setState(res);
+      })
+      .catch((err: unknown) => {
+        const message =
+          err instanceof ApiError ? err.message : 'Failed to load analysis state.';
+        setLoadError(message);
+        showToast({
+          type: 'error',
+          title: 'Error Loading Analysis',
+          message,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   // If store.state is empty on mount, call GET /roadmap once
   useEffect(() => {
@@ -40,32 +65,26 @@ export const AnalysisPage: React.FC = () => {
       return;
     }
 
-    let isMounted = true;
-    setIsLoading(true);
+    fetchAnalysis();
+  }, [state]);
 
-    getRoadmap()
-      .then((res) => {
-        if (!isMounted) return;
-        setState(res);
-      })
-      .catch((err: unknown) => {
-        if (!isMounted) return;
-        const message =
-          err instanceof ApiError ? err.message : 'Failed to load analysis state.';
-        showToast({
-          type: 'error',
-          title: 'Error Loading Analysis',
-          message,
-        });
-      })
-      .finally(() => {
-        if (isMounted) setIsLoading(false);
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [state, setState, showToast]);
+  if (!state && loadError) {
+    return (
+      <div className="py-16 px-4 max-w-md mx-auto text-center">
+        <Card className="p-8 border-slate-200 bg-white shadow-xs space-y-4">
+          <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto border border-red-200">
+            <AlertCircle className="w-6 h-6" />
+          </div>
+          <h3 className="text-base font-bold text-slate-900">Failed to Load Analysis</h3>
+          <p className="text-xs text-slate-600 leading-relaxed">{loadError}</p>
+          <Button variant="primary" size="sm" onClick={fetchAnalysis}>
+            <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
+            Retry
+          </Button>
+        </Card>
+      </div>
+    );
+  }
 
   // Loading Skeleton
   if (isLoading || !state) {

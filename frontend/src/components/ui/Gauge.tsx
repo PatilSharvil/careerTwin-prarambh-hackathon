@@ -61,12 +61,20 @@ export const Gauge: React.FC<GaugeProps> = ({
   const strokeColor = getColor(value);
 
   return (
-    <div className={`inline-flex flex-col items-center justify-center ${className}`}>
+    <div
+      role="progressbar"
+      aria-valuenow={Math.round(currentValue)}
+      aria-valuemin={0}
+      aria-valuemax={100}
+      aria-label={label ? `${label}: ${Math.round(currentValue)}%` : `Readiness: ${Math.round(currentValue)}%`}
+      className={`inline-flex flex-col items-center justify-center ${className}`}
+    >
       <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
         <svg
           width={size}
           height={size}
           className="transform -rotate-90"
+          aria-hidden="true"
         >
           {/* Background circle */}
           <circle

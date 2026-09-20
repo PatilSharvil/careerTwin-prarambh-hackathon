@@ -55,7 +55,16 @@ const SkillNodeComponent: React.FC<NodeProps<Node<CustomNodeData>>> = ({ data })
 
   return (
     <div
-      className={`px-4 py-3 rounded-xl border-2 min-w-[200px] max-w-[240px] cursor-pointer transition-all hover:scale-105 ${getStatusBorder(
+      role="button"
+      tabIndex={0}
+      aria-label={`${label} milestone, status: ${status.replace('_', ' ')}, phase: ${phase}`}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          (e.currentTarget as HTMLElement).click();
+        }
+      }}
+      className={`px-4 py-3 rounded-xl border-2 min-w-[200px] max-w-[240px] cursor-pointer transition-all hover:scale-105 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none ${getStatusBorder(
         status
       )}`}
     >
@@ -197,7 +206,11 @@ export const RoadmapGraphView: React.FC<RoadmapGraphViewProps> = ({
   }, [graph]);
 
   return (
-    <div className="w-full h-[600px] bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden relative shadow-inner">
+    <div
+      role="region"
+      aria-label="Interactive skill dependency graph"
+      className="w-full h-[600px] bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden relative shadow-inner"
+    >
       <ReactFlow
         nodes={flowNodes}
         edges={flowEdges}

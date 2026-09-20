@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { getHealth } from './api/endpoints';
 import { Badge } from './components/ui/Badge';
 import { RouteGuard } from './components/RouteGuard';
-import { ToastProvider } from './components/ui/Toast';
+import { ToastProvider, useToast } from './components/ui/Toast';
 import { useStore } from './store/useStore';
 import type { Meta } from './types/api';
 
@@ -13,8 +13,7 @@ import { AnalysisPage } from './pages/AnalysisPage';
 import { RoadmapPage } from './pages/RoadmapPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { EvalPage } from './pages/EvalPage';
-import { DevPage } from './pages/DevPage';
-import { Cpu, Sparkles } from 'lucide-react';
+import { Cpu, Sparkles, RotateCcw } from 'lucide-react';
 
 const STEPS = [
   { step: 1, path: '/profile', label: 'Profile' },
@@ -28,8 +27,53 @@ const Navigation: React.FC = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  // Determine current step index (0-based)
-  const currentStepIdx = STEPS.findIndex((s) => s.path === currentPath);
+  const profile = useStore((s) => s.profile);
+  const state = useStore((s) => s.state);
+  const evalReport = useStore((s) => s.evalReport);
+
+  // Sync document title with current route
+  useEffect(() => {
+    switch (currentPath) {
+      case '/':
+        document.title = 'CareerTwin — AI Career Navigator';
+        break;
+      case '/profile':
+        document.title = 'CareerTwin — Profile & Evidence';
+        break;
+      case '/analysis':
+        document.title = 'CareerTwin — Skill-Gap Analysis';
+        break;
+      case '/roadmap':
+        document.title = 'CareerTwin — Execution Roadmap';
+        break;
+      case '/progress':
+        document.title = 'CareerTwin — Progress & Replan';
+        break;
+      case '/eval':
+        document.title = 'CareerTwin — Evaluation Dashboard';
+        break;
+      default:
+        document.title = 'CareerTwin — AI Career Navigator';
+    }
+  }, [currentPath]);
+
+  // Determine real step completion from store state
+  const isStepCompleted = (stepNumber: number): boolean => {
+    switch (stepNumber) {
+      case 1:
+        return Boolean(profile || state);
+      case 2:
+        return Boolean(state?.analysis);
+      case 3:
+        return Boolean(state?.roadmap);
+      case 4:
+        return Boolean(state?.roadmap?.items?.some((i) => i.status === 'done'));
+      case 5:
+        return Boolean(evalReport);
+      default:
+        return false;
+    }
+  };
 
   return (
     <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
@@ -47,11 +91,11 @@ const Navigation: React.FC = () => {
             </Link>
           </div>
 
-          {/* 5-step Progress Indicator */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2">
-            {STEPS.map((step, idx) => {
+          {/* 5-step Progress Indicator reflecting real progress */}
+          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2" aria-label="Step progress">
+            {STEPS.map((step) => {
               const isActive = currentPath === step.path;
-              const isPast = currentStepIdx > idx;
+              const isCompleted = isStepCompleted(step.step);
 
               return (
                 <Link
@@ -60,7 +104,7 @@ const Navigation: React.FC = () => {
                   className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                     isActive
                       ? 'bg-primary-50 text-primary-700 ring-1 ring-primary-500 font-semibold shadow-xs'
-                      : isPast
+                      : isCompleted
                       ? 'text-slate-700 hover:bg-slate-100'
                       : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'
                   }`}
@@ -69,12 +113,12 @@ const Navigation: React.FC = () => {
                     className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
                       isActive
                         ? 'bg-primary-600 text-white'
-                        : isPast
+                        : isCompleted
                         ? 'bg-emerald-500 text-white'
                         : 'bg-slate-200 text-slate-600'
                     }`}
                   >
-                    {isPast ? '✓' : step.step}
+                    {isCompleted ? '✓' : step.step}
                   </span>
                   <span>{step.label}</span>
                 </Link>
@@ -82,18 +126,13 @@ const Navigation: React.FC = () => {
             })}
           </nav>
 
-          {/* Right Action / Dev Link */}
+          {/* Target Role indicator pill */}
           <div className="flex items-center space-x-3">
-            <Link
-              to="/_dev"
-              className={`text-xs px-2.5 py-1 rounded-md border font-medium transition-colors ${
-                currentPath === '/_dev'
-                  ? 'border-primary-400 bg-primary-50 text-primary-700'
-                  : 'border-slate-200 text-slate-500 hover:text-slate-700 hover:bg-slate-50'
-              }`}
-            >
-              /_dev
-            </Link>
+            {state?.role ? (
+              <span className="hidden sm:inline-flex items-center text-xs font-semibold text-primary-700 bg-primary-50 px-2.5 py-1 rounded-md border border-primary-200">
+                {state.role.title}
+              </span>
+            ) : null}
           </div>
         </div>
       </div>
@@ -102,15 +141,20 @@ const Navigation: React.FC = () => {
       <div className="md:hidden flex border-t border-slate-100 px-2 py-1.5 overflow-x-auto">
         {STEPS.map((step) => {
           const isActive = currentPath === step.path;
+          const isCompleted = isStepCompleted(step.step);
           return (
             <Link
               key={step.path}
               to={step.path}
               className={`flex-shrink-0 px-2.5 py-1 text-xs font-medium rounded ${
-                isActive ? 'text-primary-700 font-bold' : 'text-slate-500'
+                isActive
+                  ? 'text-primary-700 font-bold'
+                  : isCompleted
+                  ? 'text-slate-800 font-medium'
+                  : 'text-slate-400'
               }`}
             >
-              {step.step}. {step.label}
+              {isCompleted ? '✓' : `${step.step}.`} {step.label}
             </Link>
           );
         })}
@@ -120,14 +164,27 @@ const Navigation: React.FC = () => {
 };
 
 const Footer: React.FC = () => {
+  const { showToast } = useToast();
+  const navigate = useNavigate();
   const [apiStatus, setApiStatus] = useState<'ok' | 'down' | 'mock' | 'checking'>('checking');
   const isMock = import.meta.env.VITE_USE_MOCK === 'true';
   const stateMeta = useStore((s) => s.state?.meta);
+  const resetStore = useStore((s) => s.reset);
 
   const meta: Meta = stateMeta || {
     llm_provider: isMock ? 'gemini' : 'none',
     llm_used: isMock,
     fallback_used: false,
+  };
+
+  const handleResetDemo = () => {
+    resetStore();
+    showToast({
+      type: 'info',
+      title: 'Demo Reset',
+      message: 'Client state has been cleared.',
+    });
+    navigate('/profile');
   };
 
   useEffect(() => {
@@ -156,12 +213,22 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-white border-t border-slate-200 py-3 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-slate-500">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500">
         <div className="flex items-center gap-2">
           <span className="font-medium text-slate-700">CareerTwin</span>
           <span>&copy; 2026</span>
           <span className="text-slate-300">|</span>
           <span className="text-slate-500">SPEC §10 Frozen Contract</span>
+          <span className="text-slate-300">|</span>
+          {/* Reset Demo Button */}
+          <button
+            onClick={handleResetDemo}
+            className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-100 px-2 py-0.5 rounded border border-slate-200 transition-colors"
+            title="Clear client store state for a fresh demo run"
+          >
+            <RotateCcw className="w-3 h-3 text-slate-400" />
+            <span>Reset demo</span>
+          </button>
         </div>
 
         <div className="flex items-center space-x-3">
@@ -209,51 +276,54 @@ const Footer: React.FC = () => {
   );
 };
 
+const AppContent: React.FC = () => {
+  return (
+    <div className="min-h-screen flex flex-col bg-slate-50 selection:bg-primary-100 selection:text-primary-800">
+      <Navigation />
+      <main className="flex-1">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/eval" element={<EvalPage />} />
+
+          {/* Protected Routes - Redirect to /profile if state === null */}
+          <Route
+            path="/analysis"
+            element={
+              <RouteGuard>
+                <AnalysisPage />
+              </RouteGuard>
+            }
+          />
+          <Route
+            path="/roadmap"
+            element={
+              <RouteGuard>
+                <RoadmapPage />
+              </RouteGuard>
+            }
+          />
+          <Route
+            path="/progress"
+            element={
+              <RouteGuard>
+                <ProgressPage />
+              </RouteGuard>
+            }
+          />
+        </Routes>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <ToastProvider>
-        <div className="min-h-screen flex flex-col bg-slate-50 selection:bg-primary-100 selection:text-primary-800">
-          <Navigation />
-          <main className="flex-1">
-            <Routes>
-              {/* Public Routes */}
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/eval" element={<EvalPage />} />
-
-              {/* Protected Routes - Redirect to /profile if state === null */}
-              <Route
-                path="/analysis"
-                element={
-                  <RouteGuard>
-                    <AnalysisPage />
-                  </RouteGuard>
-                }
-              />
-              <Route
-                path="/roadmap"
-                element={
-                  <RouteGuard>
-                    <RoadmapPage />
-                  </RouteGuard>
-                }
-              />
-              <Route
-                path="/progress"
-                element={
-                  <RouteGuard>
-                    <ProgressPage />
-                  </RouteGuard>
-                }
-              />
-
-              {/* Temporary Dev Verification Route (F1) */}
-              <Route path="/_dev" element={<DevPage />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
+        <AppContent />
       </ToastProvider>
     </BrowserRouter>
   );

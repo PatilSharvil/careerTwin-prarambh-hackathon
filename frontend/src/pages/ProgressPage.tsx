@@ -12,6 +12,7 @@ import { ApiError } from '../api/client';
 import { useToast } from '../components/ui/Toast';
 import { Gauge } from '../components/ui/Gauge';
 import { Button } from '../components/ui/Button';
+import { Card } from '../components/ui/Card';
 import { Skeleton } from '../components/ui/Skeleton';
 import type { AnalyzeResponse, Diff, ProgressResponse } from '../types/api';
 
@@ -28,6 +29,8 @@ import {
   TrendingUp,
   TrendingDown,
   Clock,
+  AlertCircle,
+  RefreshCw,
 } from 'lucide-react';
 
 export const ProgressPage: React.FC = () => {
@@ -47,65 +50,52 @@ export const ProgressPage: React.FC = () => {
   const setTodayMessage = useStore((s) => s.setTodayMessage);
 
   const [isLoading, setIsLoading] = useState<boolean>(!state);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
   const [isTodayLoading, setIsTodayLoading] = useState<boolean>(false);
   const [highlightedSkillIds, setHighlightedSkillIds] = useState<Set<string>>(new Set());
 
+  const fetchInitialData = useCallback(async () => {
+    try {
+      setLoadError(null);
+      if (!state) {
+        setIsLoading(true);
+        const roadmapRes = await getRoadmap();
+        setState(roadmapRes);
+      }
+
+      // Fetch roles to know market_update_available status
+      if (roles.length === 0) {
+        const rolesRes = await getRoles();
+        setRoles(rolesRes.roles);
+      }
+
+      // Fetch today pick
+      if (!today) {
+        setIsTodayLoading(true);
+        const todayRes = await getToday();
+        setToday(todayRes.today);
+        setTodayMessage(todayRes.message);
+      }
+    } catch (err: unknown) {
+      const message =
+        err instanceof ApiError ? err.message : 'Failed to initialize progress view.';
+      setLoadError(message);
+      showToast({
+        type: 'error',
+        title: 'Loading Error',
+        message,
+      });
+    } finally {
+      setIsLoading(false);
+      setIsTodayLoading(false);
+    }
+  }, [state, setState, roles.length, setRoles, today, setToday, setTodayMessage, showToast]);
+
   // Load initial roadmap, today pick, and roles if missing
   useEffect(() => {
-    let isMounted = true;
-
-    const fetchInitialData = async () => {
-      try {
-        if (!state) {
-          setIsLoading(true);
-          const roadmapRes = await getRoadmap();
-          if (isMounted) {
-            setState(roadmapRes);
-          }
-        }
-
-        // Fetch roles to know market_update_available status
-        if (roles.length === 0) {
-          const rolesRes = await getRoles();
-          if (isMounted) {
-            setRoles(rolesRes.roles);
-          }
-        }
-
-        // Fetch today pick
-        if (!today) {
-          setIsTodayLoading(true);
-          const todayRes = await getToday();
-          if (isMounted) {
-            setToday(todayRes.today);
-            setTodayMessage(todayRes.message);
-          }
-        }
-      } catch (err: unknown) {
-        if (isMounted) {
-          const message =
-            err instanceof ApiError ? err.message : 'Failed to initialize progress view.';
-          showToast({
-            type: 'error',
-            title: 'Loading Error',
-            message,
-          });
-        }
-      } finally {
-        if (isMounted) {
-          setIsLoading(false);
-          setIsTodayLoading(false);
-        }
-      }
-    };
-
     fetchInitialData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, [state, setState, roles.length, setRoles, today, setToday, setTodayMessage, showToast]);
+  }, [fetchInitialData]);
 
   // Helper to trigger 4-second highlight on changed skills
   const highlightChanges = useCallback((diff: Diff) => {
@@ -282,6 +272,24 @@ export const ProgressPage: React.FC = () => {
       message: coachReply,
     });
   };
+
+  if (!state && loadError) {
+    return (
+      <div className="py-16 px-4 max-w-md mx-auto text-center">
+        <Card className="p-8 border-slate-200 bg-white shadow-xs space-y-4">
+          <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto border border-red-200">
+            <AlertCircle className="w-6 h-6" />
+          </div>
+          <h3 className="text-base font-bold text-slate-900">Failed to Load Progress</h3>
+          <p className="text-xs text-slate-600 leading-relaxed">{loadError}</p>
+          <Button variant="primary" size="sm" onClick={fetchInitialData}>
+            <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
+            Retry
+          </Button>
+        </Card>
+      </div>
+    );
+  }
 
   if (isLoading || !state?.roadmap) {
     return (

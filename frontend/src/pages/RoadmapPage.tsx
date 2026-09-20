@@ -4,6 +4,9 @@ import { getRoadmap } from '../api/endpoints';
 import { ApiError } from '../api/client';
 import { useToast } from '../components/ui/Toast';
 import { Skeleton } from '../components/ui/Skeleton';
+import { Button } from '../components/ui/Button';
+import { Card } from '../components/ui/Card';
+import { AlertCircle, RefreshCw } from 'lucide-react';
 import type { RoadmapItem } from '../types/api';
 
 import { RoadmapSummaryStrip } from '../components/roadmap/RoadmapSummaryStrip';
@@ -18,9 +21,33 @@ export const RoadmapPage: React.FC = () => {
   const setState = useStore((s) => s.setState);
 
   const [isLoading, setIsLoading] = useState<boolean>(!state);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'timeline' | 'graph'>('timeline');
   const [selectedItem, setSelectedItem] = useState<RoadmapItem | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
+
+  const fetchRoadmap = () => {
+    setIsLoading(true);
+    setLoadError(null);
+
+    getRoadmap()
+      .then((res) => {
+        setState(res);
+      })
+      .catch((err: unknown) => {
+        const message =
+          err instanceof ApiError ? err.message : 'Failed to load roadmap state.';
+        setLoadError(message);
+        showToast({
+          type: 'error',
+          title: 'Error Loading Roadmap',
+          message,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
 
   // If store is empty, fetch roadmap once
   useEffect(() => {
@@ -29,32 +56,8 @@ export const RoadmapPage: React.FC = () => {
       return;
     }
 
-    let isMounted = true;
-    setIsLoading(true);
-
-    getRoadmap()
-      .then((res) => {
-        if (!isMounted) return;
-        setState(res);
-      })
-      .catch((err: unknown) => {
-        if (!isMounted) return;
-        const message =
-          err instanceof ApiError ? err.message : 'Failed to load roadmap state.';
-        showToast({
-          type: 'error',
-          title: 'Error Loading Roadmap',
-          message,
-        });
-      })
-      .finally(() => {
-        if (isMounted) setIsLoading(false);
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [state, setState, showToast]);
+    fetchRoadmap();
+  }, [state]);
 
   // Handler to open drawer from Timeline card click
   const handleSelectItem = (item: RoadmapItem) => {
@@ -83,6 +86,24 @@ export const RoadmapPage: React.FC = () => {
   const handleCloseDrawer = () => {
     setIsDrawerOpen(false);
   };
+
+  if (!state && loadError) {
+    return (
+      <div className="py-16 px-4 max-w-md mx-auto text-center">
+        <Card className="p-8 border-slate-200 bg-white shadow-xs space-y-4">
+          <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto border border-red-200">
+            <AlertCircle className="w-6 h-6" />
+          </div>
+          <h3 className="text-base font-bold text-slate-900">Failed to Load Roadmap</h3>
+          <p className="text-xs text-slate-600 leading-relaxed">{loadError}</p>
+          <Button variant="primary" size="sm" onClick={fetchRoadmap}>
+            <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
+            Retry
+          </Button>
+        </Card>
+      </div>
+    );
+  }
 
   if (isLoading || !state?.roadmap) {
     return (
