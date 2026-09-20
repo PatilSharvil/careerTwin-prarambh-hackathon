@@ -15,13 +15,14 @@ import type {
   RoleSummary,
 } from '../types/api';
 
+import { mockProfile } from '../mocks/fixtures';
 import { AboutYouStep, type AboutYouData } from '../components/profile/AboutYouStep';
 import { SkillsInputStep, type ManualSkill } from '../components/profile/SkillsInputStep';
 import { ExtractedSkillsReview } from '../components/profile/ExtractedSkillsReview';
 import { TargetRoleSelector } from '../components/profile/TargetRoleSelector';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { ArrowRight, AlertCircle } from 'lucide-react';
+import { ArrowRight, AlertCircle, Sparkles } from 'lucide-react';
 
 export const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
@@ -256,19 +257,50 @@ export const ProfilePage: React.FC = () => {
     }
   };
 
+  const handleLoadSampleData = () => {
+    setAboutYou({
+      degree: 'B.S. in Computer Science',
+      year: 2024,
+      experience_years: 3.0,
+      interests: ['LLMs', 'autonomous agents', 'backend'],
+      weekly_hours: 10,
+      deadline_weeks: 12,
+    });
+    setExtractedSkills(mockProfile.profile.skills);
+    setUnmappedSkills(mockProfile.profile.unmapped_skills);
+    setStoreProfile(mockProfile.profile);
+    setSelectedRoleId('genai_engineer');
+    showToast({
+      type: 'success',
+      title: 'Sample Profile Loaded',
+      message: 'Populated profile with sample data. Click "Analyze Career" below to generate your roadmap.',
+    });
+  };
+
   const selectedRole = roles.find((r) => r.role_id === selectedRoleId);
   const isFormLocked = isExtractingSkills || isAnalyzing;
 
   return (
     <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 pb-12">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
-          Build Your Career Profile
-        </h1>
-        <p className="text-slate-600 mt-2 text-sm sm:text-base leading-relaxed">
-          Follow the steps below to calibrate your skills against industry standards, select your target role, and generate an evidence-grounded career roadmap.
-        </p>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
+            Build Your Career Profile
+          </h1>
+          <p className="text-slate-600 mt-2 text-sm sm:text-base leading-relaxed">
+            Follow the steps below to calibrate your skills against industry standards, select your target role, and generate an evidence-grounded career roadmap.
+          </p>
+        </div>
+        <Button
+          variant="secondary"
+          size="sm"
+          onClick={handleLoadSampleData}
+          className="self-start sm:self-auto flex-shrink-0 font-black bg-[#ffe566] text-black border-2 border-black shadow-neo-xs hover:bg-[#fed633]"
+          leftIcon={<Sparkles className="w-4 h-4 mr-1.5" />}
+        >
+          ⚡ Load Sample Profile
+        </Button>
       </div>
 
       {/* Step 1 — About You */}

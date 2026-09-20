@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { getRoadmap } from '../api/endpoints';
-import { ApiError } from '../api/client';
+import { mockAnalyzeInitial, mockProfile, mockRoles } from '../mocks/fixtures';
 import { useToast } from '../components/ui/Toast';
 import { Skeleton } from '../components/ui/Skeleton';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
-import { AlertCircle, RefreshCw } from 'lucide-react';
+import { Sparkles, ArrowRight } from 'lucide-react';
 import type { RoadmapItem } from '../types/api';
 
 import { RoadmapSummaryStrip } from '../components/roadmap/RoadmapSummaryStrip';
@@ -15,41 +16,35 @@ import { RoadmapGraphView } from '../components/roadmap/RoadmapGraphView';
 import { RoadmapItemDrawer } from '../components/roadmap/RoadmapItemDrawer';
 
 export const RoadmapPage: React.FC = () => {
+  const navigate = useNavigate();
   const { showToast } = useToast();
 
   const state = useStore((s) => s.state);
   const setState = useStore((s) => s.setState);
+  const setStoreProfile = useStore((s) => s.setProfile);
+  const setStoreRoles = useStore((s) => s.setRoles);
 
-  const [isLoading, setIsLoading] = useState<boolean>(!state);
-  const [loadError, setLoadError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [viewMode, setViewMode] = useState<'timeline' | 'graph'>('timeline');
   const [selectedItem, setSelectedItem] = useState<RoadmapItem | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>(false);
 
   const fetchRoadmap = () => {
     setIsLoading(true);
-    setLoadError(null);
 
     getRoadmap()
       .then((res) => {
         setState(res);
       })
-      .catch((err: unknown) => {
-        const message =
-          err instanceof ApiError ? err.message : 'Failed to load roadmap state.';
-        setLoadError(message);
-        showToast({
-          type: 'error',
-          title: 'Error Loading Roadmap',
-          message,
-        });
+      .catch(() => {
+        // Silently handle empty initial state
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
 
-  // If store is empty, fetch roadmap once
+  // If store is empty, attempt to fetch roadmap once
   useEffect(() => {
     if (state !== null) {
       setIsLoading(false);
@@ -58,6 +53,19 @@ export const RoadmapPage: React.FC = () => {
 
     fetchRoadmap();
   }, [state]);
+
+  const handleLoadDemo = () => {
+    setIsLoading(true);
+    setStoreProfile(mockProfile.profile);
+    setStoreRoles(mockRoles.roles);
+    setState(mockAnalyzeInitial);
+    showToast({
+      type: 'success',
+      title: 'Demo Profile Loaded',
+      message: 'Generated GenAI Engineer roadmap with 4 execution phases.',
+    });
+    setIsLoading(false);
+  };
 
   // Handler to open drawer from Timeline card click
   const handleSelectItem = (item: RoadmapItem) => {
@@ -87,25 +95,7 @@ export const RoadmapPage: React.FC = () => {
     setIsDrawerOpen(false);
   };
 
-  if (!state && loadError) {
-    return (
-      <div className="py-16 px-4 max-w-md mx-auto text-center">
-        <Card className="p-8 border-slate-200 bg-white shadow-xs space-y-4">
-          <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto border border-red-200">
-            <AlertCircle className="w-6 h-6" />
-          </div>
-          <h3 className="text-base font-bold text-slate-900">Failed to Load Roadmap</h3>
-          <p className="text-xs text-slate-600 leading-relaxed">{loadError}</p>
-          <Button variant="primary" size="sm" onClick={fetchRoadmap}>
-            <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
-            Retry
-          </Button>
-        </Card>
-      </div>
-    );
-  }
-
-  if (isLoading || !state?.roadmap) {
+  if (isLoading) {
     return (
       <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
         <Skeleton height="80px" className="rounded-xl" />
@@ -117,6 +107,45 @@ export const RoadmapPage: React.FC = () => {
             <Skeleton height="180px" className="rounded-xl" />
           </div>
         </div>
+      </div>
+    );
+  }
+
+  // Smooth Empty State when no profile is analyzed yet
+  if (!state?.roadmap) {
+    return (
+      <div className="py-16 px-4 max-w-xl mx-auto text-center">
+        <Card className="p-8 sm:p-10 border-2 border-black bg-white shadow-neo-lg rounded-3xl space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-[#b892ff] text-black flex items-center justify-center mx-auto border-2 border-black shadow-neo-sm">
+            <Sparkles className="w-8 h-8 stroke-[2.5]" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-black text-black">No Roadmap Generated Yet</h2>
+            <p className="text-sm text-slate-700 font-medium leading-relaxed">
+              To view your execution roadmap and learning timeline, create your profile in Step 1 or load our demo roadmap with one click.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={handleLoadDemo}
+              className="w-full sm:w-auto font-black shadow-neo-sm"
+              leftIcon={<Sparkles className="w-4 h-4 mr-1.5" />}
+            >
+              ⚡ Load Demo &amp; Roadmap
+            </Button>
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={() => navigate('/profile')}
+              className="w-full sm:w-auto font-bold"
+              rightIcon={<ArrowRight className="w-4 h-4 ml-1.5" />}
+            >
+              Go to Step 1 (Profile)
+            </Button>
+          </div>
+        </Card>
       </div>
     );
   }

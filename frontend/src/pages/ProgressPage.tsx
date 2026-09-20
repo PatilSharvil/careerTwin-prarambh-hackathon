@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import {
   getRoadmap,
@@ -8,6 +9,7 @@ import {
   markKnown,
   updateMarket,
 } from '../api/endpoints';
+import { mockAnalyzeInitial, mockProfile, mockRoles, mockToday } from '../mocks/fixtures';
 import { ApiError } from '../api/client';
 import { useToast } from '../components/ui/Toast';
 import { Gauge } from '../components/ui/Gauge';
@@ -29,15 +31,16 @@ import {
   TrendingUp,
   TrendingDown,
   Clock,
-  AlertCircle,
-  RefreshCw,
+  ArrowRight,
 } from 'lucide-react';
 
 export const ProgressPage: React.FC = () => {
+  const navigate = useNavigate();
   const { showToast } = useToast();
 
   const state = useStore((s) => s.state);
   const setState = useStore((s) => s.setState);
+  const setStoreProfile = useStore((s) => s.setProfile);
   const roles = useStore((s) => s.roles);
   const setRoles = useStore((s) => s.setRoles);
   const lastDiff = useStore((s) => s.lastDiff);
@@ -48,16 +51,16 @@ export const ProgressPage: React.FC = () => {
   const setToday = useStore((s) => s.setToday);
   const todayMessage = useStore((s) => s.todayMessage);
   const setTodayMessage = useStore((s) => s.setTodayMessage);
+  const completedMilestones = useStore((s) => s.completedMilestones);
+  const addCompletedMilestone = useStore((s) => s.addCompletedMilestone);
 
-  const [isLoading, setIsLoading] = useState<boolean>(!state);
-  const [loadError, setLoadError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [loadingAction, setLoadingAction] = useState<string | null>(null);
   const [isTodayLoading, setIsTodayLoading] = useState<boolean>(false);
   const [highlightedSkillIds, setHighlightedSkillIds] = useState<Set<string>>(new Set());
 
   const fetchInitialData = useCallback(async () => {
     try {
-      setLoadError(null);
       if (!state) {
         setIsLoading(true);
         const roadmapRes = await getRoadmap();
@@ -77,20 +80,28 @@ export const ProgressPage: React.FC = () => {
         setToday(todayRes.today);
         setTodayMessage(todayRes.message);
       }
-    } catch (err: unknown) {
-      const message =
-        err instanceof ApiError ? err.message : 'Failed to initialize progress view.';
-      setLoadError(message);
-      showToast({
-        type: 'error',
-        title: 'Loading Error',
-        message,
-      });
+    } catch {
+      // Silently handle empty initial state
     } finally {
       setIsLoading(false);
       setIsTodayLoading(false);
     }
-  }, [state, setState, roles.length, setRoles, today, setToday, setTodayMessage, showToast]);
+  }, [state, setState, roles.length, setRoles, today, setToday, setTodayMessage]);
+
+  const handleLoadDemo = () => {
+    setIsLoading(true);
+    setStoreProfile(mockProfile.profile);
+    setRoles(mockRoles.roles);
+    setState(mockAnalyzeInitial);
+    setToday(mockToday.today);
+    setTodayMessage(mockToday.message);
+    showToast({
+      type: 'success',
+      title: 'Demo Profile Loaded',
+      message: 'Generated GenAI Engineer progress view ready for tracking.',
+    });
+    setIsLoading(false);
+  };
 
   // Load initial roadmap, today pick, and roles if missing
   useEffect(() => {
@@ -160,6 +171,17 @@ export const ProgressPage: React.FC = () => {
   const handleCompleteSkill = async (skillId: string) => {
     setLoadingAction(`skill_${skillId}`);
     try {
+      const currentItem = state?.roadmap.items.find(
+        (i) => i.skill_id === skillId || i.item_id === `rm_${skillId}`
+      );
+      if (currentItem) {
+        addCompletedMilestone({
+          ...currentItem,
+          status: 'done',
+          hours: 0,
+        });
+      }
+
       const res = await completeProgress({ skill_id: skillId });
       await handleProgressUpdate(res, `Skill Completed: ${skillId}`);
     } catch (err: unknown) {
@@ -179,7 +201,17 @@ export const ProgressPage: React.FC = () => {
   const handleCompleteActivity = async (skillId: string, activityId: string) => {
     setLoadingAction(`act_${activityId}`);
     try {
+      const currentItem = state?.roadmap.items.find(
+        (i) => i.skill_id === skillId || i.item_id === `rm_${skillId}`
+      );
       const res = await completeProgress({ skill_id: skillId, activity_id: activityId });
+      if (currentItem && !res.state.roadmap.items.some((i) => i.skill_id === skillId)) {
+        addCompletedMilestone({
+          ...currentItem,
+          status: 'done',
+          hours: 0,
+        });
+      }
       await handleProgressUpdate(res, 'Activity Completed');
     } catch (err: unknown) {
       const message =
@@ -198,7 +230,17 @@ export const ProgressPage: React.FC = () => {
   const handleMarkKnown = async (skillId: string, level: number) => {
     setLoadingAction(`known_${skillId}`);
     try {
+      const currentItem = state?.roadmap.items.find(
+        (i) => i.skill_id === skillId || i.item_id === `rm_${skillId}`
+      );
       const res = await markKnown({ skill_id: skillId, level });
+      if (currentItem && !res.state.roadmap.items.some((i) => i.skill_id === skillId)) {
+        addCompletedMilestone({
+          ...currentItem,
+          status: 'done',
+          hours: 0,
+        });
+      }
       await handleProgressUpdate(res, `Marked Known: ${skillId}`);
     } catch (err: unknown) {
       const message =
@@ -258,6 +300,15 @@ export const ProgressPage: React.FC = () => {
         source: 'llm',
       });
       highlightChanges(diff);
+
+      if (diff.removed) {
+        diff.removed.forEach((r) => {
+          const prevItem = state?.roadmap.items.find((i) => i.item_id === r.item_id);
+          if (prevItem) {
+            addCompletedMilestone({ ...prevItem, status: 'done', hours: 0 });
+          }
+        });
+      }
     }
 
     // Refetch /today
@@ -273,25 +324,7 @@ export const ProgressPage: React.FC = () => {
     });
   };
 
-  if (!state && loadError) {
-    return (
-      <div className="py-16 px-4 max-w-md mx-auto text-center">
-        <Card className="p-8 border-slate-200 bg-white shadow-xs space-y-4">
-          <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto border border-red-200">
-            <AlertCircle className="w-6 h-6" />
-          </div>
-          <h3 className="text-base font-bold text-slate-900">Failed to Load Progress</h3>
-          <p className="text-xs text-slate-600 leading-relaxed">{loadError}</p>
-          <Button variant="primary" size="sm" onClick={fetchInitialData}>
-            <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
-            Retry
-          </Button>
-        </Card>
-      </div>
-    );
-  }
-
-  if (isLoading || !state?.roadmap) {
+  if (isLoading) {
     return (
       <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
         <Skeleton height="140px" className="rounded-2xl" />
@@ -309,14 +342,64 @@ export const ProgressPage: React.FC = () => {
     );
   }
 
+  // Smooth Empty State when no profile is analyzed yet
+  if (!state?.roadmap) {
+    return (
+      <div className="py-16 px-4 max-w-xl mx-auto text-center">
+        <Card className="p-8 sm:p-10 border-2 border-black bg-white shadow-neo-lg rounded-3xl space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-[#70d6ff] text-black flex items-center justify-center mx-auto border-2 border-black shadow-neo-sm">
+            <Sparkles className="w-8 h-8 stroke-[2.5]" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-black text-black">No Active Progress Tracking</h2>
+            <p className="text-sm text-slate-700 font-medium leading-relaxed">
+              To track your milestones, replan your roadmap, and chat with your AI Career Coach, create your profile in Step 1 or load our demo profile with one click.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={handleLoadDemo}
+              className="w-full sm:w-auto font-black shadow-neo-sm"
+              leftIcon={<Sparkles className="w-4 h-4 mr-1.5" />}
+            >
+              ⚡ Load Demo &amp; Track Progress
+            </Button>
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={() => navigate('/profile')}
+              className="w-full sm:w-auto font-bold"
+              rightIcon={<ArrowRight className="w-4 h-4 ml-1.5" />}
+            >
+              Go to Step 1 (Profile)
+            </Button>
+          </div>
+        </Card>
+      </div>
+    );
+  }
+
   // Active role info & market update availability
   const activeRoleId = state.role.role_id;
   const currentRole = roles.find((r) => r.role_id === activeRoleId);
   const isMarketUpdateAvailable = currentRole?.market_update_available ?? false;
 
-  // Completed items count
-  const completedCount = state.roadmap.items.filter((item) => item.status === 'done').length;
-  const totalCount = state.roadmap.items.length;
+  // Build combined display items (completed milestones + active items)
+  const activeItems = state.roadmap.items;
+  const activeIds = new Set(activeItems.map((i) => i.skill_id || i.item_id));
+
+  // Valid completed items that are not currently active
+  const validCompleted = completedMilestones
+    .filter((cm) => !activeIds.has(cm.skill_id || cm.item_id))
+    .map((cm) => ({ ...cm, status: 'done' as const }));
+
+  const displayItems = [...validCompleted, ...activeItems].sort((a, b) => a.position - b.position);
+
+  // Completed items count & progress percentage
+  const completedCount = displayItems.filter((item) => item.status === 'done').length;
+  const totalCount = displayItems.length;
   const progressPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
 
   // Readiness delta from lastDiff
@@ -444,7 +527,7 @@ export const ProgressPage: React.FC = () => {
           />
 
           <FocusNextUpCard
-            items={state.roadmap.items}
+            items={displayItems}
           />
         </div>
 
@@ -461,7 +544,7 @@ export const ProgressPage: React.FC = () => {
       {/* 3. Below: Roadmap Execution Checklist */}
       <div className="pt-4">
         <RoadmapChecklist
-          items={state.roadmap.items}
+          items={displayItems}
           phases={state.roadmap.phases}
           highlightedSkillIds={highlightedSkillIds}
           onCompleteSkill={handleCompleteSkill}

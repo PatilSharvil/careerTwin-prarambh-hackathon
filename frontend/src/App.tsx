@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
-import { getHealth } from './api/endpoints';
-import { Badge } from './components/ui/Badge';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { RouteGuard } from './components/RouteGuard';
-import { ToastProvider, useToast } from './components/ui/Toast';
+import { ToastProvider } from './components/ui/Toast';
 import { useStore } from './store/useStore';
-import type { Meta } from './types/api';
 
 import { LandingPage } from './pages/LandingPage';
 import { ProfilePage } from './pages/ProfilePage';
@@ -13,7 +10,6 @@ import { AnalysisPage } from './pages/AnalysisPage';
 import { RoadmapPage } from './pages/RoadmapPage';
 import { ProgressPage } from './pages/ProgressPage';
 import { EvalPage } from './pages/EvalPage';
-import { Cpu, Sparkles, RotateCcw } from 'lucide-react';
 
 const STEPS = [
   { step: 1, path: '/profile', label: 'Profile' },
@@ -30,6 +26,7 @@ const Navigation: React.FC = () => {
   const profile = useStore((s) => s.profile);
   const state = useStore((s) => s.state);
   const evalReport = useStore((s) => s.evalReport);
+  const completedMilestones = useStore((s) => s.completedMilestones);
 
   // Sync document title with current route
   useEffect(() => {
@@ -61,13 +58,16 @@ const Navigation: React.FC = () => {
   const isStepCompleted = (stepNumber: number): boolean => {
     switch (stepNumber) {
       case 1:
-        return Boolean(profile || state);
+        return Boolean(state?.role || (profile && profile.target_role_id));
       case 2:
         return Boolean(state?.analysis);
       case 3:
         return Boolean(state?.roadmap);
       case 4:
-        return Boolean(state?.roadmap?.items?.some((i) => i.status === 'done'));
+        return Boolean(
+          completedMilestones.length > 0 ||
+          state?.roadmap?.items?.some((i) => i.status === 'done')
+        );
       case 5:
         return Boolean(evalReport);
       default:
@@ -78,20 +78,20 @@ const Navigation: React.FC = () => {
   return (
     <header className="bg-white border-b-2 border-black sticky top-0 z-40 shadow-neo-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between min-h-[4rem] py-2 items-center gap-2 sm:gap-4">
-          {/* Logo */}
-          <div className="flex items-center flex-shrink-0">
-            <Link to="/" className="flex items-center gap-2 group">
+        <div className="flex items-center justify-between min-h-[4rem] py-2 gap-4">
+          {/* Left: Logo */}
+          <div className="flex-1 flex items-center justify-start min-w-0">
+            <Link to="/" className="inline-flex items-center group">
               <img
                 src="/logo.png"
                 alt="CareerTwin Logo"
-                className="h-8 sm:h-9 w-auto max-w-[150px] sm:max-w-[180px] object-contain hover:scale-102 transition-transform"
+                className="h-8 sm:h-9 w-auto max-w-[150px] sm:max-w-[180px] object-contain"
               />
             </Link>
           </div>
 
-          {/* 5-step Progress Indicator reflecting real progress */}
-          <nav className="hidden md:flex items-center space-x-1.5 lg:space-x-2 flex-wrap justify-center" aria-label="Step progress">
+          {/* Center: 5-step Progress Indicator (rock-solid center aligned) */}
+          <nav className="hidden md:flex items-center gap-2 flex-shrink-0" aria-label="Step progress">
             {STEPS.map((step) => {
               const isActive = currentPath === step.path;
               const isCompleted = isStepCompleted(step.step);
@@ -100,18 +100,20 @@ const Navigation: React.FC = () => {
                 <Link
                   key={step.path}
                   to={step.path}
-                  className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-black border-2 border-black transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-black border-2 border-black transition-colors duration-150 select-none ${
                     isActive
-                      ? 'bg-[#ffe566] text-black shadow-neo-xs scale-102'
+                      ? 'bg-[#ffe566] text-black shadow-neo-sm'
                       : isCompleted
                       ? 'bg-[#79e7a8] text-black shadow-neo-xs hover:bg-[#68d897]'
-                      : 'bg-white text-slate-700 hover:text-black hover:bg-[#faf6ee] shadow-neo-xs opacity-90 hover:opacity-100'
+                      : 'bg-white text-slate-800 hover:text-black hover:bg-[#faf6ee] shadow-neo-xs'
                   }`}
                 >
                   <span
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] font-black border border-black flex-shrink-0 ${
+                    className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black border border-black flex-shrink-0 transition-colors duration-150 ${
                       isActive
-                        ? 'bg-black text-[#ffe566]'
+                        ? isCompleted
+                          ? 'bg-[#79e7a8] text-black'
+                          : 'bg-black text-[#ffe566]'
                         : isCompleted
                         ? 'bg-white text-black'
                         : 'bg-slate-100 text-black'
@@ -125,8 +127,8 @@ const Navigation: React.FC = () => {
             })}
           </nav>
 
-          {/* Target Role indicator pill */}
-          <div className="flex items-center space-x-2 flex-shrink-0">
+          {/* Right: Target Role indicator pill */}
+          <div className="flex-1 flex items-center justify-end min-w-0">
             {state?.role ? (
               <span className="hidden sm:inline-flex items-center text-xs font-black text-black bg-[#b892ff] px-2.5 py-1 rounded-xl border-2 border-black shadow-neo-xs max-w-[200px] truncate">
                 🎯 <span className="truncate ml-1">{state.role.title}</span>
@@ -137,7 +139,7 @@ const Navigation: React.FC = () => {
       </div>
 
       {/* Mobile Step Bar */}
-      <div className="md:hidden flex border-t-2 border-black px-2 py-2 gap-1.5 bg-[#faf6ee] overflow-x-auto">
+      <div className="md:hidden flex border-t-2 border-black px-2 py-2 gap-2 bg-[#faf6ee] overflow-x-auto">
         {STEPS.map((step) => {
           const isActive = currentPath === step.path;
           const isCompleted = isStepCompleted(step.step);
@@ -145,12 +147,12 @@ const Navigation: React.FC = () => {
             <Link
               key={step.path}
               to={step.path}
-              className={`flex-shrink-0 px-2.5 py-1 text-xs font-bold rounded-lg border-2 border-black transition-all ${
+              className={`flex-shrink-0 px-2.5 py-1 text-xs font-bold rounded-lg border-2 border-black transition-colors duration-150 ${
                 isActive
                   ? 'bg-[#ffe566] text-black shadow-neo-xs'
                   : isCompleted
-                  ? 'bg-[#79e7a8] text-black'
-                  : 'bg-white text-slate-500'
+                  ? 'bg-[#79e7a8] text-black shadow-neo-xs'
+                  : 'bg-white text-slate-800 shadow-neo-xs'
               }`}
             >
               {isCompleted ? '✓' : `${step.step}.`} {step.label}
@@ -159,119 +161,6 @@ const Navigation: React.FC = () => {
         })}
       </div>
     </header>
-  );
-};
-
-const Footer: React.FC = () => {
-  const { showToast } = useToast();
-  const navigate = useNavigate();
-  const [apiStatus, setApiStatus] = useState<'ok' | 'down' | 'mock' | 'checking'>('checking');
-  const isMock = import.meta.env.VITE_USE_MOCK === 'true';
-  const stateMeta = useStore((s) => s.state?.meta);
-  const resetStore = useStore((s) => s.reset);
-
-  const meta: Meta = stateMeta || {
-    llm_provider: isMock ? 'gemini' : 'none',
-    llm_used: isMock,
-    fallback_used: false,
-  };
-
-  const handleResetDemo = () => {
-    resetStore();
-    showToast({
-      type: 'info',
-      title: 'Demo Reset',
-      message: 'Client state has been cleared.',
-    });
-    navigate('/profile');
-  };
-
-  useEffect(() => {
-    if (isMock) {
-      setApiStatus('mock');
-      return;
-    }
-
-    let isMounted = true;
-    getHealth()
-      .then((data) => {
-        if (isMounted) {
-          setApiStatus(data.status === 'ok' ? 'ok' : 'down');
-        }
-      })
-      .catch(() => {
-        if (isMounted) {
-          setApiStatus('down');
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, [isMock]);
-
-  return (
-    <footer className="bg-white border-t-2 border-black py-4 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-black font-semibold">
-        <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-black text-black">CareerTwin</span>
-          <span>&copy; 2026</span>
-          <span className="text-black font-black">|</span>
-          <span className="text-slate-600 font-medium">SPEC §10 Frozen Contract</span>
-          <span className="text-black font-black">|</span>
-          {/* Reset Demo Button */}
-          <button
-            onClick={handleResetDemo}
-            className="inline-flex items-center gap-1 text-[11px] font-black text-black bg-[#ff9770] hover:bg-[#ff8559] px-2.5 py-1 rounded-lg border-2 border-black shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5 transition-all"
-            title="Clear client store state for a fresh demo run"
-          >
-            <RotateCcw className="w-3 h-3 text-black" />
-            <span>Reset Demo</span>
-          </button>
-        </div>
-
-        <div className="flex items-center space-x-3">
-          {/* Metadata Chip */}
-          <div className="flex items-center gap-1.5 bg-[#faf6ee] px-3 py-1 rounded-xl border-2 border-black shadow-neo-xs text-[11px] font-bold">
-            <Cpu className="w-3.5 h-3.5 text-black" />
-            <span className="text-black">LLM: {meta.llm_provider}</span>
-            {meta.fallback_used && (
-              <Badge variant="medium" size="sm">
-                template
-              </Badge>
-            )}
-            {meta.llm_used && !meta.fallback_used && (
-              <span className="inline-flex items-center text-amber-600 font-black">
-                <Sparkles className="w-3.5 h-3.5 ml-0.5" />
-              </span>
-            )}
-          </div>
-
-          {/* API Status Indicator */}
-          <div className="flex items-center space-x-1.5 pl-2 border-l-2 border-black">
-            <span>API:</span>
-            {apiStatus === 'ok' && (
-              <span className="inline-flex items-center text-black font-black bg-[#79e7a8] px-2 py-0.5 rounded-md border border-black text-[11px]">
-                <span className="w-2 h-2 mr-1 bg-black rounded-full animate-pulse"></span> OK
-              </span>
-            )}
-            {apiStatus === 'down' && (
-              <span className="inline-flex items-center text-black font-black bg-[#ff6b6b] px-2 py-0.5 rounded-md border border-black text-[11px]">
-                <span className="w-2 h-2 mr-1 bg-black rounded-full"></span> Down
-              </span>
-            )}
-            {apiStatus === 'mock' && (
-              <span className="inline-flex items-center text-black font-black bg-[#ffd166] px-2 py-0.5 rounded-md border border-black text-[11px]">
-                <span className="w-2 h-2 mr-1 bg-black rounded-full"></span> Mock Mode
-              </span>
-            )}
-            {apiStatus === 'checking' && (
-              <span className="inline-flex items-center text-slate-500 font-bold">checking...</span>
-            )}
-          </div>
-        </div>
-      </div>
-    </footer>
   );
 };
 
@@ -313,7 +202,6 @@ const AppContent: React.FC = () => {
           />
         </Routes>
       </main>
-      <Footer />
     </div>
   );
 };

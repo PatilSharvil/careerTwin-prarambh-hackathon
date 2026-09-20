@@ -30,7 +30,6 @@ import {
   mockHealth,
   mockProfile,
   mockProgressAfterMarket,
-  mockProgressAfterRag,
   mockRoles,
   mockToday,
 } from './fixtures';
@@ -234,34 +233,50 @@ class MockService {
   // 8. POST /progress/complete
   async completeProgress(data: CompleteRequest): Promise<ProgressResponse> {
     await simulateLatency();
-    if (data.skill_id === 'rag') {
-      this.ragCompleted = true;
-      this.currentState = JSON.parse(JSON.stringify(mockAnalyzeAfterRag));
-      this.currentDiff = JSON.parse(JSON.stringify(mockDiffAfterRag));
-      return JSON.parse(JSON.stringify(mockProgressAfterRag));
+    const state = (this.currentState || JSON.parse(JSON.stringify(mockAnalyzeInitial))) as AnalyzeResponse;
+    this.currentState = state;
+
+    const previousReadiness = state.analysis.readiness;
+    const newReadiness = Math.min(Math.round((previousReadiness + 3.5) * 10) / 10, 100);
+
+    // Update item status in currentState
+    const item = state.roadmap.items.find(
+      (i) =>
+        i.skill_id === data.skill_id ||
+        i.item_id === data.skill_id ||
+        i.item_id === `rm_${data.skill_id}` ||
+        (data.activity_id && i.activities?.some((a) => a.activity_id === data.activity_id))
+    );
+
+    if (item) {
+      if (data.activity_id) {
+        const act = item.activities.find((a) => a.activity_id === data.activity_id);
+        if (act) act.completed = true;
+        if (item.activities.every((a) => a.completed)) {
+          item.status = 'done';
+        }
+      } else {
+        item.status = 'done';
+        item.activities.forEach((a) => (a.completed = true));
+      }
     }
 
-    // Generic completion handler for other skills
-    if (!this.currentState) {
-      throw new Error('NO_ROADMAP');
-    }
-
-    const previousReadiness = this.currentState.analysis.readiness;
-    const newReadiness = Math.min(Math.round((previousReadiness + 4.5) * 10) / 10, 100);
+    const targetSkillId = item?.skill_id || data.skill_id;
+    const skillName = item?.skill_name || targetSkillId;
 
     const diff: Diff = {
       trigger: {
         type: data.activity_id ? 'complete_activity' : 'complete_skill',
-        skill_id: data.skill_id,
-        skill_name: data.skill_id,
+        skill_id: targetSkillId,
+        skill_name: skillName,
         activity_id: data.activity_id || null,
       },
       readiness_before: previousReadiness,
       readiness_after: newReadiness,
       level_changes: [
         {
-          skill_id: data.skill_id,
-          skill_name: data.skill_id,
+          skill_id: targetSkillId,
+          skill_name: skillName,
           from: 3.0,
           to: 7.0,
         },
@@ -272,17 +287,17 @@ class MockService {
       reordered: [],
       reprioritized: [],
       requirement_changes: [],
-      facts: [`Completed ${data.skill_id}: readiness increased ${previousReadiness} → ${newReadiness}`],
+      facts: [`Completed ${data.activity_id ? 'activity for ' : ''}${skillName}: readiness increased ${previousReadiness}% → ${newReadiness}%`],
     };
 
-    this.currentState.analysis.readiness = newReadiness;
-    this.currentState.roadmap.version += 1;
+    state.analysis.readiness = newReadiness;
+    state.roadmap.version = (state.roadmap.version || 1) + 1;
     this.currentDiff = diff;
 
     return {
-      state: JSON.parse(JSON.stringify(this.currentState)),
+      state: JSON.parse(JSON.stringify(state)),
       diff,
-      narrative: `Activity for ${data.skill_id} marked complete. Readiness advanced to ${newReadiness}%.`,
+      narrative: `Activity for ${skillName} marked complete. Readiness advanced to ${newReadiness}%.`,
       narrative_source: 'template',
       meta: defaultMeta,
     };
@@ -291,25 +306,31 @@ class MockService {
   // 9. POST /progress/known
   async markKnown(data: KnownRequest): Promise<ProgressResponse> {
     await simulateLatency();
-    if (!this.currentState) {
-      throw new Error('NO_ROADMAP');
-    }
+    const state = (this.currentState || JSON.parse(JSON.stringify(mockAnalyzeInitial))) as AnalyzeResponse;
+    this.currentState = state;
 
-    const previousReadiness = this.currentState.analysis.readiness;
+    const previousReadiness = state.analysis.readiness;
     const newReadiness = Math.min(Math.round((previousReadiness + 3.2) * 10) / 10, 100);
+
+    const item = state.roadmap.items.find(
+      (i) => i.skill_id === data.skill_id || i.item_id === data.skill_id || i.item_id === `rm_${data.skill_id}`
+    );
+    if (item && data.level >= (item.why?.target ?? 7.0)) {
+      item.status = 'done';
+    }
 
     const diff: Diff = {
       trigger: {
         type: 'mark_known',
         skill_id: data.skill_id,
-        skill_name: data.skill_id,
+        skill_name: item?.skill_name || data.skill_id,
       },
       readiness_before: previousReadiness,
       readiness_after: newReadiness,
       level_changes: [
         {
           skill_id: data.skill_id,
-          skill_name: data.skill_id,
+          skill_name: item?.skill_name || data.skill_id,
           from: 2.0,
           to: data.level,
         },
@@ -318,7 +339,7 @@ class MockService {
       removed: [
         {
           item_id: `rm_${data.skill_id}`,
-          skill_name: data.skill_id,
+          skill_name: item?.skill_name || data.skill_id,
           reason: 'Marked already known at target proficiency',
         },
       ],
@@ -326,17 +347,17 @@ class MockService {
       reordered: [],
       reprioritized: [],
       requirement_changes: [],
-      facts: [`Marked ${data.skill_id} as known at level ${data.level}. Readiness ${previousReadiness} → ${newReadiness}`],
+      facts: [`Marked ${item?.skill_name || data.skill_id} as known at level ${data.level}. Readiness ${previousReadiness} → ${newReadiness}`],
     };
 
-    this.currentState.analysis.readiness = newReadiness;
-    this.currentState.roadmap.version += 1;
+    state.analysis.readiness = newReadiness;
+    state.roadmap.version = (state.roadmap.version || 1) + 1;
     this.currentDiff = diff;
 
     return {
-      state: JSON.parse(JSON.stringify(this.currentState)),
+      state: JSON.parse(JSON.stringify(state)),
       diff,
-      narrative: `Skill ${data.skill_id} updated to level ${data.level}. Removed from active roadmap tasks.`,
+      narrative: `Skill ${item?.skill_name || data.skill_id} updated to level ${data.level}.`,
       narrative_source: 'llm',
       meta: defaultMeta,
     };
@@ -375,6 +396,62 @@ class MockService {
       this.currentState = JSON.parse(JSON.stringify(mockAnalyzeAfterRag));
       this.currentDiff = JSON.parse(JSON.stringify(mockDiffAfterRag));
       return JSON.parse(JSON.stringify(mockCoachReplies[1]));
+    }
+    if (lower.includes('ml') || lower.includes('machine learning') || lower.includes('switch')) {
+      const mlRole = this.currentRoles.roles.find((r) => r.role_id === 'ml_engineer');
+      if (this.currentState && mlRole) {
+        this.currentState.role = {
+          role_id: mlRole.role_id,
+          title: mlRole.title,
+          version: mlRole.version,
+        };
+      }
+      return {
+        reply: "I've re-targeted your career roadmap to Machine Learning Engineer. Your learning sequence and prerequisite DAG have been recalculated.",
+        tool_calls: [
+          {
+            name: 'set_target_role',
+            args: { role_id: 'ml_engineer' },
+            ok: true,
+          },
+        ],
+        state_changed: true,
+        state: this.currentState ? JSON.parse(JSON.stringify(this.currentState)) : null,
+        diff: this.currentDiff || null,
+        meta: defaultMeta,
+      };
+    }
+    if (lower.includes('why') || lower.includes('docker') || lower.includes('explain')) {
+      return {
+        reply: "Docker is prioritized early because containerized deployment and reproducible local environments are strict prerequisites for reliable LLM serving and production inference pipelines.",
+        tool_calls: [
+          {
+            name: 'explain_item',
+            args: { skill_id: 'docker' },
+            ok: true,
+          },
+        ],
+        state_changed: false,
+        state: null,
+        diff: null,
+        meta: defaultMeta,
+      };
+    }
+    if (lower.includes('today') || lower.includes('priority') || lower.includes('start') || lower.includes('what')) {
+      return {
+        reply: "Your recommended focus for today is 'Python 3 Official Tutorial & Language Reference' (8 hrs) to solidify core language proficiency and unlock vector indexing pipelines.",
+        tool_calls: [
+          {
+            name: 'get_today_priority',
+            args: {},
+            ok: true,
+          },
+        ],
+        state_changed: false,
+        state: null,
+        diff: null,
+        meta: defaultMeta,
+      };
     }
 
     return JSON.parse(JSON.stringify(mockCoachReplies[0]));

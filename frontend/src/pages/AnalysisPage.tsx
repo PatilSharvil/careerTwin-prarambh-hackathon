@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useStore } from '../store/useStore';
 import { getRoadmap } from '../api/endpoints';
-import { ApiError } from '../api/client';
+import { mockAnalyzeInitial, mockProfile, mockRoles } from '../mocks/fixtures';
 import { Gauge } from '../components/ui/Gauge';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
@@ -22,7 +22,6 @@ import {
   Trophy,
   RefreshCw,
   Info,
-  AlertCircle,
 } from 'lucide-react';
 
 export const AnalysisPage: React.FC = () => {
@@ -31,34 +30,27 @@ export const AnalysisPage: React.FC = () => {
 
   const state = useStore((s) => s.state);
   const setState = useStore((s) => s.setState);
+  const setStoreProfile = useStore((s) => s.setProfile);
+  const setStoreRoles = useStore((s) => s.setRoles);
 
-  const [isLoading, setIsLoading] = useState<boolean>(!state);
-  const [loadError, setLoadError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchAnalysis = () => {
     setIsLoading(true);
-    setLoadError(null);
 
     getRoadmap()
       .then((res) => {
         setState(res);
       })
-      .catch((err: unknown) => {
-        const message =
-          err instanceof ApiError ? err.message : 'Failed to load analysis state.';
-        setLoadError(message);
-        showToast({
-          type: 'error',
-          title: 'Error Loading Analysis',
-          message,
-        });
+      .catch(() => {
+        // Silently ignore if no state is created yet
       })
       .finally(() => {
         setIsLoading(false);
       });
   };
 
-  // If store.state is empty on mount, call GET /roadmap once
+  // If store.state is empty on mount, attempt to fetch existing roadmap once
   useEffect(() => {
     if (state !== null) {
       setIsLoading(false);
@@ -68,29 +60,23 @@ export const AnalysisPage: React.FC = () => {
     fetchAnalysis();
   }, [state]);
 
-  if (!state && loadError) {
-    return (
-      <div className="py-16 px-4 max-w-md mx-auto text-center">
-        <Card className="p-8 border-slate-200 bg-white shadow-xs space-y-4">
-          <div className="w-12 h-12 rounded-full bg-red-50 text-red-600 flex items-center justify-center mx-auto border border-red-200">
-            <AlertCircle className="w-6 h-6" />
-          </div>
-          <h3 className="text-base font-bold text-slate-900">Failed to Load Analysis</h3>
-          <p className="text-xs text-slate-600 leading-relaxed">{loadError}</p>
-          <Button variant="primary" size="sm" onClick={fetchAnalysis}>
-            <RefreshCw className="w-3.5 h-3.5 mr-1.5" />
-            Retry
-          </Button>
-        </Card>
-      </div>
-    );
-  }
+  const handleLoadDemo = () => {
+    setIsLoading(true);
+    setStoreProfile(mockProfile.profile);
+    setStoreRoles(mockRoles.roles);
+    setState(mockAnalyzeInitial);
+    showToast({
+      type: 'success',
+      title: 'Demo Profile Loaded',
+      message: 'Generated GenAI Engineer roadmap with readiness score of 42.5%.',
+    });
+    setIsLoading(false);
+  };
 
   // Loading Skeleton
-  if (isLoading || !state) {
+  if (isLoading) {
     return (
       <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-6">
-        {/* Header Skeleton */}
         <div className="p-6 bg-white rounded-xl border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="space-y-3 w-full md:w-2/3">
             <Skeleton height="32px" width="60%" />
@@ -100,15 +86,52 @@ export const AnalysisPage: React.FC = () => {
           <Skeleton variant="circular" width={140} height={140} />
         </div>
 
-        {/* Charts Grid Skeleton */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Skeleton height="320px" className="rounded-xl" />
           <Skeleton height="320px" className="rounded-xl" />
         </div>
 
-        {/* Gaps Skeleton */}
         <Skeleton height="200px" className="rounded-xl" />
         <Skeleton height="350px" className="rounded-xl" />
+      </div>
+    );
+  }
+
+  // Smooth Empty State when no profile is analyzed yet
+  if (!state) {
+    return (
+      <div className="py-16 px-4 max-w-xl mx-auto text-center">
+        <Card className="p-8 sm:p-10 border-2 border-black bg-white shadow-neo-lg rounded-3xl space-y-6">
+          <div className="w-16 h-16 rounded-2xl bg-[#ffe566] text-black flex items-center justify-center mx-auto border-2 border-black shadow-neo-sm">
+            <Sparkles className="w-8 h-8 stroke-[2.5]" />
+          </div>
+          <div className="space-y-2">
+            <h2 className="text-2xl font-black text-black">No Profile Analyzed Yet</h2>
+            <p className="text-sm text-slate-700 font-medium leading-relaxed">
+              To view your Skill-Gap Analysis, build your profile in Step 1 or load our pre-configured demo profile in one click.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+            <Button
+              variant="primary"
+              size="md"
+              onClick={handleLoadDemo}
+              className="w-full sm:w-auto font-black shadow-neo-sm"
+              leftIcon={<Sparkles className="w-4 h-4 mr-1.5" />}
+            >
+              ⚡ Load Demo &amp; Analyze
+            </Button>
+            <Button
+              variant="secondary"
+              size="md"
+              onClick={() => navigate('/profile')}
+              className="w-full sm:w-auto font-bold"
+              rightIcon={<ArrowRight className="w-4 h-4 ml-1.5" />}
+            >
+              Go to Step 1 (Profile)
+            </Button>
+          </div>
+        </Card>
       </div>
     );
   }
