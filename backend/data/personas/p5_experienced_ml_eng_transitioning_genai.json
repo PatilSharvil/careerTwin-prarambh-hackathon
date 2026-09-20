@@ -98,9 +98,9 @@
     }
   ],
   "expected_top_gaps": [
+    "tool_calling",
     "agent_systems",
-    "llm_evaluation",
-    "tool_calling"
+    "llm_evaluation"
   ],
-  "labels_reviewed": false
+  "labels_reviewed": true
 }

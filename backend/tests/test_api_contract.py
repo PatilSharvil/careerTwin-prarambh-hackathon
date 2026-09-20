@@ -255,8 +255,11 @@ def test_error_bad_payload_validation_envelope():
     assert "errors" in envelope.error.details or "message" in envelope.error.message
 
 
-def test_error_eval_not_run():
+def test_error_eval_not_run(monkeypatch: pytest.MonkeyPatch, tmp_path):
     """GET /eval/report when missing returns EVAL_NOT_RUN (404)."""
+    fake_path = tmp_path / "missing_report.json"
+    import app.main as main_module
+    monkeypatch.setattr(main_module, "EVAL_REPORT_PATH", fake_path)
     res = client.get("/api/eval/report")
     assert res.status_code == 404
     envelope = ApiErrorEnvelope.model_validate(res.json())

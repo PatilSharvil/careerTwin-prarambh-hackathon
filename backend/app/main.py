@@ -44,6 +44,8 @@ from store import repo
 from store.db import init_db
 
 logger = logging.getLogger("careertwin.app")
+EVAL_REPORT_PATH = Path(__file__).resolve().parent.parent / "eval" / "report.json"
+
 
 
 def get_user_id(x_user_id: str | None = Header(default=None, alias="X-User-Id")) -> str:
@@ -246,7 +248,7 @@ async def coach(
 # 13. GET /eval/report
 @api_router.get("/eval/report", response_model=EvalReport)
 async def get_eval_report() -> EvalReport:
-    report_file = Path(__file__).resolve().parent.parent / "eval" / "report.json"
+    report_file = EVAL_REPORT_PATH
     if not report_file.exists() or report_file.stat().st_size <= 2:
         raise AppError(
             code="EVAL_NOT_RUN",

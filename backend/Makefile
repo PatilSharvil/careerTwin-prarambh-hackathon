@@ -7,7 +7,7 @@ test:
 	pytest
 
 eval:
-	@echo not implemented yet
+	pytest -q && python -m eval.run_eval
 
 seed:
 	@echo not implemented yet

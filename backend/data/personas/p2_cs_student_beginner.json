@@ -98,9 +98,9 @@
     }
   ],
   "expected_top_gaps": [
+    "llm_fundamentals",
     "python",
-    "apis_rest",
     "embeddings"
   ],
-  "labels_reviewed": false
+  "labels_reviewed": true
 }
