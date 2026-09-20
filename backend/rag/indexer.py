@@ -15,7 +15,7 @@ from pathlib import Path
 from typing import Any
 
 from app.config import settings
-from rag.chroma_client import get_chroma_client, get_or_create_collection
+from rag.chroma_client import get_chroma_client, get_or_create_collection, resolve_chroma_path
 
 logger = logging.getLogger("careertwin.rag.indexer")
 
@@ -57,7 +57,7 @@ def index_knowledge_base(
     current_hash = _compute_data_hash(skills_file, resources_file, roles_file)
 
     client = get_chroma_client(chroma_path)
-    chroma_dir = Path(chroma_path) if chroma_path is not None else Path(settings.CHROMA_PATH)
+    chroma_dir = resolve_chroma_path(chroma_path)
     chroma_dir.mkdir(parents=True, exist_ok=True)
     hash_file = chroma_dir / ".index_hash.json"
 

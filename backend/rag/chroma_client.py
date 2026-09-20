@@ -22,6 +22,19 @@ from app.config import settings
 _default_embedding_fn = None
 
 
+def resolve_chroma_path(persist_path: str | Path | None = None) -> Path:
+    """Resolve Chroma storage path, checking both cwd and backend/ relative directories."""
+    if persist_path is not None:
+        return Path(persist_path)
+    cwd_path = Path(settings.CHROMA_PATH)
+    if (cwd_path / ".index_hash.json").exists() or (cwd_path / "chroma.sqlite3").exists():
+        return cwd_path
+    backend_path = Path(__file__).resolve().parent.parent / "chroma_data"
+    if (backend_path / ".index_hash.json").exists() or (backend_path / "chroma.sqlite3").exists():
+        return backend_path
+    return cwd_path
+
+
 def _configure_onnx_download_path() -> None:
     """Ensure ONNX model downloads inside project directory so it persists across Render build->run phases."""
     try:
@@ -31,7 +44,8 @@ def _configure_onnx_download_path() -> None:
         if (std_cache / "onnx" / "model.onnx").exists():
             return
         # In cloud environments like Render, persist inside CHROMA_PATH so it is not wiped between build and start
-        repo_cache = Path(settings.CHROMA_PATH) / "onnx_models" / "all-MiniLM-L6-v2"
+        chroma_dir = resolve_chroma_path()
+        repo_cache = chroma_dir / "onnx_models" / "all-MiniLM-L6-v2"
         repo_cache.mkdir(parents=True, exist_ok=True)
         ONNXMiniLM_L6_V2.DOWNLOAD_PATH = str(repo_cache)
     except Exception:
@@ -49,7 +63,7 @@ def get_embedding_function() -> Any:
 
 def get_chroma_client(persist_path: str | Path | None = None) -> chromadb.ClientAPI:
     """Create or return a persistent Chroma client."""
-    path = Path(persist_path) if persist_path is not None else Path(settings.CHROMA_PATH)
+    path = resolve_chroma_path(persist_path)
     path.mkdir(parents=True, exist_ok=True)
     return chromadb.PersistentClient(path=str(path))
 
