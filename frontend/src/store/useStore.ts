@@ -4,6 +4,7 @@ import type {
   Diff,
   EvalReport,
   Profile,
+  RoadmapItem,
   RoleSummary,
   TodayPick,
   ToolCallInfo,
@@ -28,6 +29,7 @@ export interface AppState {
   coachMessages: CoachMessageItem[];
   sessionId: string;
   evalReport: EvalReport | null;
+  completedMilestones: RoadmapItem[];
   isLoading: boolean;
   error: string | null;
 
@@ -43,6 +45,7 @@ export interface AppState {
   clearCoachMessages: () => void;
   setSessionId: (sessionId: string) => void;
   setEvalReport: (report: EvalReport | null) => void;
+  addCompletedMilestone: (item: RoadmapItem) => void;
   setIsLoading: (isLoading: boolean) => void;
   setError: (error: string | null) => void;
   reset: () => void;
@@ -62,6 +65,7 @@ export const useStore = create<AppState>((set) => ({
   coachMessages: [],
   sessionId: generateSessionId(),
   evalReport: null,
+  completedMilestones: [],
   isLoading: false,
   error: null,
 
@@ -86,6 +90,16 @@ export const useStore = create<AppState>((set) => ({
   clearCoachMessages: () => set({ coachMessages: [] }),
   setSessionId: (sessionId) => set({ sessionId }),
   setEvalReport: (evalReport) => set({ evalReport }),
+  addCompletedMilestone: (item) =>
+    set((s) => {
+      const existing = s.completedMilestones.find(
+        (cm) => (cm.skill_id && cm.skill_id === item.skill_id) || cm.item_id === item.item_id
+      );
+      if (existing) return s;
+      return {
+        completedMilestones: [...s.completedMilestones, { ...item, status: 'done' as const }],
+      };
+    }),
   setIsLoading: (isLoading) => set({ isLoading }),
   setError: (error) => set({ error }),
   reset: () =>
@@ -100,6 +114,7 @@ export const useStore = create<AppState>((set) => ({
       coachMessages: [],
       sessionId: generateSessionId(),
       evalReport: null,
+      completedMilestones: [],
       isLoading: false,
       error: null,
     }),
