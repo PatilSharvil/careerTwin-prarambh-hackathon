@@ -1,0 +1,96 @@
+import { create } from 'zustand';
+import type {
+  AnalyzeResponse,
+  Diff,
+  EvalReport,
+  Profile,
+  RoleSummary,
+  TodayPick,
+  ToolCallInfo,
+} from '../types/api';
+
+export interface CoachMessageItem {
+  id: string;
+  sender: 'user' | 'coach';
+  text: string;
+  tool_calls?: ToolCallInfo[];
+  timestamp: string;
+}
+
+export interface AppState {
+  profile: Profile | null;
+  roles: RoleSummary[];
+  state: AnalyzeResponse | null;
+  lastDiff: Diff | null;
+  today: TodayPick | null;
+  coachMessages: CoachMessageItem[];
+  sessionId: string;
+  evalReport: EvalReport | null;
+  isLoading: boolean;
+  error: string | null;
+
+  // Actions
+  setProfile: (profile: Profile | null) => void;
+  setRoles: (roles: RoleSummary[]) => void;
+  setState: (state: AnalyzeResponse | null) => void;
+  setLastDiff: (diff: Diff | null) => void;
+  setToday: (today: TodayPick | null) => void;
+  addCoachMessage: (message: Omit<CoachMessageItem, 'id' | 'timestamp'>) => void;
+  clearCoachMessages: () => void;
+  setSessionId: (sessionId: string) => void;
+  setEvalReport: (report: EvalReport | null) => void;
+  setIsLoading: (isLoading: boolean) => void;
+  setError: (error: string | null) => void;
+  reset: () => void;
+}
+
+const generateSessionId = (): string =>
+  'sess_' + Math.random().toString(36).substring(2, 10);
+
+export const useStore = create<AppState>((set) => ({
+  profile: null,
+  roles: [],
+  state: null,
+  lastDiff: null,
+  today: null,
+  coachMessages: [],
+  sessionId: generateSessionId(),
+  evalReport: null,
+  isLoading: false,
+  error: null,
+
+  setProfile: (profile) => set({ profile }),
+  setRoles: (roles) => set({ roles }),
+  setState: (state) => set({ state }),
+  setLastDiff: (lastDiff) => set({ lastDiff }),
+  setToday: (today) => set({ today }),
+  addCoachMessage: (message) =>
+    set((s) => ({
+      coachMessages: [
+        ...s.coachMessages,
+        {
+          ...message,
+          id: Math.random().toString(36).substring(2, 9),
+          timestamp: new Date().toISOString(),
+        },
+      ],
+    })),
+  clearCoachMessages: () => set({ coachMessages: [] }),
+  setSessionId: (sessionId) => set({ sessionId }),
+  setEvalReport: (evalReport) => set({ evalReport }),
+  setIsLoading: (isLoading) => set({ isLoading }),
+  setError: (error) => set({ error }),
+  reset: () =>
+    set({
+      profile: null,
+      roles: [],
+      state: null,
+      lastDiff: null,
+      today: null,
+      coachMessages: [],
+      sessionId: generateSessionId(),
+      evalReport: null,
+      isLoading: false,
+      error: null,
+    }),
+}));
