@@ -132,14 +132,14 @@ async def request_id_logging_middleware(request: Request, call_next):
 
 # Configure CORS
 origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
-if origins:
-    app.add_middleware(
-        CORSMiddleware,
-        allow_origins=origins,
-        allow_credentials=True,
-        allow_methods=["*"],
-        allow_headers=["*"],
-    )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins if origins else ["*"],
+    allow_origin_regex=r"https://.*\.vercel\.app|http://localhost:.*|http://127\.0\.0\.1:.*",
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 register_error_handlers(app)
 
