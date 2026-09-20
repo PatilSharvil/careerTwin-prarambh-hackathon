@@ -21,7 +21,7 @@ export interface RequestOptions {
   formData?: FormData;
 }
 
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api';
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || (import.meta.env.DEV ? 'http://localhost:8000/api' : '/api');
 
 // Required keys map for development contract drift detection (SPEC §10.2 / §10.3)
 const EXPECTED_RESPONSE_KEYS: Record<string, string[]> = {

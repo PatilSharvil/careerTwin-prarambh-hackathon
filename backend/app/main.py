@@ -130,13 +130,11 @@ async def request_id_logging_middleware(request: Request, call_next):
         )
         raise
 
-# Configure CORS
-origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
+# Configure CORS - completely open to remove all CORS restrictions
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins if origins else ["*"],
-    allow_origin_regex=r"https://.*\.vercel\.app|http://localhost:.*|http://127\.0\.0\.1:.*",
-    allow_credentials=True,
+    allow_origins=["*"],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
