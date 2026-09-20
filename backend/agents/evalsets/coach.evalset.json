@@ -1,1 +1,314 @@
-[]
+{
+  "eval_set_id": "coach_evalset",
+  "name": "Coach Agent Evalset",
+  "description": "Evaluation cases for coach agent tools per SPEC Section 13.3",
+  "eval_cases": [
+    {
+      "eval_id": "eval_complete_rag",
+      "conversation": [
+        {
+          "invocation_id": "inv_1",
+          "user_content": {
+            "parts": [
+              {
+                "text": "I completed RAG"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Marked RAG as completed. Your roadmap and readiness have been updated."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {
+                  "skill_id": "rag"
+                },
+                "name": "mark_complete"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1710000001.0
+        }
+      ],
+      "creation_timestamp": 1710000001.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "eval_today_priority",
+      "conversation": [
+        {
+          "invocation_id": "inv_2",
+          "user_content": {
+            "parts": [
+              {
+                "text": "What should I learn today?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Here is your highest priority learning activity for today."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {},
+                "name": "get_today_priority"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1710000002.0
+        }
+      ],
+      "creation_timestamp": 1710000002.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "eval_explain_docker",
+      "conversation": [
+        {
+          "invocation_id": "inv_3",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Why Docker?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Docker is prioritized because it unblocks containerization and deployment milestones."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {
+                  "item_id": "rm_docker"
+                },
+                "name": "explain_item"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1710000003.0
+        }
+      ],
+      "creation_timestamp": 1710000003.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "eval_switch_ml",
+      "conversation": [
+        {
+          "invocation_id": "inv_4",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Switch to ML engineer"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Target role switched to Machine Learning Engineer. Your readiness and roadmap have been updated."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {
+                  "role_id": "ml_engineer"
+                },
+                "name": "set_target_role"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1710000004.0
+        }
+      ],
+      "creation_timestamp": 1710000004.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "eval_market_update",
+      "conversation": [
+        {
+          "invocation_id": "inv_5",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Requirements changed"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Market update applied. Your target role requirements and roadmap have been refreshed."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {},
+                "name": "apply_market_update"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1710000005.0
+        }
+      ],
+      "creation_timestamp": 1710000005.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "eval_complete_rag_paraphrase",
+      "conversation": [
+        {
+          "invocation_id": "inv_6",
+          "user_content": {
+            "parts": [
+              {
+                "text": "I finished Retrieval-Augmented Generation"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Marked Retrieval-Augmented Generation complete. Your roadmap has been updated."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {
+                  "skill_id": "rag"
+                },
+                "name": "mark_complete"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1710000006.0
+        }
+      ],
+      "creation_timestamp": 1710000006.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "eval_today_paraphrase",
+      "conversation": [
+        {
+          "invocation_id": "inv_7",
+          "user_content": {
+            "parts": [
+              {
+                "text": "What should I focus on today?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Here is the top recommended focus task for today."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {},
+                "name": "get_today_priority"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1710000007.0
+        }
+      ],
+      "creation_timestamp": 1710000007.0,
+      "final_session_state": {}
+    },
+    {
+      "eval_id": "eval_explain_docker_paraphrase",
+      "conversation": [
+        {
+          "invocation_id": "inv_8",
+          "user_content": {
+            "parts": [
+              {
+                "text": "Why is Docker prioritized?"
+              }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              {
+                "text": "Docker is prioritized as a critical dependency for modern backend and ML deployment."
+              }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [
+              {
+                "args": {
+                  "item_id": "rm_docker"
+                },
+                "name": "explain_item"
+              }
+            ],
+            "tool_responses": [],
+            "intermediate_responses": []
+          },
+          "creation_timestamp": 1710000008.0
+        }
+      ],
+      "creation_timestamp": 1710000008.0,
+      "final_session_state": {}
+    }
+  ],
+  "creation_timestamp": 1710000000.0
+}
