@@ -16,7 +16,10 @@ def test_health_endpoint():
     assert data["db"] in ["ok", "error"]
 
 def test_unimplemented_endpoint():
-    response = client.post("/api/coach", json={"message": "hello", "session_id": "s1"})
+    response = client.post(
+        "/api/roles/custom",
+        json={"title": "Test Role", "description": "A custom role for testing"},
+    )
     assert response.status_code == 501
     data = response.json()
     assert "error" in data

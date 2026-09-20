@@ -59,3 +59,5 @@ chroma_data/
 *.swo
 .DS_Store
 Thumbs.db
+.adk/
+

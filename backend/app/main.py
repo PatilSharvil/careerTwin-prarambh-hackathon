@@ -24,19 +24,23 @@ from app.schemas import (
     CompleteRequest,
     CustomRoleRequest,
     CustomRoleResponse,
+    Diff,
     EvalReport,
     Health,
     KnownRequest,
     LlmHealth,
     MarketUpdateRequest,
+    Meta,
     ProfileInput,
     ProfileResponse,
     ProgressResponse,
     RolesResponse,
     TodayResponse,
 )
+from agents.coach_agent import run_coach
 from engine.catalog import Catalog
 from rag.indexer import index_knowledge_base
+from store import repo
 from store.db import init_db
 
 logger = logging.getLogger("careertwin.app")
@@ -192,10 +196,51 @@ async def market_update(
     return services.market_update(user_id=user_id, req=req)
 
 
-# 12. POST /coach (stay 501 until B7)
+# 12. POST /coach
 @api_router.post("/coach", response_model=CoachResponse)
-async def coach(payload: CoachRequest | None = None) -> CoachResponse:
-    raise AppError(code="NOT_IMPLEMENTED", message="POST /coach is not implemented yet", status_code=501)
+async def coach(
+    payload: CoachRequest,
+    user_id: str = Depends(get_user_id),
+) -> CoachResponse:
+    # 1. Require an existing roadmap per SPEC §10.3
+    _, roadmap_dict = repo.get_latest_roadmap(user_id)
+    if roadmap_dict is None:
+        raise AppError(
+            code="NO_ROADMAP",
+            message="Generate a roadmap first (POST /analyze).",
+            status_code=400,
+        )
+
+    # 2. Run coach agent with session and failover/fallback
+    reply, tool_calls, state_changed, last_diff, provider, fallback_used = await run_coach(
+        message=payload.message,
+        session_id=payload.session_id,
+        user_id=user_id,
+    )
+
+    # 3. If state changed, retrieve fresh state and diff per SPEC §10.4
+    fresh_state = None
+    diff_obj = None
+    if state_changed:
+        fresh_state = services.get_state(user_id=user_id)
+        if isinstance(last_diff, dict):
+            try:
+                diff_obj = Diff.model_validate(last_diff)
+            except Exception:
+                diff_obj = None
+
+    return CoachResponse(
+        reply=reply,
+        tool_calls=tool_calls,
+        state_changed=state_changed,
+        state=fresh_state,
+        diff=diff_obj,
+        meta=Meta(
+            llm_provider=provider,
+            llm_used=(provider != "none" and not fallback_used),
+            fallback_used=fallback_used,
+        ),
+    )
 
 
 # 13. GET /eval/report
