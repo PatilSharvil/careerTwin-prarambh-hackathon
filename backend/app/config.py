@@ -9,11 +9,11 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    LLM_PROVIDER_CHAIN: str = "gemini,groq,openrouter"
+    LLM_PROVIDER_CHAIN: str = "groq,openrouter,gemini"
     GEMINI_API_KEY: str = ""
-    GEMINI_MODEL: str = "gemini-2.5-flash"
+    GEMINI_MODEL: str = "gemini-2.0-flash"
     GROQ_API_KEY: str = ""
-    GROQ_MODEL: str = "llama-3.3-70b-versatile"
+    GROQ_MODEL: str = "qwen/qwen3.8-27b"
     OPENROUTER_API_KEY: str = ""
     OPENROUTER_MODEL: str = "meta-llama/llama-3.3-70b-instruct:free"
     LLM_TIMEOUT_SECONDS: int = 30

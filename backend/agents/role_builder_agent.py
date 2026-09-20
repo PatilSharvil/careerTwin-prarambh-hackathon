@@ -11,7 +11,7 @@ import json
 import logging
 import re
 from typing import Any, Sequence
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from app.config import settings
 from app.schemas import Meta, RoleDetail, RoleSkill
@@ -52,11 +52,44 @@ class RoleSkillDraft(BaseModel):
     importance: float = Field(default=0.7, ge=0.0, le=1.0)
     target: float = Field(default=7.0, ge=1.0, le=10.0)
 
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_role_skill_draft(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if "skill_id" not in data or not data["skill_id"]:
+                data["skill_id"] = data.get("skill") or data.get("id") or data.get("name") or ""
+            if "importance" not in data:
+                raw_imp = data.get("weight") or data.get("priority") or 0.7
+                try:
+                    data["importance"] = float(raw_imp)
+                except (ValueError, TypeError):
+                    data["importance"] = 0.7
+            if "target" not in data:
+                raw_target = data.get("level") or data.get("target_level") or data.get("min_level") or 7.0
+                try:
+                    data["target"] = float(raw_target)
+                except (ValueError, TypeError):
+                    data["target"] = 7.0
+        return data
+
 
 class RoleBuilderOut(BaseModel):
     """Structured output from RoleBuilderAgent."""
 
     skills: list[RoleSkillDraft] = Field(default_factory=list)
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_role_builder_out(cls, data: Any) -> Any:
+        if isinstance(data, list):
+            data = {"skills": data}
+        elif isinstance(data, dict):
+            if "skills" not in data:
+                for alt in ("role_skills", "items", "data", "list"):
+                    if alt in data and isinstance(data[alt], list):
+                        data["skills"] = data[alt]
+                        break
+        return data
 
 
 def slugify_title(title: str) -> str:

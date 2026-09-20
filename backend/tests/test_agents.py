@@ -13,9 +13,19 @@ from agents.explainer_agent import explain_items
 from agents.pipeline import run_analysis
 from agents.profile_agent import extract_profile, heuristic_profile
 from agents.validator import validate_narrative_numbers
+from app.config import settings
 from app.schemas import ProfileInput, SelfSkillInput
 from engine.models import RoadmapItem, Why
+from store.db import init_db
 from store.repo import cache_get
+
+
+@pytest.fixture(autouse=True)
+def setup_test_env(tmp_path, monkeypatch):
+    test_db = tmp_path / "test_agents.db"
+    monkeypatch.setenv("DATABASE_PATH", str(test_db))
+    monkeypatch.setattr(settings, "DATABASE_PATH", str(test_db))
+    init_db(test_db)
 
 
 # =====================================================================

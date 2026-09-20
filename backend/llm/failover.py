@@ -51,6 +51,7 @@ def run_with_failover(
 
     for provider in active_providers:
         for attempt in range(1, 3):  # 1 initial try + 1 retry = max 2 attempts
+            print(f"\n[LLM CALL] Step: '{step_name}' | Provider: '{provider}' | Attempt: {attempt}/2", flush=True)
             logger.info("Calling LLM step='%s' provider='%s' attempt=%d", step_name, provider, attempt)
             try:
                 # Execute with timeout via ThreadPoolExecutor
@@ -58,11 +59,13 @@ def run_with_failover(
                     future = executor.submit(make_call, provider)
                     result = future.result(timeout=timeout)
 
+                print(f"[LLM SUCCESS] Step: '{step_name}' | Provider: '{provider}'\n", flush=True)
                 logger.info("LLM call succeeded step='%s' provider='%s'", step_name, provider)
                 return result, provider
 
             except FutureTimeoutError as exc:
                 last_error = exc
+                print(f"[LLM TIMEOUT] Step: '{step_name}' | Provider: '{provider}' timed out after {timeout}s", flush=True)
                 logger.warning(
                     "LLM call timed out after %.1fs step='%s' provider='%s' attempt=%d",
                     timeout,
@@ -72,6 +75,7 @@ def run_with_failover(
                 )
             except Exception as exc:
                 last_error = exc
+                print(f"[LLM ERROR] Step: '{step_name}' | Provider: '{provider}' attempt={attempt} failed: {exc}", flush=True)
                 logger.warning(
                     "LLM call failed step='%s' provider='%s' attempt=%d error=%s",
                     step_name,
@@ -80,6 +84,7 @@ def run_with_failover(
                     exc,
                 )
 
+    print(f"\n[LLM ALL FAILED] All providers failed for step: '{step_name}'. Last error: {last_error}\n", flush=True)
     raise AllProvidersFailed(
         f"All LLM providers failed for step '{step_name}'. Last error: {last_error}"
     ) from last_error

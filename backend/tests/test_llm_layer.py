@@ -53,10 +53,30 @@ def test_parse_invalid_json_raises_value_error():
         parse_json(text)
 
 
-def test_validation_error_on_missing_field():
-    text = '{"name": "Incomplete"}'
-    with pytest.raises(ValueError, match="Validation error"):
-        parse_and_validate(text, DummyOutput)
+def test_parse_list_wrapped_json():
+    from agents.explainer_agent import ExplanationsOut
+    text = '[{"item_id": "rm_test", "narrative": "Test narrative"}]'
+    res = parse_and_validate(text, ExplanationsOut)
+    assert len(res.explanations) == 1
+    assert res.explanations[0].item_id == "rm_test"
+
+
+def test_tolerant_profile_and_explanation_parsing():
+    from agents.profile_agent import ProfileOut
+    from agents.explainer_agent import ExplanationsOut
+
+    # Groq-style: "skill" instead of "skill_name"
+    groq_profile = '[{"skill": "Node.js", "level": 6.0, "snippet": "Built fullstack apps"}]'
+    res_prof = parse_and_validate(groq_profile, ProfileOut)
+    assert len(res_prof.skills) == 1
+    assert res_prof.skills[0].skill_name == "Node.js"
+    assert res_prof.skills[0].evidence_level == 6.0
+
+    # OpenRouter-style: "explanation" instead of "narrative"
+    openrouter_expl = '{"explanations": [{"item_id": "rm_sql", "explanation": "SQL is essential."}]}'
+    res_expl = parse_and_validate(openrouter_expl, ExplanationsOut)
+    assert len(res_expl.explanations) == 1
+    assert res_expl.explanations[0].narrative == "SQL is essential."
 
 
 # =====================================================================

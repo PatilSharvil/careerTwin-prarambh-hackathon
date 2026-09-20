@@ -1,15 +1,18 @@
 """Tolerant JSON extraction and Pydantic validation for LLM responses.
 
 Strips code fences, extracts embedded JSON objects or arrays from surrounding
-prose, and validates against Pydantic models with actionable errors.
+prose, prints raw responses to terminal stdout for visibility, and validates
+against Pydantic models with tolerant structure mapping.
 """
 from __future__ import annotations
 
 import json
+import logging
 import re
 from typing import Any, TypeVar
 from pydantic import BaseModel, ValidationError
 
+logger = logging.getLogger("careertwin.llm.parsing")
 T = TypeVar("T", bound=BaseModel)
 
 
@@ -51,8 +54,51 @@ def parse_json(text: str) -> Any:
 
 
 def parse_and_validate(text: str, model_cls: type[T]) -> T:
-    """Parse JSON and validate against the provided Pydantic model class."""
+    """Parse JSON and validate against the provided Pydantic model class with tolerant wrappers."""
+    # Terminal logging of raw LLM response as requested by user
+    print(
+        f"\n==================== [LLM RAW RESPONSE -> {model_cls.__name__}] ====================\n"
+        f"{text.strip()}\n"
+        f"====================================================================================\n",
+        flush=True,
+    )
+    logger.info("LLM response for %s:\n%s", model_cls.__name__, text.strip())
+
     data = parse_json(text)
+
+    # 1. If LLM returned a bare JSON list, wrap into the model's primary list field
+    if isinstance(data, list):
+        if "skills" in model_cls.model_fields:
+            data = {"skills": data}
+        elif "explanations" in model_cls.model_fields:
+            data = {"explanations": data}
+        else:
+            target_field = None
+            for f_name, f_info in model_cls.model_fields.items():
+                ann = getattr(f_info, "annotation", None)
+                origin = getattr(ann, "__origin__", None)
+                if origin is list or ann is list:
+                    target_field = f_name
+                    break
+            if target_field:
+                data = {target_field: data}
+
+    # 2. If LLM returned a dict with non-standard wrapper keys
+    if isinstance(data, dict):
+        # ExplanationsOut wrapper normalization
+        if "explanations" in model_cls.model_fields and "explanations" not in data:
+            for alt in ("items", "results", "data", "list", "output"):
+                if alt in data and isinstance(data[alt], list):
+                    data["explanations"] = data[alt]
+                    break
+
+        # ProfileOut wrapper normalization
+        if "skills" in model_cls.model_fields and "skills" not in data:
+            for alt in ("extracted_skills", "skills_list", "technical_skills", "data", "items"):
+                if alt in data and isinstance(data[alt], list):
+                    data["skills"] = data[alt]
+                    break
+
     try:
         return model_cls.model_validate(data)
     except ValidationError as exc:
