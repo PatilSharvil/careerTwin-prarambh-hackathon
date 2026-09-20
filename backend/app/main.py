@@ -77,16 +77,12 @@ async def lifespan(app: FastAPI):
         len(cat.roles),
     )
 
-    # 3. Index & check ChromaDB collections asynchronously so the port opens in <1s
-    async def _async_index():
-        try:
-            loop = asyncio.get_running_loop()
-            idx_res = await loop.run_in_executor(None, index_knowledge_base)
-            logger.info("[SELF-CHECK] ChromaDB index verified: %s", idx_res)
-        except Exception as exc:
-            logger.warning("[SELF-CHECK] ChromaDB index encountered: %s", exc)
-
-    asyncio.create_task(_async_index())
+    # 3. Index & check ChromaDB collections (instant skip since pre-built index is committed)
+    try:
+        idx_res = index_knowledge_base()
+        logger.info("[SELF-CHECK] ChromaDB index verified: %s", idx_res)
+    except Exception as exc:
+        logger.warning("[SELF-CHECK] ChromaDB index encountered: %s", exc)
 
     # 4. Check LLM provider chain
     chain = settings.provider_chain()
