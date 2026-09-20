@@ -60,4 +60,5 @@ chroma_data/
 .DS_Store
 Thumbs.db
 .adk/
+*.log
 

@@ -25,7 +25,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 BACKEND_DIR = ROOT_DIR / "backend"
 FRONTEND_DIR = ROOT_DIR / "frontend"
 SCREENSHOTS_DIR = ROOT_DIR / "docs" / "playwright_screenshots"
-ARTIFACT_DIR = Path(r"C:\Users\nidhi\.gemini\antigravity\brain\01b4f274-fc35-4ee1-bc47-bb8494212203")
+ARTIFACT_DIR = Path(os.environ.get("ARTIFACT_DIR", r"C:\Users\patil\.gemini\antigravity\brain\f761c480-ac9f-4f45-af25-a33403fab539"))
 
 PYTHON_EXE = BACKEND_DIR / ".venv" / "Scripts" / "python.exe"
 if not PYTHON_EXE.exists():
@@ -64,6 +64,7 @@ def main():
         backend_url = "http://127.0.0.1:8000/api/health"
         if not wait_for_url(backend_url, timeout=2):
             print("\n[SETUP] Starting Backend Uvicorn server on port 8000...")
+            backend_log_file = open(ROOT_DIR / "backend_e2e.log", "w", encoding="utf-8")
             backend_proc = subprocess.Popen(
                 [
                     str(PYTHON_EXE),
@@ -76,7 +77,7 @@ def main():
                     "8000",
                 ],
                 cwd=str(BACKEND_DIR),
-                stdout=subprocess.PIPE,
+                stdout=backend_log_file,
                 stderr=subprocess.STDOUT,
                 text=True,
             )
@@ -187,7 +188,7 @@ def main():
 
             # Wait for "Analyze Career & Generate Roadmap" button to become enabled
             print("  -> Waiting for skills extraction and button enable...")
-            page.wait_for_selector("button:has-text('Analyze Career'):not([disabled])", timeout=45000)
+            page.wait_for_selector("button:has-text('Analyze Career'):not([disabled])", timeout=60000)
             analyze_career_btn = page.locator("button:has-text('Analyze Career'):not([disabled])").first
             print("  -> Skills extraction complete, Analyze Career button is enabled.")
             time.sleep(1)
@@ -206,7 +207,7 @@ def main():
             analyze_career_btn.click()
 
             # Wait for navigation to /analysis with generous timeout
-            page.wait_for_url("**/analysis", timeout=60000)
+            page.wait_for_url("**/analysis", timeout=120000)
             dur = time.time() - t0
             test_results.append({
                 "screen": "Profile Ingestion (/profile)",
@@ -536,6 +537,14 @@ All high-resolution screenshots saved to `docs/playwright_screenshots/`:
     with open(report_md_path, "w", encoding="utf-8") as f:
         f.write(report_content)
     print(f"\n[REPORT] Saved report artifact to: {report_md_path}")
+
+    # Copy screenshots to ARTIFACT_DIR for embedding
+    import shutil
+    for img in SCREENSHOTS_DIR.glob("*.png"):
+        try:
+            shutil.copy2(img, ARTIFACT_DIR / img.name)
+        except Exception:
+            pass
 
 
 if __name__ == "__main__":

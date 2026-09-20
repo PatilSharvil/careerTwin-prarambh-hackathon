@@ -53,16 +53,13 @@ def run_with_failover(
         for attempt in range(1, 3):  # 1 initial try + 1 retry = max 2 attempts
             print(f"\n[LLM CALL] Step: '{step_name}' | Provider: '{provider}' | Attempt: {attempt}/2", flush=True)
             logger.info("Calling LLM step='%s' provider='%s' attempt=%d", step_name, provider, attempt)
+            executor = ThreadPoolExecutor(max_workers=1)
             try:
-                # Execute with timeout via ThreadPoolExecutor
-                with ThreadPoolExecutor(max_workers=1) as executor:
-                    future = executor.submit(make_call, provider)
-                    result = future.result(timeout=timeout)
-
+                future = executor.submit(make_call, provider)
+                result = future.result(timeout=timeout)
                 print(f"[LLM SUCCESS] Step: '{step_name}' | Provider: '{provider}'\n", flush=True)
                 logger.info("LLM call succeeded step='%s' provider='%s'", step_name, provider)
                 return result, provider
-
             except FutureTimeoutError as exc:
                 last_error = exc
                 print(f"[LLM TIMEOUT] Step: '{step_name}' | Provider: '{provider}' timed out after {timeout}s", flush=True)
@@ -83,6 +80,19 @@ def run_with_failover(
                     attempt,
                     exc,
                 )
+                if attempt == 1 and "rate_limit" in str(exc).lower():
+                    import re, time
+                    wait_time = 8.0
+                    match = re.search(r"try again in (\d+(?:\.\d+)?)s", str(exc), re.IGNORECASE)
+                    if match:
+                        try:
+                            wait_time = min(float(match.group(1)) + 1.0, 15.0)
+                        except Exception:
+                            pass
+                    print(f"  -> Rate limit detected. Backing off for {wait_time:.1f}s before attempt 2...", flush=True)
+                    time.sleep(wait_time)
+            finally:
+                executor.shutdown(wait=False, cancel_futures=True)
 
     print(f"\n[LLM ALL FAILED] All providers failed for step: '{step_name}'. Last error: {last_error}\n", flush=True)
     raise AllProvidersFailed(

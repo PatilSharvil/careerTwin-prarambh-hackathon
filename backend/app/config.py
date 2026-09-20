@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     GROQ_MODEL: str = "qwen/qwen3.8-27b"
     OPENROUTER_API_KEY: str = ""
     OPENROUTER_MODEL: str = "meta-llama/llama-3.3-70b-instruct:free"
-    LLM_TIMEOUT_SECONDS: int = 30
+    LLM_TIMEOUT_SECONDS: int = 45
     CHROMA_PATH: str = "./chroma_data"
     DATABASE_PATH: str = "./careertwin.db"
     CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173"

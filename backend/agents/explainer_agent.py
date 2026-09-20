@@ -9,6 +9,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
+import time
 from typing import Any, Sequence
 from pydantic import BaseModel, Field, model_validator
 
@@ -232,6 +233,9 @@ Generate explanations for every item according to instructions. Output valid JSO
             for it in batch:
                 assert it.why is not None
                 results[it.item_id] = (it.why.narrative, "template")
+
+        # Brief spacing between batches to prevent token bursting
+        time.sleep(1.0)
 
     return results
 

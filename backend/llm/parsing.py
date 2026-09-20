@@ -62,7 +62,7 @@ def parse_and_validate(text: str, model_cls: type[T]) -> T:
         f"====================================================================================\n",
         flush=True,
     )
-    logger.info("LLM response for %s:\n%s", model_cls.__name__, text.strip())
+    data = parse_json(text)
 
     # 1. If LLM returned a bare JSON list, wrap into the model's primary list field
     if isinstance(data, list):
