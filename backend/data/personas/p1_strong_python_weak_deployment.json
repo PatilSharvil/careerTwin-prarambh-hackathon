@@ -98,9 +98,9 @@
     }
   ],
   "expected_top_gaps": [
+    "vector_db",
     "docker",
-    "llm_evaluation",
-    "vector_db"
+    "llm_evaluation"
   ],
-  "labels_reviewed": false
+  "labels_reviewed": true
 }

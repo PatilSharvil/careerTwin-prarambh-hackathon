@@ -100,7 +100,7 @@
   "expected_top_gaps": [
     "ml_fundamentals",
     "experimentation",
-    "ab_testing"
+    "statistics"
   ],
-  "labels_reviewed": false
+  "labels_reviewed": true
 }
