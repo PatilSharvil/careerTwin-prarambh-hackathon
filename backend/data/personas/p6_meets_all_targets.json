@@ -1,0 +1,102 @@
+{
+  "persona_id": "p6_meets_all_targets",
+  "name": "Dr. Sarah Lin (Meets All Targets)",
+  "role_id": "genai_engineer",
+  "weekly_hours": 5,
+  "deadline_weeks": 4,
+  "experience_years": 8.0,
+  "interests": [
+    "GenAI",
+    "leadership",
+    "mentorship"
+  ],
+  "skills": [
+    {
+      "skill_id": "python",
+      "self": 9.0,
+      "evidence": 9.0
+    },
+    {
+      "skill_id": "rag",
+      "self": 8.0,
+      "evidence": 8.5
+    },
+    {
+      "skill_id": "agent_systems",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "tool_calling",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "vector_db",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "embeddings",
+      "self": 8.5,
+      "evidence": 8.5
+    },
+    {
+      "skill_id": "llm_fundamentals",
+      "self": 9.0,
+      "evidence": 9.0
+    },
+    {
+      "skill_id": "prompt_engineering",
+      "self": 8.5,
+      "evidence": 8.5
+    },
+    {
+      "skill_id": "llm_evaluation",
+      "self": 7.5,
+      "evidence": 7.5
+    },
+    {
+      "skill_id": "fastapi",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "apis_rest",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "docker",
+      "self": 7.5,
+      "evidence": 7.5
+    },
+    {
+      "skill_id": "model_serving",
+      "self": 7.5,
+      "evidence": 7.5
+    },
+    {
+      "skill_id": "llm_deployment",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "git",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "linux_basics",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "testing",
+      "self": 8.0,
+      "evidence": 8.0
+    }
+  ],
+  "expected_top_gaps": [],
+  "labels_reviewed": false
+}

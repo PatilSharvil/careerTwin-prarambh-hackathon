@@ -1,0 +1,106 @@
+{
+  "persona_id": "p4_data_analyst_transitioning_ds",
+  "name": "Elena Rostova (Data Analyst Transitioning to DS)",
+  "role_id": "data_scientist",
+  "weekly_hours": 10,
+  "deadline_weeks": 12,
+  "experience_years": 2.5,
+  "interests": [
+    "modeling",
+    "analytics",
+    "experiments"
+  ],
+  "skills": [
+    {
+      "skill_id": "python",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "sql",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "pandas",
+      "self": 8.0,
+      "evidence": 7.5
+    },
+    {
+      "skill_id": "numpy",
+      "self": 7.0,
+      "evidence": 7.0
+    },
+    {
+      "skill_id": "data_visualization",
+      "self": 8.0,
+      "evidence": 8.0
+    },
+    {
+      "skill_id": "data_cleaning",
+      "self": 8.0,
+      "evidence": 7.5
+    },
+    {
+      "skill_id": "git",
+      "self": 6.0,
+      "evidence": 5.5
+    },
+    {
+      "skill_id": "statistics",
+      "self": 6.5,
+      "evidence": 6.0
+    },
+    {
+      "skill_id": "etl_pipelines",
+      "self": 6.0,
+      "evidence": 5.5
+    },
+    {
+      "skill_id": "data_warehousing",
+      "self": 5.0,
+      "evidence": 5.0
+    },
+    {
+      "skill_id": "time_series",
+      "self": 4.0,
+      "evidence": 4.0
+    },
+    {
+      "skill_id": "deep_learning",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "feature_engineering",
+      "self": 4.5,
+      "evidence": 4.0
+    },
+    {
+      "skill_id": "model_evaluation",
+      "self": 4.0,
+      "evidence": 3.5
+    },
+    {
+      "skill_id": "ml_fundamentals",
+      "self": 2.5,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "experimentation",
+      "self": 3.0,
+      "evidence": 2.0
+    },
+    {
+      "skill_id": "ab_testing",
+      "self": 2.5,
+      "evidence": 1.5
+    }
+  ],
+  "expected_top_gaps": [
+    "ml_fundamentals",
+    "experimentation",
+    "ab_testing"
+  ],
+  "labels_reviewed": false
+}

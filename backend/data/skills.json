@@ -1,1 +1,1829 @@
-[]
+[
+  {
+    "id": "python",
+    "name": "Python Programming",
+    "category": "Foundations",
+    "aliases": [
+      "Python",
+      "Python 3",
+      "Python Language",
+      "Core Python"
+    ],
+    "prerequisites": [],
+    "hours_per_level": 6,
+    "tags": [
+      "programming",
+      "core",
+      "syntax"
+    ],
+    "mastery_criteria": [
+      "Write idiomatic Python using OOP, generators, and typing",
+      "Build and package a multi-module Python application"
+    ]
+  },
+  {
+    "id": "data_structures_algorithms",
+    "name": "Data Structures & Algorithms",
+    "category": "Foundations",
+    "aliases": [
+      "DSA",
+      "Data Structures",
+      "Algorithms",
+      "Algorithmic Problem Solving"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 8,
+    "tags": [
+      "computer_science",
+      "efficiency",
+      "trees",
+      "graphs"
+    ],
+    "mastery_criteria": [
+      "Implement graphs, trees, and dynamic programming solutions",
+      "Analyze time and space complexity with Big-O notation"
+    ]
+  },
+  {
+    "id": "git",
+    "name": "Git & Version Control",
+    "category": "Foundations",
+    "aliases": [
+      "Git",
+      "GitHub",
+      "Version Control",
+      "Git CLI"
+    ],
+    "prerequisites": [],
+    "hours_per_level": 4,
+    "tags": [
+      "vcs",
+      "collaboration",
+      "branching"
+    ],
+    "mastery_criteria": [
+      "Manage feature branches, rebasing, and merge conflict resolution",
+      "Create semantic commits, pull requests, and tag releases"
+    ]
+  },
+  {
+    "id": "linux_basics",
+    "name": "Linux & CLI Basics",
+    "category": "Foundations",
+    "aliases": [
+      "Linux",
+      "CLI",
+      "Bash Basics",
+      "Unix Shell"
+    ],
+    "prerequisites": [],
+    "hours_per_level": 4,
+    "tags": [
+      "terminal",
+      "sysadmin",
+      "operating_systems"
+    ],
+    "mastery_criteria": [
+      "Navigate Linux filesystem, permissions, process management, and piping",
+      "Configure environment variables and run background daemon processes"
+    ]
+  },
+  {
+    "id": "bash_scripting",
+    "name": "Bash Scripting",
+    "category": "Foundations",
+    "aliases": [
+      "Bash",
+      "Shell Scripting",
+      "Shell Scripts",
+      "POSIX Shell"
+    ],
+    "prerequisites": [
+      {
+        "skill": "linux_basics",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "automation",
+      "scripting",
+      "cli"
+    ],
+    "mastery_criteria": [
+      "Write modular shell scripts with argument parsing and exit codes",
+      "Automate recurring backup and operational system tasks"
+    ]
+  },
+  {
+    "id": "testing",
+    "name": "Software Testing & QA",
+    "category": "Foundations",
+    "aliases": [
+      "Testing",
+      "Pytest",
+      "Unit Testing",
+      "Test Driven Development"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "quality",
+      "pytest",
+      "unit_tests",
+      "mocking"
+    ],
+    "mastery_criteria": [
+      "Write parameterized unit and integration tests using pytest",
+      "Use fixtures, mocks, and test coverage metrics exceeding 80%"
+    ]
+  },
+  {
+    "id": "statistics",
+    "name": "Probability & Statistics",
+    "category": "Foundations",
+    "aliases": [
+      "Statistics",
+      "Probability",
+      "Statistical Inference",
+      "Applied Stats"
+    ],
+    "prerequisites": [],
+    "hours_per_level": 7,
+    "tags": [
+      "math",
+      "probability",
+      "distributions",
+      "inference"
+    ],
+    "mastery_criteria": [
+      "Apply hypothesis testing, p-values, and confidence intervals",
+      "Calculate conditional probability and Bayesian formulations"
+    ]
+  },
+  {
+    "id": "linear_algebra",
+    "name": "Linear Algebra",
+    "category": "Foundations",
+    "aliases": [
+      "Linear Algebra",
+      "Matrix Algebra",
+      "Vectors and Matrices",
+      "LinAlg"
+    ],
+    "prerequisites": [],
+    "hours_per_level": 7,
+    "tags": [
+      "math",
+      "vectors",
+      "matrices",
+      "eigenvalues"
+    ],
+    "mastery_criteria": [
+      "Perform vector and matrix operations, dot products, and transformations",
+      "Calculate eigenvalues, SVD, and PCA projection mathematics"
+    ]
+  },
+  {
+    "id": "sql",
+    "name": "SQL & Relational Databases",
+    "category": "Backend",
+    "aliases": [
+      "SQL",
+      "Relational Databases",
+      "RDBMS",
+      "SQL Queries"
+    ],
+    "prerequisites": [],
+    "hours_per_level": 5,
+    "tags": [
+      "database",
+      "rdbms",
+      "queries",
+      "joins"
+    ],
+    "mastery_criteria": [
+      "Write complex queries with multi-table joins, subqueries, and window functions",
+      "Design normalized relational schemas (3NF) and index keys"
+    ]
+  },
+  {
+    "id": "databases_postgres",
+    "name": "PostgreSQL Architecture & Optimization",
+    "category": "Backend",
+    "aliases": [
+      "Postgres",
+      "PostgreSQL",
+      "Postgres DB",
+      "Postgresql RDBMS"
+    ],
+    "prerequisites": [
+      {
+        "skill": "sql",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "database",
+      "postgres",
+      "indexing",
+      "performance"
+    ],
+    "mastery_criteria": [
+      "Diagnose slow queries using EXPLAIN ANALYZE and compound indexes",
+      "Implement transactions, ACID constraints, and connection pooling"
+    ]
+  },
+  {
+    "id": "apis_rest",
+    "name": "RESTful API Design",
+    "category": "Backend",
+    "aliases": [
+      "REST APIs",
+      "RESTful Services",
+      "API Design",
+      "HTTP APIs"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "http",
+      "rest",
+      "endpoints",
+      "status_codes"
+    ],
+    "mastery_criteria": [
+      "Design resource-oriented REST endpoints conforming to HTTP conventions",
+      "Implement standardized JSON error envelopes and pagination"
+    ]
+  },
+  {
+    "id": "fastapi",
+    "name": "FastAPI Framework",
+    "category": "Backend",
+    "aliases": [
+      "FastAPI",
+      "FastAPI Python",
+      "Starlette Async",
+      "Fast API"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 5
+      },
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "async",
+      "web",
+      "pydantic",
+      "backend"
+    ],
+    "mastery_criteria": [
+      "Build asynchronous REST APIs with Pydantic v2 schemas and validation",
+      "Create reusable dependency injection providers and middleware"
+    ]
+  },
+  {
+    "id": "system_design",
+    "name": "System Design & Architecture",
+    "category": "Backend",
+    "aliases": [
+      "System Design",
+      "Distributed Architecture",
+      "Software Architecture",
+      "High Level Design"
+    ],
+    "prerequisites": [
+      {
+        "skill": "apis_rest",
+        "min_level": 5
+      },
+      {
+        "skill": "databases_postgres",
+        "min_level": 5
+      }
+    ],
+    "hours_per_level": 8,
+    "tags": [
+      "architecture",
+      "scalability",
+      "load_balancing",
+      "sharding"
+    ],
+    "mastery_criteria": [
+      "Design horizontal scaling strategies, load balancing, and data sharding",
+      "Architect resilient systems handling failover, retries, and rate limiting"
+    ]
+  },
+  {
+    "id": "caching_redis",
+    "name": "Caching & Redis",
+    "category": "Backend",
+    "aliases": [
+      "Redis",
+      "Caching",
+      "In-Memory DB",
+      "Redis Cache"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "cache",
+      "redis",
+      "key_value",
+      "latency"
+    ],
+    "mastery_criteria": [
+      "Implement Cache-Aside, Write-Through patterns, and TTL expiration",
+      "Use Redis data structures for distributed locks and session stores"
+    ]
+  },
+  {
+    "id": "message_queues",
+    "name": "Message Queues & Event Streaming",
+    "category": "Backend",
+    "aliases": [
+      "Message Queues",
+      "RabbitMQ",
+      "Kafka",
+      "Event Driven Architecture"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 5
+      },
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "async_messaging",
+      "rabbitmq",
+      "kafka",
+      "events"
+    ],
+    "mastery_criteria": [
+      "Implement asynchronous pub/sub message brokers with acknowledgement handling",
+      "Architect background task workers with dead-letter queue recovery"
+    ]
+  },
+  {
+    "id": "security_auth",
+    "name": "Application Security & Authentication",
+    "category": "Backend",
+    "aliases": [
+      "Auth",
+      "Security",
+      "OAuth2",
+      "JWT Authentication"
+    ],
+    "prerequisites": [
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "jwt",
+      "oauth",
+      "cors",
+      "rbac"
+    ],
+    "mastery_criteria": [
+      "Implement JWT access/refresh token rotation and RBAC authorization",
+      "Mitigate OWASP Top 10 vulnerabilities including CORS and SQL injection"
+    ]
+  },
+  {
+    "id": "microservices",
+    "name": "Microservices Patterns",
+    "category": "Backend",
+    "aliases": [
+      "Microservices",
+      "SOA",
+      "Service Oriented Architecture",
+      "Microservice Design"
+    ],
+    "prerequisites": [
+      {
+        "skill": "system_design",
+        "min_level": 5
+      },
+      {
+        "skill": "apis_rest",
+        "min_level": 5
+      }
+    ],
+    "hours_per_level": 7,
+    "tags": [
+      "services",
+      "decoupling",
+      "gateway",
+      "service_mesh"
+    ],
+    "mastery_criteria": [
+      "Decompose monoliths into bounded context services with API gateways",
+      "Manage distributed sagas, circuit breakers, and service discovery"
+    ]
+  },
+  {
+    "id": "grpc_rpc",
+    "name": "gRPC & Protocol Buffers",
+    "category": "Backend",
+    "aliases": [
+      "gRPC",
+      "Protobuf",
+      "RPC",
+      "Protocol Buffers"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "grpc",
+      "protobuf",
+      "binary_protocol",
+      "inter_service"
+    ],
+    "mastery_criteria": [
+      "Define Protobuf service contracts with streaming RPC methods",
+      "Implement performant low-latency inter-service communication"
+    ]
+  },
+  {
+    "id": "pandas",
+    "name": "Data Analysis with Pandas",
+    "category": "Data",
+    "aliases": [
+      "Pandas",
+      "Pandas DataFrame",
+      "Data Wrangling",
+      "Python DataFrames"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "dataframes",
+      "aggregation",
+      "cleaning",
+      "filtering"
+    ],
+    "mastery_criteria": [
+      "Perform complex grouping, pivot tables, and merging on tabular data",
+      "Optimize DataFrame memory footprint and vectorized operations"
+    ]
+  },
+  {
+    "id": "numpy",
+    "name": "Numerical Computing with NumPy",
+    "category": "Data",
+    "aliases": [
+      "NumPy",
+      "Numerical Python",
+      "NumPy Arrays",
+      "Array Math"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "arrays",
+      "vectorization",
+      "broadcasting",
+      "math"
+    ],
+    "mastery_criteria": [
+      "Perform multi-dimensional array slicing, broadcasting, and linear algebra",
+      "Vectorize mathematical operations avoiding explicit Python loops"
+    ]
+  },
+  {
+    "id": "data_visualization",
+    "name": "Data Visualization",
+    "category": "Data",
+    "aliases": [
+      "Data Visualization",
+      "Matplotlib",
+      "Seaborn",
+      "Charts and Dashboards"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "pandas",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "charts",
+      "plotting",
+      "seaborn",
+      "dashboard"
+    ],
+    "mastery_criteria": [
+      "Generate exploratory visualizations (histograms, box plots, scatter plots)",
+      "Build publication-quality interactive charts with styling and labels"
+    ]
+  },
+  {
+    "id": "data_cleaning",
+    "name": "Data Cleaning & Preprocessing",
+    "category": "Data",
+    "aliases": [
+      "Data Cleaning",
+      "Data Preprocessing",
+      "Missing Value Handling",
+      "Data Munging"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "pandas",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "preprocessing",
+      "imputation",
+      "outliers",
+      "normalization"
+    ],
+    "mastery_criteria": [
+      "Handle missing data with domain-specific imputation strategies",
+      "Detect and treat anomalies, duplicate records, and format inconsistencies"
+    ]
+  },
+  {
+    "id": "data_modeling",
+    "name": "Data Modeling & Schema Design",
+    "category": "Data",
+    "aliases": [
+      "Data Modeling",
+      "Star Schema",
+      "Kimball Modeling",
+      "Dimensional Modeling"
+    ],
+    "prerequisites": [
+      {
+        "skill": "sql",
+        "min_level": 4
+      },
+      {
+        "skill": "databases_postgres",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "modeling",
+      "star_schema",
+      "fact_tables",
+      "dimensions"
+    ],
+    "mastery_criteria": [
+      "Design Star and Snowflake dimensional schemas for analytical querying",
+      "Construct slowly changing dimensions (SCD Type 1 & Type 2)"
+    ]
+  },
+  {
+    "id": "etl_pipelines",
+    "name": "ETL & Pipeline Engineering",
+    "category": "Data",
+    "aliases": [
+      "ETL",
+      "Data Pipelines",
+      "ELT",
+      "Pipeline Engineering"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "sql",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "etl",
+      "elt",
+      "pipelines",
+      "ingestion"
+    ],
+    "mastery_criteria": [
+      "Construct idempotent extraction, transformation, and load DAG workflows",
+      "Implement pipeline checkpointing, error handling, and data validation"
+    ]
+  },
+  {
+    "id": "data_warehousing",
+    "name": "Data Warehousing & OLAP",
+    "category": "Data",
+    "aliases": [
+      "Data Warehousing",
+      "OLAP",
+      "Snowflake DB",
+      "BigQuery"
+    ],
+    "prerequisites": [
+      {
+        "skill": "sql",
+        "min_level": 5
+      },
+      {
+        "skill": "data_modeling",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "warehouse",
+      "analytics",
+      "columnar",
+      "olap"
+    ],
+    "mastery_criteria": [
+      "Design columnar storage tables optimized for analytical aggregations",
+      "Configure partitioning and clustering to optimize analytical queries"
+    ]
+  },
+  {
+    "id": "big_data_spark",
+    "name": "Big Data with Apache Spark",
+    "category": "Data",
+    "aliases": [
+      "Spark",
+      "PySpark",
+      "Apache Spark",
+      "Distributed Data"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "sql",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 7,
+    "tags": [
+      "spark",
+      "pyspark",
+      "distributed",
+      "mapreduce"
+    ],
+    "mastery_criteria": [
+      "Write distributed transformations with PySpark DataFrames",
+      "Diagnose execution plans, partitioning skews, and broadcast joins"
+    ]
+  },
+  {
+    "id": "ml_fundamentals",
+    "name": "Machine Learning Fundamentals",
+    "category": "ML",
+    "aliases": [
+      "Machine Learning",
+      "ML",
+      "Supervised Learning",
+      "Classical ML"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "statistics",
+        "min_level": 4
+      },
+      {
+        "skill": "linear_algebra",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 7,
+    "tags": [
+      "scikit_learn",
+      "classification",
+      "regression",
+      "algorithms"
+    ],
+    "mastery_criteria": [
+      "Train regression, decision trees, and ensemble classifiers with scikit-learn",
+      "Implement cross-validation, regularization, and hyperparameter tuning"
+    ]
+  },
+  {
+    "id": "feature_engineering",
+    "name": "Feature Engineering & Selection",
+    "category": "ML",
+    "aliases": [
+      "Feature Engineering",
+      "Feature Selection",
+      "Feature Extraction",
+      "Feature Store"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "pandas",
+        "min_level": 4
+      },
+      {
+        "skill": "ml_fundamentals",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "features",
+      "encoding",
+      "scaling",
+      "selection"
+    ],
+    "mastery_criteria": [
+      "Engineer numerical, categorical, and text features using standard scalers and target encodings",
+      "Select top predictive features using variance thresholding and importance ranking"
+    ]
+  },
+  {
+    "id": "model_evaluation",
+    "name": "Model Evaluation & Metrics",
+    "category": "ML",
+    "aliases": [
+      "Model Evaluation",
+      "ML Metrics",
+      "ROC AUC",
+      "Precision Recall"
+    ],
+    "prerequisites": [
+      {
+        "skill": "ml_fundamentals",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "metrics",
+      "evaluation",
+      "roc_curve",
+      "confusion_matrix"
+    ],
+    "mastery_criteria": [
+      "Compute precision, recall, F1, ROC-AUC, and log-loss across imbalanced datasets",
+      "Interpret model bias-variance trade-offs and calibration curves"
+    ]
+  },
+  {
+    "id": "experimentation",
+    "name": "ML Experimentation & Tracking",
+    "category": "ML",
+    "aliases": [
+      "ML Experimentation",
+      "MLflow",
+      "Experiment Tracking",
+      "Weights and Biases"
+    ],
+    "prerequisites": [
+      {
+        "skill": "statistics",
+        "min_level": 4
+      },
+      {
+        "skill": "model_evaluation",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "tracking",
+      "mlflow",
+      "artifacts",
+      "reproducibility"
+    ],
+    "mastery_criteria": [
+      "Log model hyperparameters, metrics, and artifact checkpoints systematically",
+      "Compare runs and maintain reproducible training experiment baselines"
+    ]
+  },
+  {
+    "id": "ab_testing",
+    "name": "A/B Testing & Causal Inference",
+    "category": "ML",
+    "aliases": [
+      "A/B Testing",
+      "Online Experimentation",
+      "Split Testing",
+      "Causal Inference"
+    ],
+    "prerequisites": [
+      {
+        "skill": "statistics",
+        "min_level": 5
+      },
+      {
+        "skill": "experimentation",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "ab_testing",
+      "power_analysis",
+      "significance",
+      "hypothesis"
+    ],
+    "mastery_criteria": [
+      "Calculate statistical sample sizes using power analysis and minimum detectable effects",
+      "Analyze online split test variants with t-tests, chi-square, and guardrail metrics"
+    ]
+  },
+  {
+    "id": "deep_learning",
+    "name": "Deep Learning Fundamentals",
+    "category": "ML",
+    "aliases": [
+      "Deep Learning",
+      "Neural Networks",
+      "Backpropagation",
+      "Deep Nets"
+    ],
+    "prerequisites": [
+      {
+        "skill": "ml_fundamentals",
+        "min_level": 5
+      },
+      {
+        "skill": "linear_algebra",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 8,
+    "tags": [
+      "neural_networks",
+      "backprop",
+      "activations",
+      "optimizers"
+    ],
+    "mastery_criteria": [
+      "Build forward and backward propagation loops for multilayer perceptrons",
+      "Apply loss functions, Adam optimizers, dropout, and batch normalization"
+    ]
+  },
+  {
+    "id": "pytorch",
+    "name": "PyTorch Framework",
+    "category": "ML",
+    "aliases": [
+      "PyTorch",
+      "Torch",
+      "PyTorch Tensors",
+      "PyTorch NN"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 5
+      },
+      {
+        "skill": "deep_learning",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 7,
+    "tags": [
+      "pytorch",
+      "tensors",
+      "autograd",
+      "nn_module"
+    ],
+    "mastery_criteria": [
+      "Construct custom models inheriting from torch.nn.Module with Dataset/DataLoader pipelines",
+      "Train models using GPU acceleration, mixed precision, and checkpoint saving"
+    ]
+  },
+  {
+    "id": "cnn_computer_vision",
+    "name": "Computer Vision & CNNs",
+    "category": "ML",
+    "aliases": [
+      "Computer Vision",
+      "CNN",
+      "Vision Models",
+      "Convolutional Networks"
+    ],
+    "prerequisites": [
+      {
+        "skill": "deep_learning",
+        "min_level": 5
+      },
+      {
+        "skill": "pytorch",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 7,
+    "tags": [
+      "vision",
+      "cnn",
+      "image_processing",
+      "resnet"
+    ],
+    "mastery_criteria": [
+      "Build convolutional architectures using ResNet backbones and image augmentations",
+      "Perform image classification and object detection feature extraction"
+    ]
+  },
+  {
+    "id": "time_series",
+    "name": "Time Series Forecasting",
+    "category": "ML",
+    "aliases": [
+      "Time Series",
+      "Forecasting",
+      "ARIMA",
+      "Temporal Modeling"
+    ],
+    "prerequisites": [
+      {
+        "skill": "ml_fundamentals",
+        "min_level": 4
+      },
+      {
+        "skill": "statistics",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "forecasting",
+      "arima",
+      "seasonality",
+      "trend"
+    ],
+    "mastery_criteria": [
+      "Decompose temporal trends, seasonality, and stationarity using statistical tests",
+      "Train autoregressive and gradient boosted forecasting models with rolling validation"
+    ]
+  },
+  {
+    "id": "distributed_training",
+    "name": "Distributed ML Training",
+    "category": "ML",
+    "aliases": [
+      "Distributed Training",
+      "DDP",
+      "Multi-GPU Training",
+      "PyTorch DDP"
+    ],
+    "prerequisites": [
+      {
+        "skill": "pytorch",
+        "min_level": 6
+      },
+      {
+        "skill": "deep_learning",
+        "min_level": 5
+      }
+    ],
+    "hours_per_level": 8,
+    "tags": [
+      "distributed",
+      "ddp",
+      "fsdp",
+      "multi_gpu"
+    ],
+    "mastery_criteria": [
+      "Implement PyTorch DistributedDataParallel (DDP) across multi-GPU nodes",
+      "Scale batch sizes and gradient accumulation with distributed synchronization"
+    ]
+  },
+  {
+    "id": "llm_fundamentals",
+    "name": "Large Language Model Fundamentals",
+    "category": "GenAI",
+    "aliases": [
+      "LLM",
+      "LLMs",
+      "Large Language Models",
+      "Generative AI"
+    ],
+    "prerequisites": [
+      {
+        "skill": "deep_learning",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 7,
+    "tags": [
+      "transformers",
+      "attention",
+      "tokens",
+      "inference"
+    ],
+    "mastery_criteria": [
+      "Explain transformer multi-head self-attention and autoregressive token generation",
+      "Configure temperature, top-p, context windows, and tokenizers correctly"
+    ]
+  },
+  {
+    "id": "prompt_engineering",
+    "name": "Prompt Engineering & In-Context Learning",
+    "category": "GenAI",
+    "aliases": [
+      "Prompt Engineering",
+      "Prompting",
+      "Few-Shot Prompting",
+      "System Prompts"
+    ],
+    "prerequisites": [
+      {
+        "skill": "llm_fundamentals",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "prompting",
+      "chain_of_thought",
+      "few_shot",
+      "system_prompt"
+    ],
+    "mastery_criteria": [
+      "Design chain-of-thought, few-shot, and role-conditioned prompt architectures",
+      "Enforce deterministic JSON schema outputs using structured constraints"
+    ]
+  },
+  {
+    "id": "embeddings",
+    "name": "Text Embeddings & Semantic Search",
+    "category": "GenAI",
+    "aliases": [
+      "Embeddings",
+      "Vector Embeddings",
+      "Semantic Search",
+      "Sentence Transformers"
+    ],
+    "prerequisites": [
+      {
+        "skill": "python",
+        "min_level": 4
+      },
+      {
+        "skill": "llm_fundamentals",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "embeddings",
+      "similarity",
+      "cosine",
+      "dense_vectors"
+    ],
+    "mastery_criteria": [
+      "Generate dense vector embeddings using sentence-transformers and API providers",
+      "Calculate cosine similarity, dot products, and semantic search score distributions"
+    ]
+  },
+  {
+    "id": "vector_db",
+    "name": "Vector Databases",
+    "category": "GenAI",
+    "aliases": [
+      "Vector DB",
+      "Vector Databases",
+      "ChromaDB",
+      "Vector Store"
+    ],
+    "prerequisites": [
+      {
+        "skill": "embeddings",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "chromadb",
+      "indexing",
+      "ann",
+      "similarity_search"
+    ],
+    "mastery_criteria": [
+      "Initialize persistent collections, metadata filters, and distance metrics in ChromaDB",
+      "Implement Approximate Nearest Neighbor (ANN) index tuning and hybrid search"
+    ]
+  },
+  {
+    "id": "rag",
+    "name": "Retrieval-Augmented Generation",
+    "category": "GenAI",
+    "aliases": [
+      "RAG",
+      "Retrieval Augmented Generation",
+      "Vector Search Apps",
+      "RAG Systems"
+    ],
+    "prerequisites": [
+      {
+        "skill": "embeddings",
+        "min_level": 4
+      },
+      {
+        "skill": "vector_db",
+        "min_level": 4
+      },
+      {
+        "skill": "python",
+        "min_level": 5
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "nlp",
+      "llm",
+      "search",
+      "retrieval"
+    ],
+    "mastery_criteria": [
+      "Build a RAG app over your own documents with citations",
+      "Measure retrieval quality (hit rate@k) on 20 test questions"
+    ]
+  },
+  {
+    "id": "tool_calling",
+    "name": "LLM Function & Tool Calling",
+    "category": "GenAI",
+    "aliases": [
+      "Tool Calling",
+      "Function Calling",
+      "LLM Tools",
+      "API Tool Calling"
+    ],
+    "prerequisites": [
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      },
+      {
+        "skill": "llm_fundamentals",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "tools",
+      "function_calling",
+      "schema",
+      "json_mode"
+    ],
+    "mastery_criteria": [
+      "Define tool schemas with JSON Schema parameter definitions",
+      "Execute model tool-call choices safely with error recovery and validation"
+    ]
+  },
+  {
+    "id": "agent_systems",
+    "name": "Autonomous Agent Systems",
+    "category": "GenAI",
+    "aliases": [
+      "AI Agents",
+      "Agent Systems",
+      "Google ADK",
+      "Multi-Agent Systems"
+    ],
+    "prerequisites": [
+      {
+        "skill": "tool_calling",
+        "min_level": 5
+      },
+      {
+        "skill": "rag",
+        "min_level": 5
+      }
+    ],
+    "hours_per_level": 8,
+    "tags": [
+      "adk",
+      "agents",
+      "orchestration",
+      "multi_agent"
+    ],
+    "mastery_criteria": [
+      "Architect sequential and parallel agents using Google ADK with session state",
+      "Implement human-in-the-loop controls and multi-turn conversational memory"
+    ]
+  },
+  {
+    "id": "llm_evaluation",
+    "name": "LLM & RAG Evaluation",
+    "category": "GenAI",
+    "aliases": [
+      "LLM Evaluation",
+      "RAG Triad",
+      "Ragas",
+      "Evalsets"
+    ],
+    "prerequisites": [
+      {
+        "skill": "llm_fundamentals",
+        "min_level": 4
+      },
+      {
+        "skill": "model_evaluation",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "eval",
+      "ragas",
+      "faithfulness",
+      "trajectory"
+    ],
+    "mastery_criteria": [
+      "Evaluate RAG applications across context relevance, faithfulness, and answer relevance",
+      "Run automated ADK evalsets measuring tool trajectory accuracy"
+    ]
+  },
+  {
+    "id": "fine_tuning",
+    "name": "LLM Fine-Tuning & Adaptation",
+    "category": "GenAI",
+    "aliases": [
+      "Fine-Tuning",
+      "LoRA",
+      "PEFT",
+      "Instruction Tuning"
+    ],
+    "prerequisites": [
+      {
+        "skill": "pytorch",
+        "min_level": 5
+      },
+      {
+        "skill": "llm_fundamentals",
+        "min_level": 5
+      }
+    ],
+    "hours_per_level": 8,
+    "tags": [
+      "peft",
+      "lora",
+      "qlora",
+      "instruction_tuning"
+    ],
+    "mastery_criteria": [
+      "Prepare instruction-tuning datasets formatted for chat models",
+      "Fine-tune open weights models using LoRA/QLoRA parameter-efficient methods"
+    ]
+  },
+  {
+    "id": "mcp",
+    "name": "Model Context Protocol",
+    "category": "GenAI",
+    "aliases": [
+      "MCP",
+      "Model Context Protocol",
+      "MCP Server",
+      "MCP Client"
+    ],
+    "prerequisites": [
+      {
+        "skill": "tool_calling",
+        "min_level": 4
+      },
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "mcp",
+      "protocol",
+      "context",
+      "integration"
+    ],
+    "mastery_criteria": [
+      "Implement an MCP server exposing custom resources, prompts, and tools",
+      "Connect an LLM agent to external services via standardized MCP clients"
+    ]
+  },
+  {
+    "id": "synthetic_data",
+    "name": "Synthetic Data Generation",
+    "category": "GenAI",
+    "aliases": [
+      "Synthetic Data",
+      "Data Synthesis",
+      "LLM Data Generation",
+      "Synthetic Datasets"
+    ],
+    "prerequisites": [
+      {
+        "skill": "llm_fundamentals",
+        "min_level": 4
+      },
+      {
+        "skill": "pandas",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "synthetic",
+      "bootstrapping",
+      "distillation",
+      "filtering"
+    ],
+    "mastery_criteria": [
+      "Synthesize domain-specific test cases and query distributions using LLMs",
+      "Filter synthetic records for quality, diversity, and contamination deduplication"
+    ]
+  },
+  {
+    "id": "multimodal_llm",
+    "name": "Multimodal LLMs",
+    "category": "GenAI",
+    "aliases": [
+      "Multimodal AI",
+      "Vision-Language Models",
+      "VLM",
+      "Multimodal LLMs"
+    ],
+    "prerequisites": [
+      {
+        "skill": "llm_fundamentals",
+        "min_level": 4
+      },
+      {
+        "skill": "cnn_computer_vision",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 7,
+    "tags": [
+      "vision_llm",
+      "multimodal",
+      "image_qa",
+      "document_understanding"
+    ],
+    "mastery_criteria": [
+      "Process interleaved image and text inputs with vision-language models",
+      "Extract structured schemas from complex visual diagrams and PDFs"
+    ]
+  },
+  {
+    "id": "docker",
+    "name": "Docker & Containerization",
+    "category": "Deployment",
+    "aliases": [
+      "Docker",
+      "Containers",
+      "Dockerfile",
+      "Docker Compose"
+    ],
+    "prerequisites": [
+      {
+        "skill": "linux_basics",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "containers",
+      "dockerfile",
+      "images",
+      "compose"
+    ],
+    "mastery_criteria": [
+      "Write multi-stage Dockerfiles with minimal image size and secure non-root users",
+      "Orchestrate local multi-container services with docker compose"
+    ]
+  },
+  {
+    "id": "ci_cd",
+    "name": "CI/CD Pipelines",
+    "category": "Deployment",
+    "aliases": [
+      "CI/CD",
+      "Continuous Integration",
+      "GitHub Actions",
+      "Build Pipelines"
+    ],
+    "prerequisites": [
+      {
+        "skill": "git",
+        "min_level": 4
+      },
+      {
+        "skill": "testing",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "github_actions",
+      "automation",
+      "testing",
+      "deployment"
+    ],
+    "mastery_criteria": [
+      "Build automated GitHub Actions workflows running linting, test suites, and builds",
+      "Configure artifact caching, environment secrets, and automated container releases"
+    ]
+  },
+  {
+    "id": "cloud_basics",
+    "name": "Cloud Infrastructure Basics",
+    "category": "Deployment",
+    "aliases": [
+      "Cloud",
+      "GCP",
+      "AWS",
+      "Cloud Computing"
+    ],
+    "prerequisites": [
+      {
+        "skill": "linux_basics",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "aws",
+      "gcp",
+      "compute",
+      "storage",
+      "vpc"
+    ],
+    "mastery_criteria": [
+      "Provision and configure virtual compute instances, object storage, and security groups",
+      "Configure IAM roles and least-privilege service account credentials"
+    ]
+  },
+  {
+    "id": "kubernetes",
+    "name": "Kubernetes & Container Orchestration",
+    "category": "Deployment",
+    "aliases": [
+      "Kubernetes",
+      "K8s",
+      "Container Orchestration",
+      "Kube"
+    ],
+    "prerequisites": [
+      {
+        "skill": "docker",
+        "min_level": 5
+      },
+      {
+        "skill": "cloud_basics",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 8,
+    "tags": [
+      "k8s",
+      "pods",
+      "services",
+      "deployments"
+    ],
+    "mastery_criteria": [
+      "Deploy applications using Pods, Deployments, Services, and ConfigMaps",
+      "Configure horizontal pod autoscaling and rolling zero-downtime updates"
+    ]
+  },
+  {
+    "id": "model_serving",
+    "name": "Model Serving & Inference",
+    "category": "Deployment",
+    "aliases": [
+      "Model Serving",
+      "Inference Serving",
+      "Triton Server",
+      "vLLM"
+    ],
+    "prerequisites": [
+      {
+        "skill": "fastapi",
+        "min_level": 4
+      },
+      {
+        "skill": "docker",
+        "min_level": 4
+      },
+      {
+        "skill": "ml_fundamentals",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "serving",
+      "inference",
+      "latency",
+      "throughput"
+    ],
+    "mastery_criteria": [
+      "Package ML models for production inference behind low-latency REST endpoints",
+      "Optimize batching, GPU memory utilization, and throughput concurrency"
+    ]
+  },
+  {
+    "id": "monitoring_observability",
+    "name": "Monitoring & Observability",
+    "category": "Deployment",
+    "aliases": [
+      "Observability",
+      "Monitoring",
+      "Prometheus",
+      "OpenTelemetry"
+    ],
+    "prerequisites": [
+      {
+        "skill": "docker",
+        "min_level": 4
+      },
+      {
+        "skill": "cloud_basics",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "prometheus",
+      "grafana",
+      "opentelemetry",
+      "logging"
+    ],
+    "mastery_criteria": [
+      "Instrument distributed traces and latency metrics using OpenTelemetry",
+      "Build Prometheus alert rules and Grafana service health dashboards"
+    ]
+  },
+  {
+    "id": "infrastructure_as_code",
+    "name": "Infrastructure as Code",
+    "category": "Deployment",
+    "aliases": [
+      "IaC",
+      "Terraform",
+      "CloudFormation",
+      "Infra as Code"
+    ],
+    "prerequisites": [
+      {
+        "skill": "cloud_basics",
+        "min_level": 4
+      },
+      {
+        "skill": "git",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 6,
+    "tags": [
+      "terraform",
+      "iac",
+      "provisioning",
+      "state"
+    ],
+    "mastery_criteria": [
+      "Write modular Terraform declarations provisioning cloud networks and compute",
+      "Manage remote state locking and plan verification workflows"
+    ]
+  },
+  {
+    "id": "model_registry",
+    "name": "Model Registry & Lineage",
+    "category": "Deployment",
+    "aliases": [
+      "Model Registry",
+      "ML Lineage",
+      "Model Governance",
+      "Model Versioning"
+    ],
+    "prerequisites": [
+      {
+        "skill": "model_serving",
+        "min_level": 4
+      },
+      {
+        "skill": "experimentation",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "registry",
+      "lineage",
+      "governance",
+      "versioning"
+    ],
+    "mastery_criteria": [
+      "Manage model lifecycle stages (staging, production, archived) in a registry",
+      "Track dataset provenance, training configuration, and artifact signatures"
+    ]
+  },
+  {
+    "id": "llm_deployment",
+    "name": "Production LLM Deployment",
+    "category": "Deployment",
+    "aliases": [
+      "LLM Deployment",
+      "vLLM Serving",
+      "Ollama",
+      "TGI"
+    ],
+    "prerequisites": [
+      {
+        "skill": "model_serving",
+        "min_level": 5
+      },
+      {
+        "skill": "docker",
+        "min_level": 4
+      },
+      {
+        "skill": "llm_fundamentals",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 7,
+    "tags": [
+      "vllm",
+      "tgi",
+      "quantization",
+      "paged_attention"
+    ],
+    "mastery_criteria": [
+      "Deploy quantized open-weights LLMs using vLLM with PagedAttention",
+      "Benchmark and optimize Time-to-First-Token (TTFT) and token throughput"
+    ]
+  },
+  {
+    "id": "load_testing",
+    "name": "Performance & Load Testing",
+    "category": "Deployment",
+    "aliases": [
+      "Load Testing",
+      "Locust",
+      "Benchmarking",
+      "Stress Testing"
+    ],
+    "prerequisites": [
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      },
+      {
+        "skill": "testing",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "load_testing",
+      "locust",
+      "benchmarks",
+      "concurrency"
+    ],
+    "mastery_criteria": [
+      "Simulate concurrent user traffic distributions using Locust load scripts",
+      "Identify bottleneck latencies, error spikes, and concurrency saturation limits"
+    ]
+  },
+  {
+    "id": "serverless_computing",
+    "name": "Serverless Architecture",
+    "category": "Deployment",
+    "aliases": [
+      "Serverless",
+      "AWS Lambda",
+      "Cloud Functions",
+      "FaaS"
+    ],
+    "prerequisites": [
+      {
+        "skill": "cloud_basics",
+        "min_level": 4
+      },
+      {
+        "skill": "apis_rest",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 5,
+    "tags": [
+      "serverless",
+      "lambda",
+      "functions",
+      "event_driven"
+    ],
+    "mastery_criteria": [
+      "Deploy stateless event-triggered serverless functions with cloud triggers",
+      "Manage cold start optimization, memory provisioning, and timeout bounds"
+    ]
+  },
+  {
+    "id": "distributed_systems",
+    "name": "Distributed Systems Principles",
+    "category": "Deployment",
+    "aliases": [
+      "Distributed Systems",
+      "Consensus",
+      "CAP Theorem",
+      "Distributed Computing"
+    ],
+    "prerequisites": [
+      {
+        "skill": "system_design",
+        "min_level": 5
+      },
+      {
+        "skill": "linux_basics",
+        "min_level": 4
+      }
+    ],
+    "hours_per_level": 8,
+    "tags": [
+      "consensus",
+      "cap_theorem",
+      "raft",
+      "fault_tolerance"
+    ],
+    "mastery_criteria": [
+      "Analyze consistency, availability, and partition tolerance tradeoffs in system architectures",
+      "Implement distributed coordination concepts and leader election mechanics"
+    ]
+  }
+]

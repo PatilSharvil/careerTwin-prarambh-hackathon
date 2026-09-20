@@ -1,1 +1,378 @@
-[]
+[
+  {
+    "role_id": "genai_engineer",
+    "title": "GenAI Engineer",
+    "version": "2026.09",
+    "description": "Designs, builds, and deploys production agentic systems, RAG architectures, and fine-tuned LLM applications.",
+    "source": "curated from public job postings and standard curricula",
+    "skills": [
+      {
+        "skill": "python",
+        "importance": 0.95,
+        "target": 8
+      },
+      {
+        "skill": "rag",
+        "importance": 0.9,
+        "target": 7
+      },
+      {
+        "skill": "agent_systems",
+        "importance": 0.88,
+        "target": 7
+      },
+      {
+        "skill": "tool_calling",
+        "importance": 0.85,
+        "target": 7
+      },
+      {
+        "skill": "vector_db",
+        "importance": 0.82,
+        "target": 7
+      },
+      {
+        "skill": "embeddings",
+        "importance": 0.82,
+        "target": 7
+      },
+      {
+        "skill": "llm_fundamentals",
+        "importance": 0.85,
+        "target": 8
+      },
+      {
+        "skill": "prompt_engineering",
+        "importance": 0.75,
+        "target": 7
+      },
+      {
+        "skill": "llm_evaluation",
+        "importance": 0.8,
+        "target": 6
+      },
+      {
+        "skill": "fastapi",
+        "importance": 0.78,
+        "target": 7
+      },
+      {
+        "skill": "apis_rest",
+        "importance": 0.75,
+        "target": 7
+      },
+      {
+        "skill": "docker",
+        "importance": 0.7,
+        "target": 6
+      },
+      {
+        "skill": "model_serving",
+        "importance": 0.72,
+        "target": 6
+      },
+      {
+        "skill": "llm_deployment",
+        "importance": 0.68,
+        "target": 6
+      },
+      {
+        "skill": "git",
+        "importance": 0.6,
+        "target": 6
+      },
+      {
+        "skill": "linux_basics",
+        "importance": 0.55,
+        "target": 5
+      },
+      {
+        "skill": "testing",
+        "importance": 0.65,
+        "target": 6
+      }
+    ]
+  },
+  {
+    "role_id": "ml_engineer",
+    "title": "ML Engineer",
+    "version": "2026.09",
+    "description": "Architects end-to-end machine learning training, validation pipelines, and scalable production inference systems.",
+    "source": "curated from industry competency frameworks and senior MLE job descriptions",
+    "skills": [
+      {
+        "skill": "python",
+        "importance": 0.95,
+        "target": 8
+      },
+      {
+        "skill": "ml_fundamentals",
+        "importance": 0.92,
+        "target": 8
+      },
+      {
+        "skill": "model_evaluation",
+        "importance": 0.88,
+        "target": 8
+      },
+      {
+        "skill": "feature_engineering",
+        "importance": 0.85,
+        "target": 7
+      },
+      {
+        "skill": "deep_learning",
+        "importance": 0.88,
+        "target": 7
+      },
+      {
+        "skill": "pytorch",
+        "importance": 0.85,
+        "target": 8
+      },
+      {
+        "skill": "model_serving",
+        "importance": 0.82,
+        "target": 7
+      },
+      {
+        "skill": "docker",
+        "importance": 0.8,
+        "target": 7
+      },
+      {
+        "skill": "kubernetes",
+        "importance": 0.72,
+        "target": 6
+      },
+      {
+        "skill": "model_registry",
+        "importance": 0.75,
+        "target": 6
+      },
+      {
+        "skill": "statistics",
+        "importance": 0.8,
+        "target": 7
+      },
+      {
+        "skill": "pandas",
+        "importance": 0.78,
+        "target": 7
+      },
+      {
+        "skill": "sql",
+        "importance": 0.7,
+        "target": 6
+      },
+      {
+        "skill": "ci_cd",
+        "importance": 0.68,
+        "target": 6
+      },
+      {
+        "skill": "experimentation",
+        "importance": 0.75,
+        "target": 7
+      },
+      {
+        "skill": "testing",
+        "importance": 0.65,
+        "target": 6
+      },
+      {
+        "skill": "git",
+        "importance": 0.6,
+        "target": 6
+      }
+    ]
+  },
+  {
+    "role_id": "backend_engineer",
+    "title": "Backend Engineer",
+    "version": "2026.09",
+    "description": "Develops highly scalable RESTful services, database architectures, distributed pipelines, and resilient backend systems.",
+    "source": "curated from standard backend engineering curricula and production requirements",
+    "skills": [
+      {
+        "skill": "python",
+        "importance": 0.95,
+        "target": 8
+      },
+      {
+        "skill": "apis_rest",
+        "importance": 0.92,
+        "target": 8
+      },
+      {
+        "skill": "fastapi",
+        "importance": 0.9,
+        "target": 8
+      },
+      {
+        "skill": "sql",
+        "importance": 0.88,
+        "target": 8
+      },
+      {
+        "skill": "databases_postgres",
+        "importance": 0.88,
+        "target": 8
+      },
+      {
+        "skill": "system_design",
+        "importance": 0.85,
+        "target": 7
+      },
+      {
+        "skill": "docker",
+        "importance": 0.82,
+        "target": 7
+      },
+      {
+        "skill": "testing",
+        "importance": 0.8,
+        "target": 8
+      },
+      {
+        "skill": "caching_redis",
+        "importance": 0.78,
+        "target": 7
+      },
+      {
+        "skill": "message_queues",
+        "importance": 0.75,
+        "target": 6
+      },
+      {
+        "skill": "security_auth",
+        "importance": 0.75,
+        "target": 7
+      },
+      {
+        "skill": "git",
+        "importance": 0.7,
+        "target": 7
+      },
+      {
+        "skill": "ci_cd",
+        "importance": 0.72,
+        "target": 6
+      },
+      {
+        "skill": "linux_basics",
+        "importance": 0.68,
+        "target": 6
+      },
+      {
+        "skill": "cloud_basics",
+        "importance": 0.65,
+        "target": 6
+      },
+      {
+        "skill": "monitoring_observability",
+        "importance": 0.65,
+        "target": 6
+      },
+      {
+        "skill": "data_structures_algorithms",
+        "importance": 0.75,
+        "target": 7
+      }
+    ]
+  },
+  {
+    "role_id": "data_scientist",
+    "title": "Data Scientist",
+    "version": "2026.09",
+    "description": "Leverages statistical modeling, experimental design, and predictive analytics to extract actionable business insights from data.",
+    "source": "curated from leading data science university programs and market job postings",
+    "skills": [
+      {
+        "skill": "python",
+        "importance": 0.95,
+        "target": 8
+      },
+      {
+        "skill": "statistics",
+        "importance": 0.92,
+        "target": 8
+      },
+      {
+        "skill": "pandas",
+        "importance": 0.9,
+        "target": 8
+      },
+      {
+        "skill": "numpy",
+        "importance": 0.85,
+        "target": 8
+      },
+      {
+        "skill": "sql",
+        "importance": 0.88,
+        "target": 8
+      },
+      {
+        "skill": "data_visualization",
+        "importance": 0.85,
+        "target": 8
+      },
+      {
+        "skill": "data_cleaning",
+        "importance": 0.82,
+        "target": 8
+      },
+      {
+        "skill": "ml_fundamentals",
+        "importance": 0.85,
+        "target": 7
+      },
+      {
+        "skill": "model_evaluation",
+        "importance": 0.82,
+        "target": 7
+      },
+      {
+        "skill": "experimentation",
+        "importance": 0.85,
+        "target": 8
+      },
+      {
+        "skill": "ab_testing",
+        "importance": 0.8,
+        "target": 7
+      },
+      {
+        "skill": "feature_engineering",
+        "importance": 0.78,
+        "target": 7
+      },
+      {
+        "skill": "deep_learning",
+        "importance": 0.65,
+        "target": 5
+      },
+      {
+        "skill": "time_series",
+        "importance": 0.72,
+        "target": 6
+      },
+      {
+        "skill": "git",
+        "importance": 0.6,
+        "target": 6
+      },
+      {
+        "skill": "data_warehousing",
+        "importance": 0.62,
+        "target": 5
+      },
+      {
+        "skill": "etl_pipelines",
+        "importance": 0.68,
+        "target": 6
+      }
+    ]
+  }
+]
