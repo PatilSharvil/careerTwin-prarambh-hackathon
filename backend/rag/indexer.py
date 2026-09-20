@@ -7,6 +7,7 @@ Chroma metadata cannot hold lists, so 'resources' is indexed as ONE RECORD PER
 """
 from __future__ import annotations
 
+import gc
 import hashlib
 import json
 import logging
@@ -98,8 +99,16 @@ def index_knowledge_base(
             }
         )
 
+    BATCH_SIZE = 20
+
     if skill_ids:
-        skills_col.upsert(ids=skill_ids, documents=skill_docs, metadatas=skill_metas)
+        for i in range(0, len(skill_ids), BATCH_SIZE):
+            skills_col.upsert(
+                ids=skill_ids[i : i + BATCH_SIZE],
+                documents=skill_docs[i : i + BATCH_SIZE],
+                metadatas=skill_metas[i : i + BATCH_SIZE],
+            )
+            gc.collect()
 
     # 2. Index Resources: ONE RECORD PER (resource, skill) PAIR
     res_col = get_or_create_collection("resources", client=client)
@@ -133,7 +142,13 @@ def index_knowledge_base(
             )
 
     if res_ids:
-        res_col.upsert(ids=res_ids, documents=res_docs, metadatas=res_metas)
+        for i in range(0, len(res_ids), BATCH_SIZE):
+            res_col.upsert(
+                ids=res_ids[i : i + BATCH_SIZE],
+                documents=res_docs[i : i + BATCH_SIZE],
+                metadatas=res_metas[i : i + BATCH_SIZE],
+            )
+            gc.collect()
 
     # 3. Index Roles: One record per role
     role_ids: list[str] = []
@@ -154,7 +169,13 @@ def index_knowledge_base(
             role_metas.append({"role_id": rid, "title": title})
 
         if role_ids:
-            roles_col.upsert(ids=role_ids, documents=role_docs, metadatas=role_metas)
+            for i in range(0, len(role_ids), BATCH_SIZE):
+                roles_col.upsert(
+                    ids=role_ids[i : i + BATCH_SIZE],
+                    documents=role_docs[i : i + BATCH_SIZE],
+                    metadatas=role_metas[i : i + BATCH_SIZE],
+                )
+                gc.collect()
 
     # Save hash
     hash_file.write_text(json.dumps({"hash": current_hash}), encoding="utf-8")
