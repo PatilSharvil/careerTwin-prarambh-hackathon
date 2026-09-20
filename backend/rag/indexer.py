@@ -19,13 +19,15 @@ from rag.chroma_client import get_chroma_client, get_or_create_collection
 logger = logging.getLogger("careertwin.rag.indexer")
 
 
-def _compute_data_hash(skills_path: Path, resources_path: Path) -> str:
-    """Compute combined SHA-256 hash of skills.json and resources.json."""
+def _compute_data_hash(skills_path: Path, resources_path: Path, roles_path: Path | None = None) -> str:
+    """Compute combined SHA-256 hash of skills.json, resources.json, and roles.json."""
     hasher = hashlib.sha256()
     if skills_path.exists():
         hasher.update(skills_path.read_bytes())
     if resources_path.exists():
         hasher.update(resources_path.read_bytes())
+    if roles_path is not None and roles_path.exists():
+        hasher.update(roles_path.read_bytes())
     return hasher.hexdigest()
 
 
@@ -46,11 +48,12 @@ def index_knowledge_base(
 
     skills_file = data_path / "skills.json"
     resources_file = data_path / "resources.json"
+    roles_file = data_path / "roles.json"
 
     if not skills_file.exists() or not resources_file.exists():
         raise FileNotFoundError(f"Missing data files in {data_path}")
 
-    current_hash = _compute_data_hash(skills_file, resources_file)
+    current_hash = _compute_data_hash(skills_file, resources_file, roles_file)
 
     client = get_chroma_client(chroma_path)
     chroma_dir = Path(chroma_path) if chroma_path is not None else Path(settings.CHROMA_PATH)
@@ -132,17 +135,40 @@ def index_knowledge_base(
     if res_ids:
         res_col.upsert(ids=res_ids, documents=res_docs, metadatas=res_metas)
 
+    # 3. Index Roles: One record per role
+    role_ids: list[str] = []
+    if roles_file.exists():
+        with open(roles_file, "r", encoding="utf-8") as f:
+            roles_data = json.load(f)
+        roles_col = get_or_create_collection("roles", client=client)
+        role_docs: list[str] = []
+        role_metas: list[dict[str, Any]] = []
+
+        for r in roles_data:
+            rid = r["role_id"]
+            title = r.get("title", "")
+            desc = r.get("description", "")
+            doc = f"{title}. {desc}"
+            role_ids.append(rid)
+            role_docs.append(doc)
+            role_metas.append({"role_id": rid, "title": title})
+
+        if role_ids:
+            roles_col.upsert(ids=role_ids, documents=role_docs, metadatas=role_metas)
+
     # Save hash
     hash_file.write_text(json.dumps({"hash": current_hash}), encoding="utf-8")
     logger.info(
-        "Successfully indexed %d skills and %d (resource, skill) pairs into Chroma.",
+        "Successfully indexed %d skills, %d (resource, skill) pairs, and %d roles into Chroma.",
         len(skill_ids),
         len(res_ids),
+        len(role_ids),
     )
 
     return {
         "status": "indexed",
         "skills_count": len(skill_ids),
         "resources_pairs_count": len(res_ids),
+        "roles_count": len(role_ids),
         "hash": current_hash,
     }

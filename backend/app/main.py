@@ -8,9 +8,11 @@ from contextlib import asynccontextmanager
 import json
 import logging
 from pathlib import Path
+import time
 from typing import Any
+import uuid
 
-from fastapi import APIRouter, Depends, FastAPI, File, Form, Header, UploadFile
+from fastapi import APIRouter, Depends, FastAPI, File, Form, Header, Request, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import services
@@ -39,13 +41,14 @@ from app.schemas import (
 )
 from agents.coach_agent import run_coach
 from engine.catalog import Catalog
+from llm.provider import available_chain
+from rag.chroma_client import get_chroma_client
 from rag.indexer import index_knowledge_base
 from store import repo
 from store.db import init_db
 
 logger = logging.getLogger("careertwin.app")
 EVAL_REPORT_PATH = Path(__file__).resolve().parent.parent / "eval" / "report.json"
-
 
 
 def get_user_id(x_user_id: str | None = Header(default=None, alias="X-User-Id")) -> str:
@@ -55,20 +58,72 @@ def get_user_id(x_user_id: str | None = Header(default=None, alias="X-User-Id"))
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Application startup and shutdown lifecycle per SPEC §10.1."""
-    # 1. Initialize DB tables
+    """Application startup and shutdown lifecycle per SPEC §10.1 & §16."""
+    # 1. Initialize & verify DB schema
     init_db()
-    # 2. Load catalog
-    Catalog.from_data_dir()
-    # 3. Index ChromaDB (idempotent)
+    with repo.get_connection() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT name FROM sqlite_master WHERE type='table'")
+        tables = [r[0] for r in cursor.fetchall()]
+        logger.info("[SELF-CHECK] SQLite DB initialized successfully: %d tables (%s)", len(tables), ", ".join(tables))
+
+    # 2. Validate Catalog knowledge base and acyclic DAG
+    cat = Catalog.from_data_dir()
+    cat.prerequisite_closure(["rag", "agent_systems", "model_evaluation", "data_pipelines"])
+    logger.info(
+        "[SELF-CHECK] Catalog validated: %d skills, %d curated roles. DAG topological closure verified.",
+        len(cat.skills),
+        len(cat.roles),
+    )
+
+    # 3. Index & check ChromaDB collections
     try:
-        index_knowledge_base()
+        idx_res = index_knowledge_base()
+        logger.info("[SELF-CHECK] ChromaDB index verified: %s", idx_res)
     except Exception as exc:
-        logger.warning("ChromaDB index on startup encountered: %s", exc)
+        logger.warning("[SELF-CHECK] ChromaDB index encountered: %s", exc)
+
+    # 4. Check LLM provider chain
+    chain = settings.provider_chain()
+    avail = available_chain()
+    logger.info("[SELF-CHECK] LLM chain configured: %s; available with API keys: %s", chain, avail)
+
     yield
 
 
 app = FastAPI(title="CareerTwin API", version="0.1.0", lifespan=lifespan)
+
+# Request-ID and access logging middleware
+@app.middleware("http")
+async def request_id_logging_middleware(request: Request, call_next):
+    request_id = request.headers.get("X-Request-Id") or str(uuid.uuid4())
+    request.state.request_id = request_id
+    start = time.perf_counter()
+    logger.info("--> %s %s [req_id=%s]", request.method, request.url.path, request_id)
+    try:
+        response = await call_next(request)
+        elapsed_ms = (time.perf_counter() - start) * 1000
+        logger.info(
+            "<-- %s %s status=%d elapsed=%.2fms [req_id=%s]",
+            request.method,
+            request.url.path,
+            response.status_code,
+            elapsed_ms,
+            request_id,
+        )
+        response.headers["X-Request-Id"] = request_id
+        return response
+    except Exception as exc:
+        elapsed_ms = (time.perf_counter() - start) * 1000
+        logger.error(
+            "<-- %s %s error=%s elapsed=%.2fms [req_id=%s]",
+            request.method,
+            request.url.path,
+            exc,
+            elapsed_ms,
+            request_id,
+        )
+        raise
 
 # Configure CORS
 origins = [origin.strip() for origin in settings.CORS_ORIGINS.split(",") if origin.strip()]
@@ -91,12 +146,33 @@ api_router = APIRouter(prefix="/api")
 async def get_health() -> Health:
     chain = settings.provider_chain()
     primary = chain[0] if chain else "none"
+
+    # Probe DB
+    db_status = "ok"
+    try:
+        with repo.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT 1")
+            cursor.fetchone()
+    except Exception as exc:
+        logger.error("Health probe DB failed: %s", exc)
+        db_status = "error"
+
+    # Probe ChromaDB
+    chroma_status = "ok"
+    try:
+        client = get_chroma_client()
+        client.heartbeat()
+    except Exception as exc:
+        logger.error("Health probe Chroma failed: %s", exc)
+        chroma_status = "error"
+
     return Health(
         status="ok",
         version="0.1.0",
         llm=LlmHealth(chain=chain, primary=primary),
-        chroma="ok",
-        db="ok",
+        chroma=chroma_status,
+        db=db_status,
     )
 
 
@@ -106,10 +182,10 @@ async def get_roles(user_id: str = Depends(get_user_id)) -> RolesResponse:
     return services.list_roles(user_id=user_id)
 
 
-# 3. POST /roles/custom (stay 501 until B9)
+# 3. POST /roles/custom
 @api_router.post("/roles/custom", response_model=CustomRoleResponse)
-async def create_custom_role(payload: CustomRoleRequest | None = None) -> CustomRoleResponse:
-    raise AppError(code="NOT_IMPLEMENTED", message="POST /roles/custom is not implemented yet", status_code=501)
+async def create_custom_role(payload: CustomRoleRequest) -> CustomRoleResponse:
+    return await services.create_custom_role(payload)
 
 
 # 4. POST /profile

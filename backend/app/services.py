@@ -16,6 +16,8 @@ from app.schemas import (
     AnalyzeRequest,
     AnalyzeResponse,
     CompleteRequest,
+    CustomRoleRequest,
+    CustomRoleResponse,
     Diff,
     EducationInput,
     KnownRequest,
@@ -37,6 +39,7 @@ from app.schemas import (
 from agents.explainer_agent import explain_diff, explain_items
 from agents.profile_agent import extract_profile
 from agents.resume_text import ResumeParseError, extract_resume_text
+from agents.role_builder_agent import build_custom_role
 from engine.calibrate import calibrate_skill_level
 from engine.catalog import Catalog
 from engine.gaps import analyze_gaps
@@ -200,6 +203,29 @@ def list_roles(user_id: str | None = None) -> RolesResponse:
         )
 
     return RolesResponse(roles=summaries)
+
+
+async def create_custom_role(req: CustomRoleRequest) -> CustomRoleResponse:
+    """Build, save, and return a custom role specification."""
+    cat = _get_catalog()
+    chain = available_chain()
+    role_detail, meta = await build_custom_role(
+        title=req.title,
+        description=req.description,
+        chain=chain,
+        catalog=cat,
+    )
+
+    # Save to role_versions with is_custom=True and version="custom"
+    role_dict = role_detail.model_dump()
+    repo.save_role_version(
+        role_id=role_detail.role_id,
+        version="custom",
+        role_dict=role_dict,
+        is_custom=True,
+    )
+
+    return CustomRoleResponse(role=role_detail, meta=meta)
 
 
 # =====================================================================
