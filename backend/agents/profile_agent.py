@@ -10,7 +10,7 @@ import json
 import logging
 import re
 from typing import Any, Sequence
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from app.config import settings
 from app.schemas import EducationInput, Meta, Profile, ProfileInput, ProfileSkill, SelfSkillInput
@@ -55,6 +55,25 @@ class ExtractedSkill(BaseModel):
     evidence_level: float = Field(default=5.0, ge=0.0, le=10.0)
     snippet: str = Field(default="")
 
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_extracted_skill(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            # Normalize skill name from common variants
+            if "skill_name" not in data or not data["skill_name"]:
+                data["skill_name"] = data.get("skill") or data.get("name") or data.get("skill_title") or ""
+            # Normalize evidence level
+            if "evidence_level" not in data:
+                raw_level = data.get("level") or data.get("rating") or data.get("score") or 5.0
+                try:
+                    data["evidence_level"] = float(raw_level)
+                except (ValueError, TypeError):
+                    data["evidence_level"] = 5.0
+            # Normalize snippet
+            if "snippet" not in data:
+                data["snippet"] = str(data.get("quote") or data.get("context") or data.get("snippet") or "")
+        return data
+
 
 class ProfileOut(BaseModel):
     """Structured output from ProfileAgent."""
@@ -63,6 +82,25 @@ class ProfileOut(BaseModel):
     experience_years: float = 0.0
     interests: list[str] = Field(default_factory=list)
     skills: list[ExtractedSkill] = Field(default_factory=list)
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_profile_out(cls, data: Any) -> Any:
+        if isinstance(data, list):
+            data = {"skills": data}
+        elif isinstance(data, dict):
+            if "skills" not in data:
+                for alt in ("extracted_skills", "skills_list", "technical_skills", "items", "data"):
+                    if alt in data and isinstance(data[alt], list):
+                        data["skills"] = data[alt]
+                        break
+            if "education" not in data or not isinstance(data.get("education"), dict):
+                edu_raw = data.get("education", {})
+                if isinstance(edu_raw, str):
+                    data["education"] = {"degree": edu_raw, "year": None}
+                elif not isinstance(edu_raw, dict):
+                    data["education"] = {"degree": "", "year": None}
+        return data
 
 
 def build_profile_agent(model: Any = None) -> Any:

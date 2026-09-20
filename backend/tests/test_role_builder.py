@@ -32,11 +32,14 @@ client = TestClient(app)
 
 
 @pytest.fixture(autouse=True)
-def setup_env_and_db(monkeypatch):
+def setup_env_and_db(tmp_path, monkeypatch):
     from app.config import settings
+    test_db = tmp_path / "test_role_builder.db"
+    monkeypatch.setenv("DATABASE_PATH", str(test_db))
+    monkeypatch.setattr(settings, "DATABASE_PATH", str(test_db))
     monkeypatch.setenv("LLM_PROVIDER_CHAIN", "none")
     monkeypatch.setattr(settings, "LLM_PROVIDER_CHAIN", "none")
-    init_db()
+    init_db(test_db)
 
 
 def test_slugify_title():

@@ -10,7 +10,7 @@ import hashlib
 import json
 import logging
 from typing import Any, Sequence
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, model_validator
 
 from app.config import settings
 from app.schemas import NarrativeSource
@@ -47,11 +47,41 @@ class ItemExplanation(BaseModel):
     item_id: str
     narrative: str
 
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_item_explanation(cls, data: Any) -> Any:
+        if isinstance(data, dict):
+            if "item_id" not in data or not data["item_id"]:
+                data["item_id"] = data.get("id") or data.get("skill_id") or data.get("item") or ""
+            if "narrative" not in data or not data["narrative"]:
+                data["narrative"] = (
+                    data.get("explanation")
+                    or data.get("reason")
+                    or data.get("why")
+                    or data.get("text")
+                    or data.get("summary")
+                    or ""
+                )
+        return data
+
 
 class ExplanationsOut(BaseModel):
     """Batch explanations output."""
 
     explanations: list[ItemExplanation] = Field(default_factory=list)
+
+    @model_validator(mode="before")
+    @classmethod
+    def normalize_explanations_out(cls, data: Any) -> Any:
+        if isinstance(data, list):
+            data = {"explanations": data}
+        elif isinstance(data, dict):
+            if "explanations" not in data:
+                for alt in ("items", "results", "data", "list", "output"):
+                    if alt in data and isinstance(data[alt], list):
+                        data["explanations"] = data[alt]
+                        break
+        return data
 
 
 def build_explainer_agent(model: Any = None) -> Any:
@@ -85,124 +115,122 @@ def explain_items(
     if not items_to_explain:
         return results
 
-    # 1. Prepare structured batch facts
-    facts_list = []
-    for it in items_to_explain:
-        why = it.why
-        assert why is not None
-        facts_list.append(
-            {
-                "item_id": it.item_id,
-                "skill_name": it.skill_name,
-                "role_title": role_title,
-                "level": why.level,
-                "target": why.target,
-                "gap": why.gap,
-                "importance": why.importance,
-                "priority": why.priority,
-                "priority_label": why.priority_label,
-                "unblocks": [u.skill_name for u in why.unblocks],
-                "interest_match": why.interest_match,
-            }
-        )
-
-    facts_json = json.dumps(facts_list, sort_keys=True)
-    cache_key = "explain_items_" + hashlib.sha256(facts_json.encode("utf-8")).hexdigest()
-
-    # 2. Check SQLite cache
-    cached = cache_get(cache_key)
-    if cached and isinstance(cached, dict) and "explanations" in cached:
-        logger.info("ExplainerAgent cache HIT for key %s", cache_key[:12])
-        for exp in cached["explanations"]:
-            iid = exp.get("item_id")
-            narr = exp.get("narrative", "")
-            if iid:
-                results[iid] = (narr, "llm")
-        return results
-
-    # 3. If chain is none or empty, use template narratives directly
+    BATCH_SIZE = 6
     providers = list(chain) if chain is not None else available_chain()
     active_providers = [p for p in providers if p.lower() != "none"]
 
-    if not active_providers:
-        for it in items_to_explain:
-            assert it.why is not None
-            results[it.item_id] = (it.why.narrative, "template")
-        return results
+    for i in range(0, len(items_to_explain), BATCH_SIZE):
+        batch = items_to_explain[i : i + BATCH_SIZE]
+        facts_list = []
+        for it in batch:
+            why = it.why
+            assert why is not None
+            facts_list.append(
+                {
+                    "item_id": it.item_id,
+                    "skill_name": it.skill_name,
+                    "role_title": role_title,
+                    "level": why.level,
+                    "target": why.target,
+                    "gap": why.gap,
+                    "importance": why.importance,
+                    "priority": why.priority,
+                    "priority_label": why.priority_label,
+                    "unblocks": [u.skill_name for u in why.unblocks],
+                    "interest_match": why.interest_match,
+                }
+            )
 
-    # 4. Make batched LLM call
-    prompt = f"""Target Role: {role_title}
+        facts_json = json.dumps(facts_list, sort_keys=True)
+        cache_key = "explain_items_" + hashlib.sha256(facts_json.encode("utf-8")).hexdigest()
+
+        # Check SQLite cache
+        cached = cache_get(cache_key)
+        if cached and isinstance(cached, dict) and "explanations" in cached:
+            logger.info("ExplainerAgent cache HIT for key %s", cache_key[:12])
+            for exp in cached["explanations"]:
+                iid = exp.get("item_id")
+                narr = exp.get("narrative", "")
+                if iid:
+                    results[iid] = (narr, "llm")
+            continue
+
+        if not active_providers:
+            for it in batch:
+                assert it.why is not None
+                results[it.item_id] = (it.why.narrative, "template")
+            continue
+
+        prompt = f"""Target Role: {role_title}
 
 Structured Why Facts for each roadmap item:
 {facts_json}
 
 Generate explanations for every item according to instructions. Output valid JSON only."""
 
-    def _make_call(prov: str) -> ExplanationsOut:
-        import litellm
+        def _make_call(prov: str) -> ExplanationsOut:
+            import litellm
 
-        if prov == "gemini":
-            model_str = f"gemini/{settings.GEMINI_MODEL}"
-            api_key = settings.GEMINI_API_KEY
-        elif prov == "groq":
-            model_str = f"groq/{settings.GROQ_MODEL}"
-            api_key = settings.GROQ_API_KEY
-        elif prov == "openrouter":
-            model_str = f"openrouter/{settings.OPENROUTER_MODEL}"
-            api_key = settings.OPENROUTER_API_KEY
-        else:
-            raise ValueError(f"Unknown provider: {prov}")
-
-        messages = [
-            {"role": "system", "content": EXPLAINER_INSTRUCTION},
-            {"role": "user", "content": prompt},
-        ]
-
-        resp = litellm.completion(
-            model=model_str,
-            messages=messages,
-            api_key=api_key,
-            response_format={"type": "json_object"},
-            timeout=settings.LLM_TIMEOUT_SECONDS,
-        )
-        content = resp.choices[0].message.content
-        return parse_and_validate(content, ExplanationsOut)
-
-    try:
-        explanations_out, _ = run_with_failover(
-            step_name="explain_items",
-            make_call=_make_call,
-            chain=active_providers,
-        )
-
-        llm_explanations = {exp.item_id: exp.narrative for exp in explanations_out.explanations}
-        cache_records: list[dict[str, str]] = []
-
-        # 5. Validate every narrative for number fidelity
-        for it in items_to_explain:
-            why = it.why
-            assert why is not None
-            raw_narrative = llm_explanations.get(it.item_id)
-
-            if raw_narrative and validate_narrative_numbers(raw_narrative, why):
-                results[it.item_id] = (raw_narrative, "llm")
-                cache_records.append({"item_id": it.item_id, "narrative": raw_narrative})
+            if prov == "gemini":
+                model_str = f"gemini/{settings.GEMINI_MODEL}"
+                api_key = settings.GEMINI_API_KEY
+            elif prov == "groq":
+                model_str = f"groq/{settings.GROQ_MODEL}"
+                api_key = settings.GROQ_API_KEY
+            elif prov == "openrouter":
+                model_str = f"openrouter/{settings.OPENROUTER_MODEL}"
+                api_key = settings.OPENROUTER_API_KEY
             else:
-                # Validation failed (hallucinated number or missing item) -> fallback to template
-                logger.info(
-                    "Narrative validation failed for %s. Using template fallback.",
-                    it.item_id,
-                )
-                results[it.item_id] = (why.narrative, "template")
+                raise ValueError(f"Unknown provider: {prov}")
 
-        if cache_records:
-            cache_set(cache_key, {"explanations": cache_records})
+            messages = [
+                {"role": "system", "content": EXPLAINER_INSTRUCTION},
+                {"role": "user", "content": prompt},
+            ]
 
-    except AllProvidersFailed as exc:
-        logger.warning("ExplainerAgent all providers failed: %s. Using template fallbacks.", exc)
-        for it in items_to_explain:
-            assert it.why is not None
-            results[it.item_id] = (it.why.narrative, "template")
+            resp = litellm.completion(
+                model=model_str,
+                messages=messages,
+                api_key=api_key,
+                response_format={"type": "json_object"},
+                timeout=settings.LLM_TIMEOUT_SECONDS,
+            )
+            content = resp.choices[0].message.content
+            return parse_and_validate(content, ExplanationsOut)
+
+        try:
+            explanations_out, _ = run_with_failover(
+                step_name=f"explain_items_batch_{i // BATCH_SIZE + 1}",
+                make_call=_make_call,
+                chain=active_providers,
+            )
+
+            llm_explanations = {exp.item_id: exp.narrative for exp in explanations_out.explanations}
+            cache_records: list[dict[str, str]] = []
+
+            for it in batch:
+                why = it.why
+                assert why is not None
+                raw_narrative = llm_explanations.get(it.item_id)
+
+                if raw_narrative and validate_narrative_numbers(raw_narrative, why):
+                    results[it.item_id] = (raw_narrative, "llm")
+                    cache_records.append({"item_id": it.item_id, "narrative": raw_narrative})
+                else:
+                    logger.info(
+                        "Narrative validation failed for %s. Using template fallback.",
+                        it.item_id,
+                    )
+                    results[it.item_id] = (why.narrative, "template")
+
+            if cache_records:
+                cache_set(cache_key, {"explanations": cache_records})
+
+        except AllProvidersFailed as exc:
+            logger.warning("ExplainerAgent batch failed: %s. Using template fallbacks.", exc)
+            for it in batch:
+                assert it.why is not None
+                results[it.item_id] = (it.why.narrative, "template")
 
     return results
 
@@ -241,6 +269,22 @@ Use ONLY the numbers and facts provided. Output valid JSON: {{"narrative": "..."
 
     class DiffExplanationOut(BaseModel):
         narrative: str
+
+        @model_validator(mode="before")
+        @classmethod
+        def normalize_diff_out(cls, data: Any) -> Any:
+            if isinstance(data, dict):
+                if "narrative" not in data or not data["narrative"]:
+                    data["narrative"] = (
+                        data.get("explanation")
+                        or data.get("summary")
+                        or data.get("text")
+                        or data.get("diff")
+                        or ""
+                    )
+            elif isinstance(data, str):
+                data = {"narrative": data}
+            return data
 
     def _make_call(prov: str) -> DiffExplanationOut:
         import litellm
