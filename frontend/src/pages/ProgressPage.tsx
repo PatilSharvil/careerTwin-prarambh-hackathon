@@ -234,13 +234,25 @@ export const ProgressPage: React.FC = () => {
         (i) => i.skill_id === skillId || i.item_id === `rm_${skillId}`
       );
       const res = await markKnown({ skill_id: skillId, level });
-      if (currentItem && !res.state.roadmap.items.some((i) => i.skill_id === skillId)) {
+
+      // Add to completed milestones if level meets or exceeds target
+      // (works for both mock backend (keeps item) and real backend (removes it))
+      const targetLevel = currentItem?.why?.target ?? 7.0;
+      if (currentItem && level >= targetLevel) {
+        addCompletedMilestone({
+          ...currentItem,
+          status: 'done',
+          hours: 0,
+        });
+      } else if (currentItem && !res.state.roadmap.items.some((i) => i.skill_id === skillId)) {
+        // Fallback: item removed from roadmap even though level < target (shouldn't normally happen)
         addCompletedMilestone({
           ...currentItem,
           status: 'done',
           hours: 0,
         });
       }
+
       await handleProgressUpdate(res, `Marked Known: ${skillId}`);
     } catch (err: unknown) {
       const message =
@@ -386,16 +398,33 @@ export const ProgressPage: React.FC = () => {
   const currentRole = roles.find((r) => r.role_id === activeRoleId);
   const isMarketUpdateAvailable = currentRole?.market_update_available ?? false;
 
-  // Build combined display items (completed milestones + active items)
+  // Build combined display items:
+  // 1. Take all active items from backend state
+  // 2. For any item that is in completedMilestones, override its status to 'done'
+  // 3. Append any completed items that were fully removed from the active roadmap
   const activeItems = state.roadmap.items;
-  const activeIds = new Set(activeItems.map((i) => i.skill_id || i.item_id));
+  const completedIds = new Set(
+    completedMilestones.map((cm) => cm.skill_id || cm.item_id)
+  );
 
-  // Valid completed items that are not currently active
-  const validCompleted = completedMilestones
+  // Overlay completed status onto active items (handles mock backend that keeps items)
+  const mergedActiveItems = activeItems.map((item) => {
+    const key = item.skill_id || item.item_id;
+    if (key && completedIds.has(key)) {
+      return { ...item, status: 'done' as const };
+    }
+    return item;
+  });
+
+  // Items that were removed from the active roadmap but are recorded as completed
+  const activeIds = new Set(activeItems.map((i) => i.skill_id || i.item_id));
+  const removedCompleted = completedMilestones
     .filter((cm) => !activeIds.has(cm.skill_id || cm.item_id))
     .map((cm) => ({ ...cm, status: 'done' as const }));
 
-  const displayItems = [...validCompleted, ...activeItems].sort((a, b) => a.position - b.position);
+  const displayItems = [...removedCompleted, ...mergedActiveItems].sort(
+    (a, b) => a.position - b.position
+  );
 
   // Completed items count & progress percentage
   const completedCount = displayItems.filter((item) => item.status === 'done').length;
