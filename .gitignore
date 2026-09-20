@@ -47,10 +47,13 @@ dist-ssr/
 *.local
 
 # Database and Storage
-chroma_data/
+careertwin.db
 *.db
 *.sqlite
 *.sqlite3
+!backend/chroma_data/**
+backend/chroma_data/onnx_models/
+*.tar.gz
 
 # IDE and Editor
 .idea/
