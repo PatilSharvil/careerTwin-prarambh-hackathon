@@ -1,0 +1,18 @@
+{
+  "reply": "Recommended focus for today: Linear Algebra - Mathematics for Machine Learning: Statistics & Linear Algebra (120 mins). URL: https://www.coursera.org/specializations/mathematics-machine-learning",
+  "tool_calls": [
+    {
+      "name": "get_today_priority",
+      "args": {},
+      "ok": true
+    }
+  ],
+  "state_changed": false,
+  "state": null,
+  "diff": null,
+  "meta": {
+    "llm_provider": "none",
+    "llm_used": false,
+    "fallback_used": true
+  }
+}

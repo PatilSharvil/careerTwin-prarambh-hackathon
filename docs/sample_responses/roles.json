@@ -63,6 +63,22 @@
       ],
       "is_custom": false,
       "market_update_available": false
+    },
+    {
+      "role_id": "custom_robotics_vision_engineer",
+      "title": "Robotics Vision Engineer",
+      "version": "custom",
+      "description": "Design computer vision systems for autonomous robotic agents",
+      "skill_count": 17,
+      "top_skills": [
+        "Python Programming",
+        "Machine Learning Fundamentals",
+        "Model Evaluation & Metrics",
+        "Deep Learning Fundamentals",
+        "Feature Engineering & Selection"
+      ],
+      "is_custom": true,
+      "market_update_available": false
     }
   ]
 }
