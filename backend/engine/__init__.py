@@ -1,20 +1,38 @@
 """CareerTwin deterministic Career Engine.
 
 SPEC §7 core logic for skill calibration, gap analysis, priority ranking,
-dependency impact, and readiness alignment scoring.
+readiness alignment scoring, sequential roadmap generation, adaptive replanning,
+diff generation, today priority recommendation, and market updates.
 """
 from engine.calibrate import calibrate_profile, calibrate_skill_level
 from engine.catalog import Catalog
 from engine.gaps import analyze_gaps, compute_gaps_and_strengths
+from engine.market import apply_market_update, diff_role_requirements
 from engine.models import (
+    Activity,
+    ActivityType,
     Analysis,
     CategoryScore,
+    Diff,
     Gap,
     GapItem,
+    GraphEdge,
+    GraphNode,
+    ItemChange,
+    LevelChange,
+    NarrativeSource,
+    Phase,
+    Prereq,
     PriorityLabel,
     ProfileSkillState,
     ProfileState,
     RadarPoint,
+    ReorderedItem,
+    ReprioritizedItem,
+    RequirementChange,
+    Roadmap,
+    RoadmapGraph,
+    RoadmapItem,
     Role,
     RoleSkill,
     Skill,
@@ -22,18 +40,43 @@ from engine.models import (
     SkillRef,
     SkillStatus,
     Strength,
+    TodayPick,
+    TriggerInfo,
+    Why,
 )
+from engine.narrative import generate_template_narrative
 from engine.readiness import READINESS_NOTE, compute_readiness
+from engine.replan import complete_activity, complete_skill, mark_known
+from engine.resources import JsonResourceProvider, ResourceProvider
+from engine.roadmap import build_roadmap
+from engine.today import get_today_pick
+from engine.why import build_why
 
 __all__ = [
+    "Activity",
+    "ActivityType",
     "Analysis",
     "CategoryScore",
+    "Diff",
     "Gap",
     "GapItem",
+    "GraphEdge",
+    "GraphNode",
+    "ItemChange",
+    "LevelChange",
+    "NarrativeSource",
+    "Phase",
+    "Prereq",
     "PriorityLabel",
     "ProfileSkillState",
     "ProfileState",
     "RadarPoint",
+    "ReorderedItem",
+    "ReprioritizedItem",
+    "RequirementChange",
+    "Roadmap",
+    "RoadmapGraph",
+    "RoadmapItem",
     "Role",
     "RoleSkill",
     "Skill",
@@ -41,6 +84,9 @@ __all__ = [
     "SkillRef",
     "SkillStatus",
     "Strength",
+    "TodayPick",
+    "TriggerInfo",
+    "Why",
     "READINESS_NOTE",
     "Catalog",
     "calibrate_profile",
@@ -48,4 +94,15 @@ __all__ = [
     "compute_gaps_and_strengths",
     "compute_readiness",
     "analyze_gaps",
+    "build_roadmap",
+    "complete_skill",
+    "complete_activity",
+    "mark_known",
+    "get_today_pick",
+    "apply_market_update",
+    "diff_role_requirements",
+    "generate_template_narrative",
+    "build_why",
+    "JsonResourceProvider",
+    "ResourceProvider",
 ]
