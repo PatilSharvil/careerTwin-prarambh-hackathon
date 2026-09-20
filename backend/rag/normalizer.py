@@ -27,7 +27,7 @@ class SkillNormalizer:
         self,
         skills_path: Path | str | None = None,
         chroma_client: Any = None,
-        threshold: float = 0.60,
+        threshold: float = 0.67,
     ) -> None:
         if skills_path is None:
             data_file = Path(__file__).resolve().parent.parent / "data" / "skills.json"
