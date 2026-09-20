@@ -203,6 +203,15 @@ def list_role_versions(role_id: str, db_path: str | Path | None = None) -> list[
         ]
 
 
+def get_custom_roles(db_path: str | Path | None = None) -> list[dict[str, Any]]:
+    """Retrieve all saved custom roles."""
+    with get_connection(db_path) as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT json FROM role_versions WHERE is_custom = 1")
+        rows = cursor.fetchall()
+        return [json.loads(r["json"]) for r in rows]
+
+
 def cache_get(key: str, db_path: str | Path | None = None) -> dict[str, Any] | None:
     """Retrieve cached LLM output by hash key."""
     with get_connection(db_path) as conn:
