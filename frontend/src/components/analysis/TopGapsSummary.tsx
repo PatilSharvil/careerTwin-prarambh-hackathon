@@ -53,21 +53,21 @@ export const TopGapsSummary: React.FC<TopGapsSummaryProps> = ({
                     <span className="w-6 h-6 rounded-lg bg-black text-[#ffe566] border border-black flex items-center justify-center text-xs font-black shadow-neo-xs">
                       {index + 1}
                     </span>
-                    <h4 className="text-sm font-black text-black">{gap.skill_name}</h4>
+                    <h4 className="text-sm font-black text-black break-words [overflow-wrap:anywhere]">{gap.skill_name}</h4>
                   </div>
                   <Badge priority={gap.priority_label} size="sm">
                     {gap.priority_label} {gap.priority}
                   </Badge>
                 </div>
 
-                <div className="flex items-center gap-2 text-xs text-black mb-3 font-bold">
-                  <span>Level: <strong className="text-black bg-white px-1.5 py-0.5 rounded border border-black">{gap.level.toFixed(1)}</strong></span>
+                <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 text-xs text-black mb-3 font-bold">
+                  <span className="whitespace-nowrap">Level: <strong className="text-black bg-white px-1.5 py-0.5 rounded border border-black shadow-neo-xs">{gap.level.toFixed(1)}</strong></span>
                   <span className="text-black">&rarr;</span>
-                  <span>Target: <strong className="text-black bg-[#79e7a8] px-1.5 py-0.5 rounded border border-black">{gap.target.toFixed(1)}</strong></span>
-                  <span className="text-red-700 font-black bg-[#ff6b6b]/20 px-1 py-0.5 rounded border border-red-400">(+{gap.gap.toFixed(1)})</span>
+                  <span className="whitespace-nowrap">Target: <strong className="text-black bg-[#79e7a8] px-1.5 py-0.5 rounded border border-black shadow-neo-xs">{gap.target.toFixed(1)}</strong></span>
+                  <span className="text-red-700 font-black bg-[#ff6b6b]/20 px-1.5 py-0.5 rounded border border-red-400 text-[11px] whitespace-nowrap">(+{gap.gap.toFixed(1)})</span>
                 </div>
 
-                <p className="text-xs text-slate-800 leading-relaxed italic bg-white p-3 rounded-xl border border-black mb-3 font-medium">
+                <p className="text-xs text-slate-800 leading-relaxed italic bg-white p-3 rounded-xl border border-black mb-3 font-medium break-words [overflow-wrap:anywhere]">
                   &ldquo;{narrative}&rdquo;
                 </p>
               </div>

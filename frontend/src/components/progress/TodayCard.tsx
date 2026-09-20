@@ -105,12 +105,12 @@ export const TodayCard: React.FC<TodayCardProps> = ({
         <div className="text-xs font-black text-black mb-0.5">
           Focus Skill: <span className="bg-[#70d6ff] px-2 py-0.5 rounded-lg border border-black shadow-neo-xs">{skill_name}</span>
         </div>
-        <h3 className="text-xl font-black text-black leading-snug mt-2">
+        <h3 className="text-xl font-black text-black leading-snug mt-2 break-words [overflow-wrap:anywhere]">
           {activity.title}
         </h3>
 
         {/* Level Gain Pill */}
-        <div className="flex items-center gap-3 mt-2 text-xs text-black font-bold">
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 text-xs text-black font-bold">
           <span className="inline-flex items-center gap-1 bg-[#79e7a8] text-black border-2 border-black px-2.5 py-0.5 rounded-lg shadow-neo-xs">
             <TrendingUp className="w-3.5 h-3.5 text-black stroke-[3]" />
             Level {activity.level_from.toFixed(1)} → {activity.level_to.toFixed(1)} (+{activity.level_gain.toFixed(1)})
@@ -125,7 +125,7 @@ export const TodayCard: React.FC<TodayCardProps> = ({
       {/* Why Explanation Box */}
       {why?.narrative && (
         <div className="mb-4 p-4 rounded-2xl bg-[#faf6ee] border-2 border-black text-xs text-black leading-relaxed font-medium shadow-neo-xs">
-          <div className="flex items-center justify-between font-black text-black mb-1.5">
+          <div className="flex flex-wrap items-center justify-between font-black text-black mb-1.5 gap-2">
             <span>Why this activity?</span>
             <Badge
               variant={
@@ -140,7 +140,7 @@ export const TodayCard: React.FC<TodayCardProps> = ({
               {why.priority_label} Priority ({why.priority})
             </Badge>
           </div>
-          <p className="bg-white p-2.5 rounded-xl border border-black">&ldquo;{why.narrative}&rdquo;</p>
+          <p className="bg-white p-3 rounded-xl border border-black break-words [overflow-wrap:anywhere]">&ldquo;{why.narrative}&rdquo;</p>
         </div>
       )}
 
@@ -152,9 +152,9 @@ export const TodayCard: React.FC<TodayCardProps> = ({
           </div>
           <ul className="space-y-1.5">
             {reasons.map((reason, idx) => (
-              <li key={idx} className="flex items-start gap-2 text-xs font-semibold text-black bg-[#faf6ee] p-2 rounded-xl border border-black">
+              <li key={idx} className="flex items-start gap-2 text-xs font-semibold text-black bg-[#faf6ee] p-2.5 rounded-xl border border-black break-words [overflow-wrap:anywhere]">
                 <CheckCircle2 className="w-4 h-4 text-black stroke-[3] flex-shrink-0 mt-0.5" />
-                <span>{reason}</span>
+                <span className="flex-1 min-w-0">{reason}</span>
               </li>
             ))}
           </ul>
@@ -171,9 +171,9 @@ export const TodayCard: React.FC<TodayCardProps> = ({
           size="md"
           onClick={handleStart}
           disabled={isLoading || !activity.url}
+          rightIcon={<ExternalLink className="w-4 h-4 ml-1 stroke-[2.5]" />}
         >
-          <span>Start Activity</span>
-          <ExternalLink className="w-4 h-4 ml-1.5 stroke-[2.5]" />
+          Start Activity
         </Button>
       </div>
     </Card>

@@ -78,21 +78,20 @@ const Navigation: React.FC = () => {
   return (
     <header className="bg-white border-b-2 border-black sticky top-0 z-40 shadow-neo-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between min-h-[4rem] py-2 items-center gap-2 sm:gap-4">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center flex-shrink-0">
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 rounded-xl bg-[#ffe566] border-2 border-black flex items-center justify-center text-black font-black text-sm shadow-neo-xs group-hover:-translate-y-0.5 transition-transform">
-                CT
-              </div>
-              <span className="text-xl font-black text-black tracking-tight group-hover:text-primary-800 transition-colors">
-                CareerTwin
-              </span>
+              <img
+                src="/logo.png"
+                alt="CareerTwin Logo"
+                className="h-8 sm:h-9 w-auto max-w-[150px] sm:max-w-[180px] object-contain hover:scale-102 transition-transform"
+              />
             </Link>
           </div>
 
           {/* 5-step Progress Indicator reflecting real progress */}
-          <nav className="hidden md:flex items-center space-x-1.5 lg:space-x-2.5" aria-label="Step progress">
+          <nav className="hidden md:flex items-center space-x-1.5 lg:space-x-2 flex-wrap justify-center" aria-label="Step progress">
             {STEPS.map((step) => {
               const isActive = currentPath === step.path;
               const isCompleted = isStepCompleted(step.step);
@@ -101,16 +100,16 @@ const Navigation: React.FC = () => {
                 <Link
                   key={step.path}
                   to={step.path}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-black transition-all ${
+                  className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-black border-2 border-black transition-all ${
                     isActive
-                      ? 'bg-[#ffe566] text-black shadow-neo scale-105'
+                      ? 'bg-[#ffe566] text-black shadow-neo-xs scale-102'
                       : isCompleted
                       ? 'bg-[#79e7a8] text-black shadow-neo-xs hover:bg-[#68d897]'
-                      : 'bg-white text-slate-600 hover:text-black hover:bg-[#faf6ee] shadow-neo-xs opacity-80 hover:opacity-100'
+                      : 'bg-white text-slate-700 hover:text-black hover:bg-[#faf6ee] shadow-neo-xs opacity-90 hover:opacity-100'
                   }`}
                 >
                   <span
-                    className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black border border-black ${
+                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center text-[10px] font-black border border-black flex-shrink-0 ${
                       isActive
                         ? 'bg-black text-[#ffe566]'
                         : isCompleted
@@ -120,17 +119,17 @@ const Navigation: React.FC = () => {
                   >
                     {isCompleted ? '✓' : step.step}
                   </span>
-                  <span>{step.label}</span>
+                  <span className="whitespace-nowrap">{step.label}</span>
                 </Link>
               );
             })}
           </nav>
 
           {/* Target Role indicator pill */}
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-2 flex-shrink-0">
             {state?.role ? (
-              <span className="hidden sm:inline-flex items-center text-xs font-black text-black bg-[#b892ff] px-3 py-1 rounded-xl border-2 border-black shadow-neo-xs">
-                🎯 {state.role.title}
+              <span className="hidden sm:inline-flex items-center text-xs font-black text-black bg-[#b892ff] px-2.5 py-1 rounded-xl border-2 border-black shadow-neo-xs max-w-[200px] truncate">
+                🎯 <span className="truncate ml-1">{state.role.title}</span>
               </span>
             ) : null}
           </div>

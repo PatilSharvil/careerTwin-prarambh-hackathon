@@ -185,10 +185,10 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                             #{item.position}
                           </span>
 
-                          <div className="min-w-0">
+                          <div className="min-w-0 flex-1">
                             <div className="flex flex-wrap items-center gap-2 mb-1">
                               <h3
-                                className={`text-base font-black truncate ${
+                                className={`text-base font-black break-words [overflow-wrap:anywhere] ${
                                   isDone
                                     ? 'text-neutral-500 line-through'
                                     : 'text-black'
@@ -395,7 +395,7 @@ export const RoadmapChecklist: React.FC<RoadmapChecklistProps> = ({
                                 <div className="min-w-0">
                                   <div className="flex flex-wrap items-center gap-2">
                                     <h4
-                                      className={`text-xs font-black ${
+                                      className={`text-xs font-black break-words [overflow-wrap:anywhere] ${
                                         act.completed
                                           ? 'text-neutral-500 line-through'
                                           : 'text-black'

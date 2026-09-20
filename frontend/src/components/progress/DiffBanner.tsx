@@ -1,6 +1,5 @@
 import React from 'react';
 import { Card } from '../ui/Card';
-import { Badge } from '../ui/Badge';
 import type { Diff, NarrativeSource } from '../../types/api';
 import {
   TrendingUp,
@@ -149,31 +148,31 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
               </span>
             )}
           </div>
-          <p className="text-xs text-black leading-relaxed font-semibold">
+          <p className="text-xs text-black leading-relaxed font-semibold break-words [overflow-wrap:anywhere]">
             {narrative}
           </p>
         </div>
       )}
 
       {/* Grid of Specific Diff Sections */}
-      <div className="space-y-3">
+      <div className="space-y-3.5">
         {/* 3. Level Changes */}
         {diff.level_changes && diff.level_changes.length > 0 && (
-          <div className="p-3 rounded-lg bg-slate-50/80 border border-slate-100">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 flex items-center gap-1.5">
-              <TrendingUp className="w-3.5 h-3.5 text-primary-600" />
+          <div className="p-3.5 rounded-xl bg-[#faf6ee] border-2 border-black shadow-neo-xs">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black mb-2 flex items-center gap-1.5">
+              <TrendingUp className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Skill Level Advances</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {diff.level_changes.map((lc) => (
                 <span
                   key={lc.skill_id}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold bg-white text-slate-800 px-2.5 py-1 rounded-md border border-slate-200 shadow-2xs"
+                  className="inline-flex items-center gap-1.5 text-xs font-black bg-white text-black px-3 py-1 rounded-lg border border-black shadow-neo-xs"
                 >
                   <span>{lc.skill_name}:</span>
-                  <span className="text-slate-500">{lc.from.toFixed(1)}</span>
-                  <span className="text-slate-400">→</span>
-                  <span className="text-emerald-700 font-bold">{lc.to.toFixed(1)}</span>
+                  <span className="text-slate-600">{lc.from.toFixed(1)}</span>
+                  <span className="text-black">&rarr;</span>
+                  <span className="text-black bg-[#79e7a8] px-1.5 py-0.2 rounded border border-black">{lc.to.toFixed(1)}</span>
                 </span>
               ))}
             </div>
@@ -182,18 +181,18 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 
         {/* 4. Unlocked (green) */}
         {diff.unlocked && diff.unlocked.length > 0 && (
-          <div className="p-3 rounded-lg bg-emerald-50/50 border border-emerald-200">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-emerald-800 mb-1.5 flex items-center gap-1.5">
-              <Unlock className="w-3.5 h-3.5 text-emerald-600" />
+          <div className="p-3.5 rounded-xl bg-[#79e7a8]/20 border-2 border-black shadow-neo-xs">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black mb-2 flex items-center gap-1.5">
+              <Unlock className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Newly Unlocked Milestones</span>
             </div>
             <div className="flex flex-wrap gap-2">
               {diff.unlocked.map((u) => (
                 <span
                   key={u.skill_id}
-                  className="inline-flex items-center gap-1 text-xs font-bold bg-white text-emerald-800 px-2.5 py-1 rounded-md border border-emerald-300 shadow-2xs"
+                  className="inline-flex items-center gap-1.5 text-xs font-black bg-white text-black px-3 py-1 rounded-lg border border-black shadow-neo-xs"
                 >
-                  <Unlock className="w-3 h-3 text-emerald-600" />
+                  <Unlock className="w-3.5 h-3.5 text-black stroke-[2.5]" />
                   {u.skill_name}
                 </span>
               ))}
@@ -203,19 +202,19 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 
         {/* 5. Removed (strikethrough) */}
         {diff.removed && diff.removed.length > 0 && (
-          <div className="p-3 rounded-lg bg-rose-50/40 border border-rose-200">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-rose-800 mb-1.5 flex items-center gap-1.5">
-              <Trash2 className="w-3.5 h-3.5 text-rose-600" />
+          <div className="p-3.5 rounded-xl bg-[#ff6b6b]/15 border-2 border-black shadow-neo-xs">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black mb-2 flex items-center gap-1.5">
+              <Trash2 className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Retired from Roadmap</span>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               {diff.removed.map((rem) => (
-                <div key={rem.item_id} className="text-xs text-slate-700 flex items-baseline gap-2">
-                  <span className="line-through text-slate-500 font-medium">
+                <div key={rem.item_id} className="text-xs text-black flex items-center gap-2 flex-wrap">
+                  <span className="line-through text-slate-500 font-bold">
                     {rem.skill_name}
                   </span>
-                  <span className="text-slate-400">―</span>
-                  <span className="text-slate-600 italic text-[11px]">{rem.reason}</span>
+                  <span className="text-black">&mdash;</span>
+                  <span className="text-slate-700 italic text-[11px] font-semibold">{rem.reason}</span>
                 </div>
               ))}
             </div>
@@ -224,17 +223,17 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 
         {/* 6. Added */}
         {diff.added && diff.added.length > 0 && (
-          <div className="p-3 rounded-lg bg-blue-50/40 border border-blue-200">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-blue-800 mb-1.5 flex items-center gap-1.5">
-              <PlusCircle className="w-3.5 h-3.5 text-blue-600" />
+          <div className="p-3.5 rounded-xl bg-[#70d6ff]/20 border-2 border-black shadow-neo-xs">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black mb-2 flex items-center gap-1.5">
+              <PlusCircle className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Newly Added to Roadmap</span>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               {diff.added.map((add) => (
-                <div key={add.item_id} className="text-xs text-slate-700 flex items-baseline gap-2">
-                  <span className="font-bold text-blue-900">+{add.skill_name}</span>
-                  <span className="text-slate-400">―</span>
-                  <span className="text-slate-600 text-[11px]">{add.reason}</span>
+                <div key={add.item_id} className="text-xs text-black flex items-center gap-2 flex-wrap">
+                  <span className="font-black text-black bg-white px-2 py-0.5 rounded border border-black shadow-neo-xs">+{add.skill_name}</span>
+                  <span className="text-black">&mdash;</span>
+                  <span className="text-slate-700 text-[11px] font-semibold">{add.reason}</span>
                 </div>
               ))}
             </div>
@@ -243,18 +242,18 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 
         {/* 7. Reordered (from -> to) */}
         {diff.reordered && diff.reordered.length > 0 && (
-          <div className="p-3 rounded-lg bg-slate-50/80 border border-slate-100">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 flex items-center gap-1.5">
-              <ArrowUpDown className="w-3.5 h-3.5 text-indigo-600" />
+          <div className="p-3.5 rounded-xl bg-[#faf6ee] border-2 border-black shadow-neo-xs">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black mb-2 flex items-center gap-1.5">
+              <ArrowUpDown className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Timeline Reordering</span>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               {diff.reordered.map((reo) => (
-                <div key={reo.item_id} className="text-xs text-slate-700 flex items-center gap-2">
-                  <span className="font-semibold text-slate-800">{reo.skill_name}:</span>
-                  <span className="text-slate-500">Position #{reo.from_position}</span>
-                  <span className="text-slate-400">→</span>
-                  <span className="font-bold text-primary-700 bg-primary-50 px-1.5 py-0.5 rounded border border-primary-200">
+                <div key={reo.item_id} className="text-xs text-black flex items-center gap-2 flex-wrap font-bold">
+                  <span className="font-black text-black">{reo.skill_name}:</span>
+                  <span className="text-slate-600">Position #{reo.from_position}</span>
+                  <span className="text-black">&rarr;</span>
+                  <span className="font-black text-black bg-[#ffe566] px-2 py-0.5 rounded border border-black shadow-neo-xs">
                     Position #{reo.to_position}
                   </span>
                 </div>
@@ -265,18 +264,18 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 
         {/* 8. Reprioritized */}
         {diff.reprioritized && diff.reprioritized.length > 0 && (
-          <div className="p-3 rounded-lg bg-slate-50/80 border border-slate-100">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5 flex items-center gap-1.5">
-              <Sliders className="w-3.5 h-3.5 text-amber-600" />
+          <div className="p-3.5 rounded-xl bg-[#faf6ee] border-2 border-black shadow-neo-xs">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black mb-2 flex items-center gap-1.5">
+              <Sliders className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Priority Adjustments</span>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               {diff.reprioritized.map((rep) => (
-                <div key={rep.skill_id} className="text-xs text-slate-700 flex items-center gap-2">
-                  <span className="font-semibold text-slate-800">{rep.skill_name}:</span>
-                  <span className="text-slate-500">Score {rep.from_priority}</span>
-                  <span className="text-slate-400">→</span>
-                  <span className="font-bold text-slate-900 bg-slate-200 px-1.5 py-0.5 rounded">
+                <div key={rep.skill_id} className="text-xs text-black flex items-center gap-2 flex-wrap font-bold">
+                  <span className="font-black text-black">{rep.skill_name}:</span>
+                  <span className="text-slate-600">Score {rep.from_priority}</span>
+                  <span className="text-black">&rarr;</span>
+                  <span className="font-black text-black bg-[#ffe566] px-2 py-0.5 rounded border border-black shadow-neo-xs">
                     Score {rep.to_priority}
                   </span>
                 </div>
@@ -287,23 +286,23 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 
         {/* 9. Requirement Changes (Market Update) */}
         {diff.requirement_changes && diff.requirement_changes.length > 0 && (
-          <div className="p-3 rounded-lg bg-purple-50/40 border border-purple-200">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-purple-800 mb-1.5 flex items-center gap-1.5">
-              <AlertTriangle className="w-3.5 h-3.5 text-purple-600" />
+          <div className="p-3.5 rounded-xl bg-[#b892ff]/20 border-2 border-black shadow-neo-xs">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black mb-2 flex items-center gap-1.5">
+              <AlertTriangle className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Role Benchmark Market Updates</span>
             </div>
-            <div className="space-y-1">
+            <div className="space-y-1.5">
               {diff.requirement_changes.map((req, idx) => (
-                <div key={idx} className="text-xs text-slate-700 flex items-baseline gap-2">
-                  <span className="font-bold text-purple-900">{req.skill_name}:</span>
-                  <Badge variant="outline" size="sm" className="capitalize">
+                <div key={idx} className="text-xs text-black flex items-center gap-2 flex-wrap font-bold">
+                  <span className="font-black text-black">{req.skill_name}:</span>
+                  <span className="text-[10px] font-black bg-white px-2 py-0.5 rounded border border-black capitalize">
                     {req.change.replace(/_/g, ' ')}
-                  </Badge>
+                  </span>
                   {req.from !== null && (
-                    <span className="text-slate-500 text-[11px]">from {req.from}</span>
+                    <span className="text-slate-600 text-[11px]">from {req.from}</span>
                   )}
                   {req.to !== null && (
-                    <span className="font-semibold text-slate-800 text-[11px]">to {req.to}</span>
+                    <span className="font-black text-black text-[11px] bg-[#79e7a8] px-1.5 py-0.2 rounded border border-black">to {req.to}</span>
                   )}
                 </div>
               ))}
@@ -314,14 +313,14 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
         {/* 10. Deterministic Facts */}
         {diff.facts && diff.facts.length > 0 && (
           <div className="pt-2">
-            <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">
+            <div className="text-[11px] font-black uppercase tracking-wider text-black mb-1.5">
               Deterministic Facts
             </div>
-            <ul className="space-y-1">
+            <ul className="space-y-1.5">
               {diff.facts.map((fact, index) => (
-                <li key={index} className="flex items-start gap-2 text-xs text-slate-600">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-primary-500 flex-shrink-0 mt-0.5" />
-                  <span>{fact}</span>
+                <li key={index} className="flex items-start gap-2 text-xs font-semibold text-black bg-white p-2.5 rounded-xl border border-black shadow-neo-xs">
+                  <CheckCircle2 className="w-4 h-4 text-black stroke-[3] flex-shrink-0 mt-0.5" />
+                  <span className="break-words [overflow-wrap:anywhere] flex-1 min-w-0">{fact}</span>
                 </li>
               ))}
             </ul>

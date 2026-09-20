@@ -119,18 +119,18 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                   >
                     <div>
                       {/* Top: Position + Status + Stretch Tag */}
-                      <div className="flex items-start justify-between gap-2 mb-2.5">
-                        <div className="flex items-center gap-1.5">
+                      <div className="flex items-start justify-between gap-2 mb-2.5 flex-wrap">
+                        <div className="flex items-center gap-1.5 flex-shrink-0">
                           <span className="w-6 h-6 rounded-lg bg-black text-[#ffe566] border border-black flex items-center justify-center text-[10px] font-black shadow-neo-xs">
                             {item.position}
                           </span>
-                          <span className="text-xs font-black text-black flex items-center gap-1">
+                          <span className="text-xs font-black text-black flex items-center gap-1 whitespace-nowrap">
                             <Calendar className="w-3.5 h-3.5 text-black stroke-[2.5]" />
                             Weeks {item.week_start}–{item.week_end}
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-1.5 flex-wrap">
+                        <div className="flex items-center gap-1.5 flex-wrap justify-end">
                           {isStretch && (
                             <span className="text-[10px] font-black text-black bg-[#ff6b6b] px-2 py-0.5 rounded-lg border border-black shadow-neo-xs flex items-center gap-0.5">
                               <AlertCircle className="w-3 h-3 text-black stroke-[3]" /> stretch
@@ -144,7 +144,7 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                       </div>
 
                       {/* Item Title */}
-                      <h3 className="text-base font-black text-black tracking-tight mb-1">
+                      <h3 className="text-base font-black text-black tracking-tight mb-1 break-words [overflow-wrap:anywhere]">
                         {item.skill_name}
                       </h3>
 
