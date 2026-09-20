@@ -144,7 +144,7 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                       </div>
 
                       {/* Item Title */}
-                      <h3 className="text-base font-black text-black tracking-tight mb-1">
+                      <h3 className="text-base font-black text-black tracking-tight mb-1 break-words [overflow-wrap:anywhere]">
                         {item.skill_name}
                       </h3>
 

@@ -94,7 +94,7 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                 {/* Left: Skill name, category, unverified, unblocks */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <h4 className="text-sm font-black text-black">{gap.skill_name}</h4>
+                    <h4 className="text-sm font-black text-black break-words [overflow-wrap:anywhere]">{gap.skill_name}</h4>
                     <span className="text-[11px] text-slate-700 font-bold">
                       &bull; {gap.category}
                     </span>
@@ -200,7 +200,7 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                     </div>
 
                     {/* Grounded Narrative Sentence */}
-                    <p className="text-xs text-black leading-relaxed font-bold bg-white p-3 rounded-xl border border-black">
+                    <p className="text-xs text-black leading-relaxed font-bold bg-white p-3 rounded-xl border border-black break-words [overflow-wrap:anywhere]">
                       &ldquo;{narrative}&rdquo;
                     </p>
 

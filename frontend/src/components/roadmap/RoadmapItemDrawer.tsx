@@ -54,7 +54,7 @@ export const RoadmapItemDrawer: React.FC<RoadmapItemDrawerProps> = ({
       size="lg"
       title={
         <div className="flex items-center gap-2.5 flex-wrap">
-          <span className="text-xl font-black text-black">{item.skill_name}</span>
+          <span className="text-xl font-black text-black break-words [overflow-wrap:anywhere]">{item.skill_name}</span>
           <Badge status={item.status} size="sm" className="capitalize">
             {item.status.replace('_', ' ')}
           </Badge>
@@ -120,7 +120,7 @@ export const RoadmapItemDrawer: React.FC<RoadmapItemDrawerProps> = ({
             </div>
 
             {/* Narrative */}
-            <p className="text-xs text-black leading-relaxed font-bold bg-white p-3 rounded-xl border border-black">
+            <p className="text-xs text-black leading-relaxed font-bold bg-white p-3 rounded-xl border border-black break-words [overflow-wrap:anywhere]">
               &ldquo;{item.why.narrative}&rdquo;
             </p>
 
@@ -146,7 +146,7 @@ export const RoadmapItemDrawer: React.FC<RoadmapItemDrawerProps> = ({
 
             {/* Evidence snippet if any */}
             {item.why.evidence_snippet && (
-              <p className="text-[11px] text-slate-700 italic bg-white p-2.5 rounded-xl border border-black font-medium">
+              <p className="text-[11px] text-slate-700 italic bg-white p-2.5 rounded-xl border border-black font-medium break-words [overflow-wrap:anywhere]">
                 Resume Evidence: &ldquo;{item.why.evidence_snippet}&rdquo;
               </p>
             )}
@@ -158,7 +158,7 @@ export const RoadmapItemDrawer: React.FC<RoadmapItemDrawerProps> = ({
                 {item.why.unblocks.map((u) => (
                   <span
                     key={u.skill_id}
-                    className="text-[11px] font-black text-black bg-[#70d6ff] px-2.5 py-0.5 rounded-lg border border-black shadow-neo-xs"
+                    className="text-[11px] font-black text-black bg-[#70d6ff] px-2.5 py-0.5 rounded-lg border border-black shadow-neo-xs break-words"
                   >
                     {u.skill_name}
                   </span>
@@ -187,14 +187,14 @@ export const RoadmapItemDrawer: React.FC<RoadmapItemDrawerProps> = ({
                   key={prereq.skill_id}
                   className="p-3 rounded-xl border-2 border-black bg-white flex items-center justify-between gap-3 text-xs shadow-neo-xs"
                 >
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
                     {prereq.met ? (
                       <CheckCircle2 className="w-4 h-4 text-black stroke-[3] flex-shrink-0" />
                     ) : (
                       <Lock className="w-4 h-4 text-slate-500 flex-shrink-0" />
                     )}
-                    <span className="font-black text-black">{prereq.skill_name}</span>
-                    <span className="text-slate-600 font-bold">
+                    <span className="font-black text-black break-words [overflow-wrap:anywhere]">{prereq.skill_name}</span>
+                    <span className="text-slate-600 font-bold whitespace-nowrap">
                       (min level: {prereq.min_level.toFixed(1)})
                     </span>
                   </div>
@@ -229,12 +229,12 @@ export const RoadmapItemDrawer: React.FC<RoadmapItemDrawerProps> = ({
                   }`}
                 >
                   <div className="flex items-start justify-between gap-2 mb-2">
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 min-w-0">
                       <div className="p-2 rounded-xl bg-[#faf6ee] border border-black flex-shrink-0">
                         {getActivityIcon(act.type)}
                       </div>
-                      <div>
-                        <h5 className="text-xs sm:text-sm font-black text-black leading-snug">
+                      <div className="min-w-0">
+                        <h5 className="text-xs sm:text-sm font-black text-black leading-snug break-words [overflow-wrap:anywhere]">
                           {act.title}
                         </h5>
                         <p className="text-[11px] text-slate-700 font-bold">
@@ -253,14 +253,14 @@ export const RoadmapItemDrawer: React.FC<RoadmapItemDrawerProps> = ({
                         href={act.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-black text-black bg-[#ffe566] hover:bg-[#ffd026] border-2 border-black shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5 transition-all"
+                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-black text-black bg-[#ffe566] hover:bg-[#ffd026] border-2 border-black shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5 transition-all whitespace-nowrap"
                       >
                         Launch <ExternalLink className="w-3 h-3 stroke-[2.5]" />
                       </a>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3 text-[11px] text-black font-bold mt-2 pt-2 border-t border-black">
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[11px] text-black font-bold mt-2 pt-2 border-t border-black">
                     <span className="flex items-center gap-1">
                       <Clock className="w-3.5 h-3.5 text-black" /> {act.hours} hrs
                     </span>
@@ -294,7 +294,7 @@ export const RoadmapItemDrawer: React.FC<RoadmapItemDrawerProps> = ({
                   className="p-3 rounded-xl border-2 border-black bg-[#faf6ee] flex items-start gap-2.5 text-xs font-semibold text-black shadow-neo-xs"
                 >
                   <CheckCircle2 className="w-4 h-4 text-black stroke-[3] flex-shrink-0 mt-0.5" />
-                  <span>{criterion}</span>
+                  <span className="break-words [overflow-wrap:anywhere] flex-1 min-w-0">{criterion}</span>
                 </div>
               ))}
             </div>

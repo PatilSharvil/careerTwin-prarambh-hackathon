@@ -148,7 +148,7 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
               </span>
             )}
           </div>
-          <p className="text-xs text-black leading-relaxed font-semibold">
+          <p className="text-xs text-black leading-relaxed font-semibold break-words [overflow-wrap:anywhere]">
             {narrative}
           </p>
         </div>
@@ -320,7 +320,7 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
               {diff.facts.map((fact, index) => (
                 <li key={index} className="flex items-start gap-2 text-xs font-semibold text-black bg-white p-2.5 rounded-xl border border-black shadow-neo-xs">
                   <CheckCircle2 className="w-4 h-4 text-black stroke-[3] flex-shrink-0 mt-0.5" />
-                  <span>{fact}</span>
+                  <span className="break-words [overflow-wrap:anywhere] flex-1 min-w-0">{fact}</span>
                 </li>
               ))}
             </ul>

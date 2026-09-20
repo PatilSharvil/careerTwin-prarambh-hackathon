@@ -12,6 +12,7 @@ import {
   Bot,
   Minimize2,
   Maximize2,
+  ExternalLink,
 } from 'lucide-react';
 
 export interface CoachPanelProps {
@@ -115,6 +116,60 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
     }
   };
 
+  const renderFormattedMessage = (text: string) => {
+    const lines = text.split('\n');
+    return (
+      <div className="space-y-1.5 break-words [overflow-wrap:anywhere]">
+        {lines.map((line, lineIdx) => {
+          if (!line.trim()) {
+            return <div key={lineIdx} className="h-1" />;
+          }
+
+          const isBullet = line.trim().startsWith('- ') || line.trim().startsWith('* ');
+          const cleanLine = isBullet ? line.trim().substring(2) : line;
+
+          const parts = cleanLine.split(/(\*\*[^*]+\*\*|https?:\/\/[^\s]+)/g);
+
+          const renderedLine = parts.map((part, partIdx) => {
+            if (part.startsWith('**') && part.endsWith('**')) {
+              return (
+                <strong key={partIdx} className="font-black text-black">
+                  {part.slice(2, -2)}
+                </strong>
+              );
+            }
+            if (part.startsWith('http://') || part.startsWith('https://')) {
+              return (
+                <a
+                  key={partIdx}
+                  href={part}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-blue-700 hover:text-blue-900 font-bold break-all inline-flex items-center gap-0.5 mx-0.5"
+                >
+                  <span>{part.length > 35 ? `${part.slice(0, 32)}...` : part}</span>
+                  <ExternalLink className="w-3 h-3 inline flex-shrink-0" />
+                </a>
+              );
+            }
+            return <span key={partIdx}>{part}</span>;
+          });
+
+          if (isBullet) {
+            return (
+              <div key={lineIdx} className="flex items-start gap-1.5 pl-1">
+                <span className="text-black font-black leading-none mt-1.5">•</span>
+                <div className="flex-1 min-w-0">{renderedLine}</div>
+              </div>
+            );
+          }
+
+          return <p key={lineIdx} className="leading-relaxed">{renderedLine}</p>;
+        })}
+      </div>
+    );
+  };
+
   return (
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
       {/* Floating Toggle Button when closed */}
@@ -182,7 +237,7 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
           {!isMinimized && (
             <>
               {/* Message List */}
-              <div className="flex-1 p-4 overflow-y-auto space-y-3.5 bg-[#faf6ee]">
+              <div className="flex-1 p-4 overflow-y-auto space-y-3.5 bg-[#faf6ee] min-h-0">
                 {coachMessages.length === 0 ? (
                   <div className="text-center py-8 px-2">
                     <div className="w-12 h-12 rounded-2xl bg-[#ffe566] text-black flex items-center justify-center mx-auto mb-3 border-2 border-black shadow-neo-xs">
@@ -204,31 +259,31 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
                       }`}
                     >
                       <div
-                        className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs font-bold leading-relaxed border-2 border-black ${
+                        className={`max-w-[90%] rounded-2xl p-3.5 text-xs font-bold leading-relaxed border-2 border-black break-words [overflow-wrap:anywhere] ${
                           msg.sender === 'user'
                             ? 'bg-[#ffe566] text-black shadow-neo-xs rounded-br-none'
                             : 'bg-white text-black shadow-neo-xs rounded-bl-none'
                         }`}
                       >
-                        {msg.text}
+                        {renderFormattedMessage(msg.text)}
                       </div>
 
                       {/* Tool Calls Chips for Coach messages */}
                       {msg.tool_calls && msg.tool_calls.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mt-1.5 max-w-[85%]">
+                        <div className="flex flex-wrap gap-1 mt-1.5 max-w-[90%] break-all">
                           {msg.tool_calls.map((tool, idx) => (
                             <span
                               key={idx}
-                              className="inline-flex items-center gap-1 text-[10px] font-mono font-black px-2 py-0.5 rounded-lg bg-[#b892ff]/30 text-black border border-black shadow-neo-xs"
+                              className="inline-flex items-center gap-1 text-[10px] font-mono font-black px-2 py-0.5 rounded-lg bg-[#b892ff]/30 text-black border border-black shadow-neo-xs break-all"
                             >
-                              <Wrench className="w-2.5 h-2.5 text-black" />
-                              <span>
+                              <Wrench className="w-2.5 h-2.5 text-black flex-shrink-0" />
+                              <span className="break-all">
                                 {tool.name}({Object.entries(tool.args || {})
                                   .map(([k, v]) => `${k}="${v}"`)
                                   .join(', ')})
                               </span>
                               {tool.ok && (
-                                <span className="text-black font-black">✓</span>
+                                <span className="text-black font-black flex-shrink-0">✓</span>
                               )}
                             </span>
                           ))}
