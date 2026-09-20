@@ -36,18 +36,23 @@ def resolve_chroma_path(persist_path: str | Path | None = None) -> Path:
 
 
 def _configure_onnx_download_path() -> None:
-    """Ensure ONNX model downloads inside project directory so it persists across Render build->run phases."""
+    """Point ONNX model to pre-committed files inside the repo so no download happens on Render."""
     try:
         from chromadb.utils.embedding_functions.onnx_mini_lm_l6_v2 import ONNXMiniLM_L6_V2
-        # Check standard cache first (e.g. local dev)
+        # Always prefer the committed model files shipped with the repo
+        chroma_dir = resolve_chroma_path()
+        repo_model = chroma_dir / "onnx_models" / "all-MiniLM-L6-v2"
+        if (repo_model / "onnx" / "model.onnx").exists():
+            repo_model.mkdir(parents=True, exist_ok=True)
+            ONNXMiniLM_L6_V2.DOWNLOAD_PATH = str(repo_model)
+            return
+        # Fallback: standard user-cache (local dev after normal chroma install)
         std_cache = Path(os.path.expanduser("~")) / ".cache" / "chroma" / "onnx_models" / "all-MiniLM-L6-v2"
         if (std_cache / "onnx" / "model.onnx").exists():
-            return
-        # In cloud environments like Render, persist inside CHROMA_PATH so it is not wiped between build and start
-        chroma_dir = resolve_chroma_path()
-        repo_cache = chroma_dir / "onnx_models" / "all-MiniLM-L6-v2"
-        repo_cache.mkdir(parents=True, exist_ok=True)
-        ONNXMiniLM_L6_V2.DOWNLOAD_PATH = str(repo_cache)
+            return  # chromadb will use its own default path, model already there
+        # Last resort: redirect download to inside project dir
+        repo_model.mkdir(parents=True, exist_ok=True)
+        ONNXMiniLM_L6_V2.DOWNLOAD_PATH = str(repo_model)
     except Exception:
         pass
 
