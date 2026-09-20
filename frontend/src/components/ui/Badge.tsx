@@ -39,29 +39,29 @@ export const Badge: React.FC<BadgeProps> = ({
   }
 
   const variantStyles: Record<BadgeVariant, string> = {
-    default: 'bg-slate-100 text-slate-700 border-slate-200',
-    primary: 'bg-primary-50 text-primary-700 border-primary-200',
-    // Priority tokens
-    critical: 'bg-red-50 text-red-700 border-red-200',
-    high: 'bg-orange-50 text-orange-700 border-orange-200',
-    medium: 'bg-amber-50 text-amber-700 border-amber-200',
-    low: 'bg-slate-100 text-slate-600 border-slate-200',
+    default: 'bg-white text-black border-black shadow-neo-xs',
+    primary: 'bg-[#ffe566] text-black border-black shadow-neo-xs',
+    // Priority tokens (vivid NeoBrutalism pop)
+    critical: 'bg-[#ff6b6b] text-black border-black shadow-neo-xs',
+    high: 'bg-[#ff9770] text-black border-black shadow-neo-xs',
+    medium: 'bg-[#ffd166] text-black border-black shadow-neo-xs',
+    low: 'bg-[#e2e8f0] text-black border-black shadow-neo-xs',
     // Status tokens
-    locked: 'bg-slate-100 text-slate-500 border-slate-200',
-    available: 'bg-blue-50 text-blue-700 border-blue-200',
-    in_progress: 'bg-violet-50 text-violet-700 border-violet-200',
-    done: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    outline: 'bg-transparent text-slate-700 border-slate-300',
+    locked: 'bg-[#e2e8f0] text-slate-700 border-black shadow-neo-xs',
+    available: 'bg-[#70d6ff] text-black border-black shadow-neo-xs',
+    in_progress: 'bg-[#b892ff] text-black border-black shadow-neo-xs',
+    done: 'bg-[#79e7a8] text-black border-black shadow-neo-xs',
+    outline: 'bg-white text-black border-black shadow-neo-xs',
   };
 
   const sizeStyles = {
-    sm: 'text-[10px] px-2 py-0.5 font-medium',
-    md: 'text-xs px-2.5 py-1 font-medium',
+    sm: 'text-[10px] px-2 py-0.5 font-extrabold border-2 rounded-md',
+    md: 'text-xs px-2.5 py-1 font-extrabold border-2 rounded-lg',
   };
 
   return (
     <span
-      className={`inline-flex items-center gap-1 rounded-full border ${sizeStyles[size]} ${variantStyles[resolvedVariant]} ${className}`}
+      className={`inline-flex items-center gap-1 leading-none transition-all select-none ${sizeStyles[size]} ${variantStyles[resolvedVariant]} ${className}`}
       {...props}
     >
       {children}

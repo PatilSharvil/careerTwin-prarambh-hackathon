@@ -76,23 +76,23 @@ const Navigation: React.FC = () => {
   };
 
   return (
-    <header className="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <header className="bg-white border-b-2 border-black sticky top-0 z-40 shadow-neo-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-8 h-8 rounded-lg bg-primary-600 flex items-center justify-center text-white font-bold text-sm shadow-sm group-hover:bg-primary-700 transition-colors">
+              <div className="w-9 h-9 rounded-xl bg-[#ffe566] border-2 border-black flex items-center justify-center text-black font-black text-sm shadow-neo-xs group-hover:-translate-y-0.5 transition-transform">
                 CT
               </div>
-              <span className="text-lg font-bold text-slate-900 tracking-tight group-hover:text-primary-600 transition-colors">
+              <span className="text-xl font-black text-black tracking-tight group-hover:text-primary-800 transition-colors">
                 CareerTwin
               </span>
             </Link>
           </div>
 
           {/* 5-step Progress Indicator reflecting real progress */}
-          <nav className="hidden md:flex items-center space-x-1 lg:space-x-2" aria-label="Step progress">
+          <nav className="hidden md:flex items-center space-x-1.5 lg:space-x-2.5" aria-label="Step progress">
             {STEPS.map((step) => {
               const isActive = currentPath === step.path;
               const isCompleted = isStepCompleted(step.step);
@@ -101,21 +101,21 @@ const Navigation: React.FC = () => {
                 <Link
                   key={step.path}
                   to={step.path}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border-2 border-black transition-all ${
                     isActive
-                      ? 'bg-primary-50 text-primary-700 ring-1 ring-primary-500 font-semibold shadow-xs'
+                      ? 'bg-[#ffe566] text-black shadow-neo scale-105'
                       : isCompleted
-                      ? 'text-slate-700 hover:bg-slate-100'
-                      : 'text-slate-400 hover:text-slate-600 hover:bg-slate-50'
+                      ? 'bg-[#79e7a8] text-black shadow-neo-xs hover:bg-[#68d897]'
+                      : 'bg-white text-slate-600 hover:text-black hover:bg-[#faf6ee] shadow-neo-xs opacity-80 hover:opacity-100'
                   }`}
                 >
                   <span
-                    className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+                    className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-black border border-black ${
                       isActive
-                        ? 'bg-primary-600 text-white'
+                        ? 'bg-black text-[#ffe566]'
                         : isCompleted
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-slate-200 text-slate-600'
+                        ? 'bg-white text-black'
+                        : 'bg-slate-100 text-black'
                     }`}
                   >
                     {isCompleted ? '✓' : step.step}
@@ -129,8 +129,8 @@ const Navigation: React.FC = () => {
           {/* Target Role indicator pill */}
           <div className="flex items-center space-x-3">
             {state?.role ? (
-              <span className="hidden sm:inline-flex items-center text-xs font-semibold text-primary-700 bg-primary-50 px-2.5 py-1 rounded-md border border-primary-200">
-                {state.role.title}
+              <span className="hidden sm:inline-flex items-center text-xs font-black text-black bg-[#b892ff] px-3 py-1 rounded-xl border-2 border-black shadow-neo-xs">
+                🎯 {state.role.title}
               </span>
             ) : null}
           </div>
@@ -138,7 +138,7 @@ const Navigation: React.FC = () => {
       </div>
 
       {/* Mobile Step Bar */}
-      <div className="md:hidden flex border-t border-slate-100 px-2 py-1.5 overflow-x-auto">
+      <div className="md:hidden flex border-t-2 border-black px-2 py-2 gap-1.5 bg-[#faf6ee] overflow-x-auto">
         {STEPS.map((step) => {
           const isActive = currentPath === step.path;
           const isCompleted = isStepCompleted(step.step);
@@ -146,12 +146,12 @@ const Navigation: React.FC = () => {
             <Link
               key={step.path}
               to={step.path}
-              className={`flex-shrink-0 px-2.5 py-1 text-xs font-medium rounded ${
+              className={`flex-shrink-0 px-2.5 py-1 text-xs font-bold rounded-lg border-2 border-black transition-all ${
                 isActive
-                  ? 'text-primary-700 font-bold'
+                  ? 'bg-[#ffe566] text-black shadow-neo-xs'
                   : isCompleted
-                  ? 'text-slate-800 font-medium'
-                  : 'text-slate-400'
+                  ? 'bg-[#79e7a8] text-black'
+                  : 'bg-white text-slate-500'
               }`}
             >
               {isCompleted ? '✓' : `${step.step}.`} {step.label}
@@ -212,62 +212,62 @@ const Footer: React.FC = () => {
   }, [isMock]);
 
   return (
-    <footer className="bg-white border-t border-slate-200 py-3 mt-auto">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-slate-500">
-        <div className="flex items-center gap-2">
-          <span className="font-medium text-slate-700">CareerTwin</span>
+    <footer className="bg-white border-t-2 border-black py-4 mt-auto">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-black font-semibold">
+        <div className="flex items-center gap-2 flex-wrap">
+          <span className="font-black text-black">CareerTwin</span>
           <span>&copy; 2026</span>
-          <span className="text-slate-300">|</span>
-          <span className="text-slate-500">SPEC §10 Frozen Contract</span>
-          <span className="text-slate-300">|</span>
+          <span className="text-black font-black">|</span>
+          <span className="text-slate-600 font-medium">SPEC §10 Frozen Contract</span>
+          <span className="text-black font-black">|</span>
           {/* Reset Demo Button */}
           <button
             onClick={handleResetDemo}
-            className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 hover:text-slate-800 hover:bg-slate-100 px-2 py-0.5 rounded border border-slate-200 transition-colors"
+            className="inline-flex items-center gap-1 text-[11px] font-black text-black bg-[#ff9770] hover:bg-[#ff8559] px-2.5 py-1 rounded-lg border-2 border-black shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5 transition-all"
             title="Clear client store state for a fresh demo run"
           >
-            <RotateCcw className="w-3 h-3 text-slate-400" />
-            <span>Reset demo</span>
+            <RotateCcw className="w-3 h-3 text-black" />
+            <span>Reset Demo</span>
           </button>
         </div>
 
         <div className="flex items-center space-x-3">
           {/* Metadata Chip */}
-          <div className="flex items-center gap-1.5 bg-slate-50 px-2.5 py-1 rounded-full border border-slate-200 text-[11px]">
-            <Cpu className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-slate-600 font-medium">LLM: {meta.llm_provider}</span>
+          <div className="flex items-center gap-1.5 bg-[#faf6ee] px-3 py-1 rounded-xl border-2 border-black shadow-neo-xs text-[11px] font-bold">
+            <Cpu className="w-3.5 h-3.5 text-black" />
+            <span className="text-black">LLM: {meta.llm_provider}</span>
             {meta.fallback_used && (
               <Badge variant="medium" size="sm">
                 template
               </Badge>
             )}
             {meta.llm_used && !meta.fallback_used && (
-              <span className="inline-flex items-center text-primary-600">
-                <Sparkles className="w-3 h-3 ml-0.5" />
+              <span className="inline-flex items-center text-amber-600 font-black">
+                <Sparkles className="w-3.5 h-3.5 ml-0.5" />
               </span>
             )}
           </div>
 
           {/* API Status Indicator */}
-          <div className="flex items-center space-x-1.5 pl-2 border-l border-slate-200">
+          <div className="flex items-center space-x-1.5 pl-2 border-l-2 border-black">
             <span>API:</span>
             {apiStatus === 'ok' && (
-              <span className="inline-flex items-center text-emerald-700 font-medium">
-                <span className="w-2 h-2 mr-1 bg-emerald-500 rounded-full animate-pulse"></span> OK
+              <span className="inline-flex items-center text-black font-black bg-[#79e7a8] px-2 py-0.5 rounded-md border border-black text-[11px]">
+                <span className="w-2 h-2 mr-1 bg-black rounded-full animate-pulse"></span> OK
               </span>
             )}
             {apiStatus === 'down' && (
-              <span className="inline-flex items-center text-red-700 font-medium">
-                <span className="w-2 h-2 mr-1 bg-red-500 rounded-full"></span> Down
+              <span className="inline-flex items-center text-black font-black bg-[#ff6b6b] px-2 py-0.5 rounded-md border border-black text-[11px]">
+                <span className="w-2 h-2 mr-1 bg-black rounded-full"></span> Down
               </span>
             )}
             {apiStatus === 'mock' && (
-              <span className="inline-flex items-center text-amber-700 font-medium">
-                <span className="w-2 h-2 mr-1 bg-amber-500 rounded-full"></span> Mock Mode
+              <span className="inline-flex items-center text-black font-black bg-[#ffd166] px-2 py-0.5 rounded-md border border-black text-[11px]">
+                <span className="w-2 h-2 mr-1 bg-black rounded-full"></span> Mock Mode
               </span>
             )}
             {apiStatus === 'checking' && (
-              <span className="inline-flex items-center text-slate-400">checking...</span>
+              <span className="inline-flex items-center text-slate-500 font-bold">checking...</span>
             )}
           </div>
         </div>
@@ -278,7 +278,7 @@ const Footer: React.FC = () => {
 
 const AppContent: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 selection:bg-primary-100 selection:text-primary-800">
+    <div className="min-h-screen flex flex-col bg-[#faf6ee] text-slate-900 selection:bg-[#ffe566] selection:text-black">
       <Navigation />
       <main className="flex-1">
         <Routes>

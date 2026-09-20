@@ -312,27 +312,27 @@ export const ProfilePage: React.FC = () => {
       />
 
       {/* Step 5 — Analyze Action Bar (Sticky Footer Card) */}
-      <Card className="p-6 bg-white border-slate-300 shadow-md sticky bottom-4 z-30">
+      <Card className="p-6 bg-white border-2 border-black rounded-2xl shadow-neo-lg sticky bottom-4 z-30">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-primary-600 text-white flex items-center justify-center text-xs font-bold">
+            <div className="flex items-center gap-2.5">
+              <span className="w-7 h-7 rounded-xl bg-[#ffe566] text-black border-2 border-black flex items-center justify-center text-xs font-black shadow-neo-xs">
                 5
               </span>
-              <h3 className="text-base font-bold text-slate-900">Ready to Analyze</h3>
+              <h3 className="text-base font-black text-black">Ready to Analyze</h3>
             </div>
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-600">
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-black font-semibold">
               <span className="flex items-center gap-1">
-                Target Role: <strong className="text-slate-900">{selectedRole ? selectedRole.title : 'None selected'}</strong>
+                Target Role: <strong className="text-black bg-[#ffe566] px-2 py-0.5 rounded border border-black">{selectedRole ? selectedRole.title : 'None selected'}</strong>
               </span>
               <span>&bull;</span>
               <span className="flex items-center gap-1">
-                Extracted Skills: <strong className="text-slate-900">{extractedSkills.length}</strong>
+                Extracted Skills: <strong className="text-black bg-[#79e7a8] px-2 py-0.5 rounded border border-black">{extractedSkills.length}</strong>
               </span>
               {Object.keys(skillOverrides).length > 0 && (
                 <>
                   <span>&bull;</span>
-                  <span className="text-primary-700 font-semibold">
+                  <span className="text-black bg-[#ff70a6] px-2 py-0.5 rounded border border-black font-bold">
                     {Object.keys(skillOverrides).length} override(s)
                   </span>
                 </>
@@ -347,7 +347,7 @@ export const ProfilePage: React.FC = () => {
               isLoading={isAnalyzing}
               disabled={isFormLocked || !selectedRoleId || extractedSkills.length === 0}
               className="w-full md:w-auto"
-              rightIcon={<ArrowRight className="w-5 h-5 ml-1" />}
+              rightIcon={<ArrowRight className="w-5 h-5 ml-1 stroke-[3]" />}
             >
               Analyze Career &amp; Generate Roadmap
             </Button>
@@ -355,8 +355,8 @@ export const ProfilePage: React.FC = () => {
         </div>
 
         {extractedSkills.length === 0 && (
-          <div className="mt-3 pt-3 border-t border-slate-100 flex items-center gap-2 text-xs text-amber-700">
-            <AlertCircle className="w-4 h-4 flex-shrink-0" />
+          <div className="mt-3 pt-3 border-t-2 border-black flex items-center gap-2 text-xs font-bold text-amber-900 bg-[#ffd166]/30 p-2 rounded-xl">
+            <AlertCircle className="w-4 h-4 flex-shrink-0 text-amber-900" />
             <span>Click &quot;Extract Skills&quot; in Step 2 to populate your skills before running analysis.</span>
           </div>
         )}

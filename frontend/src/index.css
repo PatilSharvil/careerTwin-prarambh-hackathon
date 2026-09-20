@@ -4,7 +4,27 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 antialiased font-sans;
+    @apply bg-[#faf6ee] text-[#121212] antialiased font-sans;
+    background-color: #faf6ee;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    @apply border-2 border-black rounded-xl bg-white text-black font-medium transition-all;
+  }
+
+  input[type="text"]:focus,
+  input[type="number"]:focus,
+  textarea:focus,
+  select:focus {
+    @apply outline-none ring-0 shadow-neo;
+  }
+
+  /* Range sliders styling */
+  input[type="range"] {
+    @apply accent-[#ffd026] h-3 bg-white border-2 border-black rounded-full appearance-none cursor-pointer;
   }
 }
 
@@ -18,18 +38,20 @@
   animation: gauge-fill 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* Custom subtle scrollbar */
+/* Custom NeoBrutalism scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #faf6ee;
+  border-left: 2px solid #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 9999px;
+  background: #ffe566;
+  border: 2px solid #000000;
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #ffd026;
 }

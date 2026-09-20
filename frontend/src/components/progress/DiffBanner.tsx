@@ -33,24 +33,24 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 }) => {
   if (!diff) {
     return (
-      <Card className={`p-6 border-slate-200 bg-white shadow-xs ${className}`}>
-        <div className="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+      <Card className={`p-6 border-2 border-black bg-white shadow-neo rounded-2xl ${className}`}>
+        <div className="flex items-center justify-between pb-3 mb-3 border-b-2 border-black">
           <div className="flex items-center gap-2">
-            <RefreshCw className="w-4 h-4 text-primary-600" />
-            <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+            <RefreshCw className="w-4 h-4 text-black stroke-[2.5]" />
+            <h3 className="text-sm font-black text-black uppercase tracking-wider">
               Changes Since Last Plan
             </h3>
           </div>
-          <span className="text-xs text-slate-400">Replan Diff Engine</span>
+          <span className="text-xs text-black font-bold bg-[#faf6ee] px-2 py-0.5 rounded border border-black">Replan Diff Engine</span>
         </div>
         <div className="text-center py-6 px-4">
-          <div className="w-10 h-10 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center mx-auto mb-2.5">
-            <Info className="w-5 h-5" />
+          <div className="w-12 h-12 rounded-2xl bg-[#faf6ee] text-black border-2 border-black flex items-center justify-center mx-auto mb-3 shadow-neo-xs">
+            <Info className="w-6 h-6 stroke-[2.5]" />
           </div>
-          <h4 className="text-sm font-semibold text-slate-800 mb-1">
+          <h4 className="text-sm font-black text-black mb-1">
             No Replan Diff Recorded Yet
           </h4>
-          <p className="text-xs text-slate-500 max-w-sm mx-auto leading-relaxed">
+          <p className="text-xs text-slate-700 font-medium max-w-sm mx-auto leading-relaxed">
             Complete a skill, mark an activity as done, or trigger a market update below to activate CareerTwin's deterministic replan engine and see real-time diffs.
           </p>
         </div>
@@ -78,51 +78,51 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 
   return (
     <Card
-      className={`p-6 border-primary-200 bg-white shadow-sm overflow-hidden transition-all duration-500 animate-in fade-in slide-in-from-top-2 ${className}`}
+      className={`p-6 border-2 border-black bg-white shadow-neo rounded-2xl overflow-hidden transition-all duration-500 animate-in fade-in slide-in-from-top-2 ${className}`}
     >
       {/* Banner Header */}
-      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b border-slate-100">
+      <div className="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b-2 border-black">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-          <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
+          <span className="w-3 h-3 rounded-full bg-[#79e7a8] border border-black animate-ping" />
+          <h3 className="text-sm font-black text-black uppercase tracking-wider">
             Changes Since Last Plan
           </h3>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-primary-700 bg-primary-50 px-2.5 py-1 rounded-full border border-primary-200">
+          <span className="text-xs font-black text-black bg-[#ffe566] px-3 py-1 rounded-xl border-2 border-black shadow-neo-xs">
             {getTriggerLabel()}
           </span>
         </div>
       </div>
 
       {/* 1. Readiness Before -> After Bar */}
-      <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90 mb-4 flex flex-wrap items-center justify-between gap-3">
+      <div className="p-4 rounded-2xl bg-[#faf6ee] border-2 border-black mb-4 flex flex-wrap items-center justify-between gap-3 shadow-neo-xs">
         <div>
-          <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">
-            Role Alignment & Readiness
+          <div className="text-[11px] font-black uppercase tracking-wider text-black mb-0.5">
+            Role Alignment &amp; Readiness
           </div>
           <div className="flex items-baseline gap-2">
-            <span className="text-xl font-bold text-slate-700">
+            <span className="text-xl font-black text-slate-700">
               {diff.readiness_before.toFixed(1)}%
             </span>
-            <span className="text-slate-400 font-medium">→</span>
-            <span className="text-2xl font-black text-slate-900">
+            <span className="text-black font-black">→</span>
+            <span className="text-2xl font-black text-black">
               {diff.readiness_after.toFixed(1)}%
             </span>
           </div>
         </div>
 
         <div
-          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold border ${
+          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm font-black border-2 border-black shadow-neo-xs ${
             isReadinessPositive
-              ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-              : 'bg-amber-50 text-amber-800 border-amber-200'
+              ? 'bg-[#79e7a8] text-black'
+              : 'bg-[#ff9770] text-black'
           }`}
         >
           {isReadinessPositive ? (
-            <TrendingUp className="w-4 h-4 text-emerald-600" />
+            <TrendingUp className="w-4 h-4 text-black stroke-[3]" />
           ) : (
-            <TrendingDown className="w-4 h-4 text-amber-600" />
+            <TrendingDown className="w-4 h-4 text-black stroke-[3]" />
           )}
           <span>
             {isReadinessPositive ? `+${readinessDelta}%` : `${readinessDelta}%`}
@@ -132,24 +132,24 @@ export const DiffBanner: React.FC<DiffBannerProps> = ({
 
       {/* 2. Narrative with AI / Template Badge */}
       {narrative && (
-        <div className="mb-4 p-3.5 rounded-xl bg-gradient-to-r from-primary-50/40 via-white to-primary-50/20 border border-primary-100">
+        <div className="mb-4 p-4 rounded-2xl bg-white border-2 border-black shadow-neo-xs">
           <div className="flex items-center justify-between mb-1.5">
-            <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+            <span className="text-xs font-black text-black uppercase tracking-wider">
               Replan Narrative
             </span>
             {narrativeSource === 'llm' ? (
-              <span className="inline-flex items-center text-[11px] font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-full border border-purple-200">
-                <Sparkles className="w-3 h-3 mr-1 text-purple-600" />
+              <span className="inline-flex items-center text-[11px] font-black text-black bg-[#b892ff] px-2.5 py-0.5 rounded-lg border border-black shadow-neo-xs">
+                <Sparkles className="w-3 h-3 mr-1 text-black stroke-[2.5]" />
                 AI Generated
               </span>
             ) : (
-              <span className="inline-flex items-center text-[11px] font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded-full border border-slate-200">
-                <Cpu className="w-3 h-3 mr-1 text-slate-500" />
+              <span className="inline-flex items-center text-[11px] font-black text-black bg-[#ffe566] px-2.5 py-0.5 rounded-lg border border-black shadow-neo-xs">
+                <Cpu className="w-3 h-3 mr-1 text-black" />
                 Deterministic Template
               </span>
             )}
           </div>
-          <p className="text-xs text-slate-700 leading-relaxed font-normal">
+          <p className="text-xs text-black leading-relaxed font-semibold">
             {narrative}
           </p>
         </div>

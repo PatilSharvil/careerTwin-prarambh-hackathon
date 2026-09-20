@@ -116,14 +116,14 @@ export const TargetRoleSelector: React.FC<TargetRoleSelectorProps> = ({
   };
 
   return (
-    <Card className="border-slate-200">
+    <Card className="border-2 border-black bg-white rounded-2xl shadow-neo">
       <CardHeader>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-          <div className="flex items-center gap-2">
-            <span className="w-6 h-6 rounded-full bg-primary-600 text-white flex items-center justify-center text-xs font-bold">
+          <div className="flex items-center gap-2.5">
+            <span className="w-7 h-7 rounded-xl bg-[#ffe566] text-black border-2 border-black flex items-center justify-center text-xs font-black shadow-neo-xs">
               4
             </span>
-            <CardTitle>Target Role</CardTitle>
+            <CardTitle className="text-lg font-black text-black">Target Role</CardTitle>
           </div>
           {/* Define Custom Role Trigger (hidden if NOT_IMPLEMENTED) */}
           {!isNotImplemented && (
@@ -131,14 +131,14 @@ export const TargetRoleSelector: React.FC<TargetRoleSelectorProps> = ({
               type="button"
               onClick={() => setIsCustomOpen(!isCustomOpen)}
               disabled={disabled || isLoadingRoles}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors shadow-2xs"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white border-2 border-black text-xs font-black text-black hover:bg-[#ffe566] transition-all shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5"
             >
-              <PlusCircle className="w-3.5 h-3.5 text-primary-600" />
+              <PlusCircle className="w-4 h-4 text-black stroke-[2.5]" />
               Define Custom Role
             </button>
           )}
         </div>
-        <CardDescription>
+        <CardDescription className="text-xs font-medium text-slate-700">
           Select exactly one target role to benchmark your skills and generate your personalized roadmap.
         </CardDescription>
       </CardHeader>
@@ -148,25 +148,25 @@ export const TargetRoleSelector: React.FC<TargetRoleSelectorProps> = ({
         {!isNotImplemented && isCustomOpen && (
           <form
             onSubmit={handleCreateCustomRole}
-            className="p-5 rounded-xl border border-primary-200 bg-primary-50/40 space-y-4 transition-all"
+            className="p-5 rounded-2xl border-2 border-black bg-[#ff70a6]/10 shadow-neo space-y-4 transition-all"
           >
-            <div className="flex justify-between items-center pb-2 border-b border-primary-100">
-              <h4 className="text-sm font-bold text-slate-900 flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-primary-600" />
+            <div className="flex justify-between items-center pb-2 border-b-2 border-black">
+              <h4 className="text-sm font-black text-black flex items-center gap-1.5">
+                <Sparkles className="w-4 h-4 text-black stroke-[2.5]" />
                 Define Custom Target Role
               </h4>
               <button
                 type="button"
                 onClick={() => setIsCustomOpen(false)}
-                className="text-slate-400 hover:text-slate-600 p-1 rounded"
+                className="text-black hover:scale-125 p-1 rounded transition-transform"
                 aria-label="Close custom role panel"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4 stroke-[3]" />
               </button>
             </div>
 
             <div>
-              <label htmlFor="custom-role-title" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="custom-role-title" className="block text-xs font-black text-black mb-1">
                 Role Title <span className="text-red-500">*</span>
               </label>
               <input
@@ -176,17 +176,17 @@ export const TargetRoleSelector: React.FC<TargetRoleSelectorProps> = ({
                 value={customTitle}
                 onChange={(e) => setCustomTitle(e.target.value)}
                 disabled={isSubmittingCustom}
-                className={`w-full px-3 py-2 text-xs sm:text-sm rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 ${
-                  customErrors.title ? 'border-red-300' : 'border-slate-300'
+                className={`w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-xl border-2 border-black bg-white font-semibold focus:outline-none focus:shadow-neo ${
+                  customErrors.title ? 'bg-[#ff6b6b]/10' : 'bg-white'
                 }`}
               />
               {customErrors.title && (
-                <p className="text-xs text-red-600 mt-1">{customErrors.title}</p>
+                <p className="text-xs text-red-600 mt-1 font-bold">{customErrors.title}</p>
               )}
             </div>
 
             <div>
-              <label htmlFor="custom-role-desc" className="block text-xs font-semibold text-slate-700 mb-1">
+              <label htmlFor="custom-role-desc" className="block text-xs font-black text-black mb-1">
                 Description <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -196,12 +196,12 @@ export const TargetRoleSelector: React.FC<TargetRoleSelectorProps> = ({
                 value={customDescription}
                 onChange={(e) => setCustomDescription(e.target.value)}
                 disabled={isSubmittingCustom}
-                className={`w-full p-3 text-xs sm:text-sm rounded-lg border bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 ${
-                  customErrors.description ? 'border-red-300' : 'border-slate-300'
+                className={`w-full p-3.5 text-xs sm:text-sm rounded-xl border-2 border-black bg-white font-semibold focus:outline-none focus:shadow-neo ${
+                  customErrors.description ? 'bg-[#ff6b6b]/10' : 'bg-white'
                 }`}
               />
               {customErrors.description && (
-                <p className="text-xs text-red-600 mt-1">{customErrors.description}</p>
+                <p className="text-xs text-red-600 mt-1 font-bold">{customErrors.description}</p>
               )}
             </div>
 
@@ -230,15 +230,15 @@ export const TargetRoleSelector: React.FC<TargetRoleSelectorProps> = ({
         {/* Roles List */}
         {isLoadingRoles ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Skeleton height="130px" className="rounded-xl" />
-            <Skeleton height="130px" className="rounded-xl" />
-            <Skeleton height="130px" className="rounded-xl" />
-            <Skeleton height="130px" className="rounded-xl" />
+            <Skeleton height="130px" className="rounded-2xl" />
+            <Skeleton height="130px" className="rounded-2xl" />
+            <Skeleton height="130px" className="rounded-2xl" />
+            <Skeleton height="130px" className="rounded-2xl" />
           </div>
         ) : roles.length === 0 ? (
-          <div className="p-8 text-center bg-slate-50 border border-slate-200 rounded-xl">
-            <Briefcase className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-            <p className="text-sm font-medium text-slate-600">No roles available.</p>
+          <div className="p-8 text-center bg-[#faf6ee] border-2 border-black rounded-2xl shadow-neo-xs">
+            <Briefcase className="w-8 h-8 text-black mx-auto mb-2" />
+            <p className="text-sm font-bold text-black">No roles available.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -257,19 +257,19 @@ export const TargetRoleSelector: React.FC<TargetRoleSelectorProps> = ({
                       if (!disabled) onSelectRole(role.role_id);
                     }
                   }}
-                  className={`relative p-5 rounded-xl border text-left cursor-pointer transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 ${
+                  className={`relative p-5 rounded-2xl border-2 border-black text-left cursor-pointer transition-all duration-200 focus:outline-none ${
                     isSelected
-                      ? 'bg-primary-50/40 border-primary-500 ring-2 ring-primary-500/20 shadow-sm'
-                      : 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-2xs'
+                      ? 'bg-[#ffe566] shadow-neo scale-[1.01]'
+                      : 'bg-white shadow-neo-xs hover:shadow-neo hover:-translate-y-0.5'
                   }`}
                 >
                   {/* Selected Indicator */}
                   <div className="flex items-start justify-between gap-3 mb-2">
-                    <div className="flex items-center gap-2">
-                      <h4 className="text-base font-bold text-slate-900 tracking-tight">
+                    <div className="flex items-center gap-2 flex-wrap">
+                      <h4 className="text-base font-black text-black tracking-tight">
                         {role.title}
                       </h4>
-                      <span className="text-[10px] text-slate-400 font-mono">
+                      <span className="text-[10px] text-black font-mono font-bold bg-white px-1.5 py-0.5 rounded border border-black shadow-neo-xs">
                         v{role.version}
                       </span>
                     </div>
@@ -287,32 +287,32 @@ export const TargetRoleSelector: React.FC<TargetRoleSelectorProps> = ({
                         </Badge>
                       )}
                       <div
-                        className={`w-5 h-5 rounded-full flex items-center justify-center border transition-colors ${
+                        className={`w-6 h-6 rounded-lg flex items-center justify-center border-2 border-black transition-colors ${
                           isSelected
-                            ? 'bg-primary-600 border-primary-600 text-white'
-                            : 'border-slate-300 bg-white'
+                            ? 'bg-black text-[#ffe566] shadow-neo-xs'
+                            : 'border-black bg-white'
                         }`}
                       >
-                        {isSelected && <CheckCircle2 className="w-4 h-4" />}
+                        {isSelected && <CheckCircle2 className="w-4 h-4 stroke-[3]" />}
                       </div>
                     </div>
                   </div>
 
                   {/* Description */}
-                  <p className="text-xs text-slate-600 mb-3 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-slate-800 font-medium mb-3 line-clamp-2 leading-relaxed">
                     {role.description}
                   </p>
 
                   {/* Top Skills */}
                   <div>
-                    <div className="text-[11px] font-semibold text-slate-500 mb-1.5 flex items-center gap-1">
+                    <div className="text-[11px] font-black text-black mb-1.5 flex items-center gap-1">
                       <span>Top Required Skills ({role.skill_count} total):</span>
                     </div>
                     <div className="flex flex-wrap gap-1.5">
                       {role.top_skills.slice(0, 5).map((skill) => (
                         <span
                           key={skill}
-                          className="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-medium bg-slate-100 text-slate-700 border border-slate-200"
+                          className="inline-flex items-center px-2 py-0.5 rounded-lg text-[10px] font-extrabold bg-white text-black border border-black shadow-neo-xs"
                         >
                           {skill.replace(/_/g, ' ')}
                         </span>

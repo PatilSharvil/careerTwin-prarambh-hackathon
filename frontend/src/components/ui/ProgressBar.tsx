@@ -22,30 +22,30 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
   const percentage = Math.min(Math.max(Math.round((value / max) * 100), 0), 100);
 
   const heightStyles = {
-    sm: 'h-1.5',
-    md: 'h-2.5',
-    lg: 'h-4',
+    sm: 'h-2.5',
+    md: 'h-4',
+    lg: 'h-6',
   };
 
   const colorStyles = {
-    primary: 'bg-primary-600',
-    emerald: 'bg-emerald-500',
-    amber: 'bg-amber-500',
-    blue: 'bg-blue-600',
-    violet: 'bg-violet-600',
+    primary: 'bg-[#ffe566]',
+    emerald: 'bg-[#79e7a8]',
+    amber: 'bg-[#ffd166]',
+    blue: 'bg-[#70d6ff]',
+    violet: 'bg-[#b892ff]',
   };
 
   return (
     <div className={`w-full ${className}`} {...props}>
       {(label || showValue) && (
-        <div className="flex justify-between items-center text-xs font-medium text-slate-700 mb-1.5">
+        <div className="flex justify-between items-center text-xs font-bold text-black mb-1.5">
           {label && <span>{label}</span>}
-          {showValue && <span>{percentage}%</span>}
+          {showValue && <span className="font-mono">{percentage}%</span>}
         </div>
       )}
-      <div className={`w-full bg-slate-100 rounded-full overflow-hidden ${heightStyles[size]}`}>
+      <div className={`w-full bg-white border-2 border-black rounded-full overflow-hidden shadow-neo-xs ${heightStyles[size]}`}>
         <div
-          className={`h-full rounded-full transition-all duration-500 ease-out ${colorStyles[color]}`}
+          className={`h-full border-r-2 border-black transition-all duration-500 ease-out ${colorStyles[color]}`}
           style={{ width: `${percentage}%` }}
         />
       </div>

@@ -18,21 +18,23 @@ export const ErrorBanner: React.FC<ErrorBannerProps> = ({
 }) => {
   return (
     <div
-      className={`p-4 rounded-xl border border-red-200 bg-red-50 text-red-900 flex items-start justify-between gap-3 shadow-sm ${className}`}
+      className={`p-4 rounded-2xl border-2 border-black bg-[#ff6b6b] text-black flex items-start justify-between gap-3 shadow-neo ${className}`}
       role="alert"
     >
       <div className="flex items-start gap-3">
-        <AlertCircle className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
+        <div className="p-1.5 rounded-lg bg-white border-2 border-black">
+          <AlertCircle className="w-5 h-5 text-black flex-shrink-0" />
+        </div>
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-sm font-semibold">Error</span>
+            <span className="text-sm font-black uppercase tracking-wide">Error</span>
             {code && (
-              <span className="text-[10px] font-mono px-1.5 py-0.5 bg-red-100 text-red-700 rounded border border-red-200">
+              <span className="text-[10px] font-mono px-2 py-0.5 bg-white text-black font-extrabold rounded-md border-2 border-black shadow-neo-xs">
                 {code}
               </span>
             )}
           </div>
-          <p className="text-xs text-red-800 mt-1 leading-relaxed">{message}</p>
+          <p className="text-xs text-black font-semibold mt-1 leading-relaxed">{message}</p>
         </div>
       </div>
 
@@ -40,7 +42,7 @@ export const ErrorBanner: React.FC<ErrorBannerProps> = ({
         {onRetry && (
           <button
             onClick={onRetry}
-            className="inline-flex items-center gap-1 text-xs font-medium text-red-700 hover:text-red-900 bg-red-100 hover:bg-red-200 px-2.5 py-1 rounded transition-colors"
+            className="inline-flex items-center gap-1 text-xs font-bold text-black bg-white hover:bg-slate-100 border-2 border-black px-3 py-1.5 rounded-lg shadow-neo-xs transition-transform active:translate-x-0.5 active:translate-y-0.5"
           >
             <RefreshCw className="w-3.5 h-3.5" />
             <span>Retry</span>
@@ -49,7 +51,7 @@ export const ErrorBanner: React.FC<ErrorBannerProps> = ({
         {onDismiss && (
           <button
             onClick={onDismiss}
-            className="p-1 rounded text-red-400 hover:text-red-700 transition-colors"
+            className="p-1.5 rounded-lg bg-white border-2 border-black text-black hover:bg-slate-100 transition-colors shadow-neo-xs"
             aria-label="Dismiss error"
           >
             <X className="w-4 h-4" />

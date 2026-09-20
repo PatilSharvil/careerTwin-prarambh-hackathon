@@ -19,37 +19,43 @@ export interface CategoryMetricsListProps {
 
 const CATEGORY_CONFIG: Record<
   EvalCategory,
-  { label: string; icon: React.ReactNode; description: string }
+  { label: string; icon: React.ReactNode; description: string; headerColor: string }
 > = {
   'Skill-Gap Accuracy': {
     label: 'Skill-Gap Accuracy',
-    icon: <Target className="w-4 h-4 text-blue-600" />,
+    icon: <Target className="w-4 h-4 text-black" />,
     description: 'Precision, recall, and rank correlation against hand-labeled benchmark personas.',
+    headerColor: 'bg-[#70d6ff]',
   },
   Personalization: {
     label: 'Personalization',
-    icon: <Sparkles className="w-4 h-4 text-purple-600" />,
+    icon: <Sparkles className="w-4 h-4 text-black" />,
     description: 'Persona differentiation distance and prevention of strong-skill leakage.',
+    headerColor: 'bg-[#b892ff]',
   },
   'Roadmap Quality': {
     label: 'Roadmap Quality',
-    icon: <Layers className="w-4 h-4 text-indigo-600" />,
+    icon: <Layers className="w-4 h-4 text-black" />,
     description: 'Prerequisite DAG topological ordering and weekly study hour budget compliance.',
+    headerColor: 'bg-[#ffe566]',
   },
   Adaptability: {
     label: 'Adaptability',
-    icon: <GitBranch className="w-4 h-4 text-emerald-600" />,
+    icon: <GitBranch className="w-4 h-4 text-black" />,
     description: 'Real-time replan diff generation and responsiveness to market standard version updates.',
+    headerColor: 'bg-[#79e7a8]',
   },
   'Recommendation Relevance': {
     label: 'Recommendation Relevance',
-    icon: <Search className="w-4 h-4 text-amber-600" />,
+    icon: <Search className="w-4 h-4 text-black" />,
     description: 'Semantic Chroma retrieval accuracy and learner level-band fit filtering.',
+    headerColor: 'bg-[#ff9770]',
   },
   Explainability: {
     label: 'Explainability',
-    icon: <MessageSquare className="w-4 h-4 text-rose-600" />,
+    icon: <MessageSquare className="w-4 h-4 text-black" />,
     description: 'Structured rationale completeness and numerical consistency between LLM narratives and facts.',
+    headerColor: 'bg-[#ff70a6]',
   },
 };
 
@@ -92,13 +98,13 @@ export const CategoryMetricsList: React.FC<CategoryMetricsListProps> = ({ metric
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+      <div className="flex items-center justify-between pb-3 border-b-2 border-black">
         <div>
-          <h2 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
-            <BarChart2 className="w-5 h-5 text-primary-600" />
+          <h2 className="text-2xl font-black text-black tracking-tight flex items-center gap-2">
+            <BarChart2 className="w-6 h-6 text-black" />
             Six Judging Category Metrics
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs font-bold text-neutral-600 mt-0.5">
             14 automated tests measuring accuracy, personalization, roadmap topological validity, adaptability, relevance, and explainability.
           </p>
         </div>
@@ -116,33 +122,29 @@ export const CategoryMetricsList: React.FC<CategoryMetricsListProps> = ({ metric
           return (
             <Card
               key={category}
-              className={`p-5 border shadow-2xs transition-all ${
-                allPassed
-                  ? 'border-slate-200 bg-white'
-                  : 'border-red-200 bg-red-50/10'
-              }`}
+              className="p-5 border-2 border-black bg-white rounded-2xl shadow-neo transition-all"
             >
               {/* Category Header */}
-              <div className="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
-                <div className="flex items-center gap-2 min-w-0">
-                  <div className="p-1.5 rounded-lg bg-slate-100">
+              <div className="flex items-center justify-between pb-3 mb-4 border-b-2 border-black/10">
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className={`p-2 rounded-xl border-2 border-black shadow-neo-xs ${config.headerColor}`}>
                     {config.icon}
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-sm font-bold text-slate-900 truncate">
+                    <h3 className="text-sm font-black text-black truncate">
                       {config.label}
                     </h3>
-                    <p className="text-[11px] text-slate-500 truncate">
+                    <p className="text-[11px] font-bold text-neutral-500 truncate">
                       {config.description}
                     </p>
                   </div>
                 </div>
 
                 <span
-                  className={`text-[11px] font-bold px-2.5 py-0.5 rounded-full border flex-shrink-0 ${
+                  className={`text-[11px] font-black px-3 py-1 rounded-xl border-2 border-black shadow-neo-xs flex-shrink-0 ${
                     allPassed
-                      ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                      : 'bg-red-50 text-red-800 border-red-200'
+                      ? 'bg-[#79e7a8] text-black'
+                      : 'bg-[#ff6b6b] text-black'
                   }`}
                 >
                   {passedCount} / {categoryMetrics.length} Passed
@@ -150,7 +152,7 @@ export const CategoryMetricsList: React.FC<CategoryMetricsListProps> = ({ metric
               </div>
 
               {/* Metrics rows */}
-              <div className="space-y-3.5">
+              <div className="space-y-3">
                 {categoryMetrics.map((metric) => {
                   const valStr = formatMetricValue(metric.value, metric.unit);
                   const targetStr = formatMetricValue(metric.target, metric.unit);
@@ -159,19 +161,15 @@ export const CategoryMetricsList: React.FC<CategoryMetricsListProps> = ({ metric
                   return (
                     <div
                       key={metric.id}
-                      className={`p-3 rounded-xl border transition-colors ${
+                      className={`p-3.5 rounded-xl border-2 border-black transition-all ${
                         metric.passed
-                          ? 'border-slate-100 bg-slate-50/50 hover:bg-slate-50 hover:border-slate-200'
-                          : 'border-red-200 bg-red-50/40 hover:bg-red-50/60'
+                          ? 'bg-[#faf6ee] shadow-neo-xs'
+                          : 'bg-[#ff6b6b]/10 shadow-neo-xs'
                       }`}
                     >
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 mb-2">
                         <div className="min-w-0">
-                          <span
-                            className={`text-xs font-bold block truncate ${
-                              metric.passed ? 'text-slate-800' : 'text-red-900'
-                            }`}
-                          >
+                          <span className="text-xs font-black text-black block truncate">
                             {metric.name}
                           </span>
                         </div>
@@ -179,37 +177,33 @@ export const CategoryMetricsList: React.FC<CategoryMetricsListProps> = ({ metric
                         <div className="flex items-center gap-2 self-start sm:self-center flex-shrink-0">
                           {/* Value vs Target with Comparator */}
                           <div className="text-xs font-mono">
-                            <span
-                              className={`font-bold ${
-                                metric.passed ? 'text-slate-900' : 'text-red-700 font-extrabold'
-                              }`}
-                            >
+                            <span className="font-black text-black">
                               {valStr}
                             </span>
-                            <span className="text-slate-400 mx-1 font-sans">
+                            <span className="text-neutral-500 mx-1 font-sans font-bold">
                               {metric.comparator}
                             </span>
-                            <span className="text-slate-500">
+                            <span className="text-neutral-600 font-bold">
                               target {targetStr}
                             </span>
                           </div>
 
                           {/* Pass/Fail Badge */}
                           <span
-                            className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                            className={`inline-flex items-center gap-1 text-[10px] font-black px-2.5 py-0.5 rounded-lg border-2 border-black shadow-neo-xs ${
                               metric.passed
-                                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                                : 'bg-red-100 text-red-900 border-red-300'
+                                ? 'bg-[#79e7a8] text-black'
+                                : 'bg-[#ff6b6b] text-black'
                             }`}
                           >
                             {metric.passed ? (
                               <>
-                                <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                                <CheckCircle2 className="w-3 h-3 text-black" />
                                 Passed
                               </>
                             ) : (
                               <>
-                                <XCircle className="w-3 h-3 text-red-600" />
+                                <XCircle className="w-3 h-3 text-black" />
                                 Failed
                               </>
                             )}
@@ -218,10 +212,10 @@ export const CategoryMetricsList: React.FC<CategoryMetricsListProps> = ({ metric
                       </div>
 
                       {/* Small visual comparison bar */}
-                      <div className="w-full h-1.5 rounded-full bg-slate-200 overflow-hidden">
+                      <div className="w-full h-2 rounded-full bg-white border border-black overflow-hidden">
                         <div
                           className={`h-full rounded-full transition-all duration-700 ${
-                            metric.passed ? 'bg-emerald-500' : 'bg-red-500'
+                            metric.passed ? 'bg-[#79e7a8]' : 'bg-[#ff6b6b]'
                           }`}
                           style={{ width: `${barWidth}%` }}
                         />

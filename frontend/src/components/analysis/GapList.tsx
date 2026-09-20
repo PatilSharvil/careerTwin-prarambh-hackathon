@@ -35,23 +35,23 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
   };
 
   return (
-    <Card className="border-slate-200">
+    <Card className="border-2 border-black bg-white rounded-2xl shadow-neo overflow-hidden">
       <CardHeader>
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
-            <BarChart2 className="w-5 h-5 text-primary-600" />
-            <CardTitle>All Prioritized Gaps ({gaps.length})</CardTitle>
+            <BarChart2 className="w-5 h-5 text-black stroke-[2.5]" />
+            <CardTitle className="text-base font-black text-black">All Prioritized Gaps ({gaps.length})</CardTitle>
           </div>
-          <p className="text-xs text-slate-500 font-medium">
+          <p className="text-xs text-black font-bold">
             Sorted deterministically by priority (importance &times; gap &times; dependency &times; interest)
           </p>
         </div>
-        <CardDescription>
+        <CardDescription className="text-xs font-medium text-slate-700">
           Click any skill gap to inspect its complete grounded mathematical explanation and narrative.
         </CardDescription>
       </CardHeader>
 
-      <div className="divide-y divide-slate-100">
+      <div className="divide-y-2 divide-black border-t-2 border-black">
         {gaps.map((gap) => {
           const isExpanded = expandedGapIds.has(gap.skill_id);
           const roadmapItem = roadmapItems.find((item) => item.skill_id === gap.skill_id);
@@ -75,7 +75,7 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
             <div
               key={gap.skill_id}
               className={`transition-colors ${
-                isExpanded ? 'bg-slate-50/60' : 'hover:bg-slate-50/30'
+                isExpanded ? 'bg-[#faf6ee]' : 'hover:bg-[#fdfbf7]'
               }`}
             >
               {/* Main Summary Row */}
@@ -94,18 +94,18 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                 {/* Left: Skill name, category, unverified, unblocks */}
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-1">
-                    <h4 className="text-sm font-bold text-slate-900">{gap.skill_name}</h4>
-                    <span className="text-[11px] text-slate-500 font-medium">
+                    <h4 className="text-sm font-black text-black">{gap.skill_name}</h4>
+                    <span className="text-[11px] text-slate-700 font-bold">
                       &bull; {gap.category}
                     </span>
 
                     {/* Unverified icon */}
                     {gap.flag === 'unverified' && (
                       <span
-                        className="inline-flex items-center gap-1 text-[10px] font-semibold text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200"
+                        className="inline-flex items-center gap-1 text-[10px] font-black text-black bg-[#ff9770] px-2 py-0.5 rounded-lg border border-black shadow-neo-xs"
                         title="Unverified difference between self-rating and resume evidence"
                       >
-                        <AlertTriangle className="w-3 h-3 text-amber-600" />
+                        <AlertTriangle className="w-3 h-3 text-black stroke-[3]" />
                         unverified
                       </span>
                     )}
@@ -114,13 +114,13 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                   {/* Unblocks chips */}
                   {gap.unblocks.length > 0 && (
                     <div className="flex items-center gap-1.5 flex-wrap mt-1.5">
-                      <span className="text-[10px] font-semibold text-slate-400 flex items-center gap-0.5">
-                        <ArrowUpRight className="w-3 h-3" /> unblocks:
+                      <span className="text-[10px] font-black text-black flex items-center gap-0.5">
+                        <ArrowUpRight className="w-3.5 h-3.5 text-black stroke-[3]" /> unblocks:
                       </span>
                       {gap.unblocks.map((u) => (
                         <span
                           key={u.skill_id}
-                          className="text-[10px] font-medium text-slate-600 bg-white border border-slate-200 px-1.5 py-0.2 rounded"
+                          className="text-[10px] font-bold text-black bg-white border border-black px-2 py-0.5 rounded-md shadow-neo-xs"
                         >
                           {u.skill_name}
                         </span>
@@ -131,28 +131,28 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
 
                 {/* Middle: Level-vs-Target visual bar */}
                 <div className="w-full md:w-56 flex flex-col gap-1">
-                  <div className="flex justify-between text-[11px] font-medium text-slate-600">
+                  <div className="flex justify-between text-[11px] font-black text-black">
                     <span>
-                      Level: <strong className="text-slate-900">{gap.level.toFixed(1)}</strong>
+                      Level: <strong className="text-black bg-white px-1.5 py-0.5 rounded border border-black">{gap.level.toFixed(1)}</strong>
                     </span>
                     <span>
-                      Target: <strong className="text-slate-900">{gap.target.toFixed(1)}</strong>
+                      Target: <strong className="text-black bg-[#79e7a8] px-1.5 py-0.5 rounded border border-black">{gap.target.toFixed(1)}</strong>
                     </span>
                   </div>
                   {/* Dual Bar (0-10 scale) */}
-                  <div className="relative w-full h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                  <div className="relative w-full h-3 bg-slate-200 border-2 border-black rounded-full overflow-hidden shadow-neo-xs">
                     {/* Target zone bar (light emerald) */}
                     <div
-                      className="absolute top-0 left-0 h-full bg-emerald-200/80 rounded-full"
+                      className="absolute top-0 left-0 h-full bg-[#79e7a8]"
                       style={{ width: `${targetPct}%` }}
                     />
-                    {/* Current level bar (primary indigo) */}
+                    {/* Current level bar (black or cyan) */}
                     <div
-                      className="absolute top-0 left-0 h-full bg-primary-600 rounded-full transition-all duration-500"
+                      className="absolute top-0 left-0 h-full bg-[#70d6ff] border-r-2 border-black transition-all duration-500"
                       style={{ width: `${levelPct}%` }}
                     />
                   </div>
-                  <div className="text-[10px] text-right text-red-600 font-semibold">
+                  <div className="text-[10px] text-right text-red-700 font-black">
                     Gap: +{gap.gap.toFixed(1)} levels
                   </div>
                 </div>
@@ -165,11 +165,11 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                   <Badge status={gap.status} size="md">
                     {gap.status.replace('_', ' ')}
                   </Badge>
-                  <div className="text-slate-400 p-1">
+                  <div className="text-black p-1">
                     {isExpanded ? (
-                      <ChevronUp className="w-4 h-4" />
+                      <ChevronUp className="w-5 h-5 stroke-[3]" />
                     ) : (
-                      <ChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-5 h-5 stroke-[3]" />
                     )}
                   </div>
                 </div>
@@ -177,19 +177,19 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
 
               {/* Expanded "Why" Details */}
               {isExpanded && (
-                <div className="px-5 pb-5 pt-1 border-t border-slate-100 bg-white/70">
-                  <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-4">
+                <div className="px-5 pb-5 pt-1 border-t-2 border-black bg-white">
+                  <div className="p-5 rounded-2xl bg-[#faf6ee] border-2 border-black shadow-neo-xs space-y-4">
                     {/* Why Header + Source Badge */}
-                    <div className="flex items-center justify-between pb-2 border-b border-slate-200">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-slate-800 uppercase tracking-wider">
-                        <HelpCircle className="w-4 h-4 text-primary-600" />
+                    <div className="flex items-center justify-between pb-2 border-b-2 border-black">
+                      <div className="flex items-center gap-1.5 text-xs font-black text-black uppercase tracking-wider">
+                        <HelpCircle className="w-4 h-4 text-black stroke-[2.5]" />
                         Why is this prioritized?
                       </div>
 
                       <div className="flex items-center gap-2">
                         {narrativeSource === 'llm' ? (
                           <Badge variant="primary" size="sm" className="flex items-center gap-1">
-                            <Sparkles className="w-3 h-3" /> AI Personalized
+                            <Sparkles className="w-3 h-3 stroke-[2.5]" /> AI Personalized
                           </Badge>
                         ) : (
                           <Badge variant="medium" size="sm">
@@ -200,49 +200,49 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
                     </div>
 
                     {/* Grounded Narrative Sentence */}
-                    <p className="text-xs text-slate-700 leading-relaxed font-medium">
+                    <p className="text-xs text-black leading-relaxed font-bold bg-white p-3 rounded-xl border border-black">
                       &ldquo;{narrative}&rdquo;
                     </p>
 
                     {/* Numeric Fact Breakdown Grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 pt-2 border-t border-slate-200 text-center">
-                      <div className="p-2 rounded-lg bg-white border border-slate-200">
-                        <span className="block text-[10px] text-slate-400 uppercase font-bold">
+                    <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5 pt-2 border-t border-black text-center">
+                      <div className="p-2.5 rounded-xl bg-white border-2 border-black shadow-neo-xs">
+                        <span className="block text-[10px] text-slate-600 uppercase font-black">
                           Current
                         </span>
-                        <span className="text-sm font-bold text-slate-900">
+                        <span className="text-sm font-black text-black">
                           {gap.level.toFixed(1)} / 10
                         </span>
                       </div>
-                      <div className="p-2 rounded-lg bg-white border border-slate-200">
-                        <span className="block text-[10px] text-slate-400 uppercase font-bold">
+                      <div className="p-2.5 rounded-xl bg-[#79e7a8] border-2 border-black shadow-neo-xs">
+                        <span className="block text-[10px] text-black uppercase font-black">
                           Target
                         </span>
-                        <span className="text-sm font-bold text-emerald-600">
+                        <span className="text-sm font-black text-black">
                           {gap.target.toFixed(1)} / 10
                         </span>
                       </div>
-                      <div className="p-2 rounded-lg bg-white border border-slate-200">
-                        <span className="block text-[10px] text-slate-400 uppercase font-bold">
+                      <div className="p-2.5 rounded-xl bg-[#ff6b6b]/20 border-2 border-black shadow-neo-xs">
+                        <span className="block text-[10px] text-red-900 uppercase font-black">
                           Skill Gap
                         </span>
-                        <span className="text-sm font-bold text-red-600">
+                        <span className="text-sm font-black text-red-700">
                           +{gap.gap.toFixed(1)}
                         </span>
                       </div>
-                      <div className="p-2 rounded-lg bg-white border border-slate-200">
-                        <span className="block text-[10px] text-slate-400 uppercase font-bold">
+                      <div className="p-2.5 rounded-xl bg-white border-2 border-black shadow-neo-xs">
+                        <span className="block text-[10px] text-slate-600 uppercase font-black">
                           Role Importance
                         </span>
-                        <span className="text-sm font-bold text-slate-900">
+                        <span className="text-sm font-black text-black">
                           {(gap.importance * 100).toFixed(0)}%
                         </span>
                       </div>
-                      <div className="p-2 rounded-lg bg-white border border-slate-200 col-span-2 sm:col-span-1">
-                        <span className="block text-[10px] text-slate-400 uppercase font-bold">
+                      <div className="p-2.5 rounded-xl bg-white border-2 border-black shadow-neo-xs col-span-2 sm:col-span-1">
+                        <span className="block text-[10px] text-slate-600 uppercase font-black">
                           Dependency
                         </span>
-                        <span className="text-sm font-bold text-slate-900">
+                        <span className="text-sm font-black text-black">
                           {(gap.dependency_impact * 100).toFixed(0)}%
                         </span>
                       </div>
@@ -250,12 +250,12 @@ export const GapList: React.FC<GapListProps> = ({ gaps, roadmapItems = [] }) => 
 
                     {/* Unblocks details if any */}
                     {gap.unblocks.length > 0 && (
-                      <div className="text-xs text-slate-600 flex items-center gap-2 flex-wrap">
-                        <span className="font-semibold text-slate-700">Competencies unlocked:</span>
+                      <div className="text-xs text-black flex items-center gap-2 flex-wrap">
+                        <span className="font-black text-black">Competencies unlocked:</span>
                         {gap.unblocks.map((u) => (
                           <span
                             key={u.skill_id}
-                            className="font-medium px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-[11px]"
+                            className="font-black px-2.5 py-0.5 rounded-lg bg-[#70d6ff] text-black border border-black text-[11px] shadow-neo-xs"
                           >
                             {u.skill_name}
                           </span>

@@ -46,66 +46,66 @@ export const EvalSummaryCard: React.FC<EvalSummaryCardProps> = ({
   const failedCount = summary.total - summary.passed;
 
   return (
-    <Card className="p-6 border-slate-200 bg-white shadow-xs">
+    <Card className="p-6 sm:p-8 border-2 border-black bg-[#fdfbf7] shadow-neo">
       <div className="flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Overall Title & Benchmark Stats */}
-        <div className="space-y-3 text-center md:text-left flex-1 min-w-0">
+        <div className="space-y-3.5 text-center md:text-left flex-1 min-w-0">
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary-700 bg-primary-50 px-3 py-1 rounded-full border border-primary-200 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-primary-600" />
+            <span className="text-xs font-black uppercase tracking-wider text-black bg-[#ffe566] px-3.5 py-1 rounded-xl border-2 border-black shadow-neo-xs flex items-center gap-1.5">
+              <Sparkles className="w-3.5 h-3.5 text-black" />
               Evaluation & Judging Suite
             </span>
-            <span className="text-xs text-slate-500 font-medium flex items-center gap-1">
-              <Calendar className="w-3.5 h-3.5 text-slate-400" />
+            <span className="text-xs text-neutral-600 font-bold flex items-center gap-1 bg-white border border-black px-2.5 py-0.5 rounded-lg">
+              <Calendar className="w-3.5 h-3.5 text-neutral-500" />
               {formattedDate}
             </span>
           </div>
 
           <div>
-            <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+            <h1 className="text-2xl sm:text-4xl font-black text-black tracking-tight">
               {summary.passed} / {summary.total} Benchmarks Passed
             </h1>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1 max-w-xl">
+            <p className="text-xs sm:text-sm font-bold text-neutral-600 mt-1 max-w-xl">
               Independent evaluation harness validating skill-gap accuracy, personalization distance, topological ordering, and ADK agent trajectory compliance.
             </p>
           </div>
 
           {/* Metric Status Chips */}
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5 pt-1">
-            <span className="inline-flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-lg border border-emerald-200">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
+            <span className="inline-flex items-center gap-1.5 text-xs font-black text-black bg-[#79e7a8] px-3 py-1.5 rounded-xl border-2 border-black shadow-neo-xs">
+              <CheckCircle2 className="w-4 h-4 text-black" />
               {summary.passed} Passing
             </span>
 
             {failedCount > 0 && (
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-red-800 bg-red-50 px-3 py-1 rounded-lg border border-red-200">
-                <XCircle className="w-3.5 h-3.5 text-red-600" />
+              <span className="inline-flex items-center gap-1.5 text-xs font-black text-black bg-[#ff6b6b] px-3 py-1.5 rounded-xl border-2 border-black shadow-neo-xs">
+                <XCircle className="w-4 h-4 text-black" />
                 {failedCount} Failing
               </span>
             )}
 
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-lg border border-slate-200">
-              <Users className="w-3.5 h-3.5 text-slate-500" />
+            <span className="inline-flex items-center gap-1.5 text-xs font-black text-black bg-white px-3 py-1.5 rounded-xl border-2 border-black shadow-neo-xs">
+              <Users className="w-4 h-4 text-black" />
               {personasCount} Golden Personas
             </span>
 
-            <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-600 bg-slate-100 px-3 py-1 rounded-lg border border-slate-200">
-              <Bot className="w-3.5 h-3.5 text-slate-500" />
+            <span className="inline-flex items-center gap-1.5 text-xs font-black text-black bg-white px-3 py-1.5 rounded-xl border-2 border-black shadow-neo-xs">
+              <Bot className="w-4 h-4 text-black" />
               {adkCasesCount} ADK Test Cases
             </span>
           </div>
         </div>
 
         {/* Right: Pass-Rate Ring / Gauge */}
-        <div className="flex flex-col items-center justify-center bg-slate-50/80 p-4 rounded-2xl border border-slate-100 flex-shrink-0">
+        <div className="flex flex-col items-center justify-center bg-white p-5 rounded-2xl border-2 border-black shadow-neo flex-shrink-0">
           <Gauge
             value={summary.pass_rate}
-            size={120}
-            strokeWidth={12}
+            size={130}
+            strokeWidth={14}
             label="Pass Rate"
             subtext={`${summary.pass_rate.toFixed(1)}% Overall`}
           />
-          <div className="mt-2">
+          <div className="mt-3">
             <Badge
               variant={summary.pass_rate >= 80 ? 'primary' : 'critical'}
               size="sm"

@@ -121,45 +121,45 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="flex items-center gap-2 px-4 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group ring-4 ring-primary-500/20"
+          className="flex items-center gap-2.5 px-5 py-3.5 bg-[#ffe566] hover:bg-[#ffd633] text-black border-2 border-black rounded-2xl shadow-neo hover:shadow-neo-lg active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all group font-black"
           aria-label="Open Career Coach"
         >
           <div className="relative">
-            <Bot className="w-5 h-5 text-white group-hover:scale-110 transition-transform" />
-            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 rounded-full border-2 border-primary-600" />
+            <Bot className="w-5 h-5 text-black group-hover:scale-110 transition-transform" />
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#79e7a8] rounded-full border border-black" />
           </div>
-          <span className="text-sm font-semibold tracking-wide">Coach AI</span>
+          <span className="text-sm font-black tracking-wide">Coach AI</span>
         </button>
       )}
 
       {/* Expanded Chat Window */}
       {isOpen && (
         <div
-          className={`w-96 max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-slate-200/90 flex flex-col overflow-hidden transition-all duration-300 ${
-            isMinimized ? 'h-14' : 'h-[540px]'
+          className={`w-96 max-w-[calc(100vw-2rem)] bg-[#fdfbf7] rounded-3xl border-3 border-black shadow-[6px_6px_0px_0px_#000] flex flex-col overflow-hidden transition-all duration-300 ${
+            isMinimized ? 'h-16' : 'h-[550px]'
           }`}
         >
           {/* Panel Header */}
-          <div className="px-4 py-3 bg-gradient-to-r from-primary-600 to-primary-700 text-white flex items-center justify-between flex-shrink-0">
+          <div className="px-4 py-3.5 bg-[#ffe566] text-black border-b-2 border-black flex items-center justify-between flex-shrink-0">
             <div className="flex items-center gap-2.5">
-              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center border border-white/20">
-                <Bot className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-xl bg-white flex items-center justify-center border-2 border-black shadow-neo-xs">
+                <Bot className="w-4 h-4 text-black" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <h3 className="text-sm font-bold leading-tight">Career Coach</h3>
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block" />
+                  <h3 className="text-sm font-black leading-tight text-black">Career Coach</h3>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#79e7a8] border border-black inline-block" />
                 </div>
-                <p className="text-[10px] text-primary-100 font-medium leading-none mt-0.5">
+                <p className="text-[10px] text-neutral-800 font-bold leading-none mt-0.5">
                   Grounded in your active roadmap
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1.5">
               <button
                 onClick={() => setIsMinimized((prev) => !prev)}
-                className="p-1 rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1 rounded-lg text-black hover:bg-white border border-transparent hover:border-black transition-all"
                 aria-label={isMinimized ? 'Maximize' : 'Minimize'}
               >
                 {isMinimized ? (
@@ -170,7 +170,7 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1 rounded-md text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                className="p-1 rounded-lg text-black hover:bg-white border border-transparent hover:border-black transition-all"
                 aria-label="Close"
               >
                 <X className="w-4 h-4" />
@@ -182,16 +182,16 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
           {!isMinimized && (
             <>
               {/* Message List */}
-              <div className="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/50">
+              <div className="flex-1 p-4 overflow-y-auto space-y-3.5 bg-[#faf6ee]">
                 {coachMessages.length === 0 ? (
                   <div className="text-center py-8 px-2">
-                    <div className="w-12 h-12 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mx-auto mb-3 border border-primary-100">
+                    <div className="w-12 h-12 rounded-2xl bg-[#ffe566] text-black flex items-center justify-center mx-auto mb-3 border-2 border-black shadow-neo-xs">
                       <Sparkles className="w-6 h-6" />
                     </div>
-                    <h4 className="text-xs font-bold text-slate-800 mb-1">
+                    <h4 className="text-sm font-black text-black mb-1">
                       Hi! I'm your Career Coach.
                     </h4>
-                    <p className="text-[11px] text-slate-500 leading-relaxed max-w-xs mx-auto mb-4">
+                    <p className="text-xs text-neutral-600 font-bold leading-relaxed max-w-xs mx-auto mb-4">
                       Ask me what to focus on next, why a skill was prioritized, or tell me when you've completed a milestone.
                     </p>
                   </div>
@@ -204,10 +204,10 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
                       }`}
                     >
                       <div
-                        className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs leading-relaxed shadow-2xs ${
+                        className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs font-bold leading-relaxed border-2 border-black ${
                           msg.sender === 'user'
-                            ? 'bg-primary-600 text-white rounded-br-xs'
-                            : 'bg-white text-slate-800 border border-slate-200/90 rounded-bl-xs'
+                            ? 'bg-[#ffe566] text-black shadow-neo-xs rounded-br-none'
+                            : 'bg-white text-black shadow-neo-xs rounded-bl-none'
                         }`}
                       >
                         {msg.text}
@@ -219,16 +219,16 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
                           {msg.tool_calls.map((tool, idx) => (
                             <span
                               key={idx}
-                              className="inline-flex items-center gap-1 text-[10px] font-mono font-medium px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200"
+                              className="inline-flex items-center gap-1 text-[10px] font-mono font-black px-2 py-0.5 rounded-lg bg-[#b892ff]/30 text-black border border-black shadow-neo-xs"
                             >
-                              <Wrench className="w-2.5 h-2.5 text-primary-600" />
+                              <Wrench className="w-2.5 h-2.5 text-black" />
                               <span>
                                 {tool.name}({Object.entries(tool.args || {})
                                   .map(([k, v]) => `${k}="${v}"`)
                                   .join(', ')})
                               </span>
                               {tool.ok && (
-                                <span className="text-emerald-600 font-bold">✓</span>
+                                <span className="text-black font-black">✓</span>
                               )}
                             </span>
                           ))}
@@ -240,11 +240,11 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
 
                 {/* Loading typing indicator */}
                 {isLoading && (
-                  <div className="flex items-center gap-1.5 p-2.5 rounded-xl bg-white border border-slate-200 max-w-[120px] shadow-2xs">
-                    <span className="w-1.5 h-1.5 bg-primary-600 rounded-full animate-bounce" />
-                    <span className="w-1.5 h-1.5 bg-primary-600 rounded-full animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 bg-primary-600 rounded-full animate-bounce [animation-delay:0.4s]" />
-                    <span className="text-[10px] text-slate-400 font-medium ml-1">
+                  <div className="flex items-center gap-1.5 p-2.5 rounded-xl bg-white border-2 border-black max-w-[120px] shadow-neo-xs">
+                    <span className="w-2 h-2 bg-black rounded-full animate-bounce" />
+                    <span className="w-2 h-2 bg-black rounded-full animate-bounce [animation-delay:0.2s]" />
+                    <span className="w-2 h-2 bg-black rounded-full animate-bounce [animation-delay:0.4s]" />
+                    <span className="text-[10px] text-black font-black ml-1">
                       Thinking...
                     </span>
                   </div>
@@ -253,13 +253,13 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
               </div>
 
               {/* Suggested Query Chips */}
-              <div className="p-2 border-t border-slate-100 bg-white overflow-x-auto flex items-center gap-1.5 no-scrollbar">
+              <div className="p-2 border-t-2 border-black bg-white overflow-x-auto flex items-center gap-2 no-scrollbar">
                 {SUGGESTED_CHIPS.map((chip, idx) => (
                   <button
                     key={idx}
                     disabled={isLoading}
                     onClick={() => handleSendMessage(chip)}
-                    className="flex-shrink-0 text-[11px] font-medium text-slate-600 bg-slate-50 hover:bg-primary-50 hover:text-primary-700 border border-slate-200 hover:border-primary-200 px-2.5 py-1 rounded-full transition-colors whitespace-nowrap"
+                    className="flex-shrink-0 text-xs font-black text-black bg-[#faf6ee] hover:bg-[#ffe566] border-2 border-black px-3 py-1 rounded-xl shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5 transition-all whitespace-nowrap"
                   >
                     {chip}
                   </button>
@@ -267,7 +267,7 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
               </div>
 
               {/* Input Area */}
-              <div className="p-3 bg-white border-t border-slate-100 flex items-center gap-2">
+              <div className="p-3 bg-white border-t-2 border-black flex items-center gap-2">
                 <input
                   type="text"
                   value={inputText}
@@ -275,15 +275,15 @@ export const CoachPanel: React.FC<CoachPanelProps> = ({ onPlanUpdated }) => {
                   onKeyDown={handleKeyDown}
                   placeholder="Ask Coach or report progress..."
                   disabled={isLoading}
-                  className="flex-1 text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors"
+                  className="flex-1 text-xs font-bold px-3 py-2.5 bg-[#faf6ee] border-2 border-black rounded-xl text-black placeholder:text-neutral-500 shadow-neo-xs focus:bg-white focus:outline-none transition-colors"
                 />
                 <button
                   onClick={() => handleSendMessage()}
                   disabled={isLoading || !inputText.trim()}
-                  className="p-2 bg-primary-600 hover:bg-primary-700 disabled:opacity-40 text-white rounded-xl transition-colors shadow-xs"
+                  className="p-2.5 bg-[#ffe566] hover:bg-[#ffd633] disabled:opacity-40 text-black border-2 border-black rounded-xl shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5 transition-all font-black"
                   aria-label="Send message"
                 >
-                  <Send className="w-3.5 h-3.5" />
+                  <Send className="w-4 h-4 text-black" />
                 </button>
               </div>
             </>

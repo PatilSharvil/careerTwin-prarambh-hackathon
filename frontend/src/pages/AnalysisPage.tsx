@@ -119,37 +119,37 @@ export const AnalysisPage: React.FC = () => {
   return (
     <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto space-y-8 pb-32">
       {/* 1. Header Banner */}
-      <Card className="p-6 sm:p-8 border-slate-200 bg-white shadow-sm overflow-hidden relative">
+      <Card className="p-6 sm:p-8 border-2 border-black bg-white shadow-neo-lg rounded-3xl overflow-hidden relative">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left: Role Info + Readiness Note */}
           <div className="space-y-3 text-center md:text-left flex-1 min-w-0">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary-50 border border-primary-200 text-primary-700 text-xs font-semibold">
-              <Sparkles className="w-3.5 h-3.5" />
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-xl bg-[#ffe566] border-2 border-black text-black text-xs font-black shadow-neo-xs">
+              <Sparkles className="w-4 h-4 text-black stroke-[2.5]" />
               <span>Target Benchmark</span>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-              <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-2.5">
+              <h1 className="text-2xl sm:text-3xl font-black text-black tracking-tight">
                 {role.title}
               </h1>
-              <span className="text-xs font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-semibold border border-slate-200">
+              <span className="text-xs font-mono px-2.5 py-0.5 rounded-lg bg-white text-black font-black border-2 border-black shadow-neo-xs">
                 v{role.version}
               </span>
             </div>
 
-            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl">
+            <p className="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed max-w-xl">
               Comparative skill calibration against required industry competencies. Review prioritized gaps and evidence-backed explanations below.
             </p>
 
             {/* API readiness_note as small print */}
-            <div className="flex items-center justify-center md:justify-start gap-1.5 text-[11px] text-slate-500 pt-1">
-              <Info className="w-3.5 h-3.5 text-slate-400 flex-shrink-0" />
+            <div className="flex items-center justify-center md:justify-start gap-1.5 text-xs text-black font-semibold pt-1">
+              <Info className="w-4 h-4 text-black flex-shrink-0 stroke-[2.5]" />
               <span className="italic">{analysis.readiness_note}</span>
             </div>
           </div>
 
           {/* Right: Readiness Gauge */}
-          <div className="flex flex-col items-center flex-shrink-0 bg-slate-50/70 p-4 sm:p-5 rounded-2xl border border-slate-100">
+          <div className="flex flex-col items-center flex-shrink-0 bg-[#faf6ee] p-4 sm:p-5 rounded-2xl border-2 border-black shadow-neo-sm">
             <Gauge
               value={analysis.readiness}
               size={140}
@@ -185,7 +185,7 @@ export const AnalysisPage: React.FC = () => {
       ) : (
         /* Empty State when gaps is empty */
         <EmptyState
-          icon={<Trophy className="w-6 h-6 text-emerald-600" />}
+          icon={<Trophy className="w-6 h-6 text-emerald-600 stroke-[2.5]" />}
           title="You already meet this role's targets"
           description={`Outstanding! Your calibrated proficiencies across all ${role.title} requirements meet or exceed target expectations. You are fully aligned with this role.`}
           action={
@@ -203,13 +203,13 @@ export const AnalysisPage: React.FC = () => {
       )}
 
       {/* 5. Sticky Bottom Action Bar (CTA -> /roadmap) */}
-      <Card className="p-5 bg-white border-slate-300 shadow-md sticky bottom-4 z-30">
+      <Card className="p-5 bg-white border-2 border-black rounded-2xl shadow-neo-lg sticky bottom-4 z-30">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="text-center sm:text-left">
-            <h4 className="text-sm font-bold text-slate-900">
+            <h4 className="text-sm font-black text-black">
               Next Step: Topological Career Roadmap
             </h4>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-slate-600 font-medium">
               Transform identified skill gaps into a structured schedule fitting your hours.
             </p>
           </div>
@@ -218,7 +218,7 @@ export const AnalysisPage: React.FC = () => {
             size="lg"
             onClick={() => navigate('/roadmap')}
             className="w-full sm:w-auto"
-            rightIcon={<ArrowRight className="w-5 h-5 ml-1" />}
+            rightIcon={<ArrowRight className="w-5 h-5 ml-1 stroke-[3]" />}
           >
             Continue to Roadmap
           </Button>

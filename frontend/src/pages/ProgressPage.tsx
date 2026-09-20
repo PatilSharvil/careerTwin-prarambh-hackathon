@@ -327,39 +327,39 @@ export const ProgressPage: React.FC = () => {
   return (
     <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
       {/* 1. Header Bar: Progress Counter + Readiness Gauge with Delta + Market Update Button */}
-      <div className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs flex flex-col md:flex-row items-center justify-between gap-6">
+      <div className="bg-white rounded-3xl border-2 border-black p-6 sm:p-8 shadow-neo-lg flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Left: Role Info & Completed Counter */}
         <div className="space-y-2 text-center md:text-left flex-1 min-w-0">
           <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            <span className="text-xs font-bold uppercase tracking-wider text-primary-700 bg-primary-50 px-3 py-1 rounded-full border border-primary-200">
+            <span className="text-xs font-black uppercase tracking-wider text-black bg-[#ffe566] px-3 py-1 rounded-xl border-2 border-black shadow-neo-xs">
               Target: {state.role.title}
             </span>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-xs text-black font-black bg-white px-2 py-0.5 rounded-lg border border-black shadow-neo-xs">
               Version {state.role.version}
             </span>
-            <span className="text-slate-300">•</span>
-            <span className="text-xs text-slate-500 font-medium">
+            <span className="text-black font-black">•</span>
+            <span className="text-xs text-black font-black bg-white px-2 py-0.5 rounded-lg border border-black shadow-neo-xs">
               Plan v{state.roadmap.version}
             </span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-black text-black tracking-tight">
             Completed {completedCount} / {totalCount} items
           </h1>
 
-          <div className="flex items-center justify-center md:justify-start gap-3 text-xs text-slate-600">
+          <div className="flex items-center justify-center md:justify-start gap-3 text-xs text-black font-bold">
             <span>{progressPercent}% Roadmap Completion</span>
-            <span className="text-slate-300">•</span>
+            <span className="text-black">•</span>
             <span className="inline-flex items-center gap-1">
-              <Clock className="w-3.5 h-3.5 text-slate-400" />
+              <Clock className="w-3.5 h-3.5 text-black stroke-[2.5]" />
               {state.roadmap.total_hours} total hours planned
             </span>
           </div>
 
           {/* Mini progress bar */}
-          <div className="w-full max-w-md h-2 rounded-full bg-slate-100 overflow-hidden mt-2">
+          <div className="w-full max-w-md h-3 rounded-full bg-slate-200 border-2 border-black overflow-hidden mt-2 shadow-neo-xs">
             <div
-              className="h-full bg-primary-600 rounded-full transition-all duration-500"
+              className="h-full bg-[#79e7a8] transition-all duration-500"
               style={{ width: `${progressPercent}%` }}
             />
           </div>
@@ -368,7 +368,7 @@ export const ProgressPage: React.FC = () => {
         {/* Right: Readiness Gauge with Delta & Market Update Button */}
         <div className="flex flex-col sm:flex-row items-center gap-6">
           {/* Gauge & Delta Stat */}
-          <div className="flex items-center gap-4 bg-slate-50/80 p-3 rounded-2xl border border-slate-100">
+          <div className="flex items-center gap-4 bg-[#faf6ee] p-4 rounded-2xl border-2 border-black shadow-neo-sm">
             <Gauge
               value={state.analysis.readiness}
               size={100}
@@ -377,31 +377,31 @@ export const ProgressPage: React.FC = () => {
             />
 
             <div className="text-left space-y-1">
-              <div className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+              <div className="text-[11px] font-black uppercase tracking-wider text-black">
                 Alignment Delta
               </div>
               {lastDiff && readinessDelta !== null ? (
                 <div>
                   <div
-                    className={`inline-flex items-center gap-1 text-sm font-black px-2 py-0.5 rounded-md border ${
+                    className={`inline-flex items-center gap-1 text-sm font-black px-2.5 py-0.5 rounded-lg border-2 border-black shadow-neo-xs ${
                       readinessDelta >= 0
-                        ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                        : 'bg-amber-50 text-amber-800 border-amber-200'
+                        ? 'bg-[#79e7a8] text-black'
+                        : 'bg-[#ff9770] text-black'
                     }`}
                   >
                     {readinessDelta >= 0 ? (
-                      <TrendingUp className="w-3.5 h-3.5 text-emerald-600" />
+                      <TrendingUp className="w-4 h-4 text-black stroke-[3]" />
                     ) : (
-                      <TrendingDown className="w-3.5 h-3.5 text-amber-600" />
+                      <TrendingDown className="w-4 h-4 text-black stroke-[3]" />
                     )}
                     <span>{readinessDelta >= 0 ? `+${readinessDelta}%` : `${readinessDelta}%`}</span>
                   </div>
-                  <div className="text-[10px] text-slate-500 mt-0.5">
+                  <div className="text-[10px] text-black font-bold mt-0.5">
                     {lastDiff.readiness_before.toFixed(1)}% → {lastDiff.readiness_after.toFixed(1)}%
                   </div>
                 </div>
               ) : (
-                <div className="text-xs text-slate-500 font-medium">
+                <div className="text-xs text-black font-bold">
                   Baseline calibrated
                 </div>
               )}
@@ -417,12 +417,12 @@ export const ProgressPage: React.FC = () => {
                 onClick={handleMarketUpdate}
                 disabled={Boolean(loadingAction)}
                 isLoading={loadingAction === 'market_update'}
-                className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-md ring-4 ring-purple-500/20 text-xs font-bold"
+                className="bg-[#b892ff] hover:bg-[#a57aff] text-black border-2 border-black shadow-neo text-xs font-black"
               >
-                <Sparkles className="w-4 h-4 mr-1.5 text-purple-200 animate-spin" />
+                <Sparkles className="w-4 h-4 mr-1.5 text-black stroke-[2.5]" />
                 Apply Market Update
               </Button>
-              <span className="text-[10px] text-purple-700 font-semibold mt-1">
+              <span className="text-[10px] text-black font-bold mt-1">
                 New benchmark v2026.10 available
               </span>
             </div>

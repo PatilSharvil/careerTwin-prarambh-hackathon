@@ -21,25 +21,25 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    'inline-flex items-center justify-center font-medium rounded-lg transition-all focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed shadow-sm active:scale-[0.98]';
+    'inline-flex items-center justify-center font-extrabold rounded-xl border-2 border-black transition-all duration-150 focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed select-none cursor-pointer';
 
   const sizeStyles = {
-    sm: 'text-xs px-3 py-1.5 gap-1.5',
-    md: 'text-sm px-4 py-2 gap-2',
-    lg: 'text-base px-5 py-2.5 gap-2.5',
+    sm: 'text-xs px-3 py-1.5 gap-1.5 shadow-neo-sm hover:shadow-neo active:shadow-none hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5',
+    md: 'text-sm px-4.5 py-2.5 gap-2 shadow-neo hover:shadow-neo-lg active:shadow-none hover:-translate-x-0.5 hover:-translate-y-0.5 active:translate-x-0.5 active:translate-y-0.5',
+    lg: 'text-base px-6 py-3.5 gap-2.5 shadow-neo-lg hover:shadow-neo-xl active:shadow-none hover:-translate-x-1 hover:-translate-y-1 active:translate-x-1 active:translate-y-1',
   };
 
   const variantStyles = {
     primary:
-      'bg-primary-600 text-white hover:bg-primary-700 focus:ring-primary-500 border border-transparent',
+      'bg-[#ffe566] text-black hover:bg-[#ffd026]',
     secondary:
-      'bg-slate-100 text-slate-800 hover:bg-slate-200 focus:ring-slate-400 border border-slate-200',
+      'bg-white text-black hover:bg-[#faf6ee]',
     outline:
-      'bg-white text-slate-700 hover:bg-slate-50 focus:ring-primary-500 border border-slate-300',
+      'bg-white text-black hover:bg-[#fff9db]',
     ghost:
-      'bg-transparent text-slate-600 hover:bg-slate-100 hover:text-slate-900 focus:ring-slate-300 shadow-none',
+      'bg-transparent text-black border-transparent hover:border-black hover:bg-white shadow-none hover:shadow-neo-sm',
     danger:
-      'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 border border-transparent',
+      'bg-[#ff6b6b] text-black hover:bg-[#ff5252]',
   };
 
   return (
@@ -49,7 +49,7 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {isLoading ? (
-        <Spinner size={size === 'lg' ? 'md' : 'sm'} color={variant === 'primary' || variant === 'danger' ? 'white' : 'current'} />
+        <Spinner size={size === 'lg' ? 'md' : 'sm'} color="current" />
       ) : (
         leftIcon
       )}

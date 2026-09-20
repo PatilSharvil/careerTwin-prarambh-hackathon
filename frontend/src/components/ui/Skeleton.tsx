@@ -15,9 +15,9 @@ export const Skeleton: React.FC<SkeletonProps> = ({
   ...props
 }) => {
   const variantStyles = {
-    text: 'h-4 w-full rounded',
-    rectangular: 'rounded-lg',
-    circular: 'rounded-full',
+    text: 'h-4 w-full rounded-md border border-black/20',
+    rectangular: 'rounded-xl border-2 border-black shadow-neo-xs',
+    circular: 'rounded-full border-2 border-black shadow-neo-xs',
   };
 
   const inlineStyles: React.CSSProperties = {
@@ -28,7 +28,7 @@ export const Skeleton: React.FC<SkeletonProps> = ({
 
   return (
     <div
-      className={`animate-pulse bg-slate-200/80 ${variantStyles[variant]} ${className}`}
+      className={`animate-pulse bg-slate-200/90 ${variantStyles[variant]} ${className}`}
       style={inlineStyles}
       {...props}
     />

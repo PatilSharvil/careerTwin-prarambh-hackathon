@@ -33,13 +33,13 @@ export const AdkEvalBlock: React.FC<AdkEvalBlockProps> = ({ adk }) => {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center justify-between pb-2 border-b border-slate-200">
+      <div className="flex items-center justify-between pb-3 border-b-2 border-black">
         <div>
-          <h2 className="text-xl font-bold text-slate-900 tracking-tight flex items-center gap-2">
-            <Bot className="w-5 h-5 text-primary-600" />
+          <h2 className="text-2xl font-black text-black tracking-tight flex items-center gap-2">
+            <Bot className="w-6 h-6 text-black" />
             ADK Agent Trajectory & Coach Evaluation
           </h2>
-          <p className="text-xs text-slate-500 mt-0.5">
+          <p className="text-xs font-bold text-neutral-600 mt-0.5">
             Validation of autonomous agent tool calling sequences and semantic response quality across coach scenarios.
           </p>
         </div>
@@ -48,97 +48,103 @@ export const AdkEvalBlock: React.FC<AdkEvalBlockProps> = ({ adk }) => {
       {/* Overview Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {/* Tool Trajectory Avg Score */}
-        <Card className="p-4 border-slate-200 bg-white shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">
+        <Card className="p-5 border-2 border-black bg-white rounded-2xl shadow-neo">
+          <div className="flex items-center justify-between text-neutral-700 text-xs font-black uppercase tracking-wider mb-1">
             <span>Tool Trajectory Score</span>
-            <Crosshair className="w-4 h-4 text-primary-600" />
+            <div className="p-1 rounded-lg bg-[#70d6ff] border border-black shadow-neo-xs">
+              <Crosshair className="w-4 h-4 text-black" />
+            </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">
+          <div className="text-3xl font-black text-black">
             {formatScore(adk.tool_trajectory_avg_score)}
           </div>
-          <p className="text-[11px] text-slate-400 mt-0.5">
+          <p className="text-[11px] font-bold text-neutral-500 mt-1">
             Optimal tool sequence alignment
           </p>
         </Card>
 
         {/* Response Match Score */}
-        <Card className="p-4 border-slate-200 bg-white shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">
+        <Card className="p-5 border-2 border-black bg-white rounded-2xl shadow-neo">
+          <div className="flex items-center justify-between text-neutral-700 text-xs font-black uppercase tracking-wider mb-1">
             <span>Response Match Score</span>
-            <Activity className="w-4 h-4 text-purple-600" />
+            <div className="p-1 rounded-lg bg-[#b892ff] border border-black shadow-neo-xs">
+              <Activity className="w-4 h-4 text-black" />
+            </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">
+          <div className="text-3xl font-black text-black">
             {formatScore(adk.response_match_score)}
           </div>
-          <p className="text-[11px] text-slate-400 mt-0.5">
+          <p className="text-[11px] font-bold text-neutral-500 mt-1">
             Semantic ground-truth alignment
           </p>
         </Card>
 
         {/* ADK Cases Passed */}
-        <Card className="p-4 border-slate-200 bg-white shadow-xs">
-          <div className="flex items-center justify-between text-slate-500 text-xs font-semibold uppercase tracking-wider mb-1">
+        <Card className="p-5 border-2 border-black bg-white rounded-2xl shadow-neo">
+          <div className="flex items-center justify-between text-neutral-700 text-xs font-black uppercase tracking-wider mb-1">
             <span>Evaluation Run</span>
-            <Bot className="w-4 h-4 text-emerald-600" />
+            <div className="p-1 rounded-lg bg-[#79e7a8] border border-black shadow-neo-xs">
+              <Bot className="w-4 h-4 text-black" />
+            </div>
           </div>
-          <div className="text-2xl font-black text-slate-900">
+          <div className="text-3xl font-black text-black">
             {totalCasesCount > 0 ? `${passedCasesCount} / ${totalCasesCount}` : 'not run'}
           </div>
-          <p className="text-[11px] text-slate-400 mt-0.5">
+          <p className="text-[11px] font-bold text-neutral-500 mt-1">
             Ran at: {formattedRanAt}
           </p>
         </Card>
       </div>
 
       {/* Per-case Table */}
-      <Card className="border border-slate-200 bg-white overflow-hidden shadow-xs">
-        <div className="px-4 py-3 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+      <Card className="border-2 border-black bg-white rounded-2xl overflow-hidden shadow-neo">
+        <div className="px-5 py-3.5 bg-[#ffe566] border-b-2 border-black flex items-center justify-between">
+          <span className="text-xs font-black uppercase tracking-wider text-black">
             Coach Test Case Trajectories
           </span>
-          <span className="text-xs text-slate-500 font-medium">
+          <span className="text-xs text-black font-black bg-white border border-black px-2.5 py-0.5 rounded-lg shadow-neo-xs">
             {passedCasesCount} of {totalCasesCount} cases passing
           </span>
         </div>
 
         {adk.cases.length > 0 ? (
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs text-slate-600 border-collapse">
+            <table className="w-full text-left text-xs text-neutral-800 border-collapse">
               <thead>
-                <tr className="border-b border-slate-100 text-slate-500 font-semibold text-[11px]">
-                  <th className="py-2.5 px-4">Scenario ID</th>
-                  <th className="py-2.5 px-4 text-center">Status</th>
-                  <th className="py-2.5 px-4 text-right">Trajectory Score</th>
+                <tr className="border-b-2 border-black/10 text-neutral-600 font-black uppercase text-[11px] bg-[#faf6ee]">
+                  <th className="py-3.5 px-5">Scenario ID</th>
+                  <th className="py-3.5 px-5 text-center">Status</th>
+                  <th className="py-3.5 px-5 text-right">Trajectory Score</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100">
+              <tbody className="divide-y-2 divide-black/10">
                 {adk.cases.map((c) => (
-                  <tr key={c.eval_id} className="hover:bg-slate-50/50 transition-colors">
-                    <td className="py-2.5 px-4 font-mono font-medium text-slate-800">
+                  <tr key={c.eval_id} className="hover:bg-[#faf6ee] transition-colors">
+                    <td className="py-3.5 px-5 font-mono font-black text-black">
                       {c.eval_id}
                     </td>
-                    <td className="py-2.5 px-4 text-center">
+                    <td className="py-3.5 px-5 text-center">
                       <span
-                        className={`inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full border ${
+                        className={`inline-flex items-center gap-1.5 text-[10px] font-black px-2.5 py-1 rounded-xl border-2 border-black shadow-neo-xs ${
                           c.passed
-                            ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                            : 'bg-red-50 text-red-800 border-red-200'
+                            ? 'bg-[#79e7a8] text-black'
+                            : 'bg-[#ff6b6b] text-black'
                         }`}
                       >
                         {c.passed ? (
                           <>
-                            <CheckCircle2 className="w-3 h-3 text-emerald-600" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-black" />
                             Passed
                           </>
                         ) : (
                           <>
-                            <XCircle className="w-3 h-3 text-red-600" />
+                            <XCircle className="w-3.5 h-3.5 text-black" />
                             Failed
                           </>
                         )}
                       </span>
                     </td>
-                    <td className="py-2.5 px-4 text-right font-mono font-bold text-slate-700">
+                    <td className="py-3.5 px-5 text-right font-mono font-black text-black text-sm">
                       {c.tool_trajectory !== null ? c.tool_trajectory.toFixed(2) : 'not run'}
                     </td>
                   </tr>
@@ -147,7 +153,7 @@ export const AdkEvalBlock: React.FC<AdkEvalBlockProps> = ({ adk }) => {
             </table>
           </div>
         ) : (
-          <div className="p-6 text-center text-xs text-slate-500 italic">
+          <div className="p-6 text-center text-xs text-neutral-500 italic font-bold">
             No individual ADK test cases recorded in this evaluation run.
           </div>
         )}

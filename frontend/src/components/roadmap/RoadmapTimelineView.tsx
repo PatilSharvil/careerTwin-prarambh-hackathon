@@ -29,39 +29,39 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
   const getStatusIcon = (status: RoadmapItem['status']) => {
     switch (status) {
       case 'done':
-        return <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />;
+        return <CheckCircle2 className="w-3.5 h-3.5 text-black stroke-[3]" />;
       case 'in_progress':
-        return <PlayCircle className="w-3.5 h-3.5 text-violet-600" />;
+        return <PlayCircle className="w-3.5 h-3.5 text-black stroke-[2.5]" />;
       case 'available':
-        return <Unlock className="w-3.5 h-3.5 text-blue-600" />;
+        return <Unlock className="w-3.5 h-3.5 text-black stroke-[2.5]" />;
       case 'locked':
-        return <Lock className="w-3.5 h-3.5 text-slate-400" />;
+        return <Lock className="w-3.5 h-3.5 text-slate-500" />;
     }
   };
 
   const getStatusCardStyles = (status: RoadmapItem['status']) => {
     switch (status) {
       case 'done':
-        return 'border-emerald-200 bg-emerald-50/30 hover:border-emerald-400';
+        return 'border-2 border-black bg-[#79e7a8]/30 shadow-neo hover:shadow-neo-lg';
       case 'in_progress':
-        return 'border-violet-300 bg-violet-50/40 hover:border-violet-500 ring-1 ring-violet-400/20';
+        return 'border-2 border-black bg-[#b892ff]/30 shadow-neo hover:shadow-neo-lg';
       case 'available':
-        return 'border-blue-200 bg-white hover:border-blue-400 hover:shadow-xs';
+        return 'border-2 border-black bg-white shadow-neo hover:shadow-neo-lg';
       case 'locked':
-        return 'border-slate-200 bg-slate-50/80 opacity-80 hover:opacity-100 hover:border-slate-300';
+        return 'border-2 border-black bg-slate-100 opacity-80 shadow-neo-xs hover:opacity-100';
     }
   };
 
   const getPhaseStyles = (phase: Phase) => {
     switch (phase) {
       case 'Foundation':
-        return 'bg-blue-50 text-blue-800 border-blue-200';
+        return 'bg-[#70d6ff] text-black border-2 border-black shadow-neo-xs';
       case 'Core':
-        return 'bg-indigo-50 text-indigo-800 border-indigo-200';
+        return 'bg-[#ffe566] text-black border-2 border-black shadow-neo-xs';
       case 'Applied':
-        return 'bg-violet-50 text-violet-800 border-violet-200';
+        return 'bg-[#b892ff] text-black border-2 border-black shadow-neo-xs';
       case 'Capstone':
-        return 'bg-amber-50 text-amber-800 border-amber-200';
+        return 'bg-[#ff9770] text-black border-2 border-black shadow-neo-xs';
     }
   };
 
@@ -83,20 +83,20 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
             {/* Phase Group Header */}
             <div className="flex items-center gap-3">
               <span
-                className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full border ${getPhaseStyles(
+                className={`text-xs font-black uppercase tracking-wider px-3.5 py-1 rounded-xl ${getPhaseStyles(
                   phase
                 )}`}
               >
                 {phase} Phase
               </span>
-              <div className="h-px bg-slate-200 flex-1" />
-              <span className="text-xs text-slate-400 font-medium">
+              <div className="h-0.5 bg-black flex-1" />
+              <span className="text-xs text-black font-black bg-white px-2 py-0.5 rounded-md border border-black shadow-neo-xs">
                 {phaseItems.length} item{phaseItems.length > 1 ? 's' : ''}
               </span>
             </div>
 
             {/* Phase Items Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {phaseItems.map((item) => {
                 const isStretch = item.stretch || item.week_end > deadlineWeeks;
 
@@ -113,7 +113,7 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                         onSelectItem(item);
                       }
                     }}
-                    className={`p-5 rounded-xl border cursor-pointer transition-all flex flex-col justify-between ${getStatusCardStyles(
+                    className={`p-5 rounded-2xl cursor-pointer transition-all flex flex-col justify-between hover:-translate-y-1 ${getStatusCardStyles(
                       item.status
                     )}`}
                   >
@@ -121,19 +121,19 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                       {/* Top: Position + Status + Stretch Tag */}
                       <div className="flex items-start justify-between gap-2 mb-2.5">
                         <div className="flex items-center gap-1.5">
-                          <span className="w-5 h-5 rounded-full bg-slate-100 text-slate-700 flex items-center justify-center text-[10px] font-bold">
+                          <span className="w-6 h-6 rounded-lg bg-black text-[#ffe566] border border-black flex items-center justify-center text-[10px] font-black shadow-neo-xs">
                             {item.position}
                           </span>
-                          <span className="text-xs font-semibold text-slate-500 flex items-center gap-1">
-                            <Calendar className="w-3.5 h-3.5" />
+                          <span className="text-xs font-black text-black flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5 text-black stroke-[2.5]" />
                             Weeks {item.week_start}–{item.week_end}
                           </span>
                         </div>
 
                         <div className="flex items-center gap-1.5 flex-wrap">
                           {isStretch && (
-                            <span className="text-[10px] font-bold text-amber-700 bg-amber-100 px-1.5 py-0.5 rounded border border-amber-200 flex items-center gap-0.5">
-                              <AlertCircle className="w-3 h-3" /> stretch
+                            <span className="text-[10px] font-black text-black bg-[#ff6b6b] px-2 py-0.5 rounded-lg border border-black shadow-neo-xs flex items-center gap-0.5">
+                              <AlertCircle className="w-3 h-3 text-black stroke-[3]" /> stretch
                             </span>
                           )}
                           <Badge status={item.status} size="sm" className="flex items-center gap-1 capitalize">
@@ -144,7 +144,7 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                       </div>
 
                       {/* Item Title */}
-                      <h3 className="text-base font-bold text-slate-900 tracking-tight mb-1">
+                      <h3 className="text-base font-black text-black tracking-tight mb-1">
                         {item.skill_name}
                       </h3>
 
@@ -152,7 +152,7 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                       <div className="flex items-center gap-1.5 mb-3">
                         {item.is_capstone ? (
                           <Badge variant="medium" size="sm" className="flex items-center gap-1">
-                            <Milestone className="w-3 h-3 text-amber-600" />
+                            <Milestone className="w-3.5 h-3.5 text-black stroke-[2.5]" />
                             Capstone Synthesis
                           </Badge>
                         ) : (
@@ -162,15 +162,15 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                             </Badge>
                           )
                         )}
-                        <span className="text-xs text-slate-500 font-medium flex items-center gap-1">
-                          <Clock className="w-3.5 h-3.5 text-slate-400" />
+                        <span className="text-xs text-black font-bold flex items-center gap-1 bg-white px-2 py-0.5 rounded border border-black shadow-neo-xs">
+                          <Clock className="w-3.5 h-3.5 text-black" />
                           {item.hours} hrs
                         </span>
                       </div>
                     </div>
 
                     {/* Bottom Metadata: Prerequisites & Activities Summary */}
-                    <div className="pt-3 border-t border-slate-100/80 flex items-center justify-between text-xs text-slate-500">
+                    <div className="pt-3 border-t-2 border-black flex items-center justify-between text-xs text-black font-bold">
                       <div className="flex items-center gap-2">
                         <span>
                           {item.activities.length} activit{item.activities.length === 1 ? 'y' : 'ies'}
@@ -178,13 +178,13 @@ export const RoadmapTimelineView: React.FC<RoadmapTimelineViewProps> = ({
                         {item.prerequisites.length > 0 && (
                           <>
                             <span>&bull;</span>
-                            <span className="text-[11px]">
+                            <span className="text-[11px] text-slate-700 font-bold">
                               {item.prerequisites.filter((p) => p.met).length}/{item.prerequisites.length} prereqs met
                             </span>
                           </>
                         )}
                       </div>
-                      <span className="text-primary-600 font-semibold text-[11px] hover:underline">
+                      <span className="text-black font-black text-xs hover:underline flex items-center">
                         Details &rarr;
                       </span>
                     </div>

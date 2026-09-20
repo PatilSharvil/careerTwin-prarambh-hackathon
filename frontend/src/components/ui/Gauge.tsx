@@ -13,7 +13,7 @@ export interface GaugeProps {
 export const Gauge: React.FC<GaugeProps> = ({
   value,
   size = 140,
-  strokeWidth = 12,
+  strokeWidth = 14,
   label = 'Readiness',
   subtext,
   className = '',
@@ -33,7 +33,6 @@ export const Gauge: React.FC<GaugeProps> = ({
     const animateCount = (now: number) => {
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      // easeOutExpo
       const ease = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
       setCurrentValue(value * ease);
       if (progress < 1) {
@@ -52,29 +51,24 @@ export const Gauge: React.FC<GaugeProps> = ({
 
   // Determine color based on readiness percentage
   const getColor = (val: number) => {
-    if (val >= 75) return '#10b981'; // emerald
-    if (val >= 50) return '#6366f1'; // primary indigo
-    if (val >= 30) return '#f59e0b'; // amber
-    return '#ef4444'; // red
+    if (val >= 75) return '#79e7a8'; // Neo Green
+    if (val >= 50) return '#ffe566'; // Neo Yellow
+    if (val >= 30) return '#ff9770'; // Neo Orange
+    return '#ff6b6b'; // Neo Red
   };
 
   const strokeColor = getColor(value);
 
   return (
-    <div
-      role="progressbar"
-      aria-valuenow={Math.round(currentValue)}
-      aria-valuemin={0}
-      aria-valuemax={100}
-      aria-label={label ? `${label}: ${Math.round(currentValue)}%` : `Readiness: ${Math.round(currentValue)}%`}
-      className={`inline-flex flex-col items-center justify-center ${className}`}
-    >
-      <div className="relative flex items-center justify-center" style={{ width: size, height: size }}>
+    <div className={`inline-flex flex-col items-center justify-center ${className}`}>
+      <div
+        className="relative flex items-center justify-center p-3 bg-white border-2 border-black rounded-3xl shadow-neo"
+        style={{ width: size + 24, height: size + 24 }}
+      >
         <svg
           width={size}
           height={size}
           className="transform -rotate-90"
-          aria-hidden="true"
         >
           {/* Background circle */}
           <circle
@@ -84,6 +78,18 @@ export const Gauge: React.FC<GaugeProps> = ({
             stroke="#f1f5f9"
             strokeWidth={strokeWidth}
             fill="transparent"
+          />
+          {/* Outer Black Border for Gauge Track */}
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            stroke="#121212"
+            strokeWidth={strokeWidth}
+            strokeDasharray={`${circumference}`}
+            strokeDashoffset="0"
+            fill="transparent"
+            opacity="0.1"
           />
           {/* Animated Value circle */}
           <circle
@@ -103,19 +109,19 @@ export const Gauge: React.FC<GaugeProps> = ({
         </svg>
 
         {/* Center label */}
-        <div className="absolute flex flex-col items-center justify-center text-center">
-          <span className="text-2xl font-bold tracking-tight text-slate-900">
+        <div className="absolute flex flex-col items-center justify-center text-center bg-[#faf6ee] border-2 border-black px-3 py-1.5 rounded-xl shadow-neo-sm">
+          <span className="text-2xl font-black tracking-tight text-black font-mono">
             {Math.round(currentValue)}%
           </span>
           {label && (
-            <span className="text-[11px] font-medium text-slate-500 uppercase tracking-wider mt-0.5">
+            <span className="text-[10px] font-black text-slate-700 uppercase tracking-wider mt-0.5">
               {label}
             </span>
           )}
         </div>
       </div>
       {subtext && (
-        <span className="text-xs text-slate-500 mt-2 font-medium text-center">{subtext}</span>
+        <span className="text-xs text-slate-700 mt-2 font-bold text-center">{subtext}</span>
       )}
     </div>
   );

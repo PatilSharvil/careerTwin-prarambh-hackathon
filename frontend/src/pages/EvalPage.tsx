@@ -81,14 +81,14 @@ export const EvalPage: React.FC = () => {
     return (
       <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
         {simulatedEmptyView && (
-          <div className="max-w-3xl mx-auto flex items-center justify-between p-3 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-800">
-            <span className="flex items-center gap-1.5 font-semibold">
-              <ShieldAlert className="w-4 h-4 text-amber-600" />
+          <div className="max-w-3xl mx-auto flex items-center justify-between p-3.5 rounded-2xl bg-[#ffe566] border-2 border-black shadow-neo-xs text-xs text-black">
+            <span className="flex items-center gap-2 font-black">
+              <ShieldAlert className="w-4 h-4 text-black" />
               Simulating EVAL_NOT_RUN empty state view for evaluation acceptance
             </span>
             <button
               onClick={() => setSimulatedEmptyView(false)}
-              className="text-xs font-bold text-amber-900 underline hover:no-underline"
+              className="text-xs font-black text-black underline hover:no-underline bg-white px-2.5 py-1 rounded-lg border border-black shadow-neo-xs"
             >
               Restore Report View
             </button>
@@ -109,12 +109,12 @@ export const EvalPage: React.FC = () => {
   if (errorMsg && !report) {
     return (
       <div className="py-12 px-4 max-w-2xl mx-auto text-center space-y-4">
-        <div className="p-4 rounded-xl bg-red-50 text-red-700 border border-red-200 text-sm">
+        <div className="p-4 rounded-2xl bg-[#ff6b6b] text-black border-2 border-black font-black text-sm shadow-neo">
           {errorMsg}
         </div>
         <button
           onClick={fetchReport}
-          className="text-xs text-primary-600 font-bold hover:underline"
+          className="text-xs text-black font-black underline hover:no-underline bg-[#ffe566] border-2 border-black px-4 py-2 rounded-xl shadow-neo-xs"
         >
           Try Reloading
         </button>
@@ -136,10 +136,10 @@ export const EvalPage: React.FC = () => {
       <div className="flex items-center justify-end">
         <button
           onClick={() => setSimulatedEmptyView(true)}
-          className="inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 transition-colors shadow-2xs"
+          className="inline-flex items-center gap-2 text-xs font-black text-black px-4 py-2 rounded-xl border-2 border-black bg-white hover:bg-[#ffe566] transition-all shadow-neo-xs active:translate-x-0.5 active:translate-y-0.5"
           title="Preview EVAL_NOT_RUN state"
         >
-          <Eye className="w-3.5 h-3.5 text-slate-400" />
+          <Eye className="w-4 h-4 text-black" />
           <span>Test Empty State (EVAL_NOT_RUN)</span>
         </button>
       </div>

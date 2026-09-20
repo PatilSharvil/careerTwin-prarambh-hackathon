@@ -28,26 +28,26 @@ const SkillNodeComponent: React.FC<NodeProps<Node<CustomNodeData>>> = ({ data })
   const getStatusIcon = (st: SkillStatus) => {
     switch (st) {
       case 'done':
-        return <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />;
+        return <CheckCircle2 className="w-3.5 h-3.5 text-black stroke-[3]" />;
       case 'in_progress':
-        return <PlayCircle className="w-3.5 h-3.5 text-violet-600 animate-pulse" />;
+        return <PlayCircle className="w-3.5 h-3.5 text-black stroke-[2.5] animate-pulse" />;
       case 'available':
-        return <Unlock className="w-3.5 h-3.5 text-blue-600" />;
+        return <Unlock className="w-3.5 h-3.5 text-black stroke-[2.5]" />;
       case 'locked':
-        return <Lock className="w-3.5 h-3.5 text-slate-400" />;
+        return <Lock className="w-3.5 h-3.5 text-slate-500" />;
     }
   };
 
   const getStatusBorder = (st: SkillStatus) => {
     switch (st) {
       case 'done':
-        return 'border-emerald-500 bg-emerald-50/90 text-emerald-950 shadow-xs';
+        return 'border-2 border-black bg-[#79e7a8] text-black shadow-neo';
       case 'in_progress':
-        return 'border-violet-500 bg-violet-50/90 text-violet-950 ring-2 ring-violet-400/30 shadow-sm';
+        return 'border-2 border-black bg-[#ffe566] text-black shadow-neo';
       case 'available':
-        return 'border-blue-500 bg-white text-slate-900 shadow-xs hover:border-blue-600';
+        return 'border-2 border-black bg-white text-black shadow-neo hover:bg-[#faf6ee]';
       case 'locked':
-        return 'border-slate-300 bg-slate-100 text-slate-500 opacity-85';
+        return 'border-2 border-black bg-slate-100 text-slate-600 opacity-85 shadow-neo-xs';
     }
   };
 
@@ -64,18 +64,18 @@ const SkillNodeComponent: React.FC<NodeProps<Node<CustomNodeData>>> = ({ data })
           (e.currentTarget as HTMLElement).click();
         }
       }}
-      className={`px-4 py-3 rounded-xl border-2 min-w-[200px] max-w-[240px] cursor-pointer transition-all hover:scale-105 focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:outline-none ${getStatusBorder(
+      className={`px-4 py-3 rounded-2xl border-2 min-w-[200px] max-w-[240px] cursor-pointer transition-all hover:scale-105 focus-visible:outline-none ${getStatusBorder(
         status
       )}`}
     >
       <Handle
         type="target"
         position={Position.Left}
-        className="!w-2.5 !h-2.5 !bg-slate-400"
+        className="!w-3 !h-3 !bg-black !border-2 !border-white"
       />
 
       <div className="flex items-start justify-between gap-1.5 mb-1">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 font-mono">
+        <span className="text-[10px] font-black uppercase tracking-wider text-black font-mono bg-white/70 px-1.5 py-0.5 rounded border border-black shadow-neo-xs">
           {phase}
         </span>
         <Badge status={status} size="sm" className="flex items-center gap-1 capitalize">
@@ -85,8 +85,8 @@ const SkillNodeComponent: React.FC<NodeProps<Node<CustomNodeData>>> = ({ data })
       </div>
 
       <div className="flex items-center gap-1.5 mt-1">
-        {isCapstone && <Milestone className="w-3.5 h-3.5 text-amber-600 flex-shrink-0" />}
-        <h4 className="text-xs font-bold leading-snug break-words">
+        {isCapstone && <Milestone className="w-4 h-4 text-black stroke-[2.5] flex-shrink-0" />}
+        <h4 className="text-xs font-black leading-snug break-words text-black">
           {label}
         </h4>
       </div>
@@ -94,7 +94,7 @@ const SkillNodeComponent: React.FC<NodeProps<Node<CustomNodeData>>> = ({ data })
       <Handle
         type="source"
         position={Position.Right}
-        className="!w-2.5 !h-2.5 !bg-slate-400"
+        className="!w-3 !h-3 !bg-black !border-2 !border-white"
       />
     </div>
   );
@@ -209,7 +209,7 @@ export const RoadmapGraphView: React.FC<RoadmapGraphViewProps> = ({
     <div
       role="region"
       aria-label="Interactive skill dependency graph"
-      className="w-full h-[600px] bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden relative shadow-inner"
+      className="w-full h-[600px] bg-[#faf6ee] rounded-3xl border-2 border-black overflow-hidden relative shadow-neo-lg"
     >
       <ReactFlow
         nodes={flowNodes}
@@ -220,8 +220,8 @@ export const RoadmapGraphView: React.FC<RoadmapGraphViewProps> = ({
         minZoom={0.2}
         maxZoom={1.5}
       >
-        <Background color="#cbd5e1" gap={20} size={1} />
-        <Controls showInteractive={false} className="!bg-white !shadow-md !border-slate-200 !rounded-lg" />
+        <Background color="#000000" gap={24} size={1.5} />
+        <Controls showInteractive={false} className="!bg-white !shadow-neo !border-2 !border-black !rounded-xl" />
       </ReactFlow>
     </div>
   );
