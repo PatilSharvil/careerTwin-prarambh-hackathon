@@ -16,4 +16,4 @@ warm:
 	@echo not implemented yet
 
 verify:
-	@echo not implemented yet
+	python scripts/verify_contract.py

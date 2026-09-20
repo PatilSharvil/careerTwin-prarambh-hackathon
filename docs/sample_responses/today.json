@@ -1,0 +1,53 @@
+{
+  "today": {
+    "item_id": "rm_linear_algebra",
+    "skill_id": "linear_algebra",
+    "skill_name": "Linear Algebra",
+    "activity": {
+      "activity_id": "res_stats_course",
+      "type": "course",
+      "title": "Mathematics for Machine Learning: Statistics & Linear Algebra",
+      "provider": "Coursera",
+      "url": "https://www.coursera.org/specializations/mathematics-machine-learning",
+      "hours": 14.0,
+      "level_gain": 2.0,
+      "skills": [
+        "statistics",
+        "linear_algebra"
+      ],
+      "level_from": 0.0,
+      "level_to": 5.0,
+      "completed": false
+    },
+    "minutes": 120,
+    "why": {
+      "level": 0.0,
+      "target": 4.0,
+      "gap": 4.0,
+      "importance": 0.5,
+      "priority": 85,
+      "priority_label": "High",
+      "unblocks": [
+        {
+          "skill_id": "deep_learning",
+          "skill_name": "Deep Learning Fundamentals"
+        }
+      ],
+      "interest_match": false,
+      "evidence_snippet": null,
+      "narrative": "Linear Algebra is ranked High priority because your calibrated level is 0.0/10 vs ~4.0/10 required for GenAI Engineer. It directly unblocks Deep Learning Fundamentals.",
+      "narrative_source": "template"
+    },
+    "reasons": [
+      "Target skill: Linear Algebra (Priority 85 — High)",
+      "Unblocks 1 key milestone(s): Deep Learning Fundamentals",
+      "Fits a focused 120-minute learning session (Mathematics for Machine Learning: Statistics & Linear Algebra)"
+    ]
+  },
+  "message": null,
+  "meta": {
+    "llm_provider": "none",
+    "llm_used": false,
+    "fallback_used": false
+  }
+}
