@@ -22,7 +22,9 @@ export interface AppState {
   roles: RoleSummary[];
   state: AnalyzeResponse | null;
   lastDiff: Diff | null;
+  lastNarrative: { narrative: string; source: 'llm' | 'template' } | null;
   today: TodayPick | null;
+  todayMessage: string | null;
   coachMessages: CoachMessageItem[];
   sessionId: string;
   evalReport: EvalReport | null;
@@ -34,7 +36,9 @@ export interface AppState {
   setRoles: (roles: RoleSummary[]) => void;
   setState: (state: AnalyzeResponse | null) => void;
   setLastDiff: (diff: Diff | null) => void;
+  setLastNarrative: (item: { narrative: string; source: 'llm' | 'template' } | null) => void;
   setToday: (today: TodayPick | null) => void;
+  setTodayMessage: (message: string | null) => void;
   addCoachMessage: (message: Omit<CoachMessageItem, 'id' | 'timestamp'>) => void;
   clearCoachMessages: () => void;
   setSessionId: (sessionId: string) => void;
@@ -52,7 +56,9 @@ export const useStore = create<AppState>((set) => ({
   roles: [],
   state: null,
   lastDiff: null,
+  lastNarrative: null,
   today: null,
+  todayMessage: null,
   coachMessages: [],
   sessionId: generateSessionId(),
   evalReport: null,
@@ -63,7 +69,9 @@ export const useStore = create<AppState>((set) => ({
   setRoles: (roles) => set({ roles }),
   setState: (state) => set({ state }),
   setLastDiff: (lastDiff) => set({ lastDiff }),
+  setLastNarrative: (lastNarrative) => set({ lastNarrative }),
   setToday: (today) => set({ today }),
+  setTodayMessage: (todayMessage) => set({ todayMessage }),
   addCoachMessage: (message) =>
     set((s) => ({
       coachMessages: [
@@ -86,7 +94,9 @@ export const useStore = create<AppState>((set) => ({
       roles: [],
       state: null,
       lastDiff: null,
+      lastNarrative: null,
       today: null,
+      todayMessage: null,
       coachMessages: [],
       sessionId: generateSessionId(),
       evalReport: null,
