@@ -16,7 +16,7 @@ def test_health_endpoint():
     assert data["db"] in ["ok", "error"]
 
 def test_unimplemented_endpoint():
-    response = client.post("/api/analyze", json={"role_id": "genai_engineer", "weekly_hours": 10, "deadline_weeks": 12})
+    response = client.post("/api/coach", json={"message": "hello", "session_id": "s1"})
     assert response.status_code == 501
     data = response.json()
     assert "error" in data
