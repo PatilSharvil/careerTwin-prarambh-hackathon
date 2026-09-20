@@ -82,12 +82,11 @@ const Navigation: React.FC = () => {
           {/* Logo */}
           <div className="flex items-center space-x-3">
             <Link to="/" className="flex items-center gap-2 group">
-              <div className="w-9 h-9 rounded-xl bg-[#ffe566] border-2 border-black flex items-center justify-center text-black font-black text-sm shadow-neo-xs group-hover:-translate-y-0.5 transition-transform">
-                CT
-              </div>
-              <span className="text-xl font-black text-black tracking-tight group-hover:text-primary-800 transition-colors">
-                CareerTwin
-              </span>
+              <img
+                src="/logo.png"
+                alt="CareerTwin Logo"
+                className="h-9 w-auto object-contain hover:scale-102 transition-transform"
+              />
             </Link>
           </div>
 

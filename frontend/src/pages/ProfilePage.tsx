@@ -260,7 +260,7 @@ export const ProfilePage: React.FC = () => {
   const isFormLocked = isExtractingSkills || isAnalyzing;
 
   return (
-    <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 pb-32">
+    <div className="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-8 pb-12">
       {/* Header */}
       <div>
         <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight sm:text-4xl">
@@ -311,8 +311,8 @@ export const ProfilePage: React.FC = () => {
         disabled={isFormLocked}
       />
 
-      {/* Step 5 — Analyze Action Bar (Sticky Footer Card) */}
-      <Card className="p-6 bg-white border-2 border-black rounded-2xl shadow-neo-lg sticky bottom-4 z-30">
+      {/* Step 5 — Analyze Action Bar (In-Flow Card) */}
+      <Card className="p-6 bg-white border-2 border-black rounded-2xl shadow-neo-lg">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="space-y-1">
             <div className="flex items-center gap-2.5">
