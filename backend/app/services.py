@@ -55,7 +55,7 @@ from engine.replan import complete_activity, complete_skill, mark_known
 from engine.roadmap import build_roadmap
 from engine.today import get_today_pick
 from llm.provider import available_chain
-from rag.retriever import ChromaResourceProvider
+from engine.resources import JsonResourceProvider
 from store import repo
 
 
@@ -63,8 +63,8 @@ def _get_catalog() -> Catalog:
     return Catalog.from_data_dir()
 
 
-def _get_resource_provider() -> ChromaResourceProvider:
-    return ChromaResourceProvider()
+def _get_resource_provider() -> JsonResourceProvider:
+    return JsonResourceProvider.from_data_dir()
 
 
 # =====================================================================

@@ -18,7 +18,7 @@ from engine.gaps import analyze_gaps
 from engine.models import Analysis, ProfileSkillState, ProfileState, Roadmap
 from engine.roadmap import build_roadmap
 from llm.provider import available_chain, get_model
-from rag.retriever import ChromaResourceProvider
+from engine.resources import JsonResourceProvider
 
 logger = logging.getLogger("careertwin.agents.pipeline")
 
@@ -57,7 +57,7 @@ async def run_analysis(
 ) -> AnalyzeResponse:
     """Execute complete initial analysis pipeline with deterministic fallback guarantees."""
     cat = catalog or Catalog.from_data_dir()
-    res_provider = resource_provider or ChromaResourceProvider()
+    res_provider = resource_provider or JsonResourceProvider.from_data_dir()
     overrides = skill_overrides or {}
 
     role = cat.get_role(role_id)

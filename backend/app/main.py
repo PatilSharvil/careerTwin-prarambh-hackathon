@@ -43,8 +43,6 @@ from app.schemas import (
 from agents.coach_agent import run_coach
 from engine.catalog import Catalog
 from llm.provider import available_chain
-from rag.chroma_client import get_chroma_client
-from rag.indexer import index_knowledge_base
 from store import repo
 from store.db import init_db
 
@@ -77,18 +75,7 @@ async def lifespan(app: FastAPI):
         len(cat.roles),
     )
 
-    # 3. Run ChromaDB index check in background daemon thread so Uvicorn port opens in 0.05s
-    import threading
-    def _bg_index_check():
-        try:
-            idx_res = index_knowledge_base()
-            logger.info("[SELF-CHECK] ChromaDB index verified: %s", idx_res)
-        except Exception as exc:
-            logger.warning("[SELF-CHECK] ChromaDB index encountered: %s", exc)
-
-    threading.Thread(target=_bg_index_check, daemon=True).start()
-
-    # 4. Check LLM provider chain
+    # 3. Check LLM provider chain
     chain = settings.provider_chain()
     avail = available_chain()
     logger.info("[SELF-CHECK] LLM chain configured: %s; available with API keys: %s", chain, avail)
@@ -161,20 +148,11 @@ async def get_health() -> Health:
         logger.error("Health probe DB failed: %s", exc)
         db_status = "error"
 
-    # Probe ChromaDB
-    chroma_status = "ok"
-    try:
-        client = get_chroma_client()
-        client.heartbeat()
-    except Exception as exc:
-        logger.error("Health probe Chroma failed: %s", exc)
-        chroma_status = "error"
-
     return Health(
         status="ok",
         version="0.1.0",
         llm=LlmHealth(chain=chain, primary=primary),
-        chroma=chroma_status,
+        chroma="disabled",
         db=db_status,
     )
 

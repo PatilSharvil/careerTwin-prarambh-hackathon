@@ -11,7 +11,7 @@ from engine.catalog import Catalog
 from engine.gaps import analyze_gaps
 from engine.models import Analysis, ProfileSkillState, ProfileState, Roadmap, Role
 from engine.roadmap import build_roadmap
-from rag.retriever import ChromaResourceProvider
+from engine.resources import JsonResourceProvider
 
 logger = logging.getLogger("careertwin.agents.engine")
 
@@ -63,8 +63,8 @@ class EngineAgent(BaseAgent):
             catalog=catalog,
         )
 
-        # 2. Roadmap generation via ChromaResourceProvider
-        resource_provider = ChromaResourceProvider()
+        # 2. Roadmap generation via JsonResourceProvider (lightweight, no ONNX model needed)
+        resource_provider = JsonResourceProvider.from_data_dir()
         roadmap: Roadmap = build_roadmap(
             profile_state=profile_state,
             role=role,
