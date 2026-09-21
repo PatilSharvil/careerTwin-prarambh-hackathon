@@ -445,7 +445,7 @@ class Health(BaseModel):
     status: Literal["ok"]
     version: str
     llm: LlmHealth
-    chroma: Literal["ok", "error"]
+    chroma: Literal["ok", "error", "disabled"]
     db: Literal["ok", "error"]
 
 ErrorCode = Literal[
